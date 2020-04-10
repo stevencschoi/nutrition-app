@@ -1,6 +1,7 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
-import Nav from "./components/Nav"
+import Nav from "./components/Nav";
+import Search from "./components/Search";
 import "./App.css";
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
   // }, []);
   return (
     <div className="App">
-      <Nav/>
+      <Nav />
+      <Search />
     </div>
   );
 }
