@@ -30,39 +30,6 @@ function Home(props) {
   //     .catch((error) => console.error(error));
   // }
 
-  // useEffect(() => {
-  //   selectItem(recipes);
-  // }, [setRecipes]);
-
-  // function fetchIngredients(ingredientsArray) {
-  // setRecipes(ingredientsArray);
-  // let i = 0;
-  // const list = [];
-  // while (i < 10) {
-  //   const item = `{
-  //     <div><img src=${ingredientsArray[i].image} /></div>
-  //     <div>${ingredientsArray[i].food.label}</div>
-  //   }`;
-  //   list.push(item);
-  //   i++;
-  // }
-  // console.log(list);
-  // selectItem(ingredientsArray);
-  // }
-
-  // function selectItem(ingredientsArray) {
-  //   const list = ingredientsArray.map((item) => {
-  //     return (
-  //       <>
-  //         <div>
-  //           <img src={item.image} />
-  //         </div>
-  //         <div>{item.food.label}</div>
-  //       </>
-  //     );
-  //   });
-  // }
-
   // api call and set state to generate recipes from ingredient search
 
   function fetchSearchResults(ingredient) {
