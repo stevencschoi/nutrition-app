@@ -1,13 +1,10 @@
-import React, { useState, useContext, Redirect } from "react";
+import React, { useState } from "react";
 import "./styles.css";
-import axios from "axios";
 
 const Login = props => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  // return value of this useContext will be whatever the `value` prop
-  // is for the UserContext.Provider
-  // const setUser = useContext(UserContext);
+
   return (
     <form
       onSubmit={e => {

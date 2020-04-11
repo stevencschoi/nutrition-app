@@ -13,6 +13,9 @@
   display: table-cell;
   vertical-align: middle;
 }
+#cover:focus {
+  outline: none
+}
 
 #cover input,
 #cover button {

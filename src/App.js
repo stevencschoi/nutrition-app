@@ -1,19 +1,21 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import Nav from "./components/Nav";
-import Search from "./components/Search";
+import Home from "./components/Home"
+import Search from "./components/Search"
 import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
-  // const apikey = process.env.REACT_APP_API_KEY
-  // useEffect(() => {
-  //   axios.get(`https://api.spoonacular.com/recipes/search?apiKey=${apikey}&number=1&query=banana`).then(result => console.log(result));
-  // }, []);
   return (
-    <div className="App">
-      <Nav />
-      <Search />
-    </div>
+    <Router>
+      <div className="App">
+        <Nav />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          {/* <Route path="/recipes/:id" exact component={Recipes} /> */}
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
