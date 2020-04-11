@@ -18,6 +18,8 @@ console.log(
   `THISSSSS ${DATABASE_ID}, ${DATABASE_KEY}, ${RECIPE_SEARCH_ID}, ${RECIPE_SEARCH_KEY}`
 );
 
+console.log(DATABASE_ID);
+
 function Home(props) {
   const [search, setSearch] = useState();
   const [recipes, setRecipes] = useState();
@@ -34,8 +36,8 @@ function Home(props) {
 
   function fetchSearchResults(ingredient) {
     const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
-    const apiId = "2855864b";
-    const apiKey = "e9617d6a226e8a3b9d239c0652fbd0af";
+    const apiId = "???";
+    const apiKey = "???";
     // axios
     //   .get(
     //     `https://api.edamam.com/api/food-database/parser?ingr=${ingredient}&app_id=${apiId}&app_key=${apiKey}`
@@ -52,6 +54,7 @@ function Home(props) {
           return <SearchResult id={id} label={label} image={image} />;
         });
         setSearch(searchResultsArray);
+        // localStorage.setItem("currentData", searchResultsArray);
       })
       .catch((error) => console.error(error));
   }
