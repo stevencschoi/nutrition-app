@@ -5,6 +5,9 @@ import Searchbar from "./Searchbar";
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 
+const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
+const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
+
 function SearchResult(props) {
   const [search, setSearch] = useState();
 
@@ -13,13 +16,11 @@ function SearchResult(props) {
   }, []);
 
   const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
-  const apiId = "???";
-  const apiKey = "???";
 
   const getRecipe = () => {
     axios
       .post(
-        `${proxyUrl}https://api.edamam.com/api/food-database/nutrients?app_id=${apiId}&app_key=${apiKey}`,
+        `${proxyUrl}https://api.edamam.com/api/food-database/nutrients?app_id=${dbId}&app_key=${dbKey}`,
         {
           ingredients: [
             {

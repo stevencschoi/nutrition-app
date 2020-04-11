@@ -9,16 +9,10 @@ import { link } from "react-router-dom";
 
 // const apiKey = process.env.REACT_APP_API_KEY;
 
-const DATABASE_ID = process.env.REACT_APP_FOOD_DATABASE_ID;
-const DATABASE_KEY = process.env.REACT_APP_FOOD_DATABASE_KEY;
-const RECIPE_SEARCH_ID = process.env.REACT_APP_RECIPE_SEARCH_ID;
-const RECIPE_SEARCH_KEY = process.env.REACT_APP_RECIPE_SEARCH_KEY;
+const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
+const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
 
-console.log(
-  `THISSSSS ${DATABASE_ID}, ${DATABASE_KEY}, ${RECIPE_SEARCH_ID}, ${RECIPE_SEARCH_KEY}`
-);
-
-console.log(DATABASE_ID);
+console.log(`THISSSSS ${dbId}, ${dbKey}`);
 
 function Home(props) {
   const [search, setSearch] = useState();
@@ -36,22 +30,22 @@ function Home(props) {
 
   function fetchSearchResults(ingredient) {
     const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
-    const apiId = "???";
-    const apiKey = "???";
+    // const apiId = "???";
+    // const apiKey = "???";
     // axios
     //   .get(
     //     `https://api.edamam.com/api/food-database/parser?ingr=${ingredient}&app_id=${apiId}&app_key=${apiKey}`
     //   )
     axios
       .get(
-        `https://api.edamam.com/api/food-database/parser?ingr=raw%20${ingredient}&app_id=${apiId}&app_key=${apiKey}`
+        `https://api.edamam.com/api/food-database/parser?ingr=raw%20${ingredient}&app_id=${dbId}&app_key=${dbKey}`
       )
       .then((result) => {
         const searchResultsArray = result.data.hints.map((item) => {
           const id = `${item.food.foodId}`;
           const label = `${item.food.label}`;
           const image = `${item.food.image}`;
-          return <SearchResult id={id} label={label} image={image} />;
+          return <SearchResult key={id} id={id} label={label} image={image} />;
         });
         setSearch(searchResultsArray);
         // localStorage.setItem("currentData", searchResultsArray);
