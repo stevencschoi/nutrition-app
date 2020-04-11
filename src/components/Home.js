@@ -2,13 +2,13 @@ import React, { useState, useEffect, Fragment } from "react";
 import "./styles.css";
 import axios from "axios";
 import Searchbar from "./Searchbar";
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import { link } from 'react-router-dom'
+import RecipeCarousel from "./RecipeCarousel";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { link } from "react-router-dom";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
 function Home(props) {
-
   const [recipes, setRecipes] = useState();
   // const [ingredientNutrition, setIngredientNutrition] = useState();
 
@@ -45,6 +45,7 @@ function Home(props) {
             {/* Ingredient nutrition: {JSON.stringify(ingredientNutrition)} */}
           </code>
           <h3>Recipes</h3>
+          <RecipeCarousel recipes={recipes} />
           <code>Recipes Array: {JSON.stringify(recipes)}</code>
         </div>
       )}
