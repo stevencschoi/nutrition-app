@@ -27,11 +27,16 @@ function SearchResult(props) {
               quantity: 100,
               measureURI:
                 "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
-              foodId: `${props.id}`,
+              foodId: "food_bvlose6arfl26ra396sjrb7hetqh",
             },
           ],
         }
       )
+      // axios({
+      //   url: `${proxyUrl}https://api.edamam.com/api/food-database/nutrients?app_id=${dbId}&app_key=${dbKey}`,
+      //   method: "POST",
+      //   dataType: "json",
+      // })
       .then((result) => console.log(result))
       // .then((result) => {
       //   const searchResultsArray = result.data.hints.map((item) => {

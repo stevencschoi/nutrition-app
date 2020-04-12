@@ -5,7 +5,6 @@ import Searchbar from "./Searchbar";
 import SearchResult from "./SearchResult";
 import RecipeCarousel from "./RecipeCarousel";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { link } from "react-router-dom";
 
 // const apiKey = process.env.REACT_APP_API_KEY;
 
