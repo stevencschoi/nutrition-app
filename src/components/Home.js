@@ -65,7 +65,6 @@ function Home(props) {
             {/* Ingredient nutrition: {JSON.stringify(ingredientNutrition)} */}
           </code>
           <h3>ingredients</h3>
-          {/* <RecipeCarousel recipes={ingredient} /> */}
           <code>ingredients Array: {JSON.stringify(search)}</code>
         </div>
       )}
