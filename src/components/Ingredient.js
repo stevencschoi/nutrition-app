@@ -8,11 +8,12 @@ import { Link } from "react-router-dom";
 const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
 const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
 
-function SearchResult(props) {
+function SearchResult({ props, match }) {
   const [search, setSearch] = useState();
 
   useEffect(() => {
     getRecipe();
+    console.log(match.params.id);
   }, []);
 
   const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
@@ -27,7 +28,7 @@ function SearchResult(props) {
               quantity: 100,
               measureURI:
                 "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
-              foodId: "food_bvlose6arfl26ra396sjrb7hetqh",
+              foodId: `${match.params.id}`,
             },
           ],
         }

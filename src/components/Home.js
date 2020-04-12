@@ -41,10 +41,12 @@ function Home(props) {
       )
       .then((result) => {
         const searchResultsArray = result.data.hints.map((item) => {
-          const id = `${item.food.foodId}`;
+          const code = `${item.food.foodId}`;
           const label = `${item.food.label}`;
           const image = `${item.food.image}`;
-          return <SearchResult key={id} id={id} label={label} image={image} />;
+          return (
+            <SearchResult key={code} id={code} label={label} image={image} />
+          );
         });
         setSearch(searchResultsArray);
         // localStorage.setItem("currentData", searchResultsArray);

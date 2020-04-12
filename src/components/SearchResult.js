@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function SearchResult(props) {
   return (
     <Link to={`/ingredient/${props.id}`}>
-      <div id={props.id}>
+      <div>
         <img src={props.image} />
         <h4 className="legend">{props.label}</h4>
       </div>

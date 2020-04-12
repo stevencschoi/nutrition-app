@@ -17,7 +17,7 @@ function Nav() {
           <Logout setUser={setUser} />
         </div>
       )}
-      {user && <Login setUser={setUser} />}
+      {!user && <Login setUser={setUser} />}
       {/* <Signup/> */}
     </nav>
   );
