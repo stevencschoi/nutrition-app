@@ -2,8 +2,9 @@ import React, { useState, useEffect, Fragment } from "react";
 import "./styles.css";
 import axios from "axios";
 import Searchbar from "./Searchbar";
-// import RecipeCard from "./RecipeCard";
-// import { Carousel } from "react-responsive-carousel";
+import { Carousel } from "react-responsive-carousel";
+import RecipeCard from "./RecipeCard";
+import RecipeCarousel from "./RecipeCarousel";
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -14,6 +15,7 @@ const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
 
 function Ingredient({ props, match }) {
   const [search, setSearch] = useState();
+  const [recipes, setRecipes] = useState();
 
   useEffect(() => {
     const format = match.url.split("/");
@@ -21,12 +23,10 @@ function Ingredient({ props, match }) {
     fetchRecipes(format[3]);
   }, []);
 
-  const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
-
   const getNutrients = (ingredient) => {
     axios
       .post(
-        `${proxyUrl}https://api.edamam.com/api/food-database/nutrients?app_id=${dbId}&app_key=${dbKey}`,
+        `https://api.edamam.com/api/food-database/nutrients?app_id=${dbId}&app_key=${dbKey}`,
         {
           ingredients: [
             {
@@ -58,26 +58,33 @@ function Ingredient({ props, match }) {
         `https://api.edamam.com/search?q=${searchResult}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
       )
       .then((result) => {
-        console.log(result.data.hits);
-        // const recipeCardsArray = result.data.hits.map((recipe, index) => {
-        //   const label = `${recipe.label}`;
-        //   const image = `${recipe.image}`;
-        //   const url = `${recipe.url}`;
-        //   const ingredientsArray = `${recipe.ingredientLines}`;
+        const recipeCardsArray = result.data.hits.map((recipe, index) => {
+          const label = `${recipe.recipe.label}`;
+          const image = `${recipe.recipe.image}`;
+          const url = `${recipe.recipe.url}`;
+          const ingredients = `${recipe.recipe.ingredientLines}`;
 
-        //   return (
-        //     <RecipeCard
-        //       key={index}
-        //       label={label}
-        //       image={image}
-        //       url={url}
-        //       ingredientsArray={ingredientsArray}
-        //     />
-        //   );
-        // });
+          // console.log("Recipe:", recipe);
+          return (
+            <RecipeCard
+              key={index}
+              label={label}
+              image={image}
+              url={url}
+              ingredients={ingredients}
+            />
+          );
+        });
+        // console.log("recipeCardsArray", recipeCardsArray);
+        setRecipes(recipeCardsArray);
       })
       .catch((error) => console.error(error));
   }
-  return <Link to={"/"}>Home</Link>;
+  return (
+    <>
+      {recipes && <RecipeCarousel recipes={recipes} />}
+      <Link to={"/"}>Home</Link>
+    </>
+  );
 }
 export default Ingredient;
