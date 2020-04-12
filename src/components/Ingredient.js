@@ -13,7 +13,6 @@ function SearchResult({ props, match }) {
 
   useEffect(() => {
     getRecipe();
-    console.log(match.params.id);
   }, []);
 
   const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
