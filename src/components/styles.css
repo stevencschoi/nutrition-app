@@ -142,3 +142,8 @@
   width: 40px;
   background-color: #fff;
 }
+
+.search {
+  display: flex;
+  flex-wrap: wrap;
+}

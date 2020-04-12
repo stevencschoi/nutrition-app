@@ -1,0 +1,13 @@
+.carousel-wrapper {
+  margin: 0 auto;
+  width: 40rem;
+}
+
+.carousel-wrapper img {
+  height: 30rem;
+  width: 30rem;
+}
+
+.carousel-status {
+  display: none;
+}

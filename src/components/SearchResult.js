@@ -1,13 +1,10 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React from "react";
 import "./styles.css";
-import axios from "axios";
-import Searchbar from "./Searchbar";
-import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 
 function SearchResult(props) {
   return (
-    <Link to={`/ingredient/${props.id}`}>
+    <Link to={`/ingredient/${props.id}/${props.label}`}>
       <div>
         <img src={props.image} />
         <h4 className="legend">{props.label}</h4>
