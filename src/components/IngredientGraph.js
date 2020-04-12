@@ -6,12 +6,12 @@ function IngredientGraph(props) {
   
   // const obj = props.data
 
-  useEffect(() => {
-    console.log("This one", props)
+  // useEffect(() => {
+    // console.log("This one", props)
     // const data = props.getRecipe()
     // setData(data)
     // console.log(data)
-  }, [props.data]);
+  // }, [props.data]);
   
   return (
   <div>

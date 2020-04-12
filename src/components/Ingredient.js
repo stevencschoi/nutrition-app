@@ -55,7 +55,7 @@ function Ingredient({ props, match }) {
           // console.log("Recipe:", recipe);
           return (
             <RecipeCard
-              key={index}
+              key={label}
               label={label}
               image={image}
               url={url}

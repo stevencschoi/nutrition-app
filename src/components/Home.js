@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
 const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
 
-console.log(`THISSSSS ${dbId}, ${dbKey}`);
+// console.log(`THISSSSS ${dbId}, ${dbKey}`);
 
 function Home(props) {
   const [search, setSearch] = useState();
@@ -34,13 +34,14 @@ function Home(props) {
       )
       .then((result) => {
         const searchResultsArray = result.data.hints.map((item) => {
+          if (item.food.image) {
           const code = `${item.food.foodId}`;
           const label = `${item.food.label}`;
           const image = `${item.food.image}`;
           return (
             <SearchResult key={code} id={code} label={label} image={image} />
           );
-        });
+        }});
         setSearch(searchResultsArray);
         // localStorage.setItem("currentData", searchResultsArray);
       })
@@ -56,15 +57,17 @@ function Home(props) {
         </div>
       )}
       <Searchbar fetchSearchResults={fetchSearchResults} />
-      {search}
+      <div className="search">
+        {search}
+      </div>
       {search && (
         <div>
-          <div>graph</div>
-          <code>
+          {/* <div>graph</div> */}
+          {/* <code> */}
             {/* Ingredient nutrition: {JSON.stringify(ingredientNutrition)} */}
-          </code>
-          <h3>ingredients</h3>
-          <code>ingredients Array: {JSON.stringify(search)}</code>
+          {/* </code> */}
+          {/* <h3>ingredients</h3> */}
+          {/* <code>ingredients Array: {JSON.stringify(search)}</code> */}
         </div>
       )}
     </>
