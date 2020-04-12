@@ -14,17 +14,17 @@ import { Carousel } from "react-responsive-carousel";
 
 export default function RecipeCarousel(props) {
   // for each object in recipes array, return a div containing the recipe image and title and id
-  // const recipeCards = props.recipes.map((recipe) => {
-  //   const url = `https://spoonacular.com/recipeImages/` + `${recipe.image}`;
-  //   return (
-  //     <div id={recipe.id}>
-  //       <a>
-  //         <img src={url} />
-  //         <h4 className="legend">{recipe.title}</h4>
-  //       </a>
-  //     </div>
-  //   );
-  // });
+  const recipeCards = props.recipes.map((recipe) => {
+    const url = `https://spoonacular.com/recipeImages/` + `${recipe.image}`;
+    return (
+      <div id={recipe.id}>
+        <a>
+          <img src={url} />
+          <h4 className="legend">{recipe.title}</h4>
+        </a>
+      </div>
+    );
+  });
 
   return (
     <div class="carousel-wrapper">

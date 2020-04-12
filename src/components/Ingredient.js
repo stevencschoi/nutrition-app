@@ -51,11 +51,4 @@ function SearchResult({ props, match }) {
       .catch((error) => console.error(error));
   };
 
-  return (
-    <>
-      <Link to={"/"}>Home</Link>
-    </>
-  );
-}
-
-export default SearchResult;
+  return <></>;
