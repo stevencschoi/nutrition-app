@@ -1,7 +1,16 @@
 import React from "react";
-import axios from "axios";
+import "./styles.css";
+import { Link } from "react-router-dom";
 
-const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
-const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
+function RecipeCard(props) {
+  return (
+    <Link to={`/ingredient/${props.key}`}>
+      <div>
+        <img src={props.image} />
+        <h4 className="legend">{props.label}</h4>
+      </div>
+    </Link>
+  );
+}
 
-console.log(recipeApiId, recipeApiKey);
+export default RecipeCard;

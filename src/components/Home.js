@@ -29,12 +29,6 @@ function Home(props) {
 
   function fetchSearchResults(ingredient) {
     const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
-    // const apiId = "???";
-    // const apiKey = "???";
-    // axios
-    //   .get(
-    //     `https://api.edamam.com/api/food-database/parser?ingr=${ingredient}&app_id=${apiId}&app_key=${apiKey}`
-    //   )
     axios
       .get(
         `https://api.edamam.com/api/food-database/parser?ingr=raw%20${ingredient}&app_id=${dbId}&app_key=${dbKey}`
@@ -71,7 +65,6 @@ function Home(props) {
             {/* Ingredient nutrition: {JSON.stringify(ingredientNutrition)} */}
           </code>
           <h3>ingredients</h3>
-          {/* <RecipeCarousel recipes={ingredient} /> */}
           <code>ingredients Array: {JSON.stringify(search)}</code>
         </div>
       )}
