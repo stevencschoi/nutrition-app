@@ -1,12 +1,9 @@
 import React, { useState, useEffect, Fragment } from "react";
 import "./styles.css";
 import axios from "axios";
-import Searchbar from "./Searchbar";
-import { Carousel } from "react-responsive-carousel";
 import RecipeCard from "./RecipeCard";
 import RecipeCarousel from "./RecipeCarousel";
-import { Redirect } from "react-router";
-import { Link } from "react-router-dom";
+import IngredientGraph from "./IngredientGraph";
 
 const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
 const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
@@ -38,16 +35,7 @@ function Ingredient({ props, match }) {
           ],
         }
       )
-      .then((result) => console.log(result))
-      // .then((result) => {
-      //   const searchResultsArray = result.data.hints.map((item) => {
-      //     const id = `${item.food.foodId}`;
-      //     const label = `${item.food.label}`;
-      //     const image = `${item.food.image}`;
-      //     return <Recipe id={id} label={label} image={image} />;
-      //   });
-      //   setSearch(searchResultsArray);
-      // })
+      .then((result) => setSearch(result.data))
       .catch((error) => console.error(error));
   };
 
@@ -82,8 +70,8 @@ function Ingredient({ props, match }) {
   }
   return (
     <>
+      <IngredientGraph data={search}/>
       {recipes && <RecipeCarousel recipes={recipes} />}
-      <Link to={"/"}>Home</Link>
     </>
   );
 }

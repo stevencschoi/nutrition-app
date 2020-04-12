@@ -1,9 +1,8 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import axios from "axios";
 import Searchbar from "./Searchbar";
 import SearchResult from "./SearchResult";
-import RecipeCarousel from "./RecipeCarousel";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // const apiKey = process.env.REACT_APP_API_KEY;
