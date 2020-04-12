@@ -12,13 +12,14 @@ export default function RecipeCarousel(props) {
       `https://api.edamam.com/search?q=${searchResult}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
     )
     .then((result) => {
-      const recipeCardsArray = result.data.hits.map((recipe) => {
+      const recipeCardsArray = result.data.hits.map((recipe, index) => {
         const label = `${recipe.label}`;
         const image = `${recipe.image}`;
         const url = `${recipe.url}`
+        const ingredientsArray = `${recipe.ingredientLines}`
         
         return (
-          <RecipeCard key={label} label={label} image={image} url={url} />
+          <RecipeCard key={index} label={label} image={image} url={url} ingredientsArray={ingredientsArray} />
         )
       })
       .catch((error) => console.error(error))

@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 function RecipeCard(props) {
   return (
-    <Link to={`/ingredient/${props.id}`}>
-      <div id={props.id}>
+    <Link to={`/ingredient/${props.key}`}>
+      <div>
         <img src={props.image} />
         <h4 className="legend">{props.label}</h4>
       </div>
