@@ -52,9 +52,7 @@ function SearchResult({ props, match }) {
   };
 
   return (
-    <>
-      <Link to={"/"}>Home</Link>
-    </>
+    <></>
   );
 }
 
