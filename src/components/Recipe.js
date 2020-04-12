@@ -17,10 +17,12 @@ export default function Recipe({props, match}) {
     fetchRecipes(foodName)
   }, [props]);
 
-  function fetchRecipes(abc) {
+  const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
+
+  function fetchRecipes(ingredient) {
     axios
       .get(
-        `https://api.edamam.com/search?q=${abc}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
+        `${proxyUrl}https://api.edamam.com/search?q=${ingredient}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
       )
       .then((result) => {
         // console.log(result.data)

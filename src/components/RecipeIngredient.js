@@ -11,8 +11,8 @@ export default function RecipeIngredient(props) {
   const renderIngredients = (ingredients) => {
     const arr = ingredients.hits[0].recipe.ingredientLines
     const lineItems = arr.map((item) => {
-      <Recipeitem item={item}/>
-      // return (<Recipeitem item={item}/>)
+      // <Recipeitem item={item}/>
+      return (<Recipeitem item={item}/>)
     })
     return(lineItems)
   }
