@@ -8,16 +8,16 @@ import { Link } from "react-router-dom";
 const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
 const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
 
-function SearchResult({ props, match }) {
+function Ingredient({ props, match }) {
   const [search, setSearch] = useState();
 
   useEffect(() => {
-    getRecipe();
+    getNutrients();
   }, []);
 
   const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
 
-  const getRecipe = () => {
+  const getNutrients = () => {
     axios
       .post(
         `${proxyUrl}https://api.edamam.com/api/food-database/nutrients?app_id=${dbId}&app_key=${dbKey}`,
@@ -32,11 +32,6 @@ function SearchResult({ props, match }) {
           ],
         }
       )
-      // axios({
-      //   url: `${proxyUrl}https://api.edamam.com/api/food-database/nutrients?app_id=${dbId}&app_key=${dbKey}`,
-      //   method: "POST",
-      //   dataType: "json",
-      // })
       .then((result) => console.log(result))
       // .then((result) => {
       //   const searchResultsArray = result.data.hints.map((item) => {
@@ -57,4 +52,4 @@ function SearchResult({ props, match }) {
   );
 }
 
-export default SearchResult;
+export default Ingredient;

@@ -1,6 +1,6 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-// const ReactDOM = require("react-dom");
+const ReactDOM = require("react-dom");
 import { Carousel } from "react-responsive-carousel";
 import RecipeCard from "./RecipeCard";
 import Axios from "axios";
@@ -15,9 +15,10 @@ export default function RecipeCarousel(props) {
       const recipeCardsArray = result.data.hits.map((recipe) => {
         const label = `${recipe.label}`;
         const image = `${recipe.image}`;
+        const url = `${recipe.url}`
         
         return (
-          <RecipeCard key={label} label={label} image={image} />
+          <RecipeCard key={label} label={label} image={image} url={url} />
         )
       })
       .catch((error) => console.error(error))
@@ -25,17 +26,16 @@ export default function RecipeCarousel(props) {
 
   return (
     <div class="carousel-wrapper">
-      <Carousel
+      <Carousel fetchRecipes={fetchRecipes}
         showArrows={true}
-        // onChange={onChange}
-        // onClickItem={onClickItem}
-        // onClickThumb={onClickThumb}
+        onChange={onChange}
+        onClickItem={onClickItem}
+        onClickThumb={onClickThumb}
       >
         <div id="7">
           <img src="https://i.ytimg.com/vi/OFjlF7zQF_g/maxresdefault.jpg" />
           <h4 className="legend">Cat</h4>
         </div>
-        <RecipeCard />
       </Carousel>
     </div>
   );
