@@ -51,9 +51,13 @@ function SearchResult({ props, match }) {
       .catch((error) => console.error(error));
   };
 
+<<<<<<< HEAD
   return (
     <></>
   );
 }
 
 export default SearchResult;
+=======
+  return <></>;
+>>>>>>> adca342590e6596352280c651a1b9c9ba2fb6545
