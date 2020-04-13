@@ -52,7 +52,6 @@ function Ingredient({ props, match }) {
           const url = `${recipe.recipe.url}`;
           const ingredients = `${recipe.recipe.ingredientLines}`;
           
-          // console.log("Recipe:", recipe);
           return (
             <RecipeCard
               key={label}
@@ -63,7 +62,6 @@ function Ingredient({ props, match }) {
             />
           );
         });
-        // console.log("recipeCardsArray", recipeCardsArray);
         setRecipes(recipeCardsArray);
       })
       .catch((error) => console.error(error));
