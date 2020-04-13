@@ -2,84 +2,90 @@ import React, { useState, useEffect, Fragment, PureComponent } from "react";
 import "./styles.css"; 
 import { Redirect } from "react-router";
 
-import { RadialBarChart, RadialBar, Legend } from 'recharts';
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+// import { RadialBarChart, RadialBar, Tooltip, Legend } from 'recharts';
 
 function IngredientGraph(props) {
-  const [data, setData] = useState()
-  // let x = props
-  // console.log("this is x", x)
-  // let y = props.data
-  // console.log("this is y", y)
-  // let z = props.data.totalNutrients
-  // console.log("this is z", z)
-  // let a = props.data.totalNutrients.ENERC_KCAL
-  // console.log("this is a", a)
-  // let b = props.data.totalNutrients.ENERC_KCAL.quantity
-  // console.log("this is b", b)
-  
-  // if (props.data) {
 
-  // } 
   const makeGraph = (nutData) => {
 
     let calories = nutData.totalNutrients.ENERC_KCAL.quantity
     let fat = nutData.totalNutrients.FAT.quantity
+    let carbohydrates = nutData.totalNutrients.CHOCDF.quantity
+    let protein = nutData.totalNutrients.PROCNT.quantity
+    let cholesterol = nutData.totalNutrients.CHOLE.quantity
+    let sodium = nutData.totalNutrients.NA.quantity
+    let sugar = nutData.totalNutrients.SUGAR.quantity
+    let fibre = nutData.totalNutrients.FIBTG.quantity
 
     const data = [
-      {
-        "name": "Calories",
-        "quantity": calories,
-        "fill": "#8884d8"
-      },
+      // {
+      //   "name": "Calories",
+      //   "quantity": calories,
+      //   "fill": "#8884d8"
+      // },
       {
         "name": "Fat",
-        "quantity": fat,
+        "grams": fat,
         "fill": "#83a6ed"
+      },
+      {
+        "name": "Carbohydrates",
+        "grams": carbohydrates,
+        "fill": "#8dd1e1"
+      }, 
+      {
+        "name": "Protein",
+        "grams": protein,
+        "fill": "#82ca9d"
+      },
+      {
+        "name": "Cholesterol",
+        "grams": cholesterol / 1000,
+        "fill": "#a4de6c"
+      },
+      {
+        "name": "Sodium",
+        "grams": sodium / 1000,
+        "fill": "#d0ed57"
+      },
+      {
+        "name": "Sugar",
+        "grams": sugar,
+        "fill": "#ffc658"
+      },
+      {
+        "name": "Fibre",
+        "grams": fibre,
+        "fill": "#8C564B"
       }
-    ]
-    // setData(data)
+    ];
+
     return (
-      <RadialBarChart
-        width={730}
-        height={250}
-        innerRadius="10%"
-        outerRadius="80%"
+      <BarChart
+        width={700}
+        height={300}
         data={data}
-        startAngle={180}
-        endAngle={0}
+        margin={{
+          top: 5, right: 30, left: 20, bottom: 5,
+        }}
       >
-        <RadialBar minAngle={15} label={{ fill: '#666', position: 'insideStart' }} background clockWise={true} dataKey='quantity' />
-        <Legend iconSize={10} width={120} height={140} layout='vertical' verticalAlign='middle' align="right" />
-      </RadialBarChart>
-    )
-  }
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        {/* <Legend /> */}
+        <Bar dataKey="grams" />
+      </BarChart>
+    );
+  };
 
-
-  // const obj = props.data
-
-  // useEffect(() => {
-
-  // }, [props.data]);
-  
   return (
-  <div>
-    
-    <h1>HI</h1>
-    <p>
-        {props.data && props.data.totalNutrients.FAT.quantity}
-        {props.data && props.data.totalNutrients.ENERC_KCAL.quantity}
-        {/* {props.data.totalNutrients.FAT.quantity} */}
-        {/* {props.data} */}
-    </p>
     <div>
-        {props.data && makeGraph(props.data)}
+      <h1>Nutritional data per 100 grams of:</h1>
+      <h2>{props.data && props.data.ingredients[0].parsed[0].food}</h2>
+      {props.data && makeGraph(props.data)}
     </div>
-
-
-
-
-
-  </div>
   );
 } 
 export default IngredientGraph;
