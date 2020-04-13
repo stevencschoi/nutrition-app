@@ -51,7 +51,7 @@ function Home(props) {
       .catch((error) => console.error(error));
   }
 
-  const [date, setDate] = useState(moment());
+  const [date, setDate] = useState(null);
 
   return (
     <>
