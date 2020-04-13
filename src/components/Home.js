@@ -70,7 +70,7 @@ function Home(props) {
           {/* <code>ingredients Array: {JSON.stringify(search)}</code> */}
         </div>
       )}
-      <MealCalendar />
+      {/* <MealCalendar /> */}
     </>
   );
 }
