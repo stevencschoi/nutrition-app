@@ -2,6 +2,7 @@ import React, {useState ,useEffect} from "react";
 import axios from "axios";
 import "./styles.css";
 import RecipeIngredient from "./RecipeIngredient"
+import RecipeGraph from "./RecipeGraph"
 
 
 export default function Recipe({props, match}) {
@@ -22,7 +23,7 @@ export default function Recipe({props, match}) {
   function fetchRecipes(ingredient) {
     axios
       .get(
-        `${proxyUrl}https://api.edamam.com/search?q=${ingredient}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
+        `https://api.edamam.com/search?q=${ingredient}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
       )
       .then((result) => {
         // console.log(result.data)
@@ -34,6 +35,7 @@ export default function Recipe({props, match}) {
   return (
     <div>
       <h2>{match.params.id}</h2>
+      <RecipeGraph foodIngredient={foodIngredient}/>
       <RecipeIngredient foodIngredient={foodIngredient}/>
     </div>
   );
