@@ -35,13 +35,14 @@ function Home(props) {
       .then((result) => {
         const searchResultsArray = result.data.hints.map((item) => {
           if (item.food.image) {
-          const code = `${item.food.foodId}`;
-          const label = `${item.food.label}`;
-          const image = `${item.food.image}`;
-          return (
-            <SearchResult key={code} id={code} label={label} image={image} />
-          );
-        }});
+            const code = `${item.food.foodId}`;
+            const label = `${item.food.label}`;
+            const image = `${item.food.image}`;
+            return (
+              <SearchResult key={code} id={code} label={label} image={image} />
+            );
+          }
+        });
         setSearch(searchResultsArray);
         // localStorage.setItem("currentData", searchResultsArray);
       })
@@ -57,14 +58,12 @@ function Home(props) {
         </div>
       )}
       <Searchbar fetchSearchResults={fetchSearchResults} />
-      <div className="search">
-        {search}
-      </div>
+      <div className="search">{search}</div>
       {search && (
         <div>
           {/* <div>graph</div> */}
           {/* <code> */}
-            {/* Ingredient nutrition: {JSON.stringify(ingredientNutrition)} */}
+          {/* Ingredient nutrition: {JSON.stringify(ingredientNutrition)} */}
           {/* </code> */}
           {/* <h3>ingredients</h3> */}
           {/* <code>ingredients Array: {JSON.stringify(search)}</code> */}
