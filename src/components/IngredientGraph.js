@@ -261,6 +261,7 @@ function IngredientGraph(props) {
 
   return (
     <div>
+      {JSON.stringify(props.data)}
       <h1>Nutritional data per 100 grams of:</h1>
       <h2>{props.data && props.data.ingredients[0].parsed[0].food}</h2>
       <h3>Calories:</h3>
