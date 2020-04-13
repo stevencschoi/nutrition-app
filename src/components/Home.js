@@ -3,8 +3,10 @@ import "./styles.css";
 import axios from "axios";
 import Searchbar from "./Searchbar";
 import SearchResult from "./SearchResult";
+import MealCalendar from "./MealCalendar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+import moment from "moment";
 // const apiKey = process.env.REACT_APP_API_KEY;
 
 const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
@@ -35,18 +37,21 @@ function Home(props) {
       .then((result) => {
         const searchResultsArray = result.data.hints.map((item) => {
           if (item.food.image) {
-          const code = `${item.food.foodId}`;
-          const label = `${item.food.label}`;
-          const image = `${item.food.image}`;
-          return (
-            <SearchResult key={code} id={code} label={label} image={image} />
-          );
-        }});
+            const code = `${item.food.foodId}`;
+            const label = `${item.food.label}`;
+            const image = `${item.food.image}`;
+            return (
+              <SearchResult key={code} id={code} label={label} image={image} />
+            );
+          }
+        });
         setSearch(searchResultsArray);
         // localStorage.setItem("currentData", searchResultsArray);
       })
       .catch((error) => console.error(error));
   }
+
+  const [date, setDate] = useState(null);
 
   return (
     <>
@@ -57,19 +62,18 @@ function Home(props) {
         </div>
       )}
       <Searchbar fetchSearchResults={fetchSearchResults} />
-      <div className="search">
-        {search}
-      </div>
+      <div className="search">{search}</div>
       {search && (
         <div>
           {/* <div>graph</div> */}
           {/* <code> */}
-            {/* Ingredient nutrition: {JSON.stringify(ingredientNutrition)} */}
+          {/* Ingredient nutrition: {JSON.stringify(ingredientNutrition)} */}
           {/* </code> */}
           {/* <h3>ingredients</h3> */}
           {/* <code>ingredients Array: {JSON.stringify(search)}</code> */}
         </div>
       )}
+      <MealCalendar date={date} onChange={e => setDate(e.target.value)}/>
     </>
   );
 }

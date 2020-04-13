@@ -73,8 +73,8 @@
   position: relative;
   top: -8px;
   left: 0;
-  width: 43px;
-  height: 43px;
+  width: 72px;
+  height: 72px;
   margin-top: 0;
   border-width: 15px;
   border: 15px solid #fff;
@@ -86,10 +86,10 @@
 #cover button span {
   position: absolute;
   top: 68px;
-  left: 43px;
+  left: 46px;
   display: block;
-  width: 45px;
-  height: 15px;
+  width: 40px;
+  height: 10px;
   background-color: transparent;
   border-radius: 10px;
   transform: rotateZ(52deg);
@@ -120,7 +120,7 @@
 }
 
 #s-cover:hover span {
-  top: 50%;
+  top: 55%;
   left: 56px;
   width: 25px;
   margin-top: -9px;
