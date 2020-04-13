@@ -76,11 +76,9 @@ function IngredientGraph(props) {
 
   return (
     <div>
-      {JSON.stringify(props.data)}
       <h1>Nutritional data per 100 grams of:</h1>
       <h2>{props.data && props.data.ingredients[0].parsed[0].food}</h2>
-      <h3>Calories:</h3>
-      <h3>{props.data && props.data.totalNutrients.ENERC_KCAL.quantity}</h3>
+      <h3>Calories: {props.data && props.data.totalNutrients.ENERC_KCAL.quantity}</h3>
       {props.data && makeGraph(props.data)}
     </div>
   );
