@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles.scss";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 function Logout(props) {
 
@@ -9,6 +10,7 @@ function Logout(props) {
       ('/logout')
       .then((result) => {
         console.log(result)
+        Cookies.remove('userId');
       })
       .catch((error) => console.error(error));
   }

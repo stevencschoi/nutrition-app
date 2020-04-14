@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./styles.scss";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const Login = props => {
   const [name, setName] = useState("");
@@ -10,7 +11,8 @@ const Login = props => {
     axios.post
       ('/login',{ userId: asd })
       .then((result) => {
-        console.log(result)
+        console.log(result.data.id)
+        Cookies.set('userId', result.data.id)
       })
       .catch((error) => console.error(error));
   }
