@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styles.css";
+import "./styles.scss";
 import axios from "axios";
 import Searchbar from "./Searchbar";
 import SearchResult from "./SearchResult";

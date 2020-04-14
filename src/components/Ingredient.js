@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import "./styles.css";
+import "./styles.scss";
 import axios from "axios";
 import RecipeCard from "./RecipeCard";
 import RecipeCarousel from "./RecipeCarousel";

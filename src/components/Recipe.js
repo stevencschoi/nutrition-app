@@ -1,6 +1,6 @@
 import React, {useState ,useEffect} from "react";
 import axios from "axios";
-import "./styles.css";
+import "./styles.scss";
 import RecipeIngredient from "./RecipeIngredient"
 import RecipeGraph from "./RecipeGraph"
 

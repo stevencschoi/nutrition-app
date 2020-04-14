@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styles.css";
+import "./styles.scss";
 import axios from "axios";
 
 const PORT = process.env.PORT || 8008;
