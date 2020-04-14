@@ -13,6 +13,9 @@ function Nav() {
       <Link to="/">
         <h3>VegTable</h3>
       </Link>
+      <Link to="/favourites">
+        <h3>Favourites</h3>
+      </Link>
       {user && (
         <div>
           Logged in as {user}
