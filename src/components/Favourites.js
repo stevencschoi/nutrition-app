@@ -2,32 +2,45 @@ import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import axios from "axios";
 import Cookies from "js-cookie";
+import FavouritesItem from "./FavouritesItem";
 
 const Favourites = props => {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  const [userfavourites, setUserfavourites] = useState("");
 
   useEffect(() => {
     const currentUser = Cookies.get('userId')
 
+    axios.get
+    ('/favourites',{ userId: currentUser })
+    .then((result) => {
+      // console.log(result.data)
+      setUserfavourites(result.data)
+    })
+    .catch((error) => console.error(error));
+
   }, []);
 
-  const getFavourites = () => {
+  const makeItem = (userfavourites) => {
 
-    const currentUser = Cookies.get('userId')
+    console.log("THIS SHIT", userfavourites)
 
-    axios.post
-      ('/favourites',{ userId: currentUser})
-      .then((result) => {
-        console.log(result.data.id)
-        Cookies.set('userId', result.data.id)
-      })
-      .catch((error) => console.error(error));
+    const abc = userfavourites.map((item) => {
+      const name = `${item.recipe_name}`;
+      
+      return (
+        <FavouritesItem
+          key={name}
+          name={name}
+        />
+      )
+    })
+    return abc
   }
 
   return (
     <>
     <h1>Favourites</h1>
+    {userfavourites && (makeItem(userfavourites))}
     </>
   );
 };

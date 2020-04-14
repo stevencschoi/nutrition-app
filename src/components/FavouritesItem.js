@@ -3,16 +3,14 @@ import "./styles.scss";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const Favourites = props => {
+const FavouritesItem = props => {
 
   return (
     <>
-    <h2></h2>
-    <div></div>
-    /* calendar */
-    <button></button>
+    <h2>{props.name}</h2>
+    <button>123</button>
     </>
   );
 };
 
-export default Favourites;
+export default FavouritesItem;

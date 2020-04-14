@@ -11,7 +11,7 @@ const Login = props => {
     axios.post
       ('/login',{ userId: asd })
       .then((result) => {
-        console.log(result.data.id)
+        // console.log(result.data.id)
         Cookies.set('userId', result.data.id)
       })
       .catch((error) => console.error(error));
