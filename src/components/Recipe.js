@@ -3,6 +3,7 @@ import axios from "axios";
 import "./styles.css";
 import RecipeIngredient from "./RecipeIngredient"
 import RecipeGraph from "./RecipeGraph"
+import FavouriteButton from "./FavouriteButton"
 
 
 export default function Recipe({props, match}) {
@@ -34,8 +35,14 @@ export default function Recipe({props, match}) {
 
   return (
     <div>
-      <h2>{match.params.id}</h2>
-      <RecipeGraph foodIngredient={foodIngredient}/>
+      <div class="nutritional-data">
+        <h1>Select Nutritional Data of</h1>
+        <h3>Calories:</h3>
+        <br></br>
+        <br></br>
+        <RecipeGraph foodIngredient={foodIngredient}/>
+      </div>
+      <FavouriteButton foodName={foodName}/>
       <RecipeIngredient foodIngredient={foodIngredient}/>
     </div>
   );

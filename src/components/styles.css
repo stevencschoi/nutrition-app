@@ -1,3 +1,35 @@
+.graph-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.graph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.graph-label {
+  writing-mode: vertical-lr;
+  transform: rotate(-180deg);
+  margin-right: 0;
+}
+
+.nutritional-data {
+  margin: 100px 50px;
+  border: black solid 5px;
+  border-radius: 25px;
+  padding: 25px;
+}
+
+.nutritional-data h3 {
+  background-color: red;
+  display: inline-block;
+  margin: 0;
+  border-radius: 25px;
+  padding: 5px 10px;
+}
+
 .nav {
   display: flex;
   justify-content: space-around;
