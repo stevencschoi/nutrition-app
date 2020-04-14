@@ -1,9 +1,19 @@
 import React, { useState } from "react";
-import "./styles.css";
+import "./styles.scss";
+import axios from "axios";
 
 const Login = props => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+
+  const verifyUser = (asd) => {
+    axios.post
+      ('/login',{ userId: asd })
+      .then((result) => {
+        console.log(result)
+      })
+      .catch((error) => console.error(error));
+  }
 
   return (
     <form
@@ -12,6 +22,7 @@ const Login = props => {
         /* now we want to setUser from app */
         props.setUser(name);
         setName(name);
+        verifyUser(name);
         localStorage.setItem('user', name);
         // setName("");
       }}

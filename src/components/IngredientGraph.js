@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment, PureComponent } from "react";
-import "./styles.css"; 
+import "./styles.scss"; 
 import { Redirect } from "react-router";
 
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
