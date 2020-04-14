@@ -3,6 +3,8 @@ import axios from "axios";
 import "./styles.scss";
 import RecipeIngredient from "./RecipeIngredient"
 import RecipeGraph from "./RecipeGraph"
+import Cookies from "js-cookie";
+
 // import FavouriteButton from "./FavouriteButton"
 export default function Recipe({props, match}) {
 
@@ -31,8 +33,24 @@ export default function Recipe({props, match}) {
       })
       .catch((error) => console.error(error));
   }  
+
+  const addToFav = () => {
+
+    const currentUser = Cookies.get('userId')
+    // const recipe = ingredient
+    // console.log("123213213123", foodName)
+
+    axios.post
+      ('/addToFavourites', { userId: currentUser, recipeName: foodName })
+      .then((result) => {
+        console.log(result)
+      })
+      .catch((error) => console.error(error));
+  }
+
   return (
     <div>
+      {foodName && (<button onClick={addToFav}>Add me</button>)}
       <div class="nutritional-data">
         <h1>Select Nutritional Data of {foodIngredient && (foodIngredient.q)}</h1>
         <br></br>
