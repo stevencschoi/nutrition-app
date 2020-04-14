@@ -61,7 +61,7 @@ function RecipeGraph(props) {
       <div class="graph-container">
 
         <div class="graph">
-          <p class="graph-label">grams / 100 grams of {props.data && props.data.ingredients[0].parsed[0].food}</p>
+          <p class="graph-label">per serving</p>
           <BarChart
             width={800}
             height={250}
@@ -77,7 +77,7 @@ function RecipeGraph(props) {
         </div>
 
         <div class="graph">
-          <p class="graph-label">milligrams / 100 grams of {props.data && props.data.ingredients[0].parsed[0].food}</p>
+          <p class="graph-label">per serving</p>
           <BarChart
             width={350}
             height={250}

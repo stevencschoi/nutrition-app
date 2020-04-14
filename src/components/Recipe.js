@@ -29,6 +29,7 @@ export default function Recipe({props, match}) {
       .then((result) => {
         // console.log(result.data)
         setFoodIngredient(result.data);
+        console.log("THISSSSSSSS",result.data)
       })
       .catch((error) => console.error(error));
   }
@@ -36,8 +37,7 @@ export default function Recipe({props, match}) {
   return (
     <div>
       <div class="nutritional-data">
-        <h1>Select Nutritional Data of</h1>
-        <h3>Calories:</h3>
+        <h1>Select Nutritional Data of {foodIngredient && (foodIngredient.q)}</h1>
         <br></br>
         <br></br>
         <RecipeGraph foodIngredient={foodIngredient}/>

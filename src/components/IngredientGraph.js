@@ -100,7 +100,6 @@ function IngredientGraph(props) {
   return (
     <div class="nutritional-data">
       <h1>Select Nutritional Data of {props.data && props.data.ingredients[0].parsed[0].food}</h1>
-      <h3>Calories: {props.data && props.data.totalNutrients.ENERC_KCAL.quantity}</h3>
       <br></br>
       <br></br>
       {props.data && makeGraph(props.data)}
