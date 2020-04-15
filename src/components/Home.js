@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import axios from "axios";
 import Searchbar from "./Searchbar";
 import SearchResult from "./SearchResult";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+// stretch assignment to include sockets for real-time data updating
+const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
 
 // const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -25,6 +28,17 @@ function Home(props) {
   // }
 
   // api call and set state to generate recipes from ingredient search
+
+  useEffect(() => {
+    socket.onopen = function () {
+      socket.send("ping");
+    };
+  }, []);
+
+  // close connection
+  socket.onclose = function () {
+    console.log("Connection closed");
+  };
 
   function fetchSearchResults(ingredient) {
     const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
