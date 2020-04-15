@@ -4,6 +4,8 @@ import axios from "axios";
 import RecipeGraph from "./RecipeGraph";
 import Cookies from "js-cookie";
 import MealCalendar from "./MealCalendar";
+// import ScheduleDay from "./ScheduleDay";
+import DayRecipeSlot from "./DayRecipeSlot";
 // import moment from "moment";
 
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
@@ -46,6 +48,97 @@ const FavouritesItem = (props) => {
       .catch((error) => console.error(error));
   };
 
+  const testData = [
+    {
+      name: "cake",
+      image: "image",
+      url: "google.ca",
+    },
+    {
+      name: "eggs",
+      image: "eggs",
+      url: "google.ca",
+    },
+    {
+      name: "nuts",
+      image: "nuts",
+      url: "google.ca",
+    },
+  ];
+  const [dayListarr, setDayListarr] = useState();
+
+  const renderDaySlots = (date) => {
+    const formatdate = JSON.stringify(date._d).slice(1, 11);
+    // console.log(formatdate);
+
+    axios
+      .get(`/day`, { dayId: formatdate })
+      .then((result) => {
+        console.log(result.data);
+
+        const dayList = result.data.map((item) => {
+          // console.log("fake data", item);
+          const name = item.name;
+          const image = item.image;
+          const url = item.url;
+
+          return (
+            <DayRecipeSlot
+              name={name}
+              image={image}
+              url={url}
+              date={formatdate}
+            />
+          );
+        });
+        // console.log("dayLst", dayList);
+        // if ((dayList = {})) {
+        //   dayList = <DayRecipeSlot />;
+        // }
+        // else {
+        //   dayList.append(<DayRecipeSlot />);
+        // }
+        // console.log("Date", date);
+        setDayListarr(dayList);
+        // return dayList;
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const addRecipeToDay = (date) => {
+    // add a recipe to a given day
+    const userId = Cookies.get("userId");
+    const formatdate = JSON.stringify(date._d).slice(1, 11);
+    const recipeName = props.name;
+
+    // console.log(userId, formatdate, recipeName);
+    axios
+      .post(`/addRecipe`, {
+        userId: userId,
+        date: formatdate,
+        recipeName: recipeName,
+      })
+      .then((result) => {
+        setDate(null);
+        console.log("it's in");
+      })
+      .catch((error) => console.error(error));
+  };
+
+  // const addToFav = (date) => {
+  //   const formatdate = JSON.stringify(date._d).slice(1, 11);
+  //   const userId = Cookies.get('userId')
+  //   const favId = props.id;
+  //   const name = props.name;
+
+  //   axios
+  //     .get(`/addFavToDate`, { name: name, date: formatdate, userId: userId, favId:favId})
+  //     .then((result) => {
+  //       console.log("it's in");
+  //     })
+  //     .catch((error) => console.error(error));
+  // };
+
   return (
     <>
       <h2>{props.name}</h2>
@@ -53,7 +146,12 @@ const FavouritesItem = (props) => {
         <img src={image} />
       </div>
       <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
-      <button>Add to Schedule</button>
+      {/* {date && (
+        <ScheduleDay date={date} name={props.name} dayListarr={dayListarr} />
+      )} */}
+      {date && (
+        <button onClick={() => addRecipeToDay(date)}>Add to Schedule</button>
+      )}
       {props.id && <button onClick={deleteFav}>Delete</button>}
 
       <RecipeGraph foodIngredient={favouriteItem} />
@@ -62,3 +160,12 @@ const FavouritesItem = (props) => {
 };
 
 export default FavouritesItem;
+
+// axios
+//       .get(
+//         `https://api.edamam.com/search?q=${ingredient}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
+//       )
+//       .then((result) => {
+//         setFoodIngredient(result.data);
+//       })
+//       .catch((error) => console.error(error));
