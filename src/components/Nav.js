@@ -5,8 +5,7 @@ import Logout from "./Logout";
 import { Link } from "react-router-dom";
 
 function Nav() {
-
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(localStorage.getItem("user"));
 
   return (
     <nav className="nav">
