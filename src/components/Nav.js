@@ -5,8 +5,7 @@ import Logout from "./Logout";
 import { Link } from "react-router-dom";
 
 function Nav() {
-
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(localStorage.getItem("user"));
 
   return (
     <nav className="nav">
@@ -15,6 +14,9 @@ function Nav() {
       </Link>
       <Link to="/favourites">
         <h3>Favourites</h3>
+      </Link>
+      <Link to="/data">
+        <h3>Data</h3>
       </Link>
       {user && (
         <div>
