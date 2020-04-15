@@ -4,6 +4,7 @@ import axios from "axios";
 import RecipeCard from "./RecipeCard";
 import RecipeCarousel from "./RecipeCarousel";
 import IngredientGraph from "./IngredientGraph";
+import CoolCarousel from "./CoolCarousel"
 
 const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
 const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
@@ -69,7 +70,7 @@ function Ingredient({ props, match }) {
   return (
     <>
       <IngredientGraph data={search} />
-      {recipes && <RecipeCarousel recipes={recipes} />}
+      {recipes && <CoolCarousel recipes={recipes}/>}
     </>
   );
 }
