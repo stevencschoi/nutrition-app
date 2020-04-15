@@ -6,10 +6,11 @@ const ReactDOM = require("react-dom");
 
 export default function RecipeCarousel(props) {
   return (
-    <div class="carousel-wrapper">
+    <div>
       <Carousel showArrows={true} useKeyboardArrows={true} infiniteLoop>
         {props.recipes}
       </Carousel>
     </div>
   );
 }
+// class="carousel-wrapper"

@@ -59,6 +59,7 @@ export default function Recipe({props, match}) {
       </div>
       {/* <FavouriteButton foodName={foodName}/> */}
       <RecipeIngredient foodIngredient={foodIngredient}/>
+
     </div>
   );
 }

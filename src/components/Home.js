@@ -6,6 +6,7 @@ import SearchResult from "./SearchResult";
 import MealCalendar from "./MealCalendar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+
 import moment from "moment";
 // const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -80,18 +81,3 @@ function Home(props) {
 
 export default Home;
 
-// const schedule = appointments.map((appointment) => {
-//   const interview = getInterview(state, appointment.interview);
-
-//   return (
-//     <Appointment
-//       key={appointment.id}
-//       id={appointment.id}
-//       time={appointment.time}
-//       interview={interview}
-//       interviewers={interviewers}
-//       bookInterview={bookInterview}
-//       deleteInterview={deleteInterview}
-//     />
-//   );
-// });

@@ -1,9 +1,15 @@
 import React, { useState, useEffect, Fragment } from "react";
-import "./styles.scss";
+// import "./styles.scss";
 import axios from "axios";
 import RecipeCard from "./RecipeCard";
 import RecipeCarousel from "./RecipeCarousel";
 import IngredientGraph from "./IngredientGraph";
+import CoolCarousel from "./CoolCarousel"
+
+import "bootstrap/dist/css/bootstrap.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
 const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
@@ -66,10 +72,39 @@ function Ingredient({ props, match }) {
       })
       .catch((error) => console.error(error));
   }
+
+  let settings = {
+    infinite: false,
+    speed: 1000,
+    // arrows: true,
+    slidesToShow: 5,
+    slidesToScroll: 4,
+
+    responsive: [
+      {
+        breakpoint: 960,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 2
+        }
+      }
+    ]
+  }
+
   return (
     <>
-      <IngredientGraph data={search} />
-      {recipes && <RecipeCarousel recipes={recipes} />}
+      {/* <IngredientGraph data={search} /> */}
+      {/* {recipes && <RecipeCarousel recipes={recipes} />} */}
+      {/* <Slider {...settings}> */}
+      {recipes && <CoolCarousel recipes={recipes}/>}
+      {/* </Slider > */}
     </>
   );
 }
