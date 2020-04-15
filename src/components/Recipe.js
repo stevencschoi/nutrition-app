@@ -36,8 +36,6 @@ export default function Recipe({ props, match }) {
 
   const addToFav = () => {
     const currentUser = Cookies.get("userId");
-    // const recipe = ingredient
-    // console.log("123213213123", foodName)
 
     axios
       .post("/addToFavourites", { userId: currentUser, recipeName: foodName })

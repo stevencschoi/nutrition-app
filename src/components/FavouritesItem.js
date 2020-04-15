@@ -3,6 +3,8 @@ import "./styles.scss";
 import axios from "axios";
 import RecipeGraph from "./RecipeGraph";
 import Cookies from "js-cookie";
+import MealCalendar from "./MealCalendar";
+// import moment from "moment";
 
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
@@ -11,6 +13,7 @@ const FavouritesItem = (props) => {
   const [favouriteItem, setFavouriteItem] = useState();
   const [image, setImage] = useState();
   const [favId, setfavId] = useState(props.id);
+  const [date, setDate] = useState(null);
 
   useEffect(() => {
     const recipeName = props.name;
@@ -32,11 +35,11 @@ const FavouritesItem = (props) => {
 
   const deleteFav = () => {
     const currentUser = Cookies.get("userId");
-    console.log("props.id", props.id);
     const favId = props.id;
     axios
       .post("/deleteFavourite", { userId: currentUser, favId: favId })
       .then((result) => {
+        // refresh page on delete
         props.setUpdateItem(favId);
         console.log(result);
       })
@@ -49,6 +52,7 @@ const FavouritesItem = (props) => {
       <div>
         <img src={image} />
       </div>
+      <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
       <button>Add to Schedule</button>
       {props.id && <button onClick={deleteFav}>Delete</button>}
 

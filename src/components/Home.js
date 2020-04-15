@@ -3,10 +3,8 @@ import "./styles.scss";
 import axios from "axios";
 import Searchbar from "./Searchbar";
 import SearchResult from "./SearchResult";
-import MealCalendar from "./MealCalendar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import moment from "moment";
 // const apiKey = process.env.REACT_APP_API_KEY;
 
 const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
@@ -51,8 +49,6 @@ function Home(props) {
       .catch((error) => console.error(error));
   }
 
-  const [date, setDate] = useState(null);
-
   return (
     <>
       {!search && (
@@ -73,7 +69,6 @@ function Home(props) {
           {/* <code>ingredients Array: {JSON.stringify(search)}</code> */}
         </div>
       )}
-      <MealCalendar date={date} onChange={e => setDate(e.target.value)}/>
     </>
   );
 }
