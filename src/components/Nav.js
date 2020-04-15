@@ -15,8 +15,8 @@ function Nav() {
       <Link to="/favourites">
         <h3>Favourites</h3>
       </Link>
-      <Link to="/data">
-        <h3>Data</h3>
+      <Link to="/schedule">
+        <h3>Schedule</h3>
       </Link>
       {user && (
         <div>

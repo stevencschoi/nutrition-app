@@ -14,7 +14,6 @@ export default function DayRecipeSlot(props) {
           <h3>The url is this {props.url}</h3>
         </div>
       )}
-      {!props.name && <button>Add</button>}
     </>
   );
 }
