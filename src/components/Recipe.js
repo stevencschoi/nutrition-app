@@ -8,7 +8,6 @@ import Cookies from "js-cookie";
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
 
-// import FavouriteButton from "./FavouriteButton"
 export default function Recipe({ props, match }) {
   const [foodName, setFoodName] = useState(match.params.id);
   const [foodIngredient, setFoodIngredient] = useState();
@@ -27,9 +26,7 @@ export default function Recipe({ props, match }) {
         `https://api.edamam.com/search?q=${ingredient}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
       )
       .then((result) => {
-        // console.log(result.data)
         setFoodIngredient(result.data);
-        // console.log("THISSSSSSSS",result.data)
       })
       .catch((error) => console.error(error));
   }
@@ -54,7 +51,6 @@ export default function Recipe({ props, match }) {
         <br></br>
         <RecipeGraph foodIngredient={foodIngredient} />
       </div>
-      {/* <FavouriteButton foodName={foodName}/> */}
       <RecipeIngredient foodIngredient={foodIngredient} />
     </div>
   );
