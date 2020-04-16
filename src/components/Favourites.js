@@ -17,7 +17,7 @@ const Favourites = (props) => {
         setUserFavourites(result.data);
       })
       .catch((error) => console.error(error));
-  }, [userFavourites]);
+  }, [updateItem]);
 
   const renderFavourites = (userFavourites) => {
     const favArr = userFavourites.map((item) => {

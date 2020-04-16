@@ -45,7 +45,7 @@ const FavouritesItem = (props) => {
     axios
       .post("/deleteFavourite", { userId: currentUser, favId: favId })
       .then((result) => {
-        // props.setUpdateItem(favId);
+        props.setUpdateItem(favId);
         console.log(result);
       })
       .catch((error) => console.error(error));
