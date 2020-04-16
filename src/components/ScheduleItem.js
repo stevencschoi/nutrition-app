@@ -8,6 +8,7 @@ function ScheduleItem(props) {
     axios
     .delete(`/deleteFromSlot?dateId=${id}`)
     .then((result) => {
+      props.setUpdate(result)
       // console.log(result);
     })
     .catch((error) => console.error(error));
@@ -21,7 +22,7 @@ function ScheduleItem(props) {
           removeFromSchedule(props.id);
         }}
       >
-        DELETE
+        Remove From Schedule
       </button>
     </>
   );
