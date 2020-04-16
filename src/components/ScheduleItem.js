@@ -7,7 +7,8 @@ function ScheduleItem(props) {
   // };
   return (
     <>
-      <h2>{props.name}</h2>
+      {/* <h2>{props.currentDate}</h2> */}
+      <h4>{props.name}</h4>
       <img src={props.image} />
       {/* <button
         onClick={() => {
