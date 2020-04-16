@@ -28,7 +28,7 @@ const FavouritesItem = (props) => {
         `https://api.edamam.com/search?q=${recipeName}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
       )
       .then((result) => {
-        console.log("result.data.hits", result.data.hits[0].recipe.image);
+        // console.log("result.data.hits", result.data.hits[0].recipe.image);
         setFavouriteItem(result.data);
         setImage(result.data.hits[0].recipe.image);
       })
@@ -105,19 +105,18 @@ const FavouritesItem = (props) => {
       .catch((error) => console.error(error));
   };
 
-  const addRecipeToDay = (date) => {
+  const addRecipeToDay = (date, image) => {
     // add a recipe to a given day
     const userId = Cookies.get("userId");
     const formatdate = JSON.stringify(date._d).slice(1, 11);
     const recipeName = props.name;
+    // console.log("imagelink: ", image);
 
-    // console.log(userId, formatdate, recipeName);
+    // console.log(userId, formatdate, recipeName, image);
     axios
-      .post(`/addRecipe`, {
-        userId: userId,
-        date: formatdate,
-        recipeName: recipeName,
-      })
+      .post(
+        `/addRecipe?userId=${userId}&date=${formatdate}&recipeName=${recipeName}&image=${image}`
+      )
       .then((result) => {
         setDate(null);
         console.log("it's in");
@@ -149,8 +148,10 @@ const FavouritesItem = (props) => {
       {/* {date && (
         <ScheduleDay date={date} name={props.name} dayListarr={dayListarr} />
       )} */}
-      {date && (
-        <button onClick={() => addRecipeToDay(date)}>Add to Schedule</button>
+      {date && props.name && (
+        <button onClick={() => addRecipeToDay(date, image)}>
+          Add to Schedule
+        </button>
       )}
       {props.id && <button onClick={deleteFav}>Delete</button>}
 
