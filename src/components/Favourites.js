@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import FavouritesItem from "./FavouritesItem";
 
 const Favourites = (props) => {
-  const [userfavourites, setUserfavourites] = useState("");
+  const [userFavourites, setUserFavourites] = useState("");
   const [updateItem, setUpdateItem] = useState();
 
   useEffect(() => {
@@ -14,17 +14,15 @@ const Favourites = (props) => {
     axios
       .get("/favourites", { userId: currentUser })
       .then((result) => {
-        // console.log(result.data)
-        setUserfavourites(result.data);
+        setUserFavourites(result.data);
       })
       .catch((error) => console.error(error));
-  }, [updateItem]);
+  }, [userFavourites]);
 
   const renderFavourites = (userFavourites) => {
     const favArr = userFavourites.map((item) => {
       const name = `${item.recipe_name}`;
       const id = `${item.id}`;
-      console.log(item.recipe);
       return (
         <FavouritesItem
           key={name}
@@ -40,7 +38,7 @@ const Favourites = (props) => {
   return (
     <>
       <h1>Favourites</h1>
-      {userfavourites && renderFavourites(userfavourites)}
+      {userFavourites && renderFavourites(userFavourites)}
     </>
   );
 };

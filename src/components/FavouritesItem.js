@@ -100,7 +100,6 @@ const FavouritesItem = (props) => {
       )
       .then((result) => {
         setDate(null);
-        console.log("it's in");
       })
       .catch((error) => console.error(error));
   };
