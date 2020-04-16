@@ -4,9 +4,11 @@ import axios from "axios";
 import RecipeGraph from "./RecipeGraph";
 import Cookies from "js-cookie";
 import MealCalendar from "./MealCalendar";
+import Button from "./Button";
 // import ScheduleDay from "./ScheduleDay";
 import DayRecipeSlot from "./DayRecipeSlot";
 // import moment from "moment";
+// import useApplicationData from "../hooks/useApplicationData";
 
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
@@ -16,6 +18,7 @@ const FavouritesItem = (props) => {
   const [image, setImage] = useState();
   const [favId, setfavId] = useState(props.id);
   const [date, setDate] = useState(null);
+  // const { state, setDate, addRecipeToDay } = useApplicationData();
 
   useEffect(() => {
     const recipeName = props.name;
@@ -38,17 +41,17 @@ const FavouritesItem = (props) => {
   const deleteFav = () => {
     const currentUser = Cookies.get("userId");
     const favId = props.id;
+    console.log("favId:", props.id);
     axios
       .post("/deleteFavourite", { userId: currentUser, favId: favId })
       .then((result) => {
-        // refresh page on delete
-        props.setUpdateItem(favId);
+        // props.setUpdateItem(favId);
         console.log(result);
       })
       .catch((error) => console.error(error));
   };
 
-  const [dayListarr, setDayListarr] = useState();
+  const [dayListArr, setDayListArr] = useState();
 
   const renderDaySlots = (date) => {
     const formatdate = JSON.stringify(date._d).slice(1, 11);
@@ -80,18 +83,17 @@ const FavouritesItem = (props) => {
         //   dayList.append(<DayRecipeSlot />);
         // }
         // console.log("Date", date);
-        setDayListarr(dayList);
+        setDayListArr(dayList);
         // return dayList;
       })
       .catch((error) => console.error(error));
   };
 
+  // add a recipe to a given day
   const addRecipeToDay = (date, image) => {
-    // add a recipe to a given day
     const userId = Cookies.get("userId");
     const formatdate = JSON.stringify(date._d).slice(1, 11);
     const recipeName = props.name;
-    // console.log("imagelink: ", image);
 
     // console.log(userId, formatdate, recipeName, image);
     axios
@@ -126,14 +128,14 @@ const FavouritesItem = (props) => {
       </div>
       <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
       {/* {date && (
-        <ScheduleDay date={date} name={props.name} dayListarr={dayListarr} />
+        <ScheduleDay date={date} name={props.name} dayListarA={dayListArr} />
       )} */}
       {date && props.name && (
-        <button onClick={() => addRecipeToDay(date, image)}>
+        <Button onClick={() => addRecipeToDay(date, image)}>
           Add to Schedule
-        </button>
+        </Button>
       )}
-      {props.id && <button onClick={deleteFav}>Delete</button>}
+      {props.id && <Button onClick={deleteFav}>Delete</Button>}
 
       <RecipeGraph foodIngredient={favouriteItem} />
     </>

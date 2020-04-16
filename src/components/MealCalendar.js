@@ -1,4 +1,4 @@
-import React, {useState,Component } from "react";
+import React, { useState, Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-dates/initialize";
 import {
@@ -9,12 +9,10 @@ import {
 import "react-dates/lib/css/_datepicker.css";
 
 export default function MealCalendar({ date, onChange }) {
-
-  const [focused, setFocused] = useState(false)
+  const [focused, setFocused] = useState(false);
 
   return (
     <>
-
       {/* <DateRangePicker
       startDate={this.state.startDate} // momentPropTypes.momentObj or null,
       startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
@@ -27,13 +25,13 @@ export default function MealCalendar({ date, onChange }) {
       onFocusChange={(focusedInput) => this.setState({ focusedInput })} // PropTypes.func.isRequired,
       /> */}
 
-      <SingleDatePicker 
+      <SingleDatePicker
         date={date} // momentPropTypes.momentObj or null
-        onDateChange={date => onChange({ target: { value: date } })} // PropTypes.func.isRequired
+        onDateChange={(date) => onChange({ target: { value: date } })} // PropTypes.func.isRequired
         focused={focused} // PropTypes.bool
         onFocusChange={({ focused }) => setFocused(focused)} // PropTypes.func.isRequired
         id="your_unique_id" // PropTypes.string.isRequired,
-        displayFormat="DD/MM/YYYY"
+        displayFormat="MM/DD/YYYY"
         hideKeyboardShortcutsPanel
         small="true"
         // showClearDate="ture"
@@ -41,8 +39,9 @@ export default function MealCalendar({ date, onChange }) {
         showDefaultInputIcon="ture"
         numberOfMonths={1}
         enableOutsideDays
+        // show past macros, enable below
+        // isOutsideRange={() => false}
       />
-
     </>
   );
 }

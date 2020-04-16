@@ -4,6 +4,7 @@ import "./styles.scss";
 import RecipeIngredient from "./RecipeIngredient";
 import RecipeGraph from "./RecipeGraph";
 import Cookies from "js-cookie";
+import Button from "./Button";
 
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
@@ -44,7 +45,7 @@ export default function Recipe({ props, match }) {
 
   return (
     <div>
-      {foodName && <button onClick={addToFav}>Add me</button>}
+      {foodName && <Button onClick={addToFav}>Add to Favourites</Button>}
       <div class="nutritional-data">
         <h1>Select Nutritional Data of {foodIngredient && foodIngredient.q}</h1>
         <br></br>

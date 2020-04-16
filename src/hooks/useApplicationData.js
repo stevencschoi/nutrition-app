@@ -1,13 +1,43 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
+import SearchResult from "../components/SearchResult";
 // stretch assignment to include sockets for real-time data updating
 const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
 
-export function useApplicationData() {
+const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
+const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
+
+export default function useApplicationData() {
   const [state, setState] = useState({
     search: "",
-
   });
+
+  // display raw ingredient search results from home page
+  function fetchSearchResults(ingredient) {
+    const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
+    axios
+      .get(
+        `https://api.edamam.com/api/food-database/parser?ingr=raw%20${ingredient}&app_id=${dbId}&app_key=${dbKey}`
+      )
+      .then((result) => {
+        const searchResultsArray = result.data.hints.map((item) => {
+          if (item.food.image) {
+            const code = `${item.food.foodId}`;
+            const label = `${item.food.label}`;
+            const image = `${item.food.image}`;
+            return (
+              <SearchResult key={code} id={code} label={label} image={image} />
+            );
+          }
+        });
+        setState((prev) => ({
+          ...prev,
+          search: searchResultsArray,
+        }));
+      })
+      .catch((error) => console.error(error));
+  }
 
   // ******************** sockets ********************
   useEffect(() => {
@@ -30,31 +60,6 @@ export function useApplicationData() {
     console.log("Connection closed");
   };
   // ****************************************
-
-  function fetchSearchResults(ingredient) {
-    const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
-    axios
-      .get(
-        `https://api.edamam.com/api/food-database/parser?ingr=raw%20${ingredient}&app_id=${dbId}&app_key=${dbKey}`
-      )
-      .then((result) => {
-        const searchResultsArray = result.data.hints.map((item) => {
-          if (item.food.image) {
-            const code = `${item.food.foodId}`;
-            const label = `${item.food.label}`;
-            const image = `${item.food.image}`;
-            return (
-              <SearchResult key={code} id={code} label={label} image={image} />
-            );
-          }
-        });
-        setState(prev => {
-          ...prev,
-          search: result
-        });
-      })
-      .catch((error) => console.error(error));
-  }
 
   return { state, fetchSearchResults };
 }
