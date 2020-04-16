@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import axios from "axios";
-import RecipeCard from "./RecipeCard";
-import RecipeCarousel from "./RecipeCarousel";
 import IngredientGraph from "./IngredientGraph";
 import CoolCarousel from "./CoolCarousel";
 import useApplicationData from "../hooks/useApplicationData";
@@ -15,6 +12,7 @@ const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
 function Ingredient({ match }) {
   const { state, getNutrients, fetchRecipes } = useApplicationData();
 
+  // upon ingredient search query, display nutritional information and related recipes
   useEffect(() => {
     const format = match.url.split("/");
     getNutrients(format[2]);
