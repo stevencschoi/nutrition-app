@@ -48,28 +48,10 @@ const FavouritesItem = (props) => {
       .catch((error) => console.error(error));
   };
 
-  const testData = [
-    {
-      name: "cake",
-      image: "image",
-      url: "google.ca",
-    },
-    {
-      name: "eggs",
-      image: "eggs",
-      url: "google.ca",
-    },
-    {
-      name: "nuts",
-      image: "nuts",
-      url: "google.ca",
-    },
-  ];
   const [dayListarr, setDayListarr] = useState();
 
   const renderDaySlots = (date) => {
     const formatdate = JSON.stringify(date._d).slice(1, 11);
-    // console.log(formatdate);
 
     axios
       .get(`/day`, { dayId: formatdate })
@@ -77,7 +59,6 @@ const FavouritesItem = (props) => {
         console.log(result.data);
 
         const dayList = result.data.map((item) => {
-          // console.log("fake data", item);
           const name = item.name;
           const image = item.image;
           const url = item.url;
