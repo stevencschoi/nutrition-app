@@ -1,76 +1,28 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import axios from "axios";
-import RecipeCard from "./RecipeCard";
-import RecipeCarousel from "./RecipeCarousel";
 import IngredientGraph from "./IngredientGraph";
-import CoolCarousel from "./CoolCarousel"
+import CoolCarousel from "./CoolCarousel";
+import useApplicationData from "../hooks/useApplicationData";
 
 const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
 const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
 
-function Ingredient({ props, match }) {
-  const [search, setSearch] = useState();
-  const [recipes, setRecipes] = useState();
-  
+function Ingredient({ match }) {
+  const { state, getNutrients, fetchRecipes } = useApplicationData();
+
+  // upon ingredient search query, display nutritional information and related recipes
   useEffect(() => {
     const format = match.url.split("/");
     getNutrients(format[2]);
     fetchRecipes(format[3]);
   }, []);
-  
-  const getNutrients = (ingredient) => {
-    axios
-      .post(
-        `https://api.edamam.com/api/food-database/nutrients?app_id=${dbId}&app_key=${dbKey}`,
-        {
-          ingredients: [
-            {
-              quantity: 100,
-              measureURI:
-                "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
-              foodId: `${ingredient}`,
-            },
-          ],
-        }
-      )
-      .then((result) => setSearch(result.data))
-      .catch((error) => console.error(error));
-  };
- 
-  // for each object in recipes array, return a div containing the recipe image and title and id
-  function fetchRecipes(searchResult) {
-    axios
-      .get(
-        `https://api.edamam.com/search?q=${searchResult}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
-      )
-      .then((result) => {
-        const recipeCardsArray = result.data.hits.map((recipe, index) => {
-          const label = `${recipe.recipe.label}`;
-          const image = `${recipe.recipe.image}`;
-          const url = `${recipe.recipe.url}`;
-          const ingredients = `${recipe.recipe.ingredientLines}`;
-          
-          return (
-            <RecipeCard
-              key={label}
-              label={label}
-              image={image}
-              url={url}
-              ingredients={ingredients}
-            />
-          );
-        });
-        setRecipes(recipeCardsArray);
-      })
-      .catch((error) => console.error(error));
-  }
+
   return (
     <>
-      <IngredientGraph data={search} />
-      {recipes && <CoolCarousel recipes={recipes}/>}
+      <IngredientGraph data={state.search} />
+      {state.recipes && <CoolCarousel recipes={state.recipes} />}
     </>
   );
 }

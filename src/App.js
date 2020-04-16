@@ -1,11 +1,10 @@
 import React from "react";
-import Nav from "./components/Nav";
+import Nav from "./components/Header/Nav";
 import Home from "./components/Home";
 import Ingredient from "./components/Ingredient";
 import Recipe from "./components/Recipe";
 import Favourites from "./components/Favourites";
 import Schedule from "./components/Schedule";
-// import SearchResult from "./components/SearchResult";
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
