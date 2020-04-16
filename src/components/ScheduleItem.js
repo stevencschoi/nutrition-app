@@ -1,22 +1,28 @@
 import React from "react";
 // import Button from "./Button"
 import "./styles.scss";
+import axios from "axios";
 
 function ScheduleItem(props) {
-  // const removeFromSchedule = () => {
-
-  // };
+  const removeFromSchedule = (id) => {
+    axios
+    .delete(`/deleteFromSlot?dateId=${id}`)
+    .then((result) => {
+      // console.log(result);
+    })
+    .catch((error) => console.error(error));
+  };
   return (
     <>
       <h2>{props.name}</h2>
       <img src={props.image} />
-      {/* <button
+      <button
         onClick={() => {
-          removeFromSchedule();
+          removeFromSchedule(props.id);
         }}
       >
         DELETE
-      </button> */}
+      </button>
     </>
   );
 }

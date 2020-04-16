@@ -9,6 +9,7 @@ import Button from "./Button";
 import DayRecipeSlot from "./DayRecipeSlot";
 // import moment from "moment";
 // import useApplicationData from "../hooks/useApplicationData";
+import { Dropdown } from 'semantic-ui-react'
 
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
@@ -18,6 +19,7 @@ const FavouritesItem = (props) => {
   const [image, setImage] = useState();
   const [favId, setfavId] = useState(props.id);
   const [date, setDate] = useState(null);
+  const [meal, setMeal] = useState(null);
   // const { state, setDate, addRecipeToDay } = useApplicationData();
 
   useEffect(() => {
@@ -90,7 +92,7 @@ const FavouritesItem = (props) => {
   };
 
   // add a recipe to a given day
-  const addRecipeToDay = (date, image) => {
+  const addRecipeToDay = (date, image, meal) => {
     const userId = Cookies.get("userId");
     const formatdate = JSON.stringify(date._d).slice(1, 11);
     const recipeName = props.name;
@@ -98,7 +100,7 @@ const FavouritesItem = (props) => {
     // console.log(userId, formatdate, recipeName, image);
     axios
       .post(
-        `/addRecipe?userId=${userId}&date=${formatdate}&recipeName=${recipeName}&image=${image}`
+        `/addRecipe?userId=${userId}&date=${formatdate}&recipeName=${recipeName}&image=${image}&mealNumber=${meal}`
       )
       .then((result) => {
         setDate(null);
@@ -120,6 +122,14 @@ const FavouritesItem = (props) => {
   //     .catch((error) => console.error(error));
   // };
 
+  const options = [
+    { key: 1, text: 'Breakfast', value: "1" },
+    { key: 2, text: 'Lunch', value: "2" },
+    { key: 3, text: 'Dinner', value: "3" },
+    { key: 4, text: 'Other', value: "4" },
+  ]
+
+
   return (
     <>
       <h2>{props.name}</h2>
@@ -130,8 +140,9 @@ const FavouritesItem = (props) => {
       {/* {date && (
         <ScheduleDay date={date} name={props.name} dayListarA={dayListArr} />
       )} */}
+      {date && <Dropdown options={options} selection onChange={(e, { value }) => setMeal(value)} />}
       {date && props.name && (
-        <Button onClick={() => addRecipeToDay(date, image)}>
+        <Button onClick={() => addRecipeToDay(date, image, meal)}>
           Add to Schedule
         </Button>
       )}

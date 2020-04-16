@@ -6,12 +6,14 @@ import RecipeGraph from "./RecipeGraph";
 import Cookies from "js-cookie";
 import Button from "./Button";
 import MealCalendar from "./MealCalendar";
+import { Dropdown } from 'semantic-ui-react'
 
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
 
 export default function Recipe({ props, match }) {
   const [date, setDate] = useState(null);
+  const [meal, setMeal] = useState(null);
   const [foodName, setFoodName] = useState(match.params.id);
   const [foodIngredient, setFoodIngredient] = useState();
   const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
@@ -20,6 +22,10 @@ export default function Recipe({ props, match }) {
   useEffect(() => {
     fetchRecipes(foodName);
   }, [props]);
+
+  useEffect(() => {
+    console.log("meal",meal)
+  }, [meal]);
 
   const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
 
@@ -40,21 +46,21 @@ export default function Recipe({ props, match }) {
     const currentUser = Cookies.get("userId");
 
     axios
-      .post("/addToFavourites", { userId: currentUser, recipeName: foodName })
+      .post("/addToFavourites", { userId: currentUser, recipeName: foodName})
       .then((result) => {
         console.log(result);
       })
       .catch((error) => console.error(error));
   };
 
-  const addRecipeToDay = (date, image) => {
+  const addRecipeToDay = (date, image, meal) => {
     const userId = Cookies.get("userId");
     const formatdate = JSON.stringify(date._d).slice(1, 11);
     const recipeName = foodIngredient.q;
 
     axios
       .post(
-        `/addRecipe?userId=${userId}&date=${formatdate}&recipeName=${recipeName}&image=${image}`
+        `/addRecipe?userId=${userId}&date=${formatdate}&recipeName=${recipeName}&image=${image}&mealNumber=${meal}`
       )
       .then((result) => {
         setDate(null);
@@ -62,12 +68,21 @@ export default function Recipe({ props, match }) {
       .catch((error) => console.error(error));
   };
 
+  const options = [
+    { key: 1, text: 'Breakfast', value: "1" },
+    { key: 2, text: 'Lunch', value: "2" },
+    { key: 3, text: 'Dinner', value: "3" },
+    { key: 4, text: 'Other', value: "4" },
+  ]
+
   return (
     <div>
       {foodName && <Button onClick={addToFav}>Add to Favourites</Button>}
       <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
-      {date && (
-        <Button onClick={() => addRecipeToDay(date, foodIngredient.hits[0].recipe.image)}>
+      
+      {date && <Dropdown options={options} selection onChange={(e, { value }) => setMeal(value)} />}
+      {date && meal && (
+        <Button onClick={() => addRecipeToDay(date, foodIngredient.hits[0].recipe.image, meal)}>
           Add to Schedule
         </Button>
       )}

@@ -20,10 +20,11 @@ function Schedule() {
       .get(`/day?date=${currentDate}`)
       .then((result) => {
         const itemArr = result.data.map((item) => {
+          const itemId = item.id
           const itemName = item.recipe_name;
           const image = item.image;
 
-          return <ScheduleItem name={itemName} image={image} />;
+          return <ScheduleItem name={itemName} image={image} id={itemId}/>;
         });
         setCal(itemArr);
       })
