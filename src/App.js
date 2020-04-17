@@ -5,6 +5,7 @@ import Ingredient from "./components/Ingredient";
 import Recipe from "./components/Recipe";
 import Favourites from "./components/Favourites";
 import Schedule from "./components/Schedule";
+import MacroGraph from "./components/MacroGraph";
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/recipe/:id/" exact component={Recipe} />
           <Route path="/favourites" exact component={Favourites} />
           <Route path="/schedule" exact component={Schedule} />
+          <Route path="/data" exact component={MacroGraph} />
         </Switch>
       </div>
     </Router>

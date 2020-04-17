@@ -18,6 +18,9 @@ function Nav() {
       <Link to="/schedule">
         <h3>Schedule</h3>
       </Link>
+      <Link to="/data">
+        <h3>Data</h3>
+      </Link>
       {user && (
         <div>
           Logged in as {user}
