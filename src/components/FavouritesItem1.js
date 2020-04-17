@@ -7,7 +7,6 @@ import MealCalendar from "./MealCalendar";
 import Button from "./Button";
 import DayRecipeSlot from "./DayRecipeSlot";
 import moment from "moment";
-// import useApplicationData from "../hooks/useApplicationData";
 import { Dropdown } from "semantic-ui-react";
 
 const FavouritesItem1 = (props) => {

@@ -3,9 +3,11 @@ import axios from "axios";
 import "./styles.scss";
 import RecipeIngredient from "./RecipeIngredient";
 import RecipeGraph from "./RecipeGraph";
+import RecipeGraph1 from "./RecipeGraph1";
 import Cookies from "js-cookie";
 import Button from "./Button";
 import MealCalendar from "./MealCalendar";
+import IngredientGraph from "./IngredientGraph";
 import { Dropdown } from "semantic-ui-react";
 
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
@@ -16,6 +18,7 @@ export default function Recipe({ props, match }) {
   const [meal, setMeal] = useState(null);
   const [foodName, setFoodName] = useState(match.params.id);
   const [foodIngredient, setFoodIngredient] = useState();
+
   const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
   const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
 
@@ -36,7 +39,9 @@ export default function Recipe({ props, match }) {
       )
       .then((result) => {
         setFoodIngredient(result.data);
-        console.log("real data", result.data);
+        // addRecipe();
+        // console.log("real data q", result.data.q);
+        // console.log("real data hits", result.data.hits[0].recipe);
         // console.log(result.data.hits[0].recipe.totalTime);
       })
       .catch((error) => console.error(error));
@@ -178,7 +183,7 @@ export default function Recipe({ props, match }) {
         <h1>Select Nutritional Data of {foodIngredient && foodIngredient.q}</h1>
         <br></br>
         <br></br>
-        <RecipeGraph foodIngredient={foodIngredient} />
+        <RecipeGraph1 foodIngredient={foodIngredient} />
       </div>
       <RecipeIngredient foodIngredient={foodIngredient} />
     </div>
