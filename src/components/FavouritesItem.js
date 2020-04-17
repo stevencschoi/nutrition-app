@@ -141,7 +141,7 @@ const FavouritesItem = (props) => {
         <ScheduleDay date={date} name={props.name} dayListarA={dayListArr} />
       )} */}
       {date && <Dropdown options={options} selection onChange={(e, { value }) => setMeal(value)} />}
-      {date && props.name && (
+      {date && meal && props.name && (
         <Button onClick={() => addRecipeToDay(date, image, meal)}>
           Add to Schedule
         </Button>
