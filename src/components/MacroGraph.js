@@ -3,6 +3,8 @@ import "./styles.scss";
 import { Dropdown } from "semantic-ui-react";
 import axios from "axios";
 import moment from "moment";
+import CoolCarousel from "./CoolCarousel";
+import useApplicationData from "../hooks/useApplicationData";
 import {
   XAxis,
   YAxis,
@@ -27,8 +29,10 @@ const options = [
 function MacroGraph() {
   const [pick, setPick] = useState("Calories");
   const [graph, setGraph] = useState("Calories");
+  const { state, fetchUsers } = useApplicationData();
 
   useEffect(() => {
+    fetchUsers();
     getData(pick);
     const newGraph = makeGraph(pick);
     setGraph(newGraph);
@@ -404,6 +408,7 @@ function MacroGraph() {
         <br></br>
         {pick && graph}
       </div>
+      {state.users && <CoolCarousel recipes={state.users} />}
     </>
   );
 }
