@@ -5,14 +5,25 @@ import axios from "axios";
 
 function ScheduleItem(props) {
   const removeFromSchedule = (id) => {
+    // console.log("IDDDDDDDD", id);
     axios
-    .delete(`/deleteFromSlot?dateId=${id}`)
-    .then((result) => {
-      props.setUpdate(result)
-      // console.log(result);
-    })
-    .catch((error) => console.error(error));
+      .post(`/deleteFromDay`, { dateId: id })
+      .then((result) => {
+        props.setUpdate(result);
+      })
+      .catch((error) => console.error(error));
   };
+
+  // const editItem = () => {
+  //   console.log("IDDDDDDDD", id);
+  //   axios
+  //     .post(`/editRecipe`, { dateId: id })
+  //     .then((result) => {
+  //       props.setUpdate(result);
+  //     })
+  //     .catch((error) => console.error(error));
+  // };
+
   return (
     <>
       <h2>{props.name}</h2>
@@ -29,3 +40,11 @@ function ScheduleItem(props) {
 }
 
 export default ScheduleItem;
+
+// <button
+//   onClick={() => {
+//     editItem(props.id);
+//   }}
+// >
+//   Edit
+// </button>

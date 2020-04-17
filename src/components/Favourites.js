@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import axios from "axios";
 import Cookies from "js-cookie";
-import FavouritesItem from "./FavouritesItem";
+import FavouritesItem1 from "./FavouritesItem1";
 
 const Favourites = (props) => {
   const [userFavourites, setUserFavourites] = useState("");
@@ -14,6 +14,7 @@ const Favourites = (props) => {
     axios
       .get("/favourites", { userId: currentUser })
       .then((result) => {
+        console.log("favouritessssss", result);
         setUserFavourites(result.data);
       })
       .catch((error) => console.error(error));
@@ -21,14 +22,32 @@ const Favourites = (props) => {
 
   const renderFavourites = (userFavourites) => {
     const favArr = userFavourites.map((item) => {
-      const name = `${item.recipe_name}`;
       const id = `${item.id}`;
+      const name = `${item.name}`;
+      const calories = `${item.calories}`;
+      const fat_in_g = `${item.fat_in_g}`;
+      const carbs_in_g = `${item.carbs_in_g}`;
+      const protein_in_g = `${item.protein_in_g}`;
+      const sugar_in_g = `${item.sugar_in_g}`;
+      const fiber_in_g = `${item.fiber_in_g}`;
+      const cholesterol_in_mg = `${item.cholesterol_in_mg}`;
+      const sodium_in_mg = `${item.sodium_in_mg}`;
+      const image_url = `${item.image_url}`;
       return (
-        <FavouritesItem
+        <FavouritesItem1
+          setUpdateItem={setUpdateItem}
           key={name}
           id={id}
           name={name}
-          setUpdateItem={setUpdateItem}
+          calories={item.name}
+          fat_in_g={item.fat_in_g}
+          carbs_in_g={item.carbs_in_g}
+          protein_in_g={item.protein_in_g}
+          sugar_in_g={item.sugar_in_g}
+          fiber_in_g={item.fiber_in_g}
+          cholesterol_in_mg={item.cholesterol_in_mg}
+          sodium_in_mg={item.sodium_in_mg}
+          image_url={item.image_url}
         />
       );
     });

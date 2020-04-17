@@ -20,12 +20,20 @@ function Schedule() {
     axios
       .get(`/day?date=${currentDate}`)
       .then((result) => {
+        console.log(result);
         const itemArr = result.data.map((item) => {
-          const itemId = item.id
-          const itemName = item.recipe_name;
-          const image = item.image;
+          const itemId = item.id;
+          const itemName = item.name;
+          const image = item.image_url;
 
-          return <ScheduleItem name={itemName} image={image} id={itemId} setUpdate={setUpdate}/>;
+          return (
+            <ScheduleItem
+              name={itemName}
+              image={image}
+              id={itemId}
+              setUpdate={setUpdate}
+            />
+          );
         });
         setCal(itemArr);
       })

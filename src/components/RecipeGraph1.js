@@ -12,24 +12,14 @@ import {
   Legend,
 } from "recharts";
 function RecipeGraph(props) {
-  const makeGraph = (
-    calories,
-    fat_in_g,
-    carbs_in_g,
-    protein_in_g,
-    sugar_in_g,
-    fiber_in_g,
-    cholesterol_in_mg,
-    sodium_in_mg,
-    image_url
-  ) => {
-    let fat = fat_in_g;
-    let carbohydrates = carbs_in_g;
-    let protein = protein_in_g;
-    let cholesterol = cholesterol_in_mg;
-    let sodium = sodium_in_mg;
-    let sugar = sugar_in_g;
-    let fibre = fiber_in_g;
+  const makeGraph = (nutData) => {
+    let fat = nutData.hits[0].recipe.totalNutrients.FAT.quantity;
+    let carbohydrates = nutData.hits[0].recipe.totalNutrients.CHOCDF.quantity;
+    let protein = nutData.hits[0].recipe.totalNutrients.PROCNT.quantity;
+    let cholesterol = nutData.hits[0].recipe.totalNutrients.CHOLE.quantity;
+    let sodium = nutData.hits[0].recipe.totalNutrients.NA.quantity;
+    let sugar = nutData.hits[0].recipe.totalNutrients.SUGAR.quantity;
+    let fibre = nutData.hits[0].recipe.totalNutrients.FIBTG.quantity;
     const data = [
       {
         name: "Fat",
@@ -94,20 +84,6 @@ function RecipeGraph(props) {
       </div>
     );
   };
-  return (
-    <div>
-      {makeGraph(
-        props.calories,
-        props.fat_in_g,
-        props.carbs_in_g,
-        props.protein_in_g,
-        props.sugar_in_g,
-        props.fiber_in_g,
-        props.cholesterol_in_mg,
-        props.sodium_in_mg,
-        props.image_url
-      )}
-    </div>
-  );
+  return <div>{props.foodIngredient && makeGraph(props.foodIngredient)}</div>;
 }
 export default RecipeGraph;
