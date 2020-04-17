@@ -4,7 +4,6 @@ import "./styles.scss";
 import RecipeIngredient from "./RecipeIngredient";
 import RecipeGraph from "./RecipeGraph";
 import RecipeGraph1 from "./RecipeGraph1";
-import Cookies from "js-cookie";
 import Button from "./Button";
 import MealCalendar from "./MealCalendar";
 import IngredientGraph from "./IngredientGraph";
@@ -13,23 +12,18 @@ import { Dropdown } from "semantic-ui-react";
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
 
+const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
+const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
+
 export default function Recipe({ props, match }) {
   const [date, setDate] = useState(null);
   const [meal, setMeal] = useState(null);
   const [foodName, setFoodName] = useState(match.params.id);
-  const [foodIngredient, setFoodIngredient] = useState();
-  const [mode, setMode] = useState("");
-
-  const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
-  const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
+  const [foodIngredient, setFoodIngredient] = useState(null);
 
   useEffect(() => {
     fetchRecipes(foodName);
-  }, [props]);
-
-  useEffect(() => {
-    // console.log("meal", meal);
-  }, [meal]);
+  }, []);
 
   const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
 
@@ -40,20 +34,15 @@ export default function Recipe({ props, match }) {
       )
       .then((result) => {
         setFoodIngredient(result.data);
-        // addRecipe();
-        // console.log("real data q", result.data.q);
-        // console.log("real data hits", result.data.hits[0].recipe);
-        // console.log(result.data.hits[0].recipe.totalTime);
       })
       .catch((error) => console.error(error));
   }
 
   const addToFav = (recipeId) => {
-    const currentUser = Cookies.get("userId");
-    console.log(currentUser, recipeId);
+    console.log("recipeId", recipeId)
 
     axios
-      .post("/addToFavourites", { userId: currentUser, recipeId: recipeId })
+      .post("/addToFavourites", { recipeId: recipeId })
       .then((result) => {
         // console.log(result);
       })
@@ -61,10 +50,6 @@ export default function Recipe({ props, match }) {
   };
 
   const addRecipe = () => {
-    // const userId = Cookies.get("userId");
-    // const formatdate = JSON.stringify(date._d).slice(1, 11);
-    // const recipeName = foodIngredient.q;
-
     const recipeName = foodIngredient.q;
     const calories =
       foodIngredient.hits[0].recipe.totalNutrients.ENERC_KCAL.quantity;
@@ -85,7 +70,6 @@ export default function Recipe({ props, match }) {
 
     axios
       .post(
-        // `/addRecipe?userId=${userId}&date=${formatdate}&recipeName=${recipeName}&image=${image}&mealNumber=${meal}`
         `/addRecipe`,
         {
           recipeName: recipeName,
@@ -101,7 +85,6 @@ export default function Recipe({ props, match }) {
         }
       )
       .then((result) => {
-        // console.log("IDDDDDDDD????", result);
         checkIfInDatabase();
       })
       .catch((error) => console.error(error));
@@ -109,52 +92,40 @@ export default function Recipe({ props, match }) {
 
   const checkIfInDatabase = () => {
     const recipeName = foodIngredient.q;
-    const calories =
-      foodIngredient.hits[0].recipe.totalNutrients.ENERC_KCAL.quantity;
-    const fat_in_g = foodIngredient.hits[0].recipe.totalNutrients.FAT.quantity;
-    const carbs_in_g =
-      foodIngredient.hits[0].recipe.totalNutrients.CHOCDF.quantity;
-    const protein_in_g =
-      foodIngredient.hits[0].recipe.totalNutrients.PROCNT.quantity;
-    const sugar_in_g =
-      foodIngredient.hits[0].recipe.totalNutrients.SUGAR.quantity;
-    const fiber_in_g =
-      foodIngredient.hits[0].recipe.totalNutrients.FIBTG.quantity;
-    const cholesterol_in_mg =
-      foodIngredient.hits[0].recipe.totalNutrients.CHOLE.quantity;
-    const sodium_in_mg =
-      foodIngredient.hits[0].recipe.totalNutrients.NA.quantity;
-    const image_url = foodIngredient.hits[0].recipe.image;
 
     axios
       .post(
-        `/checkRecipe?recipeName=${recipeName}&calories=${calories}&fatInG=${fat_in_g}&carbsInG=${carbs_in_g}&proteinInG=${protein_in_g}&sugarInG=${sugar_in_g}&fiberInG=${fiber_in_g}&cholesterolInMg=${cholesterol_in_mg}&sodiumInMg=${sodium_in_mg}&imageUrl=${image_url}`
+        `/checkRecipe?recipeName=${recipeName}`
       )
       .then((result) => {
-        // console.log("result from the backend", result.data);
         if (result.data.length === 0) {
           addRecipe();
-          // console.log("result.data.length is = 0");
-        } else if (mode === "Favourites") {
-          // console.log("result.data.length is NOT = 0", result);
+        } else if (!meal) {
           addToFav(result.data[0].id);
         } else {
-          addRecipeToDay(result.data[0].id);
+          addRecipeToDay(result.data[0].id)
         }
-        // setMode("")
       })
       .catch((error) => console.error(error));
   };
 
-  useEffect(() => {
-    console.log("date", date);
-  }, [date]);
-
   const addRecipeToDay = (recipeId) => {
-    console.log(date);
-    // const recipeId = recipeId;
-    // const date =
+    const formatdate = JSON.stringify(date).slice(1, 11);
     const mealNumber = meal;
+
+    axios
+      .post(
+        `/addRecipeToDay`, {
+        date: formatdate,
+        recipeId: recipeId,
+        mealNumber: mealNumber,
+      }
+      )
+      .then((result) => {
+        console.log(result.data)
+        setDate("")
+      })
+      .catch((error) => console.error(error));
   };
 
   const options = [
@@ -166,7 +137,7 @@ export default function Recipe({ props, match }) {
 
   return (
     <div>
-      {foodName && foodIngredient && setMode("Favourites") && (
+      {foodName && foodIngredient && (
         <Button onClick={checkIfInDatabase}>Add to Favourites</Button>
       )}
       <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
@@ -178,15 +149,8 @@ export default function Recipe({ props, match }) {
           onChange={(e, { value }) => setMeal(value)}
         />
       )}
-      {date && meal && setMode("") && (
-        <Button
-          onClick={
-            checkIfInDatabase
-            // addRecipeToDay(date, foodIngredient.hits[0].recipe.image, meal)
-          }
-        >
-          Add to Schedule
-        </Button>
+      {date && meal && (
+        <Button onClick={checkIfInDatabase}>Add to Schedule</Button>
       )}
       {foodIngredient && <img src={foodIngredient.hits[0].recipe.image} />}
       {foodIngredient && (

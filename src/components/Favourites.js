@@ -12,7 +12,7 @@ const Favourites = (props) => {
     const currentUser = Cookies.get("userId");
 
     axios
-      .get("/favourites", { userId: currentUser })
+      .get("/favourites")
       .then((result) => {
         console.log("favouritessssss", result);
         setUserFavourites(result.data);

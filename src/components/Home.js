@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.scss";
 import Searchbar from "./Searchbar";
 import useApplicationData from "../hooks/useApplicationData";
+import SearchForUsers from "./SearchForUsers";
 
 function Home() {
   const { state, fetchSearchResults } = useApplicationData();
@@ -16,6 +17,7 @@ function Home() {
       )}
       <Searchbar fetchSearchResults={fetchSearchResults} />
       <div className="search">{state.search}</div>
+      {/* <SearchForUsers/> */}
     </>
   );
 }
