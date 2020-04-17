@@ -96,6 +96,14 @@ export default function useApplicationData() {
       .catch((error) => console.error(error));
   }
 
+  function fetchUsers() {
+    axios
+      .get("/getAllUsers")
+      .then((result) => {
+        console.log("these are the users", result);
+      })
+      .catch((error) => console.error(error));
+  }
   // ******************** sockets ********************
   useEffect(() => {
     socket.onopen = function () {
@@ -118,5 +126,5 @@ export default function useApplicationData() {
   };
   // ****************************************
 
-  return { state, fetchSearchResults, getNutrients, fetchRecipes };
+  return { state, fetchSearchResults, getNutrients, fetchRecipes, fetchUsers };
 }
