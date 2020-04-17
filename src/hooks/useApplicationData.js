@@ -17,6 +17,7 @@ export default function useApplicationData() {
   const [state, setState] = useState({
     search: "",
     recipes: [],
+    users: [],
   });
 
   // display raw ingredient search results from home page
@@ -90,17 +91,48 @@ export default function useApplicationData() {
             />
           );
         });
-        // setRecipes(recipeCardsArray);
         setState((prev) => ({ ...prev, recipes: recipeCardsArray }));
       })
       .catch((error) => console.error(error));
   }
 
+  // follow user function
+  function follow(userId) {
+    console.log("id: ", userId);
+    axios
+      .post(`/addUserToFollowing?followId=${userId}`)
+      .then((result) => {
+        console.log("did we get it?", result);
+        // setState(prev => ({ ...prev, following: result}))
+      })
+      .catch((error) => console.error(error));
+  }
+
+  // display users in carousel
   function fetchUsers() {
     axios
       .get("/getAllUsers")
       .then((result) => {
-        console.log("these are the users", result);
+        const usersArray = result.data.map((user) => {
+          const id = user.id;
+          const label = user.name;
+          const image = user.avatar;
+
+          return (
+            <RecipeCard
+              key={id}
+              label={label}
+              image={image}
+              follow={() => {
+                follow(user.id);
+              }}
+            />
+          );
+        });
+        setState((prev) => ({
+          ...prev,
+          users: usersArray,
+        }));
       })
       .catch((error) => console.error(error));
   }
