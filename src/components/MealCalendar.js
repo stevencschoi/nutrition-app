@@ -40,7 +40,7 @@ export default function MealCalendar({ date, onChange }) {
         numberOfMonths={1}
         enableOutsideDays
         // show past macros, enable below
-        // isOutsideRange={() => false}
+        isOutsideRange={() => false}
       />
     </>
   );
