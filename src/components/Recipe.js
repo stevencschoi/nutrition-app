@@ -18,6 +18,7 @@ export default function Recipe({ props, match }) {
   const [meal, setMeal] = useState(null);
   const [foodName, setFoodName] = useState(match.params.id);
   const [foodIngredient, setFoodIngredient] = useState();
+  const [mode, setMode] = useState("");
 
   const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
   const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
@@ -134,12 +135,26 @@ export default function Recipe({ props, match }) {
         if (result.data.length === 0) {
           addRecipe();
           // console.log("result.data.length is = 0");
-        } else {
+        } else if (mode === "Favourites") {
           // console.log("result.data.length is NOT = 0", result);
           addToFav(result.data[0].id);
+        } else {
+          addRecipeToDay(result.data[0].id);
         }
+        // setMode("")
       })
       .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    console.log("date", date);
+  }, [date]);
+
+  const addRecipeToDay = (recipeId) => {
+    console.log(date);
+    // const recipeId = recipeId;
+    // const date =
+    const mealNumber = meal;
   };
 
   const options = [
@@ -151,7 +166,7 @@ export default function Recipe({ props, match }) {
 
   return (
     <div>
-      {foodName && foodIngredient && (
+      {foodName && foodIngredient && setMode("Favourites") && (
         <Button onClick={checkIfInDatabase}>Add to Favourites</Button>
       )}
       <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
@@ -163,15 +178,16 @@ export default function Recipe({ props, match }) {
           onChange={(e, { value }) => setMeal(value)}
         />
       )}
-      {/* {date && meal && (
+      {date && meal && setMode("") && (
         <Button
-          onClick={() =>
-            addRecipeToDay(date, foodIngredient.hits[0].recipe.image, meal)
+          onClick={
+            checkIfInDatabase
+            // addRecipeToDay(date, foodIngredient.hits[0].recipe.image, meal)
           }
         >
           Add to Schedule
         </Button>
-      )} */}
+      )}
       {foodIngredient && <img src={foodIngredient.hits[0].recipe.image} />}
       {foodIngredient && (
         <a href={foodIngredient.hits[0].recipe.url}> Full Instructions</a>
