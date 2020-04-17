@@ -9,7 +9,7 @@ import Button from "./Button";
 import DayRecipeSlot from "./DayRecipeSlot";
 // import moment from "moment";
 // import useApplicationData from "../hooks/useApplicationData";
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown } from "semantic-ui-react";
 
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
@@ -123,12 +123,11 @@ const FavouritesItem = (props) => {
   // };
 
   const options = [
-    { key: 1, text: 'Breakfast', value: "1" },
-    { key: 2, text: 'Lunch', value: "2" },
-    { key: 3, text: 'Dinner', value: "3" },
-    { key: 4, text: 'Other', value: "4" },
-  ]
-
+    { key: 1, text: "Breakfast", value: "1" },
+    { key: 2, text: "Lunch", value: "2" },
+    { key: 3, text: "Dinner", value: "3" },
+    { key: 4, text: "Other", value: "4" },
+  ];
 
   return (
     <>
@@ -140,7 +139,13 @@ const FavouritesItem = (props) => {
       {/* {date && (
         <ScheduleDay date={date} name={props.name} dayListarA={dayListArr} />
       )} */}
-      {date && <Dropdown options={options} selection onChange={(e, { value }) => setMeal(value)} />}
+      {date && (
+        <Dropdown
+          options={options}
+          selection
+          onChange={(e, { value }) => setMeal(value)}
+        />
+      )}
       {date && props.name && (
         <Button onClick={() => addRecipeToDay(date, image, meal)}>
           Add to Schedule
@@ -154,12 +159,3 @@ const FavouritesItem = (props) => {
 };
 
 export default FavouritesItem;
-
-// axios
-//       .get(
-//         `https://api.edamam.com/search?q=${ingredient}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
-//       )
-//       .then((result) => {
-//         setFoodIngredient(result.data);
-//       })
-//       .catch((error) => console.error(error));
