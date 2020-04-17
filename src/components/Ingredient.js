@@ -10,7 +10,7 @@ const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
 
 function Ingredient({ match }) {
-  const { state, getNutrients, fetchRecipes } = useApplicationData();
+  const { state, getNutrients, fetchRecipes, fetchUsers } = useApplicationData();
 
   // upon ingredient search query, display nutritional information and related recipes
   useEffect(() => {
