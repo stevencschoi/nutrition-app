@@ -63,7 +63,7 @@ function RecipeGraph(props) {
       <div class="graph-container">
         <div class="graph">
           <p class="graph-label">per serving</p>
-          <BarChart width={800} height={250} data={data}>
+          <BarChart width={500} height={200} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
@@ -73,7 +73,7 @@ function RecipeGraph(props) {
         </div>
         <div class="graph">
           <p class="graph-label">per serving</p>
-          <BarChart width={350} height={250} data={data2}>
+          <BarChart width={240} height={200} data={data2}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />

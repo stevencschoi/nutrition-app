@@ -69,31 +69,66 @@ function RecipeGraph(props) {
         fill: "#d0ed57",
       },
     ];
+    //   return (
+    //     <div class="graph-container">
+    //       <div class="graph">
+    //         <p class="graph-label">per serving</p>
+    //         <BarChart width={800} height={250} data={data}>
+    //           <CartesianGrid strokeDasharray="3 3" />
+    //           <XAxis dataKey="name" />
+    //           <YAxis />
+    //           <Tooltip />
+    //           <Bar dataKey="grams / 100 grams" />
+    //         </BarChart>
+    //       </div>
+    //       <div class="graph">
+    //         <p class="graph-label">per serving</p>
+    //         <BarChart width={350} height={250} data={data2}>
+    //           <CartesianGrid strokeDasharray="3 3" />
+    //           <XAxis dataKey="name" />
+    //           <YAxis />
+    //           <Tooltip />
+    //           <Bar dataKey="milligrams / 100 grams" />
+    //         </BarChart>
+    //       </div>
+    //     </div>
+    //   );
+    // };
     return (
       <div class="graph-container">
         <div class="graph">
-          <p class="graph-label">per serving</p>
-          <BarChart width={800} height={250} data={data}>
+          <p class="graph-label">grams / serving</p>
+          <BarChart
+            width={500}
+            height={200}
+            data={data}
+          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
+            <XAxis dataKey="name" tick={{ fontSize: 10 }} />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="grams / 100 grams" />
+            <Bar dataKey="grams / serving" />
           </BarChart>
         </div>
         <div class="graph">
-          <p class="graph-label">per serving</p>
-          <BarChart width={350} height={250} data={data2}>
+          <p class="graph-label">milligrams / serving</p>
+          <BarChart
+            width={240}
+            height={200}
+            data={data2}
+          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="milligrams / 100 grams" />
+            <Bar dataKey="milligrams / serving" />
           </BarChart>
         </div>
       </div>
     );
   };
+
   return (
     <div>
       {makeGraph(
@@ -109,5 +144,6 @@ function RecipeGraph(props) {
       )}
     </div>
   );
+
 }
 export default RecipeGraph;

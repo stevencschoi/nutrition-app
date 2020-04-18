@@ -414,8 +414,8 @@ function MacroGraph() {
         <div class="graph">
           <p class="graph-label">{graphLabel}</p>
           <LineChart
-            width={700}
-            height={300}
+            width={750}
+            height={250}
             data={dailyPick}
             margin={{
               top: 5,
@@ -452,8 +452,7 @@ function MacroGraph() {
         />
       )}
       <div class="nutritional-data">
-        <h1>Weekly consumption of per day</h1>
-        <br></br>
+        <h2>Weekly consumption of per day</h2>
         <br></br>
         {pick && graph}
       </div>

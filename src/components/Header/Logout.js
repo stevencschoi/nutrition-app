@@ -29,3 +29,15 @@ function Logout(props) {
 }
 
 export default Logout;
+
+
+// return (
+//   <button id="logout"
+//     onClick={e => {
+//       localStorage.removeItem('user');
+//       props.setUser("");
+//       closeUser();
+//     }}>
+//     Logout
+//   </button>
+// );

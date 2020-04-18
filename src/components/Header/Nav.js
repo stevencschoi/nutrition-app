@@ -10,7 +10,7 @@ function Nav() {
   return (
     <nav className="nav">
       <Link to="/">
-        <h3>VegTable</h3>
+        <h3 id="logo">Veg<i class="fas fa-seedling"></i>able</h3>
       </Link>
       <Link to="/favourites">
         <h3>Favourites</h3>
@@ -22,7 +22,7 @@ function Nav() {
         <h3>Data</h3>
       </Link>
       {user && (
-        <div>
+        <div id="logged-user">
           Logged in as {user}
           <Logout setUser={setUser} />
         </div>
