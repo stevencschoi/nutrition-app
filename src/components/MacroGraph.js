@@ -454,18 +454,16 @@ function MacroGraph() {
   return (
     <>
       <div class="nutritional-data">
-        <h2>
-          Weekly consumption of{" "}
-          {pick && (
-            <Dropdown
-              text={pick}
-              options={options}
-              selection
-              onChange={(e, { value }) => setPick(value)}
-            />
-          )}{" "}
-          per day
-        </h2>
+        <h2>Weekly consumption of {pick && (
+        <Dropdown
+          compact
+          text={pick}
+          options={options}
+          selection
+          onChange={(e, { value }) => setPick(value)}
+        />
+      )} per day</h2>
+
         <br></br>
         {pick && graph}
       </div>

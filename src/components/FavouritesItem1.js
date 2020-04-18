@@ -51,34 +51,61 @@ const FavouritesItem1 = (props) => {
 
   return (
     <>
-      <h1>{props.name}</h1>
-      <img src={props.image_url} />
-      <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
-      {date && (
-        <Dropdown
-          options={options}
-          selection
-          onChange={(e, { value }) => setMeal(value)}
-        />
-      )}
-      {date && meal && (
-        <Button onClick={() => addRecipeToDay(props.id, date, meal)}>
-          add
-        </Button>
-      )}
-      {props.id && <Button onClick={deleteFav}>Delete</Button>}
-      <RecipeGraph
-        calories={props.calories}
-        fat_in_g={props.fat_in_g}
-        carbs_in_g={props.carbs_in_g}
-        protein_in_g={props.protein_in_g}
-        sugar_in_g={props.sugar_in_g}
-        fiber_in_g={props.fiber_in_g}
-        cholesterol_in_mg={props.cholesterol_in_mg}
-        sodium_in_mg={props.sodium_in_mg}
-        image_url={props.image_url}
-        name={props.name}
-      />
+
+      <div className="FavouritesItem">
+        <div>
+          <img src={props.image_url} />
+          {/* <h1 className="FavouritesTitle">{props.name}</h1> */}
+        </div>
+        <div>
+          <RecipeGraph
+            calories={props.calories}
+            fat_in_g={props.fat_in_g}
+            carbs_in_g={props.carbs_in_g}
+            protein_in_g={props.protein_in_g}
+            sugar_in_g={props.sugar_in_g}
+            fiber_in_g={props.fiber_in_g}
+            cholesterol_in_mg={props.cholesterol_in_mg}
+            sodium_in_mg={props.sodium_in_mg}
+            image_url={props.image_url}
+            name={props.name}
+          />
+          <div className="selectPosition">
+            <div className="selectContainer">
+              <div>
+                <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
+              </div>
+              <div>
+                {date && (
+                  <Dropdown
+                    options={options}
+                    selection
+                    onChange={(e, { value }) => setMeal(value)}
+                  />
+                )}
+              </div>
+              {date && meal && (
+                <>
+                  <div className="add">
+                    <Button onClick={() => addRecipeToDay(props.id, date, meal)}>
+                      Add to Schedule
+          </Button>
+                  </div>
+                  <div className="delete">
+                    <Button onClick={() => setDate(null)}>
+                      Cancel
+                </Button>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="delete">
+              {props.id && <Button onClick={deleteFav}>Remove from Favourites</Button>}
+            </div>
+          </div>
+        </div>
+      </div>
+
     </>
   );
 };
