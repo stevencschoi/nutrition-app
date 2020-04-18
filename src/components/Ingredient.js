@@ -21,10 +21,13 @@ function Ingredient({ match }) {
   }, []);
 
   return (
-    <>
+    <div id="ingredient-page">
       <IngredientGraph data={state.search} />
-      {state.recipes && <CoolCarousel recipes={state.recipes} />}
-    </>
+      <div id="carousel">
+        <h2>Featured Recipes</h2>
+        {state.recipes && <CoolCarousel recipes={state.recipes} />}
+      </div>
+    </div >
   );
 }
 export default Ingredient;

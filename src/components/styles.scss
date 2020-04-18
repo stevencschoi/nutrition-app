@@ -1,181 +1,283 @@
+$primary-colour: #123050;
+$secondary-colour: #a7adba;
+
+// border-box???
+
+// not sure about this i.e. this makes the height go all the way down
+html,
+body,
+#root,
+#root > div {
+  background-image: url("/assets/healthy-wallpaper2.jpeg");
+  background-size: cover;
+  height: 100vh;
+}
+
+// figure this out for placement
+#home {
+  // background-image: url("/assets/healthy-wallpaper2.jpeg");
+  // background-size: cover;
+  // height: 100vh;
+  padding-top: 260px;
+}
+
 .nav {
+  background-color: #a7adba;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
+  box-shadow: 5px 5px 5px 0px rgba(18, 48, 80, 0.75);
+  border: solid black;
+  border-width: 1px 0;
+  #logo {
+    letter-spacing: 2px;
+    font-family: "Londrina Outline", cursive;
+    font-size: 50px;
+  }
+  h3 {
+    font-family: monospace;
+    margin: 0;
+    color: #123050;
+  }
+  a:hover {
+    text-decoration: none;
+    color: blue;
+  }
+  // login credentials
+  form input {
+    margin-right: 5px;
+    border-color: black;
+    padding: 0.5px 7px;
+    font-family: monospace;
+    font-size: 18px;
+    &::placeholder {
+      font-family: monospace;
+      font-size: 18px;
+    }
+  }
+  button {
+    background-color: #123050;
+    border-color: #007bff;
+    color: white;
+    font-family: monospace;
+    font-size: 18px;
+    padding: 0 7px;
+  }
 }
 
-.tb {
-  display: table;
-  width: 100%;
+// .logout {
+//   margin-left: 25px;
+// }
+
+// style for the username when logged in
+#logged-user {
+  font-family: monospace;
+  font-size: 18px;
+  // margin-right:10px;
 }
 
-.td {
-  display: table-cell;
-  vertical-align: middle;
-}
-#cover:focus {
-  outline: none
-}
-
-#cover input,
-#cover button {
-  color: #fff;
-  font-family: Nunito;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  background-color: transparent;
-}
+// start of searchbar styling
 
 #cover {
-  /* position: absolute; */
-  /* top: 50%; */
-  /* left: 0; */
-  /* right: 0; */
-  width: 550px;
-  padding: 35px;
+  width: 650px;
+  padding: 25px;
   margin: 0 auto 0 auto;
-  background-color: #ff7575;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px #ff7c7c, 0 0 0 20px #ffffffeb;
+  background-color: transparent;
+  border-radius: 50px;
+  border: solid 1px #123050;
   transform: scale(0.6);
-}
+  box-shadow: 5px 5px 5px 5px rgba(18, 48, 80, 0.75);
+  .tb {
+    display: table;
+    width: 100%;
+  }
+  .td {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  &:focus {
+    outline: none;
+  }
+  //text for the ingredient input
+  input,
+  button {
+    color: #123050;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+  }
+  form {
+    height: 65px;
+  }
+  input[type="text"] {
+    width: 100%;
+    height: 65px;
+    font-size: 66px;
+    text-align: center;
+    background-color: transparent;
+    outline: none;
+    font-family: "Cabin Sketch", cursive;
+    font-weight: 700;
+    color: #123050;
+    &::placeholder {
+      font-family: "Cabin Sketch", cursive;
+      font-weight: 700;
+      font-size: 33px;
+      color: #123050;
+      text-align: center;
+      transform: translateY(-5px);
+    }
+  }
+  // magnifying glass
+  #s-cover {
+    width: 1px;
+    transform: scale(0.7);
+  }
+  button {
+    position: relative;
+    display: block;
+    width: 84px;
+    height: 65px;
+    cursor: pointer;
+    outline: none;
+  }
+  #s-circle {
+    position: relative;
+    top: -8px;
+    left: 0;
+    width: 72px;
+    height: 72px;
+    margin-top: 0;
+    border-width: 15px;
+    border: 15px solid #123050;
+    background-color: transparent;
+    border-radius: 50%;
+    transition: 0.5s ease all;
+    color: #123050;
+  }
+  button span {
+    position: absolute;
+    top: 68px;
+    left: 46px;
+    display: block;
+    width: 40px;
+    height: 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    transform: rotateZ(52deg);
+    transition: 0.5s ease all;
+  }
+  button span:before,
+  button span:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 45px;
+    height: 15px;
+    background-color: #123050;
+    border-radius: 10px;
+    transform: rotateZ(0);
+    transition: 0.5s ease all;
+  }
+  #s-cover:hover #s-circle {
+    top: -1px;
+    width: 67px;
+    height: 15px;
+    border-width: 0;
+    background-color: #123050;
+    border-radius: 20px;
+  }
+  #s-cover:hover span {
+    top: 55%;
+    left: 56px;
+    width: 25px;
+    margin-top: -9px;
+    transform: rotateZ(0);
+  }
+  #s-cover:hover button span:before {
+    bottom: 11px;
+    transform: rotateZ(52deg);
+  }
 
-#cover form {
-  height: 65px;
-}
-
-#cover input[type="text"] {
-  width: 100%;
-  height: 65px;
-  font-size: 60px;
-  line-height: 1;
-}
-
-#cover input[type="text"]::placeholder {
-  color: #e16868;
-}
-
-#s-cover {
-  width: 1px;
-  padding-left: 35px;
-}
-
-#cover button {
-  position: relative;
-  display: block;
-  width: 84px;
-  height: 65px;
-  cursor: pointer;
-}
-
-#s-circle {
-  position: relative;
-  top: -8px;
-  left: 0;
-  width: 72px;
-  height: 72px;
-  margin-top: 0;
-  border-width: 15px;
-  border: 15px solid #fff;
-  background-color: transparent;
-  border-radius: 50%;
-  transition: 0.5s ease all;
-}
-
-#cover button span {
-  position: absolute;
-  top: 68px;
-  left: 46px;
-  display: block;
-  width: 40px;
-  height: 10px;
-  background-color: transparent;
-  border-radius: 10px;
-  transform: rotateZ(52deg);
-  transition: 0.5s ease all;
-}
-
-#cover button span:before,
-#cover button span:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 45px;
-  height: 15px;
-  background-color: #fff;
-  border-radius: 10px;
-  transform: rotateZ(0);
-  transition: 0.5s ease all;
-}
-
-#s-cover:hover #s-circle {
-  top: -1px;
-  width: 67px;
-  height: 15px;
-  border-width: 0;
-  background-color: #fff;
-  border-radius: 20px;
-}
-
-#s-cover:hover span {
-  top: 55%;
-  left: 56px;
-  width: 25px;
-  margin-top: -9px;
-  transform: rotateZ(0);
-}
-
-#s-cover:hover button span:before {
-  bottom: 11px;
-  transform: rotateZ(52deg);
-}
-
-#s-cover:hover button span:after {
-  bottom: -11px;
-  transform: rotateZ(-52deg);
-}
-#s-cover:hover button span:before,
-#s-cover:hover button span:after {
-  right: -6px;
-  width: 40px;
-  background-color: #fff;
+  #s-cover:hover button span:after {
+    bottom: -11px;
+    transform: rotateZ(-52deg);
+  }
+  #s-cover:hover button span:before,
+  #s-cover:hover button span:after {
+    right: -6px;
+    width: 40px;
+    background-color: #123050;
+    // background-color: greenyellow;
+  }
 }
 
 .search {
-  display: flex;
-  flex-wrap: wrap;
+  margin-top: 50px;
+  .search-result {
+    margin: 50px 100px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(18, 48, 80, 0.75);
+    border-radius: 50px;
+    border: solid 2px black;
+    padding: 25px;
+    a:hover {
+      text-decoration: none;
+    }
+  }
+  img {
+    height: 200px;
+    width: 200px;
+    margin: 0 100px;
+    padding: 10px;
+    background-color: #a7adba;
+    border: solid 2px black;
+  }
+  h4 {
+    font-size: 40px;
+    font-family: "Londrina Solid", cursive;
+    color: black;
+    border: solid 2px black;
+    background-color: #007bff;
+    padding: 10px;
+    margin: 0;
+  }
 }
 
 .graph-container {
   display: flex;
-  justify-content: space-evenly;
-}
-
-.graph {
-  display: flex;
+  // height: 200px;
+  width: 850px;
   align-items: center;
-  justify-content: center;
-}
-
-.graph-label {
-  writing-mode: vertical-lr;
-  transform: rotate(-180deg);
-  margin-right: 0;
+  justify-content: space-evenly;
+  .graph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .graph-label {
+      writing-mode: vertical-lr;
+      transform: rotate(-180deg);
+      margin: 0;
+      color: #123050;
+      font-family: "Londrina Solid", cursive;
+    }
+  }
 }
 
 .nutritional-data {
-  margin: 100px 50px;
+  width: 900px;
+  display: inline-block;
+  margin: 20px 10px 10px;
   border: black solid 5px;
   border-radius: 25px;
-  padding: 25px;
+  padding: 10px;
+  background-color: white;
 }
 
-// .nutritional-data h3 {
-//   background-color: red;
-//   display: inline-block;
-//   margin: 0;
-//   border-radius: 25px;
-//   padding: 5px 10px;
-// }
+.nutritional-data h2 {
+  color: #123050;
+  font-family: "Londrina Solid", cursive;
+}

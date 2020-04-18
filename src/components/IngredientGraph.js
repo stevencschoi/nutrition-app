@@ -71,7 +71,7 @@ function IngredientGraph(props) {
             grams / 100 grams of{" "}
             {props.data && props.data.ingredients[0].parsed[0].food}
           </p>
-          <BarChart width={800} height={250} data={data}>
+          <BarChart width={500} height={200} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
@@ -84,7 +84,7 @@ function IngredientGraph(props) {
             milligrams / 100 grams of{" "}
             {props.data && props.data.ingredients[0].parsed[0].food}
           </p>
-          <BarChart width={350} height={250} data={data2}>
+          <BarChart width={240} height={200} data={data2}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
@@ -97,12 +97,10 @@ function IngredientGraph(props) {
   };
   return (
     <div class="nutritional-data">
-      <h1>
+      <h2>
         Select Nutritional Data of{" "}
         {props.data && props.data.ingredients[0].parsed[0].food}
-      </h1>
-      <br></br>
-      <br></br>
+      </h2>
       {props.data && makeGraph(props.data)}
     </div>
   );

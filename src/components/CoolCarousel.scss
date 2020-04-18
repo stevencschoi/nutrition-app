@@ -30,7 +30,7 @@ img {
   color: black !important;
 }
 
-.follow{
+.follow {
   background-color: #3897f0;
   border: 1px solid #3897f0;
   border-radius: 4px;
@@ -40,4 +40,19 @@ img {
 .slick-slider {
   width: 95%;
   margin: 0 auto;
+}
+
+//added by Vic
+#carousel {
+  display: inline-block;
+  margin: 10px;
+  border: black solid 5px;
+  border-radius: 25px;
+  padding: 10px;
+  background-color: white;
+  width: 80%;
+}
+
+.card {
+  border-radius: 25px;
 }

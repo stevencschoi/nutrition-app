@@ -160,9 +160,7 @@ export default function Recipe({ props, match }) {
         <h5>Takes around {foodIngredient.hits[0].recipe.totalTime} mins</h5>
       )}
       <div class="nutritional-data">
-        <h1>Select Nutritional Data of {foodIngredient && foodIngredient.q}</h1>
-        <br></br>
-        <br></br>
+        <h2>Select Nutritional Data of {foodIngredient && foodIngredient.q}</h2>
         <RecipeGraph1 foodIngredient={foodIngredient} />
       </div>
       <RecipeIngredient foodIngredient={foodIngredient} />
