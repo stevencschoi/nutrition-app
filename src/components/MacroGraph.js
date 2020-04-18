@@ -15,6 +15,10 @@ import {
   Line,
 } from "recharts";
 
+import io from "socket.io-client";
+
+const socket = io(process.env.REACT_APP_WEBSOCKET_URL);
+
 const options = [
   { key: 1, text: "Calories", value: "Calories" },
   { key: 2, text: "Fat", value: "Fat" },
@@ -30,6 +34,11 @@ function MacroGraph() {
   const [pick, setPick] = useState("Calories");
   const [graph, setGraph] = useState("Calories");
   const [data, setData] = useState(null);
+
+  socket.on("update", () => {
+    socket.send("hi");
+    getData(pick);
+  });
 
   const {
     state,
@@ -58,14 +67,19 @@ function MacroGraph() {
       .then((result) => {
         console.log("stuff from database", result.data);
         setData(result.data);
-        const newGraph = makeGraph(pick, result.data);
+        const newGraph = makeGraph(
+          pick,
+          result.data.userData,
+          result.data.followers
+        );
+        // ********** needs to include other followers **********
         setGraph(newGraph);
       })
       .catch((error) => console.error(error));
   };
 
   // Recharts function for bar graph
-  const makeGraph = (pick, getdata) => {
+  const makeGraph = (pick, getdata, followers) => {
     const graphTitle = "Calories";
 
     const dailyCalories = [
@@ -454,15 +468,19 @@ function MacroGraph() {
   return (
     <>
       <div class="nutritional-data">
-        <h2>Weekly consumption of {pick && (
-        <Dropdown
-          compact
-          text={pick}
-          options={options}
-          selection
-          onChange={(e, { value }) => setPick(value)}
-        />
-      )} per day</h2>
+        <h2>
+          Weekly consumption of{" "}
+          {pick && (
+            <Dropdown
+              compact
+              text={pick}
+              options={options}
+              selection
+              onChange={(e, { value }) => setPick(value)}
+            />
+          )}{" "}
+          per day
+        </h2>
 
         <br></br>
         {pick && graph}
