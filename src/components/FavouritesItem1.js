@@ -91,6 +91,7 @@ const FavouritesItem1 = (props) => {
         cholesterol_in_mg={props.cholesterol_in_mg}
         sodium_in_mg={props.sodium_in_mg}
         image_url={props.image_url}
+        name={props.name}
       />
     </>
   );
