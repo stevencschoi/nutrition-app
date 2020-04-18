@@ -104,7 +104,7 @@ export default function useApplicationData() {
   // get followers array
   function getFollowers() {
     axios
-      .get("/following")
+      .get("/user/following")
       .then((result) => {
         console.log("Followers", result);
         result.data.forEach((follower) => {
@@ -120,7 +120,7 @@ export default function useApplicationData() {
   function follow(userId) {
     console.log("id: ", userId);
     axios
-      .post(`/addUserToFollowing?followId=${userId}`)
+      .post(`/user/add?followId=${userId}`)
       .then((result) => {
         console.log("response: ", result);
         getFollowers();
