@@ -14,7 +14,6 @@ const Favourites = (props) => {
     axios
       .get("/favourites")
       .then((result) => {
-        console.log("favouritessssss", result);
         setUserFavourites(result.data);
       })
       .catch((error) => console.error(error));
