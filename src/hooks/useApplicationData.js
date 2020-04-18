@@ -117,9 +117,10 @@ export default function useApplicationData() {
       .get("/following")
       .then((result) => {
         console.log("Followers", result);
-        const followers = result.data.map((follower) => {
+        result.data.forEach((follower) => {
           console.log(follower.follow_id);
-          return follower.follow_id;
+
+          // return follower.follow_id;
         });
       })
       .catch((error) => console.error(error));
