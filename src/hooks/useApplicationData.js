@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import moment from "moment";
 // component to be rendered displaying a raw ingredient search results
 import SearchResult from "../components/SearchResult";
 // component to be rendered as part of recipe search results
 import RecipeCard from "../components/RecipeCard";
+
 // stretch assignment to include sockets for real-time data updating
 const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
 
@@ -17,6 +19,10 @@ export default function useApplicationData() {
   const [state, setState] = useState({
     search: "",
     recipes: [],
+    users: [],
+    pick: "Calories",
+    data: null,
+    graph: "Calories",
   });
 
   // display raw ingredient search results from home page
@@ -90,20 +96,68 @@ export default function useApplicationData() {
             />
           );
         });
-        // setRecipes(recipeCardsArray);
         setState((prev) => ({ ...prev, recipes: recipeCardsArray }));
       })
       .catch((error) => console.error(error));
   }
 
+  // get followers array
+  function getFollowers() {
+    axios
+      .get("/following")
+      .then((result) => {
+        console.log("Followers", result);
+        result.data.forEach((follower) => {
+          console.log(follower.follow_id);
+
+          // return follower.follow_id;
+        });
+      })
+      .catch((error) => console.error(error));
+  }
+
+  // follow user function
+  function follow(userId) {
+    console.log("id: ", userId);
+    axios
+      .post(`/addUserToFollowing?followId=${userId}`)
+      .then((result) => {
+        console.log("response: ", result);
+        getFollowers();
+        // setState(prev => ({ ...prev, following: result}))
+      })
+      .catch((error) => console.error(error));
+  }
+
+  // display users in carousel
   function fetchUsers() {
     axios
       .get("/getAllUsers")
       .then((result) => {
-        console.log("these are the users", result);
+        const usersArray = result.data.map((user) => {
+          const id = user.id;
+          const label = user.name;
+          const image = user.avatar;
+
+          return (
+            <RecipeCard
+              key={id}
+              label={label}
+              image={image}
+              follow={() => {
+                follow(user.id);
+              }}
+            />
+          );
+        });
+        setState((prev) => ({
+          ...prev,
+          users: usersArray,
+        }));
       })
       .catch((error) => console.error(error));
   }
+
   // ******************** sockets ********************
   useEffect(() => {
     socket.onopen = function () {
@@ -126,5 +180,14 @@ export default function useApplicationData() {
   };
   // ****************************************
 
-  return { state, fetchSearchResults, getNutrients, fetchRecipes, fetchUsers };
+  return {
+    state,
+    fetchSearchResults,
+    getNutrients,
+    fetchRecipes,
+    fetchUsers,
+    getFollowers,
+    // getData,
+    // setPick,
+  };
 }
