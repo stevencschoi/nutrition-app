@@ -29,6 +29,12 @@ body,
   box-shadow: 5px 5px 5px 0px rgba(18, 48, 80, 0.75);
   border: solid black;
   border-width: 1px 0;
+  .media h3{
+    margin: 0 20px;
+    &:hover {
+      color: lighten(#123050, 30%);
+    }
+  }
   #logo {
     letter-spacing: 2px;
     font-family: "Londrina Outline", cursive;
@@ -50,6 +56,9 @@ body,
     padding: 0.5px 7px;
     font-family: monospace;
     font-size: 18px;
+    border-radius: 6px;
+    max-width: 160px;
+    // padding-right: 5px;
     &::placeholder {
       font-family: monospace;
       font-size: 18px;
@@ -57,11 +66,67 @@ body,
   }
   button {
     background-color: #123050;
-    border-color: #007bff;
+    // border-color: #007bff;
+    border-radius: 10px;
+    border: 1px solid transparent;
     color: white;
     font-family: monospace;
     font-size: 18px;
-    padding: 0 7px;
+    padding: 2px 10px;
+    margin-left: 10px;
+    &:hover {
+      color: #123050;
+      background-color: white;
+      border: 1px solid #123050;
+    }
+  }
+}
+
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    border: 1px solid transparent;
+    margin: 0 20px;
+    background-color: #123050;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 10px;
+    &:hover {
+      color: #123050;
+      background-color: white;
+      border: 1px solid #123050;
+    }
+  }
+}
+
+.registerform {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  input {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+  }
+  button {
+  background-color: #123050;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  color: white;
+  font-family: monospace;
+  font-size: 18px;
+  padding: 5px 15px;
+  margin-top: 10px;
+  &:hover {
+    color: #123050;
+    background-color: white;
+    border: 1px solid #123050;
+  }
   }
 }
 
@@ -215,12 +280,12 @@ body,
 }
 
 .search {
-  margin-top: 50px;
+  margin-top: 40px;
   .search-result {
-    margin: 50px 100px;
+    margin: 20px 100px;
     display: flex;
     align-items: center;
-    background-color: rgba(18, 48, 80, 0.75);
+    background-color: rgba(106, 127, 150, 0.75);
     border-radius: 50px;
     border: solid 2px black;
     padding: 25px;
@@ -232,18 +297,22 @@ body,
     height: 200px;
     width: 200px;
     margin: 0 100px;
-    padding: 10px;
+    padding: 5px;
     background-color: #a7adba;
     border: solid 2px black;
   }
   h4 {
     font-size: 40px;
     font-family: "Londrina Solid", cursive;
-    color: black;
+    color: white;
     border: solid 2px black;
-    background-color: #007bff;
+    border-radius: 15px;
+    background-color: #123050;
     padding: 10px;
     margin: 0;
+    &:hover {
+      border: solid 2px white;
+    }
   }
 }
 

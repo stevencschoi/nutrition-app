@@ -5,7 +5,9 @@ import axios from "axios";
 const PORT = process.env.PORT || 8008;
 
 const Register = (props) => {
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({
+    avatar: ""
+  });
 
   const handleInputChange = (event) => {
     event.persist();
@@ -19,25 +21,25 @@ const Register = (props) => {
     e.preventDefault();
     console.log(`${PORT}`);
     /* now we want to setUser from app */
-    // console.log(inputs);
-    // axios
-    //   .put(`https://localhost:${PORT}/register`, inputs)
-    //   .then(() => console.log("shit sent"))
-    //   .catch((error) => console.log(error));
+    console.log(inputs);
     axios
-      .put(`https://localhost:${PORT}/register`, inputs)
+      .put(`/register`, inputs)
+      .then(() => console.log("shit sent"))
+      .catch((error) => console.log(error));
+    axios
+      .put(`/register`, inputs)
       .then(() => console.log("logged"))
       .catch((error) => console.error(error));
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <form onSubmit={handleSubmit} className="registerform">
+      {/* <input
         placeholder="avatar"
         name="avatar"
         value={inputs.avatar}
         onChange={handleInputChange}
-      />
+      /> */}
       <input
         placeholder="username"
         name="username"
@@ -65,7 +67,7 @@ const Register = (props) => {
         onChange={handleInputChange}
       />
 
-      <button type="submit">Register</button>
+      <button className="registerformButton" type="submit">Submit</button>
     </form>
   );
 };

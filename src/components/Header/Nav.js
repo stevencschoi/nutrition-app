@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles.scss";
 import Login from "./Login";
 import Logout from "./Logout";
+import Register from "../Register";
 import { Link } from "react-router-dom";
 
 function Nav() {
@@ -12,23 +13,31 @@ function Nav() {
       <Link to="/">
         <h3 id="logo">Veg<i class="fas fa-seedling"></i>able</h3>
       </Link>
-      <Link to="/favourites">
-        <h3>Favourites</h3>
-      </Link>
-      <Link to="/schedule">
-        <h3>Schedule</h3>
-      </Link>
-      <Link to="/data">
-        <h3>Data</h3>
-      </Link>
+      <div className="media">
+        <Link to="/favourites">
+          <h3>Favourites</h3>
+        </Link>
+        <Link to="/schedule">
+          <h3>Schedule</h3>
+        </Link>
+        <Link to="/data">
+          <h3>Data</h3>
+        </Link>
+      </div>
       {user && (
         <div id="logged-user">
           Logged in as {user}
           <Logout setUser={setUser} />
         </div>
       )}
-      {!user && <Login setUser={setUser} />}
-      {/* <Signup/> */}
+      <div className="register">
+        {!user && <Login setUser={setUser} />}
+        {!user &&
+          <Link to="/register">
+            <h3>Register</h3>
+          </Link>}
+        {/* <Register/> */}
+      </div>
     </nav>
   );
 }
