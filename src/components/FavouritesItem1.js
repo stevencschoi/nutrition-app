@@ -8,6 +8,9 @@ import Button from "./Button";
 import DayRecipeSlot from "./DayRecipeSlot";
 import moment from "moment";
 import { Dropdown } from "semantic-ui-react";
+import io from "socket.io-client";
+
+const socket = io(process.env.REACT_APP_WEBSOCKET_URL);
 
 const FavouritesItem1 = (props) => {
   const [date, setDate] = useState(null);
@@ -37,6 +40,7 @@ const FavouritesItem1 = (props) => {
         mealNumber: `${meal}`,
       })
       .then((result) => {
+        socket.emit("new");
         setDate(null);
       })
       .catch((error) => console.error(error));
@@ -51,7 +55,6 @@ const FavouritesItem1 = (props) => {
 
   return (
     <>
-
       <div className="FavouritesItem">
         <div>
           <img src={props.image_url} />
@@ -73,7 +76,10 @@ const FavouritesItem1 = (props) => {
           <div className="selectPosition">
             <div className="selectContainer">
               <div>
-                <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
+                <MealCalendar
+                  date={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />
               </div>
               <div>
                 {date && (
@@ -87,25 +93,26 @@ const FavouritesItem1 = (props) => {
               {date && meal && (
                 <>
                   <div className="add">
-                    <Button onClick={() => addRecipeToDay(props.id, date, meal)}>
+                    <Button
+                      onClick={() => addRecipeToDay(props.id, date, meal)}
+                    >
                       Add to Schedule
-          </Button>
+                    </Button>
                   </div>
                   <div className="delete">
-                    <Button onClick={() => setDate(null)}>
-                      Cancel
-                </Button>
+                    <Button onClick={() => setDate(null)}>Cancel</Button>
                   </div>
                 </>
               )}
             </div>
             <div className="delete">
-              {props.id && <Button onClick={deleteFav}>Remove from Favourites</Button>}
+              {props.id && (
+                <Button onClick={deleteFav}>Remove from Favourites</Button>
+              )}
             </div>
           </div>
         </div>
       </div>
-
     </>
   );
 };
