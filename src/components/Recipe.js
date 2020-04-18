@@ -109,7 +109,7 @@ export default function Recipe({ props, match }) {
     const mealNumber = meal;
 
     axios
-      .post(`/addRecipeToDay`, {
+      .post(`/day/add`, {
         date: formatdate,
         recipeId: recipeId,
         mealNumber: mealNumber,

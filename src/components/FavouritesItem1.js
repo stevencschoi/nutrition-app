@@ -31,7 +31,7 @@ const FavouritesItem1 = (props) => {
     const recipeId = id;
 
     axios
-      .post(`/addRecipeToDay`, {
+      .post("/day/add", {
         date: `${formatdate}`,
         recipeId: `${recipeId}`,
         mealNumber: `${meal}`,
