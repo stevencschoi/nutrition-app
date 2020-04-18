@@ -30,11 +30,18 @@ function MacroGraph() {
   const [pick, setPick] = useState("Calories");
   const [graph, setGraph] = useState("Calories");
   const [data, setData] = useState(null);
-  const { state, fetchUsers } = useApplicationData();
+  const {
+    state,
+    fetchUsers,
+    getFollowers,
+    // getData,
+    // setPick,
+  } = useApplicationData();
 
   useEffect(() => {
     getData(pick);
     fetchUsers();
+    getFollowers();
   }, [pick]);
 
   const getData = (choice) => {
@@ -447,12 +454,13 @@ function MacroGraph() {
   };
   return (
     <>
-      {pick && (
+      {state.pick && (
         <Dropdown
-          text={pick}
+          text={state.pick}
           options={options}
           selection
           onChange={(e, { value }) => setPick(value)}
+          // setPick={setPick}
         />
       )}
       <div class="nutritional-data">
