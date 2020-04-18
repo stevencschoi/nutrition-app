@@ -23,7 +23,7 @@ function Ingredient({ match }) {
   return (
     <div id="ingredient-page">
       <IngredientGraph data={state.search} />
-      <div id="carousel">
+      <div class="carousel">
         <h2>Featured Recipes</h2>
         {state.recipes && <CoolCarousel recipes={state.recipes} />}
       </div>

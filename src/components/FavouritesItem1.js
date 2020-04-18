@@ -53,11 +53,9 @@ const FavouritesItem1 = (props) => {
     <>
 
       <div className="FavouritesItem">
-        <div>
+        <div class="favourite-main">
           <img src={props.image_url} />
           {/* <h1 className="FavouritesTitle">{props.name}</h1> */}
-        </div>
-        <div>
           <RecipeGraph
             calories={props.calories}
             fat_in_g={props.fat_in_g}
@@ -70,6 +68,7 @@ const FavouritesItem1 = (props) => {
             image_url={props.image_url}
             name={props.name}
           />
+        </div>
           <div className="selectPosition">
             <div className="selectContainer">
               <div>
@@ -89,12 +88,12 @@ const FavouritesItem1 = (props) => {
                   <div className="add">
                     <Button onClick={() => addRecipeToDay(props.id, date, meal)}>
                       Add to Schedule
-          </Button>
+                    </Button>
                   </div>
                   <div className="delete">
                     <Button onClick={() => setDate(null)}>
                       Cancel
-                </Button>
+                    </Button>
                   </div>
                 </>
               )}
@@ -103,7 +102,7 @@ const FavouritesItem1 = (props) => {
               {props.id && <Button onClick={deleteFav}>Remove from Favourites</Button>}
             </div>
           </div>
-        </div>
+        
       </div>
 
     </>
