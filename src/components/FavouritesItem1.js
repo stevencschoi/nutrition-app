@@ -9,8 +9,7 @@ import DayRecipeSlot from "./DayRecipeSlot";
 import moment from "moment";
 import { Dropdown } from "semantic-ui-react";
 import io from "socket.io-client";
-
-const socket = io(process.env.REACT_APP_WEBSOCKET_URL);
+import { socket } from "../hooks/useApplicationData";
 
 const FavouritesItem1 = (props) => {
   const [date, setDate] = useState(null);
@@ -40,7 +39,9 @@ const FavouritesItem1 = (props) => {
         mealNumber: `${meal}`,
       })
       .then((result) => {
-        socket.emit("new");
+        socket.emit("new", (data) => {
+          console.log("Socket sending from addrecipe", data);
+        });
         setDate(null);
       })
       .catch((error) => console.error(error));

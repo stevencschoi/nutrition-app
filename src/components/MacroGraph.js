@@ -4,7 +4,8 @@ import { Dropdown } from "semantic-ui-react";
 import axios from "axios";
 import moment from "moment";
 import CoolCarousel from "./CoolCarousel";
-import useApplicationData from "../hooks/useApplicationData";
+import useApplicationData, { socket } from "../hooks/useApplicationData";
+import io from "socket.io-client";
 import {
   XAxis,
   YAxis,
@@ -14,10 +15,6 @@ import {
   LineChart,
   Line,
 } from "recharts";
-
-import io from "socket.io-client";
-
-const socket = io(process.env.REACT_APP_WEBSOCKET_URL);
 
 const options = [
   { key: 1, text: "Calories", value: "Calories" },
@@ -29,30 +26,27 @@ const options = [
   { key: 7, text: "Cholesterol", value: "Cholesterol" },
   { key: 8, text: "Sodium", value: "Sodium" },
 ];
+
 // Renders the nutritional data of the chosen ingredient
 function MacroGraph() {
   const [pick, setPick] = useState("Calories");
   const [graph, setGraph] = useState("Calories");
   const [data, setData] = useState(null);
 
-  socket.on("update", () => {
-    socket.send("hi");
-    getData(pick);
-  });
-
-  const {
-    state,
-    fetchUsers,
-    getFollowers,
-    // getData,
-    // setPick,
-  } = useApplicationData();
+  const { state, fetchUsers, getFollowers } = useApplicationData();
 
   useEffect(() => {
     getData(pick);
     fetchUsers();
     getFollowers();
   }, [pick]);
+
+  // when receiving update, re-render graph
+  useEffect(() => {
+    socket.on("update", () => {
+      getData(pick);
+    });
+  }, []);
 
   const getData = (choice) => {
     const start = JSON.stringify(moment().startOf("week")).slice(1, 11);
