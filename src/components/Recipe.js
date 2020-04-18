@@ -39,10 +39,10 @@ export default function Recipe({ props, match }) {
   }
 
   const addToFav = (recipeId) => {
-    console.log("recipeId", recipeId)
+    console.log("recipeId", recipeId);
 
     axios
-      .post("/addToFavourites", { recipeId: recipeId })
+      .post("/favourites/add", { recipeId: recipeId })
       .then((result) => {
         // console.log(result);
       })
@@ -69,21 +69,18 @@ export default function Recipe({ props, match }) {
     const image_url = foodIngredient.hits[0].recipe.image;
 
     axios
-      .post(
-        `/addRecipe`,
-        {
-          recipeName: recipeName,
-          calories: calories,
-          fatInG: fat_in_g,
-          carbsInG: carbs_in_g,
-          proteinInG: protein_in_g,
-          sugarInG: sugar_in_g,
-          fiberInG: fiber_in_g,
-          cholesterolInMg: cholesterol_in_mg,
-          sodiumInMg: sodium_in_mg,
-          imageUrl: image_url,
-        }
-      )
+      .post(`/addRecipe`, {
+        recipeName: recipeName,
+        calories: calories,
+        fatInG: fat_in_g,
+        carbsInG: carbs_in_g,
+        proteinInG: protein_in_g,
+        sugarInG: sugar_in_g,
+        fiberInG: fiber_in_g,
+        cholesterolInMg: cholesterol_in_mg,
+        sodiumInMg: sodium_in_mg,
+        imageUrl: image_url,
+      })
       .then((result) => {
         checkIfInDatabase();
       })
@@ -94,16 +91,14 @@ export default function Recipe({ props, match }) {
     const recipeName = foodIngredient.q;
 
     axios
-      .post(
-        `/checkRecipe?recipeName=${recipeName}`
-      )
+      .post(`/checkRecipe?recipeName=${recipeName}`)
       .then((result) => {
         if (result.data.length === 0) {
           addRecipe();
         } else if (!meal) {
           addToFav(result.data[0].id);
         } else {
-          addRecipeToDay(result.data[0].id)
+          addRecipeToDay(result.data[0].id);
         }
       })
       .catch((error) => console.error(error));
@@ -114,16 +109,14 @@ export default function Recipe({ props, match }) {
     const mealNumber = meal;
 
     axios
-      .post(
-        `/addRecipeToDay`, {
+      .post(`/addRecipeToDay`, {
         date: formatdate,
         recipeId: recipeId,
         mealNumber: mealNumber,
-      }
-      )
+      })
       .then((result) => {
-        console.log(result.data)
-        setDate("")
+        console.log(result.data);
+        setDate("");
       })
       .catch((error) => console.error(error));
   };

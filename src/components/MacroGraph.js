@@ -54,9 +54,7 @@ function MacroGraph() {
 
     console.log("start", start, "end", end, "pick", pick);
     axios
-      .get(
-        `/displayUserData?startDate=${start}&endDate=${end}&userChoice=${choice}`
-      )
+      .get(`/user/data?startDate=${start}&endDate=${end}&userChoice=${choice}`)
       .then((result) => {
         console.log("stuff from database", result.data);
         setData(result.data);
@@ -456,14 +454,18 @@ function MacroGraph() {
   return (
     <>
       <div class="nutritional-data">
-        <h2>Weekly consumption of {pick && (
-        <Dropdown
-          text={pick}
-          options={options}
-          selection
-          onChange={(e, { value }) => setPick(value)}
-        />
-      )} per day</h2>
+        <h2>
+          Weekly consumption of{" "}
+          {pick && (
+            <Dropdown
+              text={pick}
+              options={options}
+              selection
+              onChange={(e, { value }) => setPick(value)}
+            />
+          )}{" "}
+          per day
+        </h2>
         <br></br>
         {pick && graph}
       </div>
@@ -472,7 +474,6 @@ function MacroGraph() {
   );
 }
 export default MacroGraph;
-
 
 // return (
 //   <>
