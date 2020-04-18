@@ -13,25 +13,11 @@ const FavouritesItem1 = (props) => {
   const [date, setDate] = useState(null);
   const [meal, setMeal] = useState(null);
 
-  // setUpdateItem={setUpdateItem}
-  // key={name}
-  // id={id}
-  // name={name}
-  // calories = {item.calories}
-  // fat_in_g = {item.fat_in_g}
-  // carbs_in_g = {item.carbs_in_g}
-  // protein_in_g = {item.protein_in_g}
-  // sugar_in_g = {item.sugar_in_g}
-  // fiber_in_g = {item.fiber_in_g}
-  // cholesterol_in_mg = {item.cholesterol_in_mg}
-  // sodium_in_mg = {item.sodium_in_mg}
-  // image_url = {item.image_url}
-
   const deleteFav = () => {
     const id = props.id;
 
     axios
-      .post("/deleteFavourite", { recipeId: id })
+      .post("/favourites/delete", { recipeId: id })
       .then((result) => {
         props.setUpdateItem(id);
         console.log(result);
@@ -45,7 +31,7 @@ const FavouritesItem1 = (props) => {
     const recipeId = id;
 
     axios
-      .post(`/addRecipeToDay`, {
+      .post("/day/add", {
         date: `${formatdate}`,
         recipeId: `${recipeId}`,
         mealNumber: `${meal}`,
