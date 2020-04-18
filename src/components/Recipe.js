@@ -69,7 +69,7 @@ export default function Recipe({ props, match }) {
     const image_url = foodIngredient.hits[0].recipe.image;
 
     axios
-      .post(`/addRecipe`, {
+      .post(`/recipe/add`, {
         recipeName: recipeName,
         calories: calories,
         fatInG: fat_in_g,
@@ -91,7 +91,7 @@ export default function Recipe({ props, match }) {
     const recipeName = foodIngredient.q;
 
     axios
-      .post(`/checkRecipe?recipeName=${recipeName}`)
+      .post(`/recipe/check?recipeName=${recipeName}`)
       .then((result) => {
         if (result.data.length === 0) {
           addRecipe();
