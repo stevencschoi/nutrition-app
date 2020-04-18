@@ -467,7 +467,9 @@ function MacroGraph() {
         <br></br>
         {pick && graph}
       </div>
-      {state.users && <CoolCarousel recipes={state.users} />}
+      <div id="carousel">
+        {state.users && <CoolCarousel recipes={state.users} />}
+      </div>
     </>
   );
 }
