@@ -3,6 +3,8 @@ import "./styles.scss";
 import { Dropdown } from "semantic-ui-react";
 import axios from "axios";
 import moment from "moment";
+import CoolCarousel from "./CoolCarousel";
+import useApplicationData from "../hooks/useApplicationData";
 import {
   XAxis,
   YAxis,
@@ -29,8 +31,18 @@ function MacroGraph() {
   const [graph, setGraph] = useState("Calories");
   const [data, setData] = useState(null);
 
+  const {
+    state,
+    fetchUsers,
+    getFollowers,
+    // getData,
+    // setPick,
+  } = useApplicationData();
+
   useEffect(() => {
     getData(pick);
+    fetchUsers();
+    getFollowers();
   }, [pick]);
 
   const getData = (choice) => {
@@ -47,7 +59,7 @@ function MacroGraph() {
       )
       .then((result) => {
         console.log("stuff from database", result.data);
-        setData(result.data)
+        setData(result.data);
         const newGraph = makeGraph(pick, result.data);
         setGraph(newGraph);
       })
@@ -62,296 +74,296 @@ function MacroGraph() {
       {
         name: "Sunday",
         "Daily Recommended Intake (Calories)": 2000,
-        "You": getdata[0] ? getdata[0].sum : 0,
+        You: getdata[0] ? getdata[0].sum : 0,
       },
       {
         name: "Monday",
         "Daily Recommended Intake (Calories)": 2000,
-        "You": getdata[1] ? getdata[1].sum : 0,
+        You: getdata[1] ? getdata[1].sum : 0,
       },
       {
         name: "Tuesday",
         "Daily Recommended Intake (Calories)": 2000,
-        "You": getdata[2] ? getdata[2].sum : 0,
+        You: getdata[2] ? getdata[2].sum : 0,
       },
       {
         name: "Wednesday",
         "Daily Recommended Intake (Calories)": 2000,
-        "You": getdata[3] ? getdata[3].sum : 0,
+        You: getdata[3] ? getdata[3].sum : 0,
       },
       {
         name: "Thursday",
         "Daily Recommended Intake (Calories)": 2000,
-        "You": getdata[4] ? getdata[4].sum : 0,
+        You: getdata[4] ? getdata[4].sum : 0,
       },
       {
         name: "Friday",
         "Daily Recommended Intake (Calories)": 2000,
-        "You": getdata[5] ? getdata[5].sum : 0,
+        You: getdata[5] ? getdata[5].sum : 0,
       },
       {
         name: "Saturday",
         "Daily Recommended Intake (Calories)": 2000,
-        "You": getdata[6] ? getdata[6].sum : 0,
+        You: getdata[6] ? getdata[6].sum : 0,
       },
     ];
     const dailyFat = [
       {
         name: "Sunday",
         "Daily Recommended Intake (grams)": 45,
-        "You": getdata[0] ? getdata[0].sum : 0,
+        You: getdata[0] ? getdata[0].sum : 0,
       },
       {
         name: "Monday",
         "Daily Recommended Intake (grams)": 45,
-        "You": getdata[1] ? getdata[1].sum : 0,
+        You: getdata[1] ? getdata[1].sum : 0,
       },
       {
         name: "Tuesday",
         "Daily Recommended Intake (grams)": 45,
-        "You": getdata[2] ? getdata[2].sum : 0,
+        You: getdata[2] ? getdata[2].sum : 0,
       },
       {
         name: "Wednesday",
         "Daily Recommended Intake (grams)": 45,
-        "You": getdata[3] ? getdata[3].sum : 0,
+        You: getdata[3] ? getdata[3].sum : 0,
       },
       {
         name: "Thursday",
         "Daily Recommended Intake (grams)": 45,
-        "You": getdata[4] ? getdata[4].sum : 0,
+        You: getdata[4] ? getdata[4].sum : 0,
       },
       {
         name: "Friday",
         "Daily Recommended Intake (grams)": 45,
-        "You": getdata[5] ? getdata[5].sum : 0,
+        You: getdata[5] ? getdata[5].sum : 0,
       },
       {
         name: "Saturday",
         "Daily Recommended Intake (grams)": 45,
-        "You": getdata[6] ? getdata[6].sum : 0,
+        You: getdata[6] ? getdata[6].sum : 0,
       },
     ];
     const dailyCarbohydrates = [
       {
         name: "Sunday",
         "Daily Recommended Intake (grams)": 130,
-        "You": getdata[0] ? getdata[0].sum : 0,
+        You: getdata[0] ? getdata[0].sum : 0,
       },
       {
         name: "Monday",
         "Daily Recommended Intake (grams)": 130,
-        "You": getdata[1] ? getdata[1].sum : 0,
+        You: getdata[1] ? getdata[1].sum : 0,
       },
       {
         name: "Tuesday",
         "Daily Recommended Intake (grams)": 130,
-        "You": getdata[2] ? getdata[2].sum : 0,
+        You: getdata[2] ? getdata[2].sum : 0,
       },
       {
         name: "Wednesday",
         "Daily Recommended Intake (grams)": 130,
-        "You": getdata[3] ? getdata[3].sum : 0,
+        You: getdata[3] ? getdata[3].sum : 0,
       },
       {
         name: "Thursday",
         "Daily Recommended Intake (grams)": 130,
-        "You": getdata[4] ? getdata[4].sum : 0,
+        You: getdata[4] ? getdata[4].sum : 0,
       },
       {
         name: "Friday",
         "Daily Recommended Intake (grams)": 130,
-        "You": getdata[5] ? getdata[5].sum : 0,
+        You: getdata[5] ? getdata[5].sum : 0,
       },
       {
         name: "Saturday",
         "Daily Recommended Intake (grams)": 130,
-        "You": getdata[6] ? getdata[6].sum : 0,
+        You: getdata[6] ? getdata[6].sum : 0,
       },
     ];
     const dailyFiber = [
       {
         name: "Sunday",
         "Daily Recommended Intake (grams)": 31.5,
-        "You": getdata[0] ? getdata[0].sum : 0,
+        You: getdata[0] ? getdata[0].sum : 0,
       },
       {
         name: "Monday",
         "Daily Recommended Intake (grams)": 31.5,
-        "You": getdata[1] ? getdata[1].sum : 0,
+        You: getdata[1] ? getdata[1].sum : 0,
       },
       {
         name: "Tuesday",
         "Daily Recommended Intake (grams)": 31.5,
-        "You": getdata[2] ? getdata[2].sum : 0,
+        You: getdata[2] ? getdata[2].sum : 0,
       },
       {
         name: "Wednesday",
         "Daily Recommended Intake (grams)": 31.5,
-        "You": getdata[3] ? getdata[3].sum : 0,
+        You: getdata[3] ? getdata[3].sum : 0,
       },
       {
         name: "Thursday",
         "Daily Recommended Intake (grams)": 31.5,
-        "You": getdata[4] ? getdata[4].sum : 0,
+        You: getdata[4] ? getdata[4].sum : 0,
       },
       {
         name: "Friday",
         "Daily Recommended Intake (grams)": 31.5,
-        "You": getdata[5] ? getdata[5].sum : 0,
+        You: getdata[5] ? getdata[5].sum : 0,
       },
       {
         name: "Saturday",
         "Daily Recommended Intake (grams)": 31.5,
-        "You": getdata[6] ? getdata[6].sum : 0,
+        You: getdata[6] ? getdata[6].sum : 0,
       },
     ];
     const dailySugar = [
       {
         name: "Sunday",
         "Maximum Daily Recommended Intake (grams)": 48,
-        "You": getdata[0] ? getdata[0].sum : 0,
+        You: getdata[0] ? getdata[0].sum : 0,
       },
       {
         name: "Monday",
         "Maximum Daily Recommended Intake (grams)": 48,
-        "You": getdata[1] ? getdata[1].sum : 0,
+        You: getdata[1] ? getdata[1].sum : 0,
       },
       {
         name: "Tuesday",
         "Maximum Daily Recommended Intake (grams)": 48,
-        "You": getdata[2] ? getdata[2].sum : 0,
+        You: getdata[2] ? getdata[2].sum : 0,
       },
       {
         name: "Wednesday",
         "Maximum Daily Recommended Intake (grams)": 48,
-        "You": getdata[3] ? getdata[3].sum : 0,
+        You: getdata[3] ? getdata[3].sum : 0,
       },
       {
         name: "Thursday",
         "Maximum Daily Recommended Intake (grams)": 48,
-        "You": getdata[4] ? getdata[4].sum : 0,
+        You: getdata[4] ? getdata[4].sum : 0,
       },
       {
         name: "Friday",
         "Maximum Daily Recommended Intake (grams)": 48,
-        "You": getdata[5] ? getdata[5].sum : 0,
+        You: getdata[5] ? getdata[5].sum : 0,
       },
       {
         name: "Saturday",
         "Maximum Daily Recommended Intake (grams)": 48,
-        "You": getdata[6] ? getdata[6].sum : 0,
+        You: getdata[6] ? getdata[6].sum : 0,
       },
     ];
     const dailyProtein = [
       {
         name: "Sunday",
         "Daily Recommended Intake (grams)": 51,
-        "You": getdata[0] ? getdata[0].sum : 0,
+        You: getdata[0] ? getdata[0].sum : 0,
       },
       {
         name: "Monday",
         "Daily Recommended Intake (grams)": 51,
-        "You": getdata[1] ? getdata[1].sum : 0,
+        You: getdata[1] ? getdata[1].sum : 0,
       },
       {
         name: "Tuesday",
         "Daily Recommended Intake (grams)": 51,
-        "You": getdata[2] ? getdata[2].sum : 0,
+        You: getdata[2] ? getdata[2].sum : 0,
       },
       {
         name: "Wednesday",
         "Daily Recommended Intake (grams)": 51,
-        "You": getdata[3] ? getdata[3].sum : 0,
+        You: getdata[3] ? getdata[3].sum : 0,
       },
       {
         name: "Thursday",
         "Daily Recommended Intake (grams)": 51,
-        "You": getdata[4] ? getdata[4].sum : 0,
+        You: getdata[4] ? getdata[4].sum : 0,
       },
       {
         name: "Friday",
         "Daily Recommended Intake (grams)": 51,
-        "You": getdata[5] ? getdata[5].sum : 0,
+        You: getdata[5] ? getdata[5].sum : 0,
       },
       {
         name: "Saturday",
         "Daily Recommended Intake (grams)": 51,
-        "You": getdata[6] ? getdata[6].sum : 0,
+        You: getdata[6] ? getdata[6].sum : 0,
       },
     ];
     const dailyCholesterol = [
       {
         name: "Sunday",
         "Maximum Daily Recommended Intake (milligrams)": 300,
-        "You": getdata[0] ? getdata[0].sum : 0,
+        You: getdata[0] ? getdata[0].sum : 0,
       },
       {
         name: "Monday",
         "Maximum Daily Recommended Intake (milligrams)": 300,
-        "You": getdata[1] ? getdata[1].sum : 0,
+        You: getdata[1] ? getdata[1].sum : 0,
       },
       {
         name: "Tuesday",
         "Maximum Daily Recommended Intake (milligrams)": 300,
-        "You": getdata[2] ? getdata[2].sum : 0,
+        You: getdata[2] ? getdata[2].sum : 0,
       },
       {
         name: "Wednesday",
         "Maximum Daily Recommended Intake (milligrams)": 300,
-        "You": getdata[3] ? getdata[3].sum : 0,
+        You: getdata[3] ? getdata[3].sum : 0,
       },
       {
         name: "Thursday",
         "Maximum Daily Recommended Intake (milligrams)": 300,
-        "You": getdata[4] ? getdata[4].sum : 0,
+        You: getdata[4] ? getdata[4].sum : 0,
       },
       {
         name: "Friday",
         "Maximum Daily Recommended Intake (milligrams)": 300,
-        "You": getdata[5] ? getdata[5].sum : 0,
+        You: getdata[5] ? getdata[5].sum : 0,
       },
       {
         name: "Saturday",
         "Maximum Daily Recommended Intake (milligrams)": 300,
-        "You": getdata[6] ? getdata[6].sum : 0,
+        You: getdata[6] ? getdata[6].sum : 0,
       },
     ];
     const dailySodium = [
       {
         name: "Sunday",
         "Daily Recommended Intake (milligrams)": 1500,
-        "You": getdata[0] ? getdata[0].sum : 0,
+        You: getdata[0] ? getdata[0].sum : 0,
       },
       {
         name: "Monday",
         "Daily Recommended Intake (milligrams)": 1500,
-        "You": getdata[1] ? getdata[1].sum : 0,
+        You: getdata[1] ? getdata[1].sum : 0,
       },
       {
         name: "Tuesday",
         "Daily Recommended Intake (milligrams)": 1500,
-        "You": getdata[2] ? getdata[2].sum : 0,
+        You: getdata[2] ? getdata[2].sum : 0,
       },
       {
         name: "Wednesday",
         "Daily Recommended Intake (milligrams)": 1500,
-        "You": getdata[3] ? getdata[3].sum : 0,
+        You: getdata[3] ? getdata[3].sum : 0,
       },
       {
         name: "Thursday",
         "Daily Recommended Intake (milligrams)": 1500,
-        "You": getdata[4] ? getdata[4].sum : 0,
+        You: getdata[4] ? getdata[4].sum : 0,
       },
       {
         name: "Friday",
         "Daily Recommended Intake (milligrams)": 1500,
-        "You": getdata[5] ? getdata[5].sum : 0,
+        You: getdata[5] ? getdata[5].sum : 0,
       },
       {
         name: "Saturday",
         "Daily Recommended Intake (milligrams)": 1500,
-        "You": getdata[6] ? getdata[6].sum : 0,
+        You: getdata[6] ? getdata[6].sum : 0,
       },
     ];
 
@@ -456,6 +468,7 @@ function MacroGraph() {
         <br></br>
         {pick && graph}
       </div>
+      {state.users && <CoolCarousel recipes={state.users} />}
     </>
   );
 }
