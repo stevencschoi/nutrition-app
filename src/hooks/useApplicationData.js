@@ -7,6 +7,10 @@ import SearchResult from "../components/SearchResult";
 // component to be rendered as part of recipe search results
 import RecipeCard from "../components/RecipeCard";
 
+import io from "socket.io-client";
+// socket declaration
+export const socket = io(process.env.REACT_APP_WEBSOCKET_URL);
+
 const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
 const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
@@ -21,6 +25,13 @@ export default function useApplicationData() {
     data: null,
     graph: "Calories",
   });
+
+  // connect socket
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("is socket connected?", socket.connected);
+    });
+  }, []);
 
   // display raw ingredient search results from home page
   function fetchSearchResults(ingredient) {
