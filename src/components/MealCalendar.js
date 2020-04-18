@@ -36,7 +36,7 @@ export default function MealCalendar({ date, onChange }) {
         small="true"
         // showClearDate="ture"
         // noBorder="ture"
-        showDefaultInputIcon="ture"
+        // showDefaultInputIcon="ture"
         numberOfMonths={1}
         enableOutsideDays
         // show past macros, enable below

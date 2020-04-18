@@ -458,6 +458,7 @@ function MacroGraph() {
       <div class="nutritional-data">
         <h2>Weekly consumption of {pick && (
         <Dropdown
+          compact
           text={pick}
           options={options}
           selection
