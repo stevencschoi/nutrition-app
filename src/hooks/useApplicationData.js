@@ -7,8 +7,7 @@ import SearchResult from "../components/SearchResult";
 // component to be rendered as part of recipe search results
 import RecipeCard from "../components/RecipeCard";
 
-// stretch assignment to include sockets for real-time data updating
-const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+// const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
 
 const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
 const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
@@ -20,10 +19,31 @@ export default function useApplicationData() {
     search: "",
     recipes: [],
     users: [],
-    pick: "Calories",
-    data: null,
-    graph: "Calories",
   });
+
+  // ******************** sockets ********************
+  // useEffect(() => {
+  //   // 1. listen for an event and update state
+  //   // 2. render line chart using state
+  //   socket.onopen = function () {
+  //     socket.send("ping");
+  //   };
+  // }, []);
+
+  // socket.onmessage = function(event) {
+  //   // parse message from server
+  //   const msg = JSON.parse(event.data);
+  //   // listen for EDIT_SLOT and update state
+  //   if (msg.type === "EDIT_SLOT") {
+  //     updateAppointment(msg.id, msg.interview);
+  //   }
+  // };
+
+  // close connection
+  // socket.onclose = function () {
+  //   console.log("Connection closed");
+  // };
+  // ****************************************
 
   // display raw ingredient search results from home page
   function fetchSearchResults(ingredient) {
@@ -162,28 +182,6 @@ export default function useApplicationData() {
       })
       .catch((error) => console.error(error));
   }
-
-  // ******************** sockets ********************
-  useEffect(() => {
-    socket.onopen = function () {
-      socket.send("ping");
-    };
-  }, []);
-
-  // socket.onmessage = function(event) {
-  //   // parse message from server
-  //   const msg = JSON.parse(event.data);
-  //   // listen for EDIT_SLOT and update state
-  //   if (msg.type === "EDIT_SLOT") {
-  //     updateAppointment(msg.id, msg.interview);
-  //   }
-  // };
-
-  // close connection
-  socket.onclose = function () {
-    console.log("Connection closed");
-  };
-  // ****************************************
 
   return {
     state,

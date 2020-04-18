@@ -2,18 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./styles.scss";
 import RecipeIngredient from "./RecipeIngredient";
-import RecipeGraph from "./RecipeGraph";
 import RecipeGraph1 from "./RecipeGraph1";
 import Button from "./Button";
 import MealCalendar from "./MealCalendar";
-import IngredientGraph from "./IngredientGraph";
 import { Dropdown } from "semantic-ui-react";
 
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
-
-const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
-const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
 
 export default function Recipe({ props, match }) {
   const [date, setDate] = useState(null);
@@ -117,6 +112,7 @@ export default function Recipe({ props, match }) {
       .then((result) => {
         console.log(result.data);
         setDate("");
+        // setInfo();
       })
       .catch((error) => console.error(error));
   };

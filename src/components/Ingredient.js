@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
+import Searchbar from "./Searchbar";
 import IngredientGraph from "./IngredientGraph";
 import CoolCarousel from "./CoolCarousel";
 import useApplicationData from "../hooks/useApplicationData";
@@ -10,7 +11,13 @@ const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
 
 function Ingredient({ match }) {
-  const { state, getNutrients, fetchRecipes, fetchUsers } = useApplicationData();
+  const {
+    state,
+    getNutrients,
+    fetchRecipes,
+    fetchSearchResults,
+    fetchUsers,
+  } = useApplicationData();
 
   // upon ingredient search query, display nutritional information and related recipes
   useEffect(() => {
@@ -22,12 +29,13 @@ function Ingredient({ match }) {
 
   return (
     <div id="ingredient-page">
+      <Searchbar fetchSearchResults={fetchSearchResults} />
       <IngredientGraph data={state.search} />
       <div id="carousel">
         <h2>Featured Recipes</h2>
         {state.recipes && <CoolCarousel recipes={state.recipes} />}
       </div>
-    </div >
+    </div>
   );
 }
 export default Ingredient;
