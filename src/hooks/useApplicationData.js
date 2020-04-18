@@ -102,7 +102,7 @@ export default function useApplicationData() {
     axios
       .post(`/addUserToFollowing?followId=${userId}`)
       .then((result) => {
-        console.log("did we get it?", result);
+        console.log("response: ", result);
         // setState(prev => ({ ...prev, following: result}))
       })
       .catch((error) => console.error(error));
