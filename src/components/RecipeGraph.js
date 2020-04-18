@@ -69,79 +69,54 @@ function RecipeGraph(props) {
         fill: "#d0ed57",
       },
     ];
-    //   return (
-    //     <div class="graph-container">
-    //       <div class="graph">
-    //         <p class="graph-label">per serving</p>
-    //         <BarChart width={800} height={250} data={data}>
-    //           <CartesianGrid strokeDasharray="3 3" />
-    //           <XAxis dataKey="name" />
-    //           <YAxis />
-    //           <Tooltip />
-    //           <Bar dataKey="grams / 100 grams" />
-    //         </BarChart>
-    //       </div>
-    //       <div class="graph">
-    //         <p class="graph-label">per serving</p>
-    //         <BarChart width={350} height={250} data={data2}>
-    //           <CartesianGrid strokeDasharray="3 3" />
-    //           <XAxis dataKey="name" />
-    //           <YAxis />
-    //           <Tooltip />
-    //           <Bar dataKey="milligrams / 100 grams" />
-    //         </BarChart>
-    //       </div>
-    //     </div>
-    //   );
-    // };
     return (
       <div class="graph-container">
         <div class="graph">
-          <p class="graph-label">grams / serving</p>
-          <BarChart
-            width={500}
-            height={200}
-            data={data}
-          >
+          <p class="graph-label">per serving</p>
+          <BarChart width={500} height={200} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
-            <XAxis dataKey="name" tick={{ fontSize: 10 }} />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="grams / serving" />
+            <Bar dataKey="grams / 100 grams" />
           </BarChart>
         </div>
         <div class="graph">
-          <p class="graph-label">milligrams / serving</p>
-          <BarChart
-            width={240}
-            height={200}
-            data={data2}
-          >
+          <p class="graph-label">per serving</p>
+          <BarChart width={240} height={200} data={data2}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="milligrams / serving" />
+            <Bar dataKey="milligrams / 100 grams" />
           </BarChart>
         </div>
       </div>
     );
   };
 
+  useEffect(() => {
+    console.log(props)
+  }, [])
+
   return (
-    <div>
-      {makeGraph(
-        props.calories,
-        props.fat_in_g,
-        props.carbs_in_g,
-        props.protein_in_g,
-        props.sugar_in_g,
-        props.fiber_in_g,
-        props.cholesterol_in_mg,
-        props.sodium_in_mg,
-        props.image_url
-      )}
+    <div class="nutritional-data">
+      <h2>
+        Select Nutritional Data of {props.name}
+      </h2>
+      <div>
+        {makeGraph(
+          props.calories,
+          props.fat_in_g,
+          props.carbs_in_g,
+          props.protein_in_g,
+          props.sugar_in_g,
+          props.fiber_in_g,
+          props.cholesterol_in_mg,
+          props.sodium_in_mg,
+          props.image_url
+        )}
+      </div>
     </div>
   );
 

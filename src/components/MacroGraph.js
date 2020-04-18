@@ -455,16 +455,15 @@ function MacroGraph() {
   };
   return (
     <>
-      {pick && (
+      <div class="nutritional-data">
+        <h2>Weekly consumption of {pick && (
         <Dropdown
           text={pick}
           options={options}
           selection
           onChange={(e, { value }) => setPick(value)}
         />
-      )}
-      <div class="nutritional-data">
-        <h2>Weekly consumption of per day</h2>
+      )} per day</h2>
         <br></br>
         {pick && graph}
       </div>
@@ -473,3 +472,23 @@ function MacroGraph() {
   );
 }
 export default MacroGraph;
+
+
+// return (
+//   <>
+//     {pick && (
+//       <Dropdown
+//         text={pick}
+//         options={options}
+//         selection
+//         onChange={(e, { value }) => setPick(value)}
+//       />
+//     )}
+//     <div class="nutritional-data">
+//       <h2>Weekly consumption of {pick} per day</h2>
+//       <br></br>
+//       {pick && graph}
+//     </div>
+//     {state.users && <CoolCarousel recipes={state.users} />}
+//   </>
+// );
