@@ -11,7 +11,9 @@ function Nav() {
   return (
     <nav className="nav">
       <Link to="/">
-        <h3 id="logo">Veg<i class="fas fa-seedling"></i>able</h3>
+        <h3 id="logo">
+          Veg<i class="fas fa-seedling"></i>able
+        </h3>
       </Link>
       <div className="media">
         <Link to="/favourites">
@@ -32,10 +34,11 @@ function Nav() {
       )}
       <div className="register">
         {!user && <Login setUser={setUser} />}
-        {!user &&
+        {!user && (
           <Link to="/register">
             <h3>Register</h3>
-          </Link>}
+          </Link>
+        )}
         {/* <Register/> */}
       </div>
     </nav>

@@ -5,7 +5,6 @@ import RecipeGraph from "./RecipeGraph";
 import Cookies from "js-cookie";
 import MealCalendar from "./MealCalendar";
 import Button from "./Button";
-import DayRecipeSlot from "./DayRecipeSlot";
 import moment from "moment";
 import { Dropdown } from "semantic-ui-react";
 import io from "socket.io-client";
@@ -58,7 +57,9 @@ const FavouritesItem1 = (props) => {
     <>
       <div className="FavouritesItem">
         <div>
-          <img src={props.image_url} />
+          <a href={`/recipe/${props.name}`}>
+            <img src={props.image_url} />
+          </a>
           {/* <h1 className="FavouritesTitle">{props.name}</h1> */}
         </div>
         <div>

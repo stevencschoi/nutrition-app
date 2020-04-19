@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
-import moment from "moment";
 // component to be rendered displaying a raw ingredient search results
 import SearchResult from "../components/SearchResult";
 // component to be rendered as part of recipe search results
@@ -116,11 +114,8 @@ export default function useApplicationData() {
     axios
       .get("/user/following")
       .then((result) => {
-        console.log("Followers", result);
         result.data.forEach((follower) => {
-          console.log(follower.follow_id);
-
-          // return follower.follow_id;
+          return follower.follow_id;
         });
       })
       .catch((error) => console.error(error));

@@ -21,8 +21,11 @@ function ScheduleItem(props) {
   return (
     <>
       <h2>{props.name}</h2>
-      <img src={props.image} />
+      <a href={`/recipe/${props.name}`}>
+        <img src={props.image} />
+      </a>
       <Button
+        default
         onClick={() => {
           removeFromSchedule(props.id);
         }}
@@ -34,11 +37,3 @@ function ScheduleItem(props) {
 }
 
 export default ScheduleItem;
-
-// <button
-//   onClick={() => {
-//     editItem(props.id);
-//   }}
-// >
-//   Edit
-// </button>
