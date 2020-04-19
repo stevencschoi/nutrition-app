@@ -1,5 +1,7 @@
-$primary-colour: #123050;
-$secondary-colour: #a7adba;
+$primary-colour: #243a2f;
+$secondary-colour: #ffffff;
+$accent-colour: #a0acb9;
+$primary-font: monospace, cursive;
 
 // border-box???
 
@@ -22,7 +24,7 @@ body,
 }
 
 .nav {
-  background-color: $secondary-colour;
+  background-color: $primary-colour;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -43,36 +45,36 @@ body,
   h3 {
     font-family: monospace;
     margin: 0;
-    color: $primary-colour;
+    color: $secondary-colour;
   }
   // login credentials
   form input {
     margin-right: 5px;
     border-color: black;
     padding: 0.5px 7px;
-    font-family: monospace;
+    font-family: $primary-font;
     font-size: 18px;
     border-radius: 6px;
     max-width: 160px;
     // padding-right: 5px;
     &::placeholder {
-      font-family: monospace;
+      font-family: $primary-font;
       font-size: 18px;
     }
   }
   button {
-    background-color: $primary-colour;
+    background-color: $accent-colour;
     border-radius: 10px;
     border: 1px solid transparent;
-    color: white;
-    font-family: monospace;
+    color: #ffffff;
+    font-family: $primary-font;
     font-size: 18px;
     padding: 2px 10px;
     margin-left: 10px;
     &:hover {
       color: $primary-colour;
       background-color: white;
-      border: 1px solid $primary-colour;
+      border: 1px solid $secondary-colour;
     }
   }
 }
@@ -84,7 +86,7 @@ body,
   h3 {
     border: 1px solid transparent;
     margin: 0 20px;
-    background-color: $primary-colour;
+    background-color: $accent-colour;
     color: white;
     border-radius: 10px;
     padding: 2px 10px;
@@ -133,6 +135,7 @@ body,
 #logged-user {
   font-family: monospace;
   font-size: 18px;
+  color: $secondary-colour;
   // margin-right:10px;
 }
 
@@ -177,11 +180,11 @@ body,
     text-align: center;
     background-color: transparent;
     outline: none;
-    font-family: "Cabin Sketch", cursive;
+    font-family: $primary-font;
     font-weight: 700;
     color: $primary-colour;
     &::placeholder {
-      font-family: "Cabin Sketch", cursive;
+      font-family: $primary-font;
       font-weight: 700;
       font-size: 33px;
       color: $primary-colour;
@@ -274,30 +277,30 @@ body,
 }
 
 .search {
-  margin-top: 40px;
+  margin-top: 5px;
   .search-result {
-    margin: 20px 100px;
+    margin: 10px 20%;
     display: flex;
     align-items: center;
     background-color: rgba(106, 127, 150, 0.75);
-    border-radius: 50px;
+    border-radius: 10px;
     border: solid 2px black;
-    padding: 25px;
+    padding: 10px;
     a:hover {
       text-decoration: none;
     }
   }
   img {
-    height: 200px;
-    width: 200px;
-    margin: 0 100px;
-    padding: 5px;
+    height: 12vh;
+    width: 12vh;
+    margin: 0 10px;
+    // padding: 5px;
     background-color: $secondary-colour;
     border: solid 2px black;
   }
   h4 {
-    font-size: 40px;
-    font-family: "Londrina Solid", cursive;
+    font-size: 25px;
+    font-family: $primary-font;
     color: white;
     border: solid 2px black;
     border-radius: 15px;
@@ -313,7 +316,7 @@ body,
 .graph-container {
   display: flex;
   // height: 200px;
-  width: 850px;
+  width: 85%;
   align-items: center;
   justify-content: space-evenly;
   .graph {
@@ -325,7 +328,7 @@ body,
       transform: rotate(-180deg);
       margin: 0;
       color: $primary-colour;
-      font-family: "Londrina Solid", cursive;
+      font-family: $primary-font;
     }
   }
 }
@@ -346,11 +349,11 @@ body,
 
 .nutritional-data h2 {
   color: $primary-colour;
-  font-family: "Londrina Solid", cursive;
+  font-family: $primary-font;
 }
 
 #favourite-title {
-  font-family: "Londrina Solid", cursive;
+  font-family: $primary-font;
   color: $primary-colour;
   padding-top: 25px;
   font-size: 48px;
