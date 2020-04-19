@@ -572,7 +572,7 @@ function MacroGraph() {
     // }
 
     return (
-      <div class="graph-container">
+      <div className="graph-container">
         <div class="graph">
           <p class="graph-label">{graphLabel}</p>
           <LineChart
@@ -605,29 +605,31 @@ function MacroGraph() {
     );
   };
   return (
-    <>
-      <div class="nutritional-data">
-        <h2>
-          Weekly consumption of{" "}
-          {pick && (
-            <Dropdown
-              compact
-              text={pick}
-              options={options}
-              selection
-              onChange={(e, { value }) => setPick(value)}
-            />
-          )}{" "}
-          per day
-        </h2>
-        {/* <br></br> */}
-        {pick && graph}
+    <div className="graph-carousel-container">
+      <div className="white-background">
+        <div class="nutritional-data">
+          <h2>
+            Weekly consumption of{" "}
+            {pick && (
+              <Dropdown
+                compact
+                text={pick}
+                options={options}
+                selection
+                onChange={(e, { value }) => setPick(value)}
+              />
+            )}{" "}
+            per day
+          </h2>
+          {/* <br></br> */}
+          {pick && graph}
+        </div>
       </div>
       <div className="carousel">
         <h2>Discover People</h2>
         {state.users && <CoolCarousel recipes={state.users} />}
       </div>
-    </>
+    </div>
   );
 }
 export default MacroGraph;

@@ -315,10 +315,25 @@ body,
   }
 }
 
+.graph-carousel-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1%;
+  .white-background {
+    width: 85%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: $primary-colour solid 1px;
+  }
+}
+
 .graph-container {
   display: flex;
   // height: 200px;
-  width: 85%;
+  // width: 85%;
   align-items: center;
   justify-content: space-between;
   .graph {
@@ -358,7 +373,9 @@ body,
 }
 
 .carousel {
+  border: $primary-colour solid 1px;
   h2 {
     font-family: $primary-font;
+    color: $primary-colour;
   }
 }
