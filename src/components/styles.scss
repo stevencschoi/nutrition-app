@@ -29,7 +29,7 @@ body,
   box-shadow: 5px 5px 5px 0px rgba(18, 48, 80, 0.75);
   border: solid black;
   border-width: 1px 0;
-  .media h3{
+  .media h3 {
     margin: 0 20px;
     &:hover {
       color: lighten(#123050, 30%);
@@ -114,19 +114,19 @@ body,
     border-radius: 10px;
   }
   button {
-  background-color: #123050;
-  border-radius: 10px;
-  border: 1px solid transparent;
-  color: white;
-  font-family: monospace;
-  font-size: 18px;
-  padding: 5px 15px;
-  margin-top: 10px;
-  &:hover {
-    color: #123050;
-    background-color: white;
-    border: 1px solid #123050;
-  }
+    background-color: #123050;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    color: white;
+    font-family: monospace;
+    font-size: 18px;
+    padding: 5px 15px;
+    margin-top: 10px;
+    &:hover {
+      color: #123050;
+      background-color: white;
+      border: 1px solid #123050;
+    }
   }
 }
 

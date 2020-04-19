@@ -41,8 +41,8 @@ function MacroGraph() {
     getFollowers();
   }, [pick]);
 
-  // when receiving update, re-render graph
   useEffect(() => {
+    // when receiving update message from server, re-render graph
     socket.on("update", () => {
       getData(pick);
     });
@@ -479,7 +479,10 @@ function MacroGraph() {
         <br></br>
         {pick && graph}
       </div>
-      {state.users && <CoolCarousel recipes={state.users} />}
+      <div id="carousel">
+        <h2>Discover People</h2>
+        {state.users && <CoolCarousel recipes={state.users} />}
+      </div>
     </>
   );
 }
