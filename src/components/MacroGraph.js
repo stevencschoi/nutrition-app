@@ -62,12 +62,13 @@ function MacroGraph() {
       .get(`/user/data?startDate=${start}&endDate=${end}&userChoice=${choice}`)
       .then((result) => {
         // console.log("number of followers", result.data.followers.length);
-        // console.log("stuff from database", result.data);
+        console.log("stuff from database", result.data);
         setData(result.data);
 
         const newGraph = makeGraph(
           pick,
           result.data.userData,
+          result.data.followers,
         );
         setGraph(newGraph);
 
@@ -114,7 +115,10 @@ function MacroGraph() {
   // use some if statements to determine dailyType based on pick
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-  const dailyType = (pick, getdata) => {
+  const dailyType = (pick, getdata, followers) => {
+    // console.log(followers[0].userId)
+    const steven = followers[0].userId
+    console.log(typeof(steven))
     const actualGraphData = []
     let pickQuantity = ""
     let yAxis = [];
@@ -125,7 +129,8 @@ function MacroGraph() {
           {
             name: days[i],
             "Daily Recommended Intake (Calories)": 2000,
-            You: getdata[i].sum
+            You: getdata[i].sum,
+            1 : followers[0].userData[i].sum
           }
         )
         pickQuantity = "Daily Recommended Intake (Calories)"
@@ -215,372 +220,11 @@ function MacroGraph() {
 
   // Recharts function for bar graph
   const makeGraph = (pick, getdata, followers) => {
-    const values = dailyType(pick, getdata)
+    const values = dailyType(pick, getdata, followers)
     let dailyPick = values[0];
     let pickQuantity = values[1];
     let yAxis = values[2];
     let graphLabel = values[3];
-
-    // const graphTitle = "Calories";
-
-    // const dailyCalories = [
-    //   {
-    //     name: "Sunday",
-    //     "Daily Recommended Intake (Calories)": 2000,
-    //     You: getdata[0] ? getdata[0].sum : 0,
-    //     // Follower: followers[0] ? followers[0].sum : 0,
-    //   },
-    //   {
-    //     name: "Monday",
-    //     "Daily Recommended Intake (Calories)": 2000,
-    //     You: getdata[1] ? getdata[1].sum : 0,
-    //     // Follower: followers[1] ? followers[1].sum : 0,
-    //   },
-    //   {
-    //     name: "Tuesday",
-    //     "Daily Recommended Intake (Calories)": 2000,
-    //     You: getdata[2] ? getdata[2].sum : 0,
-    //     // Follower: followers[2] ? followers[2].sum : 0,
-    //   },
-    //   {
-    //     name: "Wednesday",
-    //     "Daily Recommended Intake (Calories)": 2000,
-    //     You: getdata[3] ? getdata[3].sum : 0,
-    //     // Follower: followers[3] ? followers[3].sum : 0,
-    //   },
-    //   {
-    //     name: "Thursday",
-    //     "Daily Recommended Intake (Calories)": 2000,
-    //     You: getdata[4] ? getdata[4].sum : 0,
-    //     // Follower: followers[4] ? followers[4].sum : 0,
-    //   },
-    //   {
-    //     name: "Friday",
-    //     "Daily Recommended Intake (Calories)": 2000,
-    //     You: getdata[5] ? getdata[5].sum : 0,
-    //     // Follower: followers[5] ? followers[5].sum : 0,
-    //   },
-    //   {
-    //     name: "Saturday",
-    //     "Daily Recommended Intake (Calories)": 2000,
-    //     You: getdata[6] ? getdata[6].sum : 0,
-    //     // Follower: followers[6] ? followers[6].sum : 0,
-    //   },
-    // ];
-
-    // const dailyFat = [
-    //   {
-    //     name: "Sunday",
-    //     "Daily Recommended Intake (grams)": 45,
-    //     You: getdata[0] ? getdata[0].sum : 0,
-    //   },
-    //   {
-    //     name: "Monday",
-    //     "Daily Recommended Intake (grams)": 45,
-    //     You: getdata[1] ? getdata[1].sum : 0,
-    //   },
-    //   {
-    //     name: "Tuesday",
-    //     "Daily Recommended Intake (grams)": 45,
-    //     You: getdata[2] ? getdata[2].sum : 0,
-    //   },
-    //   {
-    //     name: "Wednesday",
-    //     "Daily Recommended Intake (grams)": 45,
-    //     You: getdata[3] ? getdata[3].sum : 0,
-    //   },
-    //   {
-    //     name: "Thursday",
-    //     "Daily Recommended Intake (grams)": 45,
-    //     You: getdata[4] ? getdata[4].sum : 0,
-    //   },
-    //   {
-    //     name: "Friday",
-    //     "Daily Recommended Intake (grams)": 45,
-    //     You: getdata[5] ? getdata[5].sum : 0,
-    //   },
-    //   {
-    //     name: "Saturday",
-    //     "Daily Recommended Intake (grams)": 45,
-    //     You: getdata[6] ? getdata[6].sum : 0,
-    //   },
-    // ];
-    // const dailyCarbohydrates = [
-    //   {
-    //     name: "Sunday",
-    //     "Daily Recommended Intake (grams)": 130,
-    //     You: getdata[0] ? getdata[0].sum : 0,
-    //   },
-    //   {
-    //     name: "Monday",
-    //     "Daily Recommended Intake (grams)": 130,
-    //     You: getdata[1] ? getdata[1].sum : 0,
-    //   },
-    //   {
-    //     name: "Tuesday",
-    //     "Daily Recommended Intake (grams)": 130,
-    //     You: getdata[2] ? getdata[2].sum : 0,
-    //   },
-    //   {
-    //     name: "Wednesday",
-    //     "Daily Recommended Intake (grams)": 130,
-    //     You: getdata[3] ? getdata[3].sum : 0,
-    //   },
-    //   {
-    //     name: "Thursday",
-    //     "Daily Recommended Intake (grams)": 130,
-    //     You: getdata[4] ? getdata[4].sum : 0,
-    //   },
-    //   {
-    //     name: "Friday",
-    //     "Daily Recommended Intake (grams)": 130,
-    //     You: getdata[5] ? getdata[5].sum : 0,
-    //   },
-    //   {
-    //     name: "Saturday",
-    //     "Daily Recommended Intake (grams)": 130,
-    //     You: getdata[6] ? getdata[6].sum : 0,
-    //   },
-    // ];
-    // const dailyFiber = [
-    //   {
-    //     name: "Sunday",
-    //     "Daily Recommended Intake (grams)": 31.5,
-    //     You: getdata[0] ? getdata[0].sum : 0,
-    //   },
-    //   {
-    //     name: "Monday",
-    //     "Daily Recommended Intake (grams)": 31.5,
-    //     You: getdata[1] ? getdata[1].sum : 0,
-    //   },
-    //   {
-    //     name: "Tuesday",
-    //     "Daily Recommended Intake (grams)": 31.5,
-    //     You: getdata[2] ? getdata[2].sum : 0,
-    //   },
-    //   {
-    //     name: "Wednesday",
-    //     "Daily Recommended Intake (grams)": 31.5,
-    //     You: getdata[3] ? getdata[3].sum : 0,
-    //   },
-    //   {
-    //     name: "Thursday",
-    //     "Daily Recommended Intake (grams)": 31.5,
-    //     You: getdata[4] ? getdata[4].sum : 0,
-    //   },
-    //   {
-    //     name: "Friday",
-    //     "Daily Recommended Intake (grams)": 31.5,
-    //     You: getdata[5] ? getdata[5].sum : 0,
-    //   },
-    //   {
-    //     name: "Saturday",
-    //     "Daily Recommended Intake (grams)": 31.5,
-    //     You: getdata[6] ? getdata[6].sum : 0,
-    //   },
-    // ];
-    // const dailySugar = [
-    //   {
-    //     name: "Sunday",
-    //     "Maximum Daily Recommended Intake (grams)": 48,
-    //     You: getdata[0] ? getdata[0].sum : 0,
-    //   },
-    //   {
-    //     name: "Monday",
-    //     "Maximum Daily Recommended Intake (grams)": 48,
-    //     You: getdata[1] ? getdata[1].sum : 0,
-    //   },
-    //   {
-    //     name: "Tuesday",
-    //     "Maximum Daily Recommended Intake (grams)": 48,
-    //     You: getdata[2] ? getdata[2].sum : 0,
-    //   },
-    //   {
-    //     name: "Wednesday",
-    //     "Maximum Daily Recommended Intake (grams)": 48,
-    //     You: getdata[3] ? getdata[3].sum : 0,
-    //   },
-    //   {
-    //     name: "Thursday",
-    //     "Maximum Daily Recommended Intake (grams)": 48,
-    //     You: getdata[4] ? getdata[4].sum : 0,
-    //   },
-    //   {
-    //     name: "Friday",
-    //     "Maximum Daily Recommended Intake (grams)": 48,
-    //     You: getdata[5] ? getdata[5].sum : 0,
-    //   },
-    //   {
-    //     name: "Saturday",
-    //     "Maximum Daily Recommended Intake (grams)": 48,
-    //     You: getdata[6] ? getdata[6].sum : 0,
-    //   },
-    // ];
-    // const dailyProtein = [
-    //   {
-    //     name: "Sunday",
-    //     "Daily Recommended Intake (grams)": 51,
-    //     You: getdata[0] ? getdata[0].sum : 0,
-    //   },
-    //   {
-    //     name: "Monday",
-    //     "Daily Recommended Intake (grams)": 51,
-    //     You: getdata[1] ? getdata[1].sum : 0,
-    //   },
-    //   {
-    //     name: "Tuesday",
-    //     "Daily Recommended Intake (grams)": 51,
-    //     You: getdata[2] ? getdata[2].sum : 0,
-    //   },
-    //   {
-    //     name: "Wednesday",
-    //     "Daily Recommended Intake (grams)": 51,
-    //     You: getdata[3] ? getdata[3].sum : 0,
-    //   },
-    //   {
-    //     name: "Thursday",
-    //     "Daily Recommended Intake (grams)": 51,
-    //     You: getdata[4] ? getdata[4].sum : 0,
-    //   },
-    //   {
-    //     name: "Friday",
-    //     "Daily Recommended Intake (grams)": 51,
-    //     You: getdata[5] ? getdata[5].sum : 0,
-    //   },
-    //   {
-    //     name: "Saturday",
-    //     "Daily Recommended Intake (grams)": 51,
-    //     You: getdata[6] ? getdata[6].sum : 0,
-    //   },
-    // ];
-    // const dailyCholesterol = [
-    //   {
-    //     name: "Sunday",
-    //     "Maximum Daily Recommended Intake (milligrams)": 300,
-    //     You: getdata[0] ? getdata[0].sum : 0,
-    //   },
-    //   {
-    //     name: "Monday",
-    //     "Maximum Daily Recommended Intake (milligrams)": 300,
-    //     You: getdata[1] ? getdata[1].sum : 0,
-    //   },
-    //   {
-    //     name: "Tuesday",
-    //     "Maximum Daily Recommended Intake (milligrams)": 300,
-    //     You: getdata[2] ? getdata[2].sum : 0,
-    //   },
-    //   {
-    //     name: "Wednesday",
-    //     "Maximum Daily Recommended Intake (milligrams)": 300,
-    //     You: getdata[3] ? getdata[3].sum : 0,
-    //   },
-    //   {
-    //     name: "Thursday",
-    //     "Maximum Daily Recommended Intake (milligrams)": 300,
-    //     You: getdata[4] ? getdata[4].sum : 0,
-    //   },
-    //   {
-    //     name: "Friday",
-    //     "Maximum Daily Recommended Intake (milligrams)": 300,
-    //     You: getdata[5] ? getdata[5].sum : 0,
-    //   },
-    //   {
-    //     name: "Saturday",
-    //     "Maximum Daily Recommended Intake (milligrams)": 300,
-    //     You: getdata[6] ? getdata[6].sum : 0,
-    //   },
-    // ];
-    // const dailySodium = [
-    //   {
-    //     name: "Sunday",
-    //     "Daily Recommended Intake (milligrams)": 1500,
-    //     You: getdata[0] ? getdata[0].sum : 0,
-    //   },
-    //   {
-    //     name: "Monday",
-    //     "Daily Recommended Intake (milligrams)": 1500,
-    //     You: getdata[1] ? getdata[1].sum : 0,
-    //   },
-    //   {
-    //     name: "Tuesday",
-    //     "Daily Recommended Intake (milligrams)": 1500,
-    //     You: getdata[2] ? getdata[2].sum : 0,
-    //   },
-    //   {
-    //     name: "Wednesday",
-    //     "Daily Recommended Intake (milligrams)": 1500,
-    //     You: getdata[3] ? getdata[3].sum : 0,
-    //   },
-    //   {
-    //     name: "Thursday",
-    //     "Daily Recommended Intake (milligrams)": 1500,
-    //     You: getdata[4] ? getdata[4].sum : 0,
-    //   },
-    //   {
-    //     name: "Friday",
-    //     "Daily Recommended Intake (milligrams)": 1500,
-    //     You: getdata[5] ? getdata[5].sum : 0,
-    //   },
-    //   {
-    //     name: "Saturday",
-    //     "Daily Recommended Intake (milligrams)": 1500,
-    //     You: getdata[6] ? getdata[6].sum : 0,
-    //   },
-    // ];
-
-    // let dailyPick = "";
-    // let pickQuantity = "";
-    // let yAxis = [];
-    // let graphLabel = "";
-
-    // if (pick === "Calories") {
-    //   dailyPick = dailyCalories;
-    //   pickQuantity = "Daily Recommended Intake (Calories)";
-    //   yAxis = [0, 4000];
-    //   graphLabel = "Calories consumed / day";
-    // }
-    // if (pick === "Fat") {
-    //   dailyPick = dailyFat;
-    //   pickQuantity = "Daily Recommended Intake (grams)";
-    //   yAxis = [0, 200];
-    //   graphLabel = "grams of fat consumed / day";
-    // }
-    // if (pick === "Carbohydrates") {
-    //   dailyPick = dailyCarbohydrates;
-    //   pickQuantity = "Daily Recommended Intake (grams)";
-    //   yAxis = [0, 400];
-    //   graphLabel = "grams of carbohydrates consumed / day";
-    // }
-    // if (pick === "Fiber") {
-    //   dailyPick = dailyFiber;
-    //   pickQuantity = "Daily Recommended Intake (grams)";
-    //   yAxis = [0, 100];
-    //   graphLabel = "grams of fiber consumed / day";
-    // }
-    // if (pick === "Sugar") {
-    //   dailyPick = dailySugar;
-    //   pickQuantity = "Maximum Daily Recommended Intake (grams)";
-    //   yAxis = [0, 250];
-    //   graphLabel = "grams of sugar consumed / day";
-    // }
-    // if (pick === "Protein") {
-    //   dailyPick = dailyProtein;
-    //   pickQuantity = "Daily Recommended Intake (grams)";
-    //   yAxis = [0, 300];
-    //   graphLabel = "grams of protein consumed / day";
-    // }
-    // if (pick === "Cholesterol") {
-    //   dailyPick = dailyCholesterol;
-    //   pickQuantity = "Maximum Daily Recommended Intake (milligrams)";
-    //   yAxis = [0, 600];
-    //   graphLabel = "milligrams of cholesterol consumed / day";
-    // }
-    // if (pick === "Sodium") {
-    //   dailyPick = dailySodium;
-    //   pickQuantity = "Daily Recommended Intake (milligrams)";
-    //   yAxis = [0, 7500];
-    //   graphLabel = "milligrams of salt consumed / day";
-    // }
 
     return (
       <div class="graph-container">
@@ -609,7 +253,28 @@ function MacroGraph() {
               activeDot={{ r: 8 }}
             />
             <Line type="monotone" dataKey="You" stroke="#82ca9d" />
-            {/* <Line type="monotone" dataKey="Follower" stroke="#000000" /> */}
+
+
+            {data && data.followers.forEach(element => {
+              console.log(element)
+              return (
+                <Line type="monotone" dataKey={element.userId.toString()} stroke="#000000" />
+              )
+            })}
+
+
+            {/* {data && (
+              data.followers.map(user => {
+                // const follower = user.userId.toString()
+                // console.log("YOOOOO", follower)
+                return (
+                  <Line type="monotone" dataKey={user.userId.toString()} stroke="#000000" />
+                )
+              })
+            )} */}
+
+
+            {/* <Line type="monotone" dataKey="1" stroke="#000000" /> */}
           </LineChart>
         </div>
       </div>
