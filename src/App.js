@@ -7,6 +7,7 @@ import Favourites from "./components/Favourites";
 import Schedule from "./components/Schedule";
 import MacroGraph from "./components/MacroGraph";
 import Register from "./components/Register";
+// import Footer from "./components/Footer";
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -30,3 +31,4 @@ function App() {
 }
 
 export default App;
+// <Footer />
