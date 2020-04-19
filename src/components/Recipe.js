@@ -131,7 +131,9 @@ export default function Recipe({ props, match }) {
   return (
     <div>
       {foodName && foodIngredient && (
-        <Button onClick={checkIfInDatabase}>Add to Favourites</Button>
+        <Button onClick={checkIfInDatabase}>
+          <i class="far fa-heart"></i>
+        </Button>
       )}
       <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
 
@@ -143,7 +145,9 @@ export default function Recipe({ props, match }) {
         />
       )}
       {date && meal && (
-        <Button onClick={checkIfInDatabase}>Add to Schedule</Button>
+        <Button onClick={checkIfInDatabase}>
+          <i class="far fa-calendar-alt"></i> Add
+        </Button>
       )}
       {foodIngredient && <img src={foodIngredient.hits[0].recipe.image} />}
       {foodIngredient && (

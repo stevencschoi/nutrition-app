@@ -29,7 +29,7 @@ function RecipeCard(props) {
           )}
           {props.follow && (
             <Button default onClick={props.follow}>
-              Follow
+              <i class="fas fa-user-plus"></i>
             </Button>
           )}
         </div>
