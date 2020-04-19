@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./styles.scss";
-import Searchbar from "./Searchbar";
 import IngredientGraph from "./IngredientGraph";
+import Button from "./Button";
 import CoolCarousel from "./CoolCarousel";
+import { Link } from "react-router-dom";
 import useApplicationData from "../hooks/useApplicationData";
-
-const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
-const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
-const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
-const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
 
 function Ingredient({ match }) {
   const {
     state,
-    fetchSearchResults,
     getNutrients,
     fetchRecipes,
     fetchUsers,
@@ -30,6 +25,9 @@ function Ingredient({ match }) {
   return (
     <div id="ingredient-page">
       <IngredientGraph data={state.search} />
+      <Link to={"/"}>
+        <Button default>Start Over</Button>
+      </Link>
       <div id="carousel">
         <h2>Featured Recipes</h2>
         {state.recipes && <CoolCarousel recipes={state.recipes} />}

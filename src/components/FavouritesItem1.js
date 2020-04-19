@@ -109,7 +109,9 @@ const FavouritesItem1 = (props) => {
             </div>
             <div className="delete">
               {props.id && (
-                <Button onClick={deleteFav}>Remove from Favourites</Button>
+                <Button onClick={deleteFav}>
+                  <i class="far fa-trash-alt"></i>
+                </Button>
               )}
             </div>
           </div>

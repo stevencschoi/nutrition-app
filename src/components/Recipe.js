@@ -8,6 +8,7 @@ import Button from "./Button";
 import MealCalendar from "./MealCalendar";
 import IngredientGraph from "./IngredientGraph";
 import { Dropdown } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
@@ -136,6 +137,9 @@ export default function Recipe({ props, match }) {
         </Button>
       )}
       <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
+      <Link to={"/"}>
+        <Button default>Start Over</Button>
+      </Link>
 
       {date && (
         <Dropdown
