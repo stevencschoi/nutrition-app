@@ -132,41 +132,66 @@ export default function Recipe({ props, match }) {
   ];
 
   return (
-    <div>
-      {foodName && foodIngredient && (
-        <Button onClick={checkIfInDatabase}>
-          <i class="far fa-heart"></i>
-        </Button>
-      )}
-      <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
+    <>
       <Link to={"/"}>
         <Button default>Start Over</Button>
       </Link>
-
-      {date && (
-        <Dropdown
-          options={options}
-          selection
-          onChange={(e, { value }) => setMeal(value)}
-        />
-      )}
-      {date && meal && (
-        <Button onClick={checkIfInDatabase}>
-          <i class="far fa-calendar-alt"></i> Add
-        </Button>
-      )}
-      {foodIngredient && <img src={foodIngredient.hits[0].recipe.image} />}
-      {foodIngredient && (
-        <a href={foodIngredient.hits[0].recipe.url}> Full Instructions</a>
-      )}
-      {foodIngredient && foodIngredient.hits[0].recipe.totalTime != 0 && (
-        <h5>Takes around {foodIngredient.hits[0].recipe.totalTime} mins</h5>
-      )}
+      <div className="recipeinfo">
+        <div className="things">
+          <div>
+            {foodIngredient && <img src={foodIngredient.hits[0].recipe.image} />}
+            <div>
+              {foodIngredient && (
+                <a href={foodIngredient.hits[0].recipe.url}> Full Instructions</a>
+              )}
+              {foodName && foodIngredient && (
+                <Button onClick={checkIfInDatabase}>
+                  <i class="far fa-heart"></i>
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="ingredient">
+          <RecipeIngredient foodIngredient={foodIngredient} />
+          {foodIngredient && foodIngredient.hits[0].recipe.totalTime != 0 && (
+            <h5>Takes around {foodIngredient.hits[0].recipe.totalTime} mins</h5>
+          )}
+        </div>
+      </div>
+      <div className="addtoschedule">
+        <div>
+        <h4>
+          Pick a day add in schedule
+        </h4>
+        <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
+        {date && (
+          <Dropdown
+            options={options}
+            selection
+            onChange={(e, { value }) => setMeal(value)}
+          />
+        )}
+        </div>
+        {date && meal &&(
+          <div className="flex">
+            <div className="add">
+              <Button onClick={checkIfInDatabase}>
+                <i class="far fa-calendar-alt"></i> Add</Button>
+            </div>
+            <div className="cancel">
+              <Button onClick={() => {
+                setDate(null)
+                setMeal(null)
+                }}>Cancel</Button>
+            </div>
+          </div>
+        )}
+      </div>
       <div class="nutritional-data">
         <h2>Select Nutritional Data of {foodIngredient && foodIngredient.q}</h2>
         <RecipeGraph1 foodIngredient={foodIngredient} />
       </div>
-      <RecipeIngredient foodIngredient={foodIngredient} />
-    </div>
+    </>
   );
 }
