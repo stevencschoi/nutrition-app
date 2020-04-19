@@ -20,11 +20,12 @@ const days = {
 function Schedule() {
   const [currentDay, setCurrentDay] = useState(moment());
   const [schedule, setSchedule] = useState({});
+  const [update, setUpdate] = useState(moment());
 
   // when currentDay state is updated, display that day's meal schedule
   useEffect(() => {
     getDaySchedule(currentDay)
-  }, []);
+  }, [update]);
 
   const dayFomater = (num) => {
     let copynum = num
@@ -58,7 +59,7 @@ function Schedule() {
           [days[newday[2]]]: res[2].data,
           [days[newday[3]]]: res[3].data,
         }
-        // console.log(obj)
+        console.log(obj)
         setSchedule(obj)
       })
   };
@@ -85,7 +86,8 @@ function Schedule() {
             {schedule[item].map((item) => {
               const itemName = item.name;
               const image = item.image_url;
-              return <ScheduleItem name={itemName} image={image} />
+              const id = item.id;
+              return <ScheduleItem name={itemName} image={image} id={id} setUpdate={setUpdate}/>
             })}
           </div>
         )
