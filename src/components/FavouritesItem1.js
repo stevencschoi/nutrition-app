@@ -94,7 +94,10 @@ const FavouritesItem1 = (props) => {
             {date && meal && (
               <>
                 <div className="add">
-                  <Button onClick={() => addRecipeToDay(props.id, date, meal)}>
+                  <Button onClick={() => {
+                    addRecipeToDay(props.id, date, meal)
+                    setMeal(null);
+                    }}>
                     <i class="far fa-calendar-alt"></i> Add
                   </Button>
                 </div>

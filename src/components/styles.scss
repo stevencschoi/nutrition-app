@@ -10,8 +10,8 @@ html,
 body,
 #root,
 #root > div {
-  background-image: url("/assets/healthy-wallpaper4.jpeg");
-  background-size: cover;
+  // background-image: url("/assets/healthy-wallpaper4.jpeg");
+  // background-size: cover;
   height: 100vh;
 }
 
@@ -180,11 +180,11 @@ body,
     text-align: center;
     background-color: transparent;
     outline: none;
-    font-family: $primary-font;
+    font-family: "Cabin Sketch", cursive;
     font-weight: 700;
     color: $primary-colour;
     &::placeholder {
-      font-family: $primary-font;
+      font-family: "Cabin Sketch", cursive;
       font-weight: 700;
       font-size: 33px;
       color: $primary-colour;
@@ -318,7 +318,7 @@ body,
   // height: 200px;
   width: 85%;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   .graph {
     display: flex;
     align-items: center;
@@ -338,159 +338,19 @@ body,
   // height: 42vh;
   display: inline-block;
   margin: 20px 10px 10px;
-  border: black solid 5px;
+  // border: black solid 5px;
   border-radius: 25px;
   padding: 10px;
   background-color: white;
   .text {
     color: $primary-colour;
   }
+  div {
+    margin: 0 auto;
+  }
 }
 
 .nutritional-data h2 {
   color: $primary-colour;
   font-family: $primary-font;
-}
-
-#favourite-title {
-  font-family: $primary-font;
-  color: $primary-colour;
-  padding-top: 25px;
-  font-size: 48px;
-}
-.FavouritesItem {
-  background-color: rgba(106, 127, 150, 0.75);
-  border: black solid 5px;
-  border-radius: 25px;
-  margin: 50px 50px;
-  .favourite-main {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 25px;
-    img {
-      border: black solid 5px;
-      border-radius: 25px;
-      max-height: 35vh;
-      margin: 0;
-    }
-  }
-  .selectPosition {
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 25px;
-    .selectContainer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .dropdown {
-      margin: 0 5px 0 10px;
-    }
-    button {
-      margin: 4px 5px;
-    }
-    .add button {
-      display: inline-block;
-      background-color: rgb(28, 196, 42);
-      color: white;
-      border-radius: 10px;
-      padding: 7px 13px;
-      border: 1px solid transparent;
-      font-weight: bold;
-      &:hover {
-        background-color: white;
-        color: rgb(28, 196, 42);
-      }
-    }
-    .delete button {
-      background-color: salmon;
-      color: white;
-      border-radius: 10px;
-      padding: 7px 13px;
-      border: 1px solid transparent;
-      font-weight: bold;
-      &:hover {
-        background-color: red;
-      }
-    }
-  }
-}
-
-.recipeinfo {
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .things {
-    margin-right: 150px;
-    img {
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-    div div {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
-    a {
-      color: wheat;
-      background-color: rgba(106, 127, 150, 0.75);
-      padding: 2px 5px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      &:hover {
-        color: black;
-        border: 1px solid black;
-      }
-    }
-    button {
-      background-color: transparent;
-      border: none;
-      i {
-        font-size: 25px;
-      }
-    }
-  }
-  .ingredient {
-    text-shadow: 1px 1px 1px white;
-    li {
-      margin: 5px 0;
-      text-align: left;
-    }
-  }
-}
-
-.addtoschedule {
-  margin: 25px 0;
-  display: flex;
-  justify-content: center;
-  h4 {
-    text-shadow: 1px 1px 1px white;
-  }
-  .flex {
-    display: flex;
-    align-items: flex-end;
-  }
-  button {
-    border: 1px solid transparent;
-    border-radius: 10px;
-    padding: 5px 10px;
-    margin: 0 10px;
-    color: white;
-  }
-  .add button {
-    background-color: rgb(28, 196, 42);
-    &:hover {
-      color: rgb(28, 196, 42);
-      background-color: white;
-      border: 1px solid rgb(28, 196, 42);
-    }
-  }
-  .cancel button {
-    background-color: salmon;
-    &:hover {
-      background-color: red;
-    }
-  }
 }

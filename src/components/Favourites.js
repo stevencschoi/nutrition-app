@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./styles.scss";
+import "./favouritesItem1.scss";
 import axios from "axios";
 import Cookies from "js-cookie";
 import FavouritesItem1 from "./FavouritesItem1";

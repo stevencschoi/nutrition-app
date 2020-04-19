@@ -1,0 +1,70 @@
+$primary-colour: #243a2f;
+$secondary-colour: #ffffff;
+$accent-colour: #a0acb9;
+$primary-font: monospace, cursive;
+
+#favourite-title {
+  font-family: $primary-font;
+  color: $primary-colour;
+  padding: 0.5% 0 0 0;
+  font-size: 3rem;
+}
+.FavouritesItem {
+  // background-color: rgba(106, 127, 150, 0.75);
+  // border: black solid 5px;
+  // border-radius: 25px;
+  margin: 1% 10%;
+  .favourite-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 2%;
+    img {
+      // border: black solid 5px;
+      border-radius: 20px;
+      max-height: 25vh;
+      margin: 0;
+    }
+  }
+  .selectPosition {
+    display: flex;
+    justify-content: space-around;
+    // padding-bottom: 1%;
+    .selectContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .dropdown {
+      margin: 0 1%;
+    }
+    button {
+      margin: 0 15px;
+    }
+    .add button {
+      display: inline-block;
+      background-color: rgb(28, 196, 42);
+      color: white;
+      border-radius: 10px;
+      padding: 7px 13px;
+      border: 1px solid transparent;
+      font-weight: bold;
+      &:hover {
+        background-color: white;
+        color: rgb(28, 196, 42);
+        border: 1px solid rgb(28, 196, 42);
+      }
+    }
+    .delete button {
+      background-color: salmon;
+      color: white;
+      border-radius: 10px;
+      padding: 7px 13px;
+      border: 1px solid transparent;
+      font-weight: bold;
+      &:hover {
+        background-color: red;
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./styles.scss";
+import "./recipe.scss";
 import RecipeIngredient from "./RecipeIngredient";
 import RecipeGraph1 from "./RecipeGraph1";
 import Button from "./Button";
@@ -189,7 +190,7 @@ export default function Recipe({ props, match }) {
         )}
       </div>
       <div class="nutritional-data">
-        <h2>Select Nutritional Data of {foodIngredient && foodIngredient.q}</h2>
+        <h2>Nutritional Data of {foodIngredient && foodIngredient.q}</h2>
         <RecipeGraph1 foodIngredient={foodIngredient} />
       </div>
     </>
