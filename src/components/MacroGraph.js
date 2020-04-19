@@ -15,6 +15,7 @@ import {
   Legend,
   LineChart,
   Line,
+  ResponsiveContainer
 } from "recharts";
 
 const options = [
@@ -227,9 +228,10 @@ function MacroGraph() {
     let graphLabel = values[3];
 
     return (
-      <div class="graph-container">
-        <div class="graph">
-          <p class="graph-label">{graphLabel}</p>
+      
+      
+      <ResponsiveContainer width="75%" height="100%">
+
           <LineChart
             width={750}
             height={250}
@@ -243,7 +245,7 @@ function MacroGraph() {
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
-            <YAxis type="number" domain={yAxis} />
+            <YAxis label ={{ value: graphLabel, angle: -90, position: 'insideBottomLeft'}} type="number" domain={yAxis} />
             <Tooltip />
             <Legend />
             <Line
@@ -255,12 +257,12 @@ function MacroGraph() {
             <Line type="monotone" dataKey="You" stroke="#82ca9d" />
 
 
-            {data && data.followers.forEach(element => {
+            {/* {data && data.followers.forEach(element => {
               console.log(element)
               return (
                 <Line type="monotone" dataKey={element.userId.toString()} stroke="#000000" />
               )
-            })}
+            })} */}
 
 
             {/* {data && (
@@ -276,13 +278,88 @@ function MacroGraph() {
 
             {/* <Line type="monotone" dataKey="1" stroke="#000000" /> */}
           </LineChart>
-        </div>
-      </div>
+          </ResponsiveContainer>
+  
     );
   };
+
+//   return (
+//     <div class="graph-container">
+//       <div class="graph">
+//         {/* <p class="graph-label">{graphLabel}</p> */}
+//         {/* <ResponsiveContainer width={700} height="80%"> */}
+
+//         <LineChart
+//           width={750}
+//           height={250}
+//           data={dailyPick}
+//           margin={{
+//             top: 5,
+//             right: 30,
+//             left: 20,
+//             bottom: 5,
+//           }}
+//         >
+//           <CartesianGrid strokeDasharray="3 3" />
+//           <XAxis dataKey="name" />
+//           <YAxis label={{ value: graphLabel, angle: -90, position: 'insideBottomLeft' }} type="number" domain={yAxis} />
+//           <Tooltip />
+//           <Legend />
+//           <Line
+//             type="monotone"
+//             dataKey={pickQuantity}
+//             stroke="#8884d8"
+//             activeDot={{ r: 8 }}
+//           />
+//           <Line type="monotone" dataKey="You" stroke="#82ca9d" />
+
+
+//           {/* {data && data.followers.forEach(element => {
+//               console.log(element)
+//               return (
+//                 <Line type="monotone" dataKey={element.userId.toString()} stroke="#000000" />
+//               )
+//             })} */}
+
+
+//           {/* {data && (
+//               data.followers.map(user => {
+//                 // const follower = user.userId.toString()
+//                 // console.log("YOOOOO", follower)
+//                 return (
+//                   <Line type="monotone" dataKey={user.userId.toString()} stroke="#000000" />
+//                 )
+//               })
+//             )} */}
+
+
+//           {/* <Line type="monotone" dataKey="1" stroke="#000000" /> */}
+//         </LineChart>
+//         {/* </ResponsiveContainer> */}
+//       </div>
+//     </div>
+//   );
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <>
-      <div class="nutritional-data">
+
+
+
+
+      {/* <div class="nutritional-data"> */}
         <h2>
           Weekly consumption of{" "}
           {pick && (
@@ -296,9 +373,14 @@ function MacroGraph() {
           )}{" "}
           per day
         </h2>
-        {/* <br></br> */}
-        {pick && graph}
-      </div>
+      <div id="macro-graph" style={{ height: 20 + 'em' }}>
+          {pick && graph}
+        </div>
+      {/* </div> */}
+
+
+
+
       <div id="carousel">
         <h2>Discover People</h2>
         {state.users && <CoolCarousel recipes={state.users} />}
