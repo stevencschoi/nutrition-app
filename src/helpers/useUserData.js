@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import RecipeCard from "../components/RecipeCard";
+import { socket } from "../hooks/useApplicationData";
 
 // ******************** follower functions ********************
 export default function useUserData() {
@@ -27,8 +28,10 @@ export default function useUserData() {
         followId: userId,
       })
       .then((result) => {
-        console.log("response: ", result);
         getFollowers();
+        socket.emit("new", () => {
+          console.log("Socket sending from follow user");
+        });
       })
       .catch((error) => console.error(error));
   }

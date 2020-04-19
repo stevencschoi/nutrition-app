@@ -1,4 +1,4 @@
-.card{
+.card {
   text-align: center;
   padding-top: 10px;
   opacity: 1;
@@ -6,7 +6,7 @@
   color: white;
 }
 
-.card-title{
+.card-title {
   color: #262626;
   display: block;
   overflow: hidden;
@@ -17,16 +17,17 @@
   margin-bottom: 0;
 }
 
-.container{
+.container {
   margin-top: 100px;
 }
 
 img {
-  display:block;
-  margin:auto;
+  display: block;
+  margin: auto;
 }
 
-.slick-prev:before, .slick-next:before {
+.slick-prev:before,
+.slick-next:before {
   color: black !important;
 }
 
@@ -40,6 +41,13 @@ img {
 .slick-slider {
   width: 95%;
   margin: 0 auto;
+  .slick-dots {
+    li {
+      button {
+        display: none;
+      }
+    }
+  }
 }
 
 //added by Vic
@@ -50,7 +58,7 @@ img {
   border-radius: 25px;
   padding: 10px;
   background-color: white;
-  width: 80%;
+  width: 85%;
 }
 
 .card {
