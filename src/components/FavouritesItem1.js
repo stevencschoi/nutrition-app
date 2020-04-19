@@ -102,7 +102,10 @@ const FavouritesItem1 = (props) => {
                     </Button>
                   </div>
                   <div className="delete">
-                    <Button onClick={() => setDate(null)}>Cancel</Button>
+                    <Button onClick={() => {
+                      setDate(null)
+                      setMeal(null)
+                      }}>Cancel</Button>
                   </div>
                 </>
               )}

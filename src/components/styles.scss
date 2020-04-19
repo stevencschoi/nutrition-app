@@ -404,3 +404,81 @@ body,
     }
   }
 }
+
+.recipeinfo {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .things {
+    margin-right: 150px;
+    img {
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    div div {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    a {
+      color: wheat;
+      background-color: rgba(106, 127, 150, 0.75);
+      padding: 2px 5px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      &:hover {
+        color: black;
+        border: 1px solid black;
+      }
+    }
+    button {
+      background-color: transparent;
+      border: none;
+      i {
+        font-size: 25px;
+      }
+    }
+  }
+  .ingredient {
+    text-shadow: 1px 1px 1px white;
+    li {
+      margin: 5px 0;
+      text-align: left;
+    }
+  }
+}
+
+.addtoschedule {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  h4 {
+    text-shadow: 1px 1px 1px white;
+  }
+  .flex {
+    display: flex;
+    align-items: flex-end;
+  }
+  button {
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 0 10px;
+    color: white;
+  }
+  .add button {
+    background-color: rgb(28, 196, 42);
+    &:hover {
+      color: rgb(28, 196, 42);
+      background-color: white;
+      border: 1px solid rgb(28, 196, 42);
+    }
+  }
+  .cancel button {
+    background-color: salmon;
+    &:hover {
+      background-color: red;
+    }
+  }
+}
