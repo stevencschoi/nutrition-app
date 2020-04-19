@@ -4,16 +4,13 @@ import axios from "axios";
 import SearchResult from "../components/SearchResult";
 // component to be rendered as part of recipe search results
 import RecipeCard from "../components/RecipeCard";
-
 import io from "socket.io-client";
 // socket declaration
 export const socket = io(process.env.REACT_APP_WEBSOCKET_URL);
-
 const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
 const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
-
 export default function useApplicationData() {
   const [state, setState] = useState({
     search: "",
@@ -22,14 +19,12 @@ export default function useApplicationData() {
     data: null,
     graph: "Calories",
   });
-
   // connect socket
   useEffect(() => {
     socket.on("connect", () => {
       console.log("is socket connected?", socket.connected);
     });
   }, []);
-
   // display raw ingredient search results from home page
   function fetchSearchResults(ingredient) {
     const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
@@ -55,7 +50,6 @@ export default function useApplicationData() {
       })
       .catch((error) => console.error(error));
   }
-
   // display nutrition charts based on raw ingredient search
   const getNutrients = (ingredient) => {
     axios
@@ -77,12 +71,24 @@ export default function useApplicationData() {
       })
       .catch((error) => console.error(error));
   };
-
   // for each object in recipes array, return a div containing the recipe image and title and id
+  // fetchRecipe query parameters:
+  // diet={balanced, high-fiber, high-protein, low-carb, low-fat, low-sodium}
+  // health={alcohol-free, dairy-free, egg-free, gluten-free, keto, low-fat-abs, low-sugar, paleo, peanut-free, pork-free, read-meat-free, shellfish-free, soy-free, vegetarian}
+  // health=peanut-free&health=tree-nut-free
+  // excluded=${excluded}
+  // excluded=vinegar&excluded=pretzel
   function fetchRecipes(searchResult) {
+    // function fetchRecipes(searchResult, diet, health)
+    // const url = `https://api.edamam.com/search?q=${searchResult}`;
+    // const key = `&app_id=${recipeApiId}&app_key=${recipeApiKey}`;
+    // const diet = `&diet=${diet}`;
+    // const health =`&health=${health}`;
+    // axios.get(url + diet + health + key)
     axios
       .get(
         `https://api.edamam.com/search?q=${searchResult}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
+        // `https://api.edamam.com/search?q=${searchResult}&diet=${diet}&health=${health}&excluded=${excluded}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
       )
       .then((result) => {
         const recipeCardsArray = result.data.hits.map((recipe) => {
@@ -90,7 +96,6 @@ export default function useApplicationData() {
           const image = `${recipe.recipe.image}`;
           const url = `${recipe.recipe.url}`;
           const ingredients = `${recipe.recipe.ingredientLines}`;
-
           return (
             <RecipeCard
               key={label}
@@ -105,7 +110,6 @@ export default function useApplicationData() {
       })
       .catch((error) => console.error(error));
   }
-
   return {
     state,
     fetchSearchResults,
