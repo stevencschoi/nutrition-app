@@ -8,6 +8,7 @@ export default function Button(props) {
     //   "button--confirm": props.confirm,
     //   "button--danger": props.danger
     "btn btn-sm follow btn-primary": props.default,
+    "delete-button": props.delete,
   });
   return (
     <button

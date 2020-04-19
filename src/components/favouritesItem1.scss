@@ -1,39 +1,56 @@
-$primary-colour: #243a2f;
+$primary-colour: #2c6b68;
 $secondary-colour: #ffffff;
 $accent-colour: #a0acb9;
 $primary-font: monospace, cursive;
 
-#favourite-title {
+.favourite-title {
   font-family: $primary-font;
   color: $primary-colour;
   padding: 0.5% 0 0 0;
   font-size: 3rem;
 }
 .FavouritesItem {
+  display: flex;
+  justify-content: center;
   // background-color: rgba(106, 127, 150, 0.75);
-  // border: black solid 5px;
-  // border-radius: 25px;
-  margin: 1% 10%;
+  margin: 1% 1%;
   .favourite-main {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
-    padding: 2%;
+    // padding: 2%;
+    background-color: #ffffff;
+    border: $primary-colour solid 1px;
+    width: 85%;
+    border-radius: 5px;
     img {
       // border: black solid 5px;
-      border-radius: 20px;
+      border-radius: 4px;
       max-height: 25vh;
       margin: 0;
     }
   }
-  .selectPosition {
+  .selectContainer {
     display: flex;
     justify-content: space-around;
     // padding-bottom: 1%;
-    .selectContainer {
+    .selectPosition {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      margin: 1%;
+      .fav-button-container {
+        display: flex;
+        justify-content: center;
+        align-items: space-between;
+        .ui.selection.dropdown.width {
+          margin-botton: 2%;
+        }
+        input {
+          margin: 2%;
+        }
+      }
     }
     .dropdown {
       margin: 0 1%;
@@ -55,16 +72,45 @@ $primary-font: monospace, cursive;
         border: 1px solid rgb(28, 196, 42);
       }
     }
-    .delete button {
-      background-color: salmon;
-      color: white;
-      border-radius: 10px;
-      padding: 7px 13px;
-      border: 1px solid transparent;
-      font-weight: bold;
-      &:hover {
-        background-color: red;
-      }
+  }
+}
+
+.image-and-drop-container {
+  padding: 1%;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+.image-container {
+  position: relative;
+  .delete-button-image {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background-color: salmon;
+    color: white;
+    border-radius: 10px;
+    padding: 7px 13px;
+    border: 1px solid transparent;
+    font-weight: bold;
+    &:hover {
+      background-color: red;
     }
+  }
+}
+
+.width {
+  width: 3vw;
+}
+
+.delete-button {
+  background-color: salmon;
+  color: white;
+  border-radius: 10px;
+  padding: 7px 13px;
+  border: 1px solid transparent;
+  font-weight: bold;
+  &:hover {
+    background-color: red;
   }
 }
