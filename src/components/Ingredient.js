@@ -7,19 +7,13 @@ import { Link } from "react-router-dom";
 import useApplicationData from "../hooks/useApplicationData";
 
 function Ingredient({ match }) {
-  const {
-    state,
-    getNutrients,
-    fetchRecipes,
-    fetchUsers,
-  } = useApplicationData();
+  const { state, getNutrients, fetchRecipes } = useApplicationData();
 
   // upon ingredient search query, display nutritional information and related recipes
   useEffect(() => {
     const format = match.url.split("/");
     getNutrients(format[2]);
     fetchRecipes(format[3]);
-    fetchUsers();
   }, []);
 
   return (

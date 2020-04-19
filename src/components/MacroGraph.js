@@ -4,7 +4,8 @@ import { Dropdown } from "semantic-ui-react";
 import axios from "axios";
 import moment from "moment";
 import CoolCarousel from "./CoolCarousel";
-import useApplicationData, { socket } from "../hooks/useApplicationData";
+import useUserData from "../helpers/useUserData";
+import { socket } from "../hooks/useApplicationData";
 import io from "socket.io-client";
 import {
   XAxis,
@@ -33,7 +34,7 @@ function MacroGraph() {
   const [graph, setGraph] = useState("Calories");
   const [data, setData] = useState(null);
 
-  const { state, fetchUsers, getFollowers } = useApplicationData();
+  const { state, fetchUsers, getFollowers } = useUserData();
 
   useEffect(() => {
     getData(pick);
@@ -44,6 +45,7 @@ function MacroGraph() {
   useEffect(() => {
     // when receiving update message from server, re-render graph
     socket.on("update", () => {
+      console.log("hi");
       getData(pick);
     });
   }, []);
