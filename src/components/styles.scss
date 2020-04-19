@@ -379,3 +379,36 @@ body,
     color: $primary-colour;
   }
 }
+
+.schedule-item {
+  width: 13vw;
+  .heading-title {
+    height: 8vh;
+  }
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  img {
+    margin: 0;
+  }
+  button {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    background-color: #a0d0ce;
+    color: white;
+    border-radius: 10px;
+    padding: 7px 13px;
+    border: 1px solid transparent;
+    font-weight: bold;
+    &:hover {
+      background-color: salmon;
+    }
+  }
+}

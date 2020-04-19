@@ -19,19 +19,23 @@ function ScheduleItem(props) {
   };
 
   return (
-    <>
-      <h3>{props.name}</h3>
-      <a href={`/recipe/${props.name}`}>
-        <img src={props.image} />
-      </a>
-      <Button
-        onClick={() => {
-          removeFromSchedule(props.id);
-        }}
-      >
-        <i class="far fa-trash-alt"></i>
-      </Button>
-    </>
+    <div className="schedule-item">
+      <div className="image-container">
+        <a href={`/recipe/${props.name}`}>
+          <img src={props.image} />
+        </a>
+        <Button
+          onClick={() => {
+            removeFromSchedule(props.id);
+          }}
+        >
+          <i class="far fa-trash-alt"></i>
+        </Button>
+      </div>
+      <div className="heading-title">
+        <h3>{props.name}</h3>
+      </div>
+    </div>
   );
 }
 

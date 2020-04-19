@@ -26,7 +26,7 @@ $primary-font: monospace, cursive;
     img {
       // border: black solid 5px;
       border-radius: 4px;
-      max-height: 25vh;
+      max-height: 18vh;
       margin: 0;
     }
   }
@@ -85,16 +85,16 @@ $primary-font: monospace, cursive;
   position: relative;
   .delete-button-image {
     position: absolute;
-    top: 5%;
-    right: 5%;
-    background-color: salmon;
+    top: 1rem;
+    right: 1rem;
+    background-color: #a0d0ce;
     color: white;
     border-radius: 10px;
     padding: 7px 13px;
     border: 1px solid transparent;
     font-weight: bold;
     &:hover {
-      background-color: red;
+      background-color: salmon;
     }
   }
 }
@@ -104,13 +104,13 @@ $primary-font: monospace, cursive;
 }
 
 .delete-button {
-  background-color: salmon;
+  background-color: #a0d0ce;
   color: white;
   border-radius: 10px;
   padding: 7px 13px;
   border: 1px solid transparent;
   font-weight: bold;
   &:hover {
-    background-color: red;
+    background-color: salmon;
   }
 }
