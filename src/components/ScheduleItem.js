@@ -30,7 +30,7 @@ function ScheduleItem(props) {
           removeFromSchedule(props.id);
         }}
       >
-        Remove From Schedule
+        <i class="far fa-trash-alt"></i>
       </Button>
     </>
   );
