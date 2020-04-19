@@ -109,20 +109,19 @@ body,
     border-radius: 10px;
   }
   button {
-  background-color: $primary-colour;
-  border-radius: 10px;
-  border: 1px solid transparent;
-  color: white;
-  font-family: monospace;
-  font-size: 18px;
-  padding: 5px 15px;
-  margin-top: 10px;
-  &:hover {
-    color: $primary-colour;
-    background-color: white;
-    border: 1px solid $primary-colour;
-  }
-
+    background-color: $primary-colour;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    color: white;
+    font-family: monospace;
+    font-size: 18px;
+    padding: 5px 15px;
+    margin-top: 10px;
+    &:hover {
+      color: $primary-colour;
+      background-color: white;
+      border: 1px solid $primary-colour;
+    }
   }
 }
 
@@ -331,9 +330,9 @@ body,
   }
 }
 
-
 .nutritional-data {
-  width: 900px;
+  width: 85%;
+  // height: 42vh;
   display: inline-block;
   margin: 20px 10px 10px;
   border: black solid 5px;
@@ -350,7 +349,7 @@ body,
   font-family: "Londrina Solid", cursive;
 }
 
-#favourite-title{
+#favourite-title {
   font-family: "Londrina Solid", cursive;
   color: $primary-colour;
   padding-top: 25px;
@@ -369,7 +368,7 @@ body,
     img {
       border: black solid 5px;
       border-radius: 25px;
-      max-height: 300px;
+      max-height: 35vh;
       margin: 0;
     }
   }

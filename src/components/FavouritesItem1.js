@@ -21,7 +21,6 @@ const FavouritesItem1 = (props) => {
       .post("/favourites/delete", { recipeId: id })
       .then((result) => {
         props.setUpdateItem(id);
-        console.log(result);
       })
       .catch((error) => console.error(error));
   };
@@ -75,50 +74,51 @@ const FavouritesItem1 = (props) => {
             name={props.name}
           />
         </div>
-          <div className="selectPosition">
-            <div className="selectContainer">
-              <div>
-                <MealCalendar
-                  date={date}
-                  onChange={(e) => setDate(e.target.value)}
+        <div className="selectPosition">
+          <div className="selectContainer">
+            <div>
+              <MealCalendar
+                date={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </div>
+            <div>
+              {date && (
+                <Dropdown
+                  options={options}
+                  selection
+                  onChange={(e, { value }) => setMeal(value)}
                 />
-              </div>
-              <div>
-                {date && (
-                  <Dropdown
-                    options={options}
-                    selection
-                    onChange={(e, { value }) => setMeal(value)}
-                  />
-                )}
-              </div>
-              {date && meal && (
-                <>
-                  <div className="add">
-                    <Button
-                      onClick={() => addRecipeToDay(props.id, date, meal)}
-                    >
-                      <i class="far fa-calendar-alt"></i> Add
-                    </Button>
-                  </div>
-                  <div className="delete">
-                    <Button onClick={() => {
-                      setDate(null)
-                      setMeal(null)
-                      }}>Cancel</Button>
-                  </div>
-                </>
               )}
             </div>
-            <div className="delete">
-              {props.id && (
-                <Button onClick={deleteFav}>
-                  <i class="far fa-trash-alt"></i>
-                </Button>
-              )}
-            </div>
+            {date && meal && (
+              <>
+                <div className="add">
+                  <Button onClick={() => addRecipeToDay(props.id, date, meal)}>
+                    <i class="far fa-calendar-alt"></i> Add
+                  </Button>
+                </div>
+                <div className="delete">
+                  <Button
+                    onClick={() => {
+                      setDate(null);
+                      setMeal(null);
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
-        
+          <div className="delete">
+            {props.id && (
+              <Button onClick={deleteFav}>
+                <i class="far fa-trash-alt"></i>
+              </Button>
+            )}
+          </div>
+        </div>
       </div>
     </>
   );
