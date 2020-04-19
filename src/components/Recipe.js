@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./styles.scss";
 import RecipeIngredient from "./RecipeIngredient";
-import RecipeGraph from "./RecipeGraph";
 import RecipeGraph1 from "./RecipeGraph1";
 import Button from "./Button";
 import MealCalendar from "./MealCalendar";
-import IngredientGraph from "./IngredientGraph";
 import { Dropdown } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import io from "socket.io-client";
+import { socket } from "../hooks/useApplicationData";
 
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
@@ -108,7 +108,6 @@ export default function Recipe({ props, match }) {
   const addRecipeToDay = (recipeId) => {
     const formatdate = JSON.stringify(date).slice(1, 11);
     const mealNumber = meal;
-
     axios
       .post(`/day/add`, {
         date: formatdate,
@@ -117,6 +116,9 @@ export default function Recipe({ props, match }) {
       })
       .then((result) => {
         console.log(result.data);
+        socket.emit("new", (data) => {
+          console.log("Socket sending from addrecipeTOday", data);
+        });
         setDate("");
       })
       .catch((error) => console.error(error));
