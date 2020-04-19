@@ -79,10 +79,24 @@ export default function useApplicationData() {
   };
 
   // for each object in recipes array, return a div containing the recipe image and title and id
+  // fetchRecipe query parameters:
+  // diet={balanced, high-fiber, high-protein, low-carb, low-fat, low-sodium}
+  // health={alcohol-free, dairy-free, egg-free, gluten-free, keto, low-fat-abs, low-sugar, paleo, peanut-free, pork-free, read-meat-free, shellfish-free, soy-free, vegetarian}
+  // health=peanut-free&health=tree-nut-free
+  // excluded=${excluded}
+  // excluded=vinegar&excluded=pretzel
   function fetchRecipes(searchResult) {
+    // function fetchRecipes(searchResult, diet, health)
+    // const url = `https://api.edamam.com/search?q=${searchResult}`;
+    // const key = `&app_id=${recipeApiId}&app_key=${recipeApiKey}`;
+    // const diet = `&diet=${diet}`;
+    // const health =`&health=${health}`;
+    // axios.get(url + diet + health + key)
+
     axios
       .get(
         `https://api.edamam.com/search?q=${searchResult}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
+        // `https://api.edamam.com/search?q=${searchResult}&diet=${diet}&health=${health}&excluded=${excluded}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
       )
       .then((result) => {
         const recipeCardsArray = result.data.hits.map((recipe) => {

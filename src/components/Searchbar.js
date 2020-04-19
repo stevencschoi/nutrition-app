@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
+import { Dropdown } from "semantic-ui-react";
 
 function Searchbar(props) {
   const [ingredient, setIngredient] = useState("");
