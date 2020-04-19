@@ -20,12 +20,11 @@ function ScheduleItem(props) {
 
   return (
     <>
-      <h2>{props.name}</h2>
+      <h3>{props.name}</h3>
       <a href={`/recipe/${props.name}`}>
         <img src={props.image} />
       </a>
       <Button
-        default
         onClick={() => {
           removeFromSchedule(props.id);
         }}
