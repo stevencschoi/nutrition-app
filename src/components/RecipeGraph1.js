@@ -65,8 +65,8 @@ function RecipeGraph(props) {
           <p class="graph-label">per serving</p>
           <BarChart width={500} height={200} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
+            <XAxis dataKey="name" style={{ fontFamily: 'Londrina Solid', fill: '#123050' }} />
+            <YAxis style={{ fontFamily: 'Londrina Solid', fill: '#123050' }} />
             <Tooltip />
             <Bar dataKey="grams / 100 grams" />
           </BarChart>
@@ -75,8 +75,8 @@ function RecipeGraph(props) {
           <p class="graph-label">per serving</p>
           <BarChart width={240} height={200} data={data2}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
+            <XAxis dataKey="name" style={{ fontFamily: 'Londrina Solid', fill: '#123050' }} />
+            <YAxis style={{ fontFamily: 'Londrina Solid', fill: '#123050' }} />
             <Tooltip />
             <Bar dataKey="milligrams / 100 grams" />
           </BarChart>

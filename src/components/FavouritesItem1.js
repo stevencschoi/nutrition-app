@@ -56,13 +56,12 @@ const FavouritesItem1 = (props) => {
   return (
     <>
       <div className="FavouritesItem">
-        <div>
+        <div class="favourite-main">
           <a href={`/recipe/${props.name}`}>
             <img src={props.image_url} />
           </a>
+
           {/* <h1 className="FavouritesTitle">{props.name}</h1> */}
-        </div>
-        <div>
           <RecipeGraph
             calories={props.calories}
             fat_in_g={props.fat_in_g}
@@ -75,6 +74,7 @@ const FavouritesItem1 = (props) => {
             image_url={props.image_url}
             name={props.name}
           />
+        </div>
           <div className="selectPosition">
             <div className="selectContainer">
               <div>
@@ -118,7 +118,7 @@ const FavouritesItem1 = (props) => {
               )}
             </div>
           </div>
-        </div>
+        
       </div>
     </>
   );

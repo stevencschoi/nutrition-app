@@ -55,7 +55,7 @@ const Favourites = (props) => {
 
   return (
     <>
-      <h1>Favourites</h1>
+      <h1 id="favourite-title">Favourites</h1>
       {userFavourites && renderFavourites(userFavourites)}
     </>
   );
