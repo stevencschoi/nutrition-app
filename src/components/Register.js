@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 8008;
 
 const Register = (props) => {
   const [inputs, setInputs] = useState({
-    avatar: ""
+    avatar: "",
   });
 
   const handleInputChange = (event) => {
@@ -67,7 +67,9 @@ const Register = (props) => {
         onChange={handleInputChange}
       />
 
-      <button className="registerformButton" type="submit">Submit</button>
+      <button className="registerformButton" type="submit">
+        Submit
+      </button>
     </form>
   );
 };
