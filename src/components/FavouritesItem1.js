@@ -98,7 +98,7 @@ const FavouritesItem1 = (props) => {
                     <Button
                       onClick={() => addRecipeToDay(props.id, date, meal)}
                     >
-                      Add to Schedule
+                      <i class="far fa-calendar-alt"></i> Add
                     </Button>
                   </div>
                   <div className="delete">
