@@ -6,7 +6,6 @@ import "./CoolCarousel.scss";
 import "bootstrap/dist/css/bootstrap.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 
 function RecipeCard(props) {
   return (
