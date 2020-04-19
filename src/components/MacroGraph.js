@@ -65,10 +65,7 @@ function MacroGraph() {
         // console.log("stuff from database", result.data);
         setData(result.data);
 
-        const newGraph = makeGraph(
-          pick,
-          result.data.userData,
-        );
+        const newGraph = makeGraph(pick, result.data.userData);
         setGraph(newGraph);
 
         // if (result.data.followers.length === 0) {
@@ -112,110 +109,102 @@ function MacroGraph() {
 
   // IN THIS CASE, THIS WILL RESULT IN AN ARRAY OF DATA EQUAL TO THE OG dailyCalories array
   // use some if statements to determine dailyType based on pick
-  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
   const dailyType = (pick, getdata) => {
-    const actualGraphData = []
-    let pickQuantity = ""
+    const actualGraphData = [];
+    let pickQuantity = "";
     let yAxis = [];
     let graphLabel = "";
     for (let i = 0; i < days.length; i++) {
       if (pick === "Calories") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (Calories)": 2000,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Daily Recommended Intake (Calories)"
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (Calories)": 2000,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Daily Recommended Intake (Calories)";
         yAxis = [0, 4000];
         graphLabel = "Calories consumed / day";
       } else if (pick === "Fat") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (grams)": 45,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Daily Recommended Intake (grams)"
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (grams)": 45,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Daily Recommended Intake (grams)";
         yAxis = [0, 200];
         graphLabel = "grams of fat consumed / day";
       } else if (pick === "Carbohydrates") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (grams)": 130,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Daily Recommended Intake (grams)"
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (grams)": 130,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Daily Recommended Intake (grams)";
         yAxis = [0, 400];
         graphLabel = "grams of carbohydrates consumed / day";
       } else if (pick === "Fiber") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (grams)": 31.5,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Daily Recommended Intake (grams)"
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (grams)": 31.5,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Daily Recommended Intake (grams)";
         yAxis = [0, 100];
         graphLabel = "grams of fiber consumed / day";
       } else if (pick === "Sugar") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Maximum Daily Recommended Intake (grams)": 48,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Maximum Daily Recommended Intake (grams)"
+        actualGraphData.push({
+          name: days[i],
+          "Maximum Daily Recommended Intake (grams)": 48,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Maximum Daily Recommended Intake (grams)";
         yAxis = [0, 250];
         graphLabel = "grams of sugar consumed / day";
       } else if (pick === "Protein") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (grams)": 51,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Daily Recommended Intake (grams)"
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (grams)": 51,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Daily Recommended Intake (grams)";
         yAxis = [0, 300];
         graphLabel = "grams of protein consumed / day";
       } else if (pick === "Cholesterol") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Maximum Daily Recommended Intake (milligrams)": 300,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Maximum Daily Recommended Intake (milligrams)"
+        actualGraphData.push({
+          name: days[i],
+          "Maximum Daily Recommended Intake (milligrams)": 300,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Maximum Daily Recommended Intake (milligrams)";
         yAxis = [0, 600];
         graphLabel = "milligrams of cholesterol consumed / day";
       } else if (pick === "Sodium") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Maximum Daily Recommended Intake (milligrams)": 1500,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Maximum Daily Recommended Intake (milligrams)"
+        actualGraphData.push({
+          name: days[i],
+          "Maximum Daily Recommended Intake (milligrams)": 1500,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Maximum Daily Recommended Intake (milligrams)";
         yAxis = [0, 7500];
         graphLabel = "milligrams of sodium consumed / day";
       }
-    };
-    return [actualGraphData, pickQuantity, yAxis, graphLabel]
+    }
+    return [actualGraphData, pickQuantity, yAxis, graphLabel];
   };
 
   // Recharts function for bar graph
   const makeGraph = (pick, getdata, followers) => {
-    const values = dailyType(pick, getdata)
+    const values = dailyType(pick, getdata);
     let dailyPick = values[0];
     let pickQuantity = values[1];
     let yAxis = values[2];
@@ -634,7 +623,7 @@ function MacroGraph() {
         {/* <br></br> */}
         {pick && graph}
       </div>
-      <div id="carousel">
+      <div className="carousel">
         <h2>Discover People</h2>
         {state.users && <CoolCarousel recipes={state.users} />}
       </div>
