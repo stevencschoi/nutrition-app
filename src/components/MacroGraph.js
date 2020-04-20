@@ -56,8 +56,6 @@ function MacroGraph() {
       1,
       11
     );
-
-    console.log("start", start, "end", end, "pick", pick);
     axios
       .get(`/user/data?startDate=${start}&endDate=${end}&userChoice=${choice}`)
       .then((result) => {
@@ -83,6 +81,7 @@ function MacroGraph() {
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   const dailyType = (pick, getdata, followers) => {
+    console.log(getdata)
     const actualGraphData = []
     let pickQuantity = ""
     let yAxis = [];
@@ -257,26 +256,12 @@ function MacroGraph() {
               activeDot={{ r: 8 }}
             />
             <Line type="monotone" dataKey="You" stroke="#82ca9d" />
-
-
-
-
-
-            {/* {
-              data.followers.map((user) => {
-                const id = `${user.userId}`;
-                return (<Line type="monotone" dataKey={id} stroke="#000000" />)
-              })
-            } */}
-
-
-
-
-
-
-            <Line type="monotone" dataKey="1" stroke="#000000" />
-            <Line type="monotone" dataKey="7" stroke="#ff0000" />
-            {/* <Line type="monotone" dataKey="1" stroke="#000000" /> */}
+            {/* conditionally render follower lines on graph */}
+            {followers && followers.map((user) => {
+              let id = `${user.userId}`
+              let randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random() * 16)).toString(16); });
+              return (<Line type="monotone" dataKey={id} stroke={randomColor} />)
+            })}
           </LineChart>
         </div>
       </div>
@@ -309,22 +294,3 @@ function MacroGraph() {
   );
 }
 export default MacroGraph;
-
-// return (
-//   <>
-//     {pick && (
-//       <Dropdown
-//         text={pick}
-//         options={options}
-//         selection
-//         onChange={(e, { value }) => setPick(value)}
-//       />
-//     )}
-//     <div class="nutritional-data">
-//       <h2>Weekly consumption of {pick} per day</h2>
-//       <br></br>
-//       {pick && graph}
-//     </div>
-//     {state.users && <CoolCarousel recipes={state.users} />}
-//   </>
-// );
