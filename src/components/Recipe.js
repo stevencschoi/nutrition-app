@@ -160,20 +160,6 @@ export default function Recipe({ props, match }) {
             </div>
           </div>
           <div className="instruction-info">
-            <div className="instructions-and-link">
-              <div className="ingredients">
-                <RecipeIngredient foodIngredient={foodIngredient} />
-              </div>
-              <div className="recipe-link">
-                {foodIngredient && (
-                  <a href={foodIngredient.hits[0].recipe.url}>
-                    {" "}
-                    <h3>Click here for full instructions</h3>
-                  </a>
-                )}
-              </div>
-            </div>
-
             <div className="addtoschedule">
               <div>
                 <h3>
@@ -212,13 +198,26 @@ export default function Recipe({ props, match }) {
               )}
             </div>
 
-            <div className="prep-time">
-              {foodIngredient &&
-                foodIngredient.hits[0].recipe.totalTime != 0 && (
-                  <h2>
-                    Prep time: {foodIngredient.hits[0].recipe.totalTime} mins
-                  </h2>
+            <div className="instructions-and-link">
+              <div className="ingredients">
+                <RecipeIngredient foodIngredient={foodIngredient} />
+              </div>
+              <div className="prep-time">
+                {foodIngredient &&
+                  foodIngredient.hits[0].recipe.totalTime != 0 && (
+                    <h2>
+                      Prep time: {foodIngredient.hits[0].recipe.totalTime} mins
+                    </h2>
+                  )}
+              </div>
+              <div className="recipe-link">
+                {foodIngredient && (
+                  <a href={foodIngredient.hits[0].recipe.url}>
+                    {" "}
+                    <h3>Click here for full instructions</h3>
+                  </a>
                 )}
+              </div>
             </div>
           </div>
         </div>

@@ -55,75 +55,84 @@ const FavouritesItem1 = (props) => {
   return (
     <>
       <div className="FavouritesItem">
-        <div className="favourite-main">
-          <div className="image-and-drop-container">
-            <div className="image-container">
-              <a href={`/recipe/${props.name}`}>
-                <img src={props.image_url} />
-              </a>
-              {props.id && (
-                <button className="delete-button-image" onClick={deleteFav}>
-                  <i class="far fa-trash-alt"></i>
-                </button>
-              )}
-            </div>
-          </div>
-          <div>
-            <RecipeGraph
-              calories={props.calories}
-              fat_in_g={props.fat_in_g}
-              carbs_in_g={props.carbs_in_g}
-              protein_in_g={props.protein_in_g}
-              sugar_in_g={props.sugar_in_g}
-              fiber_in_g={props.fiber_in_g}
-              cholesterol_in_mg={props.cholesterol_in_mg}
-              sodium_in_mg={props.sodium_in_mg}
-              image_url={props.image_url}
-              name={props.name}
-            />
-          </div>
-        </div>
-        <div className="dropdown-container">
-          <div className="selectContainer">
-            <div className="selectPosition">
-              <MealCalendar
-                date={date}
-                onChange={(e) => setDate(e.target.value)}
-              />
-              <div>
-                {date && (
-                  <Dropdown
-                    options={options}
-                    selection
-                    onChange={(e, { value }) => setMeal(value)}
-                  />
+        <div className="white-container">
+          <div className="favourite-main">
+            <div className="image-and-drop-container">
+              <div className="image-container">
+                <a href={`/recipe/${props.name}`}>
+                  <img src={props.image_url} />
+                </a>
+                {props.id && (
+                  <button className="delete-button-image" onClick={deleteFav}>
+                    <i class="far fa-trash-alt"></i>
+                  </button>
                 )}
               </div>
-              {date && meal && (
-                <div className="fav-button-container">
-                  <div className="add">
-                    <Button
-                      onClick={() => {
-                        addRecipeToDay(props.id, date, meal);
-                        setMeal(null);
-                      }}
-                    >
-                      Add
-                    </Button>
-                  </div>
+            </div>
+            <div>
+              <RecipeGraph
+                calories={props.calories}
+                fat_in_g={props.fat_in_g}
+                carbs_in_g={props.carbs_in_g}
+                protein_in_g={props.protein_in_g}
+                sugar_in_g={props.sugar_in_g}
+                fiber_in_g={props.fiber_in_g}
+                cholesterol_in_mg={props.cholesterol_in_mg}
+                sodium_in_mg={props.sodium_in_mg}
+                image_url={props.image_url}
+                name={props.name}
+              />
+            </div>
+          </div>
+          <div className="meal-plan-container">
+            <div className="plan-title">
+              <h3>
+                <i class="far fa-calendar-alt"></i> Add to Your Meal Plan
+              </h3>
+            </div>
+            <div className="dropdown-container">
+              <div className="selectContainer">
+                <div className="selectPosition">
+                  <MealCalendar
+                    date={date}
+                    onChange={(e) => setDate(e.target.value)}
+                  />
                   <div>
-                    <button
-                      className="delete-button"
-                      onClick={() => {
-                        setDate(null);
-                        setMeal(null);
-                      }}
-                    >
-                      Cancel
-                    </button>
+                    {date && (
+                      <Dropdown
+                        options={options}
+                        selection
+                        onChange={(e, { value }) => setMeal(value)}
+                      />
+                    )}
                   </div>
+                  {date && meal && (
+                    <div className="fav-button-container">
+                      <div className="add">
+                        <Button
+                          onClick={() => {
+                            addRecipeToDay(props.id, date, meal);
+                            setMeal(null);
+                          }}
+                        >
+                          Add
+                        </Button>
+                      </div>
+                      <div>
+                        <button
+                          className="delete-button"
+                          onClick={() => {
+                            setDate(null);
+                            setMeal(null);
+                          }}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>

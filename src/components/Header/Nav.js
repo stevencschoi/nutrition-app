@@ -32,7 +32,7 @@ function Nav() {
         </Link>
       </div>
       {user && (
-        <div id="logged-user">
+        <div className="logged-user">
           Logged in as {user}
           <Logout setUser={setUser} />
         </div>
