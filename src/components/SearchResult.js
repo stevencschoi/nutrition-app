@@ -6,10 +6,10 @@ function SearchResult(props) {
   return (
     <div class="search-result">
       <Link to={`/ingredient/${props.id}/${props.label}`}>
-        <img class="rounded-circle" src={props.image} />
+        <img src={props.image} />
       </Link>
       <Link to={`/ingredient/${props.id}/${props.label}`}>
-        <h4 className="legend">{props.label}</h4>
+        <h4>{props.label}</h4>
       </Link>
     </div>
   );

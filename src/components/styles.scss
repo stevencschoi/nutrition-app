@@ -148,14 +148,14 @@ body,
 // start of searchbar styling
 
 #cover {
-  width: 70vw;
+  width: 50vw;
   padding: 25px;
   margin: 2% auto;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 10px;
   // border: solid 1px $primary-colour;
   transform: scale(0.6);
-  box-shadow: 2px 2px 2px 2px rgba(10, 46, 26, 0.75);
+  box-shadow: 2px 2px 2px 2px rgba(10, 46, 34, 0.75);
   .tb {
     display: table;
     width: 100%;
@@ -183,7 +183,7 @@ body,
     color: $primary-colour;
     width: 100%;
     height: 65px;
-    font-size: 75px;
+    font-size: 50px;
     text-align: center;
     background-color: transparent;
     outline: none;
@@ -284,38 +284,37 @@ body,
 }
 
 .search {
-  margin: 5%;
+  margin: 0.5rem 35rem;
   .search-result {
-    margin: 10px 20%;
+    margin: 1.5rem 3rem;
     display: flex;
     align-items: center;
-    background-color: rgba(106, 150, 150, 0.75);
-    border-radius: 10px;
-    border: solid 2px black;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
     padding: 10px;
     a:hover {
       text-decoration: none;
     }
   }
   img {
-    height: 12vh;
-    width: 12vh;
-    margin: 0 10px;
+    height: 6vh;
+    width: 6vh;
+    margin: 0.25rem 1rem;
+    border-radius: 5px;
     // padding: 5px;
-    background-color: $secondary-colour;
-    border: solid 2px black;
+    // background-color: $secondary-colour;
+    // border: solid 2px black;
   }
   h4 {
-    font-size: 25px;
+    font-size: 1.5rem;
     font-family: $primary-font;
-    color: white;
-    border: solid 2px black;
-    border-radius: 15px;
-    background-color: $primary-colour;
+    color: $primary-colour;
+    // border-radius: 15px;
+    // background-color: $primary-colour;
     padding: 10px;
     margin: 0;
     &:hover {
-      border: solid 2px white;
+      // border: solid 2px white;
     }
   }
 }
