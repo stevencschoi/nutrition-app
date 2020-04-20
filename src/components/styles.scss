@@ -315,6 +315,14 @@ body,
   }
 }
 
+.button-and-graph-container {
+  margin-top: 1rem;
+  width: 85%;
+  background-color: #ffffff;
+  border: $primary-colour solid 1px;
+  border-radius: 5px;
+}
+
 .graph-carousel-container {
   display: flex;
   flex-direction: column;
@@ -377,5 +385,41 @@ body,
   h2 {
     font-family: $primary-font;
     color: $primary-colour;
+  }
+}
+
+.schedule-item {
+  width: 13vw;
+  .heading-title {
+    height: 8vh;
+  }
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // position: relative;
+  margin: 0;
+  padding: 0;
+  a {
+    position: relative;
+    img {
+      margin: 0;
+    }
+    button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: #a0d0ce;
+      color: white;
+      border-radius: 10px;
+      padding: 7px 13px;
+      border: 1px solid transparent;
+      font-weight: bold;
+      &:hover {
+        background-color: salmon;
+      }
+    }
   }
 }

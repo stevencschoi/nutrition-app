@@ -56,6 +56,20 @@ const FavouritesItem1 = (props) => {
     <>
       <div className="FavouritesItem">
         <div className="favourite-main">
+          <div>
+            <RecipeGraph
+              calories={props.calories}
+              fat_in_g={props.fat_in_g}
+              carbs_in_g={props.carbs_in_g}
+              protein_in_g={props.protein_in_g}
+              sugar_in_g={props.sugar_in_g}
+              fiber_in_g={props.fiber_in_g}
+              cholesterol_in_mg={props.cholesterol_in_mg}
+              sodium_in_mg={props.sodium_in_mg}
+              image_url={props.image_url}
+              name={props.name}
+            />
+          </div>
           <div className="image-and-drop-container">
             <div className="image-container">
               <a href={`/recipe/${props.name}`}>
@@ -74,10 +88,9 @@ const FavouritesItem1 = (props) => {
                   onChange={(e) => setDate(e.target.value)}
                 />
 
-                <div class="fav-button-container">
+                <div>
                   {date && (
                     <Dropdown
-                      className="width"
                       options={options}
                       selection
                       onChange={(e, { value }) => setMeal(value)}
@@ -93,7 +106,7 @@ const FavouritesItem1 = (props) => {
                           setMeal(null);
                         }}
                       >
-                        <i class="far fa-calendar-alt"></i> Add
+                        Add
                       </Button>
                     </div>
                     <div>
@@ -111,22 +124,6 @@ const FavouritesItem1 = (props) => {
                 )}
               </div>
             </div>
-          </div>
-
-          {/* <h1 className="FavouritesTitle">{props.name}</h1> */}
-          <div>
-            <RecipeGraph
-              calories={props.calories}
-              fat_in_g={props.fat_in_g}
-              carbs_in_g={props.carbs_in_g}
-              protein_in_g={props.protein_in_g}
-              sugar_in_g={props.sugar_in_g}
-              fiber_in_g={props.fiber_in_g}
-              cholesterol_in_mg={props.cholesterol_in_mg}
-              sodium_in_mg={props.sodium_in_mg}
-              image_url={props.image_url}
-              name={props.name}
-            />
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-$primary-colour: #243a2f;
+$primary-colour: #2c6b68;
 $secondary-colour: #ffffff;
 $accent-colour: #a0acb9;
 $primary-font: monospace, cursive;
@@ -16,17 +16,19 @@ $primary-font: monospace, cursive;
     border-radius: 10px;
   }
   img {
-    border-radius: 20px;
-    max-height: 150px;
+    border-radius: 10px;
+    max-height: 15vh;
   }
   button {
     margin-top: 2%;
-    background-color: salmon;
+    background-color: #a0d0ce;
+    color: #ffffff;
     border: 1px solid transparent;
     border-radius: 5px;
     padding: 2% 3%;
-    &:hover , button:hover i{
-      background-color: red;
+    &:hover,
+    button:hover i {
+      background-color: salmon;
     }
   }
 }
