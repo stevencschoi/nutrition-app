@@ -56,6 +56,18 @@ const FavouritesItem1 = (props) => {
     <>
       <div className="FavouritesItem">
         <div className="favourite-main">
+          <div className="image-and-drop-container">
+            <div className="image-container">
+              <a href={`/recipe/${props.name}`}>
+                <img src={props.image_url} />
+              </a>
+              {props.id && (
+                <button className="delete-button-image" onClick={deleteFav}>
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              )}
+            </div>
+          </div>
           <div>
             <RecipeGraph
               calories={props.calories}
@@ -70,59 +82,48 @@ const FavouritesItem1 = (props) => {
               name={props.name}
             />
           </div>
-          <div className="image-and-drop-container">
-            <div className="image-container">
-              <a href={`/recipe/${props.name}`}>
-                <img src={props.image_url} />
-              </a>
-              {props.id && (
-                <button className="delete-button-image" onClick={deleteFav}>
-                  <i class="far fa-trash-alt"></i>
-                </button>
-              )}
-            </div>
-            <div className="selectContainer">
-              <div className="selectPosition">
-                <MealCalendar
-                  date={date}
-                  onChange={(e) => setDate(e.target.value)}
-                />
-
-                <div>
-                  {date && (
-                    <Dropdown
-                      options={options}
-                      selection
-                      onChange={(e, { value }) => setMeal(value)}
-                    />
-                  )}
-                </div>
-                {date && meal && (
-                  <div className="fav-button-container">
-                    <div className="add">
-                      <Button
-                        onClick={() => {
-                          addRecipeToDay(props.id, date, meal);
-                          setMeal(null);
-                        }}
-                      >
-                        Add
-                      </Button>
-                    </div>
-                    <div>
-                      <button
-                        className="delete-button"
-                        onClick={() => {
-                          setDate(null);
-                          setMeal(null);
-                        }}
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </div>
+        </div>
+        <div className="dropdown-container">
+          <div className="selectContainer">
+            <div className="selectPosition">
+              <MealCalendar
+                date={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+              <div>
+                {date && (
+                  <Dropdown
+                    options={options}
+                    selection
+                    onChange={(e, { value }) => setMeal(value)}
+                  />
                 )}
               </div>
+              {date && meal && (
+                <div className="fav-button-container">
+                  <div className="add">
+                    <Button
+                      onClick={() => {
+                        addRecipeToDay(props.id, date, meal);
+                        setMeal(null);
+                      }}
+                    >
+                      Add
+                    </Button>
+                  </div>
+                  <div>
+                    <button
+                      className="delete-button"
+                      onClick={() => {
+                        setDate(null);
+                        setMeal(null);
+                      }}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -140,10 +140,15 @@ export default function Recipe({ props, match }) {
       <div className="recipeinfo">
         <div className="things">
           <div>
-            {foodIngredient && <img src={foodIngredient.hits[0].recipe.image} />}
+            {foodIngredient && (
+              <img src={foodIngredient.hits[0].recipe.image} />
+            )}
             <div>
               {foodIngredient && (
-                <a href={foodIngredient.hits[0].recipe.url}> Full Instructions</a>
+                <a href={foodIngredient.hits[0].recipe.url}>
+                  {" "}
+                  Full Instructions
+                </a>
               )}
               {foodName && foodIngredient && (
                 <Button onClick={checkIfInDatabase}>
@@ -162,29 +167,34 @@ export default function Recipe({ props, match }) {
       </div>
       <div className="addtoschedule">
         <div>
-        <h4>
-          Pick a day add in schedule
-        </h4>
-        <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
-        {date && (
-          <Dropdown
-            options={options}
-            selection
-            onChange={(e, { value }) => setMeal(value)}
-          />
-        )}
+          <h3>
+            <i class="far fa-calendar-alt"></i> Add to Your Meal Plan
+          </h3>
+          <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
+          {date && (
+            <Dropdown
+              options={options}
+              selection
+              onChange={(e, { value }) => setMeal(value)}
+            />
+          )}
         </div>
-        {date && meal &&(
+        {date && meal && (
           <div className="flex">
             <div className="add">
               <Button onClick={checkIfInDatabase}>
-                <i class="far fa-calendar-alt"></i> Add</Button>
+                <i class="far fa-calendar-alt"></i> Add
+              </Button>
             </div>
             <div className="cancel">
-              <Button onClick={() => {
-                setDate(null)
-                setMeal(null)
-                }}>Cancel</Button>
+              <Button
+                onClick={() => {
+                  setDate(null);
+                  setMeal(null);
+                }}
+              >
+                Cancel
+              </Button>
             </div>
           </div>
         )}
