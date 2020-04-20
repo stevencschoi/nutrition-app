@@ -150,14 +150,6 @@ export default function Recipe({ props, match }) {
                     <i class="far fa-heart"></i>
                   </Button>
                 )}
-                <div className="recipe-link">
-                  {foodIngredient && (
-                    <a href={foodIngredient.hits[0].recipe.url}>
-                      {" "}
-                      Click here for instructions
-                    </a>
-                  )}
-                </div>
               </div>
               <div class="nutritional-data">
                 <h2>
@@ -167,53 +159,69 @@ export default function Recipe({ props, match }) {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="recipeinfo">
-        <div className="things">
-          <div></div>
-        </div>
-        <div className="ingredient">
-          <RecipeIngredient foodIngredient={foodIngredient} />
-          {foodIngredient && foodIngredient.hits[0].recipe.totalTime != 0 && (
-            <h5>Prep time: {foodIngredient.hits[0].recipe.totalTime} mins</h5>
-          )}
-        </div>
-      </div>
-      <div className="addtoschedule">
-        <div>
-          <h3>
-            <i class="far fa-calendar-alt"></i> Add to Your Meal Plan
-          </h3>
-          <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
-          {date && (
-            <Dropdown
-              options={options}
-              selection
-              onChange={(e, { value }) => setMeal(value)}
-            />
-          )}
-        </div>
-        {date && meal && (
-          <div className="flex">
-            <div className="add">
-              <Button onClick={checkIfInDatabase}>
-                <i class="far fa-calendar-alt"></i> Add
-              </Button>
+          <div className="instruction-info">
+            <div className="instructions-and-link">
+              <div className="ingredients">
+                <RecipeIngredient foodIngredient={foodIngredient} />
+              </div>
+              <div className="recipe-link">
+                {foodIngredient && (
+                  <a href={foodIngredient.hits[0].recipe.url}>
+                    {" "}
+                    <h3>Click here for full instructions</h3>
+                  </a>
+                )}
+              </div>
             </div>
-            <div className="cancel">
-              <Button
-                onClick={() => {
-                  setDate(null);
-                  setMeal(null);
-                }}
-              >
-                Cancel
-              </Button>
+
+            <div className="addtoschedule">
+              <div>
+                <h3>
+                  <i class="far fa-calendar-alt"></i> Add to Your Meal Plan
+                </h3>
+                <MealCalendar
+                  date={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />
+                {date && (
+                  <Dropdown
+                    options={options}
+                    selection
+                    onChange={(e, { value }) => setMeal(value)}
+                  />
+                )}
+              </div>
+              {date && meal && (
+                <div className="flex">
+                  <div className="add">
+                    <Button onClick={checkIfInDatabase}>
+                      <i class="far fa-calendar-alt"></i> Add
+                    </Button>
+                  </div>
+                  <div className="cancel">
+                    <Button
+                      onClick={() => {
+                        setDate(null);
+                        setMeal(null);
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="prep-time">
+              {foodIngredient &&
+                foodIngredient.hits[0].recipe.totalTime != 0 && (
+                  <h2>
+                    Prep time: {foodIngredient.hits[0].recipe.totalTime} mins
+                  </h2>
+                )}
             </div>
           </div>
-        )}
+        </div>
       </div>
     </>
   );

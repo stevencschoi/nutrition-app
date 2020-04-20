@@ -1,6 +1,7 @@
-$primary-colour: #243a2f;
+$primary-colour: #2c6b68;
 $secondary-colour: #ffffff;
 $accent-colour: #ffde4d;
+$third-colour: #67b3b0;
 $primary-font: monospace, cursive;
 
 .recipe-container {
@@ -10,160 +11,140 @@ $primary-font: monospace, cursive;
   align-items: center;
   // background-color: $secondary-colour;
   width: 100%;
-}
-
-.including-link {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 85%;
-  margin: 2% auto;
-  background-color: $secondary-colour;
-  // border: $primary-colour solid 1px;
-  border-radius: 10px;
-  button {
-    margin-top: 2rem;
-  }
-}
-
-.recipe-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  // width: 85%;
-}
-
-.recipe-image-and-graph {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $secondary-colour;
-  width: 100%;
-
-  .recipe-image {
+  .including-link {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
-    img {
-      border-radius: 5px;
-      max-width: 100%;
-      margin: 2rem;
-    }
-    button {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: transparent;
-      color: #ffde4d;
-      border-radius: 10px;
-      padding: 7px 13px;
-      border: 1px solid transparent;
-      font-weight: bold;
-      font-size: 1.6rem;
-      &:hover {
-        color: salmon;
-      }
-    }
-    .recipe-link {
-      font-family: $primary-font;
-      font-size: 1.6rem;
-    }
-  }
-}
-
-.recipeinfo {
-  margin-top: 3%;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .things {
-    margin-right: 15%;
-    img {
-      border-radius: 10px;
-      margin-bottom: 3%;
-      max-height: 16rem;
-    }
-    div div {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
-    a {
-      color: black;
-      background-color: rgba(71, 112, 157, 0.75);
-      padding: 2px 5px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      &:hover {
-        color: wheat;
-        border: 1px solid black;
-      }
-    }
-    button {
-      background-color: transparent;
-      border: none;
-      i {
-        font-size: 1.5rem;
-        // color: red;
-      }
-      &:active {
-        color: red;
-      }
-    }
-  }
-  .ingredient {
-    text-shadow: 1px 1px 1px white;
-    li {
-      margin: 1% 0;
-      text-align: left;
-    }
-  }
-}
-.button-container {
-  margin-top: 1rem;
-}
-
-.ingredient-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.addtoschedule {
-  margin: 1.5% 0;
-  display: flex;
-  justify-content: center;
-  h4 {
-    text-shadow: 1px 1px 1px white;
-  }
-  .flex {
-    display: flex;
-    align-items: flex-end;
-  }
-  button {
-    border: 1px solid transparent;
+    align-items: center;
+    width: 85%;
+    margin: 2% auto;
+    background-color: $secondary-colour;
+    // border: $primary-colour solid 1px;
     border-radius: 10px;
-    padding: 5px 10px;
-    margin: 0 1rem;
-    color: white;
-  }
-  .add button {
-    background-color: rgb(28, 196, 42);
-    &:hover {
-      color: rgb(28, 196, 42);
-      background-color: white;
-      border: 1px solid rgb(28, 196, 42);
+    button {
+      // font-weight: 700;
+      // font-size: 1.3rem;
+      margin-top: 2rem;
+      padding: 7px 13px;
+    }
+    .recipe-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // width: 85%;
+      .recipe-image-and-graph {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $secondary-colour;
+        width: 100%;
+
+        .recipe-image {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          position: relative;
+          img {
+            border-radius: 5px;
+            max-width: 100%;
+            margin: 2rem;
+          }
+          button {
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            background: transparent;
+            color: #ffffff;
+            border-radius: 10px;
+            padding: 7px 13px;
+            border: 1px solid transparent;
+            font-weight: bold;
+            font-size: 1.6rem;
+            &:hover {
+              color: salmon;
+            }
+          }
+        }
+      }
     }
   }
-  .cancel button {
-    background-color: salmon;
-    &:hover {
-      background-color: red;
+  .instruction-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #ffffff;
+    width: 100%;
+    h2 {
+      color: $primary-colour;
+    }
+    .instructions-and-link {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      // width: 60%;
+      .ingredients {
+        li {
+          font-size: 1.2rem;
+          list-style: lower-roman;
+        }
+      }
+      .recipe-link {
+        font-family: $primary-font;
+        font-size: 1.6rem;
+        margin-bottom: 3em;
+      }
+    }
+
+    .addtoschedule {
+      // font-family: $primary-font;
+      // margin: 1.5% 0;
+      display: flex;
+      flex-direction: column;
+      // justify-content: center;
+      h3 {
+        // font-family: $primary-font;
+        font-size: 1.5rem;
+        font-family: $primary-font;
+        color: $primary-colour;
+      }
+
+      .flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .add button {
+          display: inline-block;
+          background-color: #007bff;
+          color: white;
+          border-radius: 10px;
+          padding: 7px 13px;
+          border: 1px solid transparent;
+          font-weight: bold;
+          // margin-top: 0.5rem;
+          &:hover {
+            background-color: salmon;
+            color: $secondary-colour;
+            // border: 1px solid $third-colour;
+          }
+        }
+        .cancel button {
+          background-color: #a0d0ce;
+          color: white;
+          border-radius: 10px;
+          padding: 7px 13px;
+          border: 1px solid transparent;
+          font-weight: bold;
+          margin-left: 1em;
+          &:hover {
+            background-color: salmon;
+          }
+        }
+      }
+    }
+
+    .prep-time {
+      // width: 15vw;
     }
   }
 }
