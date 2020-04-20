@@ -380,6 +380,17 @@ body,
   font-family: $primary-font;
 }
 
+.ingredient-and-recipe-graph-container {
+  display: flex;
+  height: 20em;
+}
+
+#macro-graph-container {
+  height: 22em;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
 .carousel {
   border: $primary-colour solid 1px;
   h2 {
