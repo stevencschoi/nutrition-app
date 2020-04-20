@@ -91,29 +91,6 @@ function MacroGraph() {
       .catch((error) => console.error(error));
   };
 
-  // const days1 = ["Sunday", .....]
-  // const label = { "Daily Recommended Intake (Calories)": 2000 }
-
-  // const abc = () => {
-  //   const realdataforthegraph = []
-  //   if (dailyCalories) {
-  //     i
-  //     days1.length
-  //     return realdataforthegraph
-  //   }
-  // }
-  //
-  // name: followers[i] ? getdata[i].sum : 0
-
-  // if (pick === "Calories") {
-  //   dailyPick = dailyCalories;
-  //   pickQuantity = "Daily Recommended Intake (Calories)";
-  //   yAxis = [0, 4000];
-  //   graphLabel = "Calories consumed / day";
-  // }
-
-  // IN THIS CASE, THIS WILL RESULT IN AN ARRAY OF DATA EQUAL TO THE OG dailyCalories array
-  // use some if statements to determine dailyType based on pick
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   const dailyType = (pick, getdata, followers) => {
@@ -227,9 +204,7 @@ function MacroGraph() {
     let yAxis = values[2];
     let graphLabel = values[3];
 
-    return (
-      
-      
+    return (   
       <ResponsiveContainer width="75%" height="100%">
 
           <LineChart
@@ -245,7 +220,16 @@ function MacroGraph() {
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
-            <YAxis label ={{ value: graphLabel, angle: -90, position: 'insideBottomLeft'}} type="number" domain={yAxis} />
+            <YAxis 
+              label={{ 
+                value: graphLabel,
+                dx: -30,
+                angle: -90,
+                position: 'center',
+              }} 
+              type="number" 
+              domain={yAxis} 
+            />
             <Tooltip />
             <Legend />
             <Line
@@ -256,14 +240,12 @@ function MacroGraph() {
             />
             <Line type="monotone" dataKey="You" stroke="#82ca9d" />
 
-
             {/* {data && data.followers.forEach(element => {
               console.log(element)
               return (
                 <Line type="monotone" dataKey={element.userId.toString()} stroke="#000000" />
               )
             })} */}
-
 
             {/* {data && (
               data.followers.map(user => {
@@ -275,112 +257,30 @@ function MacroGraph() {
               })
             )} */}
 
-
             {/* <Line type="monotone" dataKey="1" stroke="#000000" /> */}
+
           </LineChart>
           </ResponsiveContainer>
-  
     );
   };
-
-//   return (
-//     <div class="graph-container">
-//       <div class="graph">
-//         {/* <p class="graph-label">{graphLabel}</p> */}
-//         {/* <ResponsiveContainer width={700} height="80%"> */}
-
-//         <LineChart
-//           width={750}
-//           height={250}
-//           data={dailyPick}
-//           margin={{
-//             top: 5,
-//             right: 30,
-//             left: 20,
-//             bottom: 5,
-//           }}
-//         >
-//           <CartesianGrid strokeDasharray="3 3" />
-//           <XAxis dataKey="name" />
-//           <YAxis label={{ value: graphLabel, angle: -90, position: 'insideBottomLeft' }} type="number" domain={yAxis} />
-//           <Tooltip />
-//           <Legend />
-//           <Line
-//             type="monotone"
-//             dataKey={pickQuantity}
-//             stroke="#8884d8"
-//             activeDot={{ r: 8 }}
-//           />
-//           <Line type="monotone" dataKey="You" stroke="#82ca9d" />
-
-
-//           {/* {data && data.followers.forEach(element => {
-//               console.log(element)
-//               return (
-//                 <Line type="monotone" dataKey={element.userId.toString()} stroke="#000000" />
-//               )
-//             })} */}
-
-
-//           {/* {data && (
-//               data.followers.map(user => {
-//                 // const follower = user.userId.toString()
-//                 // console.log("YOOOOO", follower)
-//                 return (
-//                   <Line type="monotone" dataKey={user.userId.toString()} stroke="#000000" />
-//                 )
-//               })
-//             )} */}
-
-
-//           {/* <Line type="monotone" dataKey="1" stroke="#000000" /> */}
-//         </LineChart>
-//         {/* </ResponsiveContainer> */}
-//       </div>
-//     </div>
-//   );
-// };
-
-
-
-
-
-
-
-
-
-
-
-
-
   return (
     <>
-
-
-
-
-      {/* <div class="nutritional-data"> */}
-        <h2>
-          Weekly consumption of{" "}
-          {pick && (
-            <Dropdown
-              compact
-              text={pick}
-              options={options}
-              selection
-              onChange={(e, { value }) => setPick(value)}
-            />
-          )}{" "}
-          per day
-        </h2>
-      <div id="macro-graph" style={{ height: 20 + 'em' }}>
+      <h2>
+        Weekly consumption of{" "}
+        {pick && (
+          <Dropdown
+            compact
+            text={pick}
+            options={options}
+            selection
+            onChange={(e, { value }) => setPick(value)}
+          />
+        )}{" "}
+        per day
+      </h2>
+      <div id="macro-graph-container">
           {pick && graph}
         </div>
-      {/* </div> */}
-
-
-
-
       <div id="carousel">
         <h2>Discover People</h2>
         {state.users && <CoolCarousel recipes={state.users} />}
@@ -389,22 +289,3 @@ function MacroGraph() {
   );
 }
 export default MacroGraph;
-
-// return (
-//   <>
-//     {pick && (
-//       <Dropdown
-//         text={pick}
-//         options={options}
-//         selection
-//         onChange={(e, { value }) => setPick(value)}
-//       />
-//     )}
-//     <div class="nutritional-data">
-//       <h2>Weekly consumption of {pick} per day</h2>
-//       <br></br>
-//       {pick && graph}
-//     </div>
-//     {state.users && <CoolCarousel recipes={state.users} />}
-//   </>
-// );

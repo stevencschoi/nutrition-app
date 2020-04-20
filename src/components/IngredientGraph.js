@@ -4,12 +4,10 @@ import { Redirect } from "react-router";
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer
 } from "recharts";
 
@@ -66,30 +64,41 @@ function IngredientGraph(props) {
       },
     ];
     return (
-      <div id="ingredient-graph" style={{ height: 20 + 'em' }}>
-         
+      // responsive containers need a parent container to set dimensions
+      <div class="ingredient-and-recipe-graph-container" >
         <ResponsiveContainer width="55%" height="100%">
-
           <BarChart width={500} height={200} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" style={{ fontFamily: 'monospace', fill: '#243a2f' }} />
-            <YAxis label={{ value: 'grams / 100 grams', dx: -5, angle: -90, position: 'center', fontFamily: 'monospace', fill: '#243a2f' }} type="number" />
+            <XAxis dataKey="name" />
+            <YAxis 
+            label={{ 
+                value: 'grams / 100 grams', 
+                dx: -5, 
+                angle: -90, 
+                position: 'center', 
+            }}
+            type="number" />
             <Tooltip />
             <Bar dataKey="grams / 100 grams" />
           </BarChart>
-          </ResponsiveContainer>
-    
+        </ResponsiveContainer>
         <ResponsiveContainer width="20%" height="100%">
-
           <BarChart width={240} height={200} data={data2}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" style={{ fontFamily: 'monospace', fill: '#243a2f' }} />
-            <YAxis label={{ value: 'milligrams / 100 grams', dx: -10, angle: -90, position: 'center', fontFamily: 'monospace', fill: '#243a2f' }} type="number" />
+            <XAxis dataKey="name" />
+            <YAxis 
+              label={{ 
+                value: 'milligrams / 100 grams', 
+                dx: -10, 
+                angle: -90, 
+                position: 'center', 
+              }} 
+              type="number"
+            />
             <Tooltip />
             <Bar dataKey="milligrams / 100 grams" />
           </BarChart>
           </ResponsiveContainer>
-      
       </div>
     );
   };
