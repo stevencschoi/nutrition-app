@@ -279,7 +279,7 @@ body,
 }
 
 .search {
-  margin-top: 5px;
+  margin: 5%;
   .search-result {
     margin: 10px 20%;
     display: flex;
@@ -316,7 +316,7 @@ body,
 }
 
 .button-and-graph-container {
-  margin-top: 1rem;
+  margin: 3rem auto;
   width: 85%;
   background-color: #ffffff;
   border: $primary-colour solid 1px;
@@ -400,7 +400,7 @@ body,
 }
 
 .schedule-item {
-  width: 13vw;
+  width: 10vw;
   .heading-title {
     height: 8vh;
   }
@@ -410,27 +410,25 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
-  // position: relative;
+  position: relative;
   margin: 0;
   padding: 0;
-  a {
-    position: relative;
-    img {
-      margin: 0;
-    }
-    button {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background-color: #a0d0ce;
-      color: white;
-      border-radius: 10px;
-      padding: 7px 13px;
-      border: 1px solid transparent;
-      font-weight: bold;
-      &:hover {
-        background-color: salmon;
-      }
+
+  img {
+    margin: 0;
+  }
+  button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: #a0d0ce;
+    color: white;
+    border-radius: 10px;
+    padding: 7px 13px;
+    border: 1px solid transparent;
+    font-weight: bold;
+    &:hover {
+      background-color: salmon;
     }
   }
 }

@@ -15,7 +15,7 @@ const days = {
   5: "Friday",
   6: "Saturday",
   0: "Sunday",
-}
+};
 
 function Schedule() {
   const [currentDay, setCurrentDay] = useState(moment());
@@ -24,51 +24,57 @@ function Schedule() {
 
   // when currentDay state is updated, display that day's meal schedule
   useEffect(() => {
-    getDaySchedule(currentDay)
+    getDaySchedule(currentDay);
   }, [update]);
 
   const dayFomater = (num) => {
-    let copynum = num
-    const arr = []
-    for (let i = 0; i < 4; i++) {
+    let copynum = num;
+    const arr = [];
+    for (let i = 0; i < 7; i++) {
       if (copynum > 6) {
-        copynum = 0
+        copynum = 0;
       }
-      arr.push(copynum)
-      copynum++
+      arr.push(copynum);
+      copynum++;
     }
-    return arr
-  }
+    return arr;
+  };
 
   // make get request to server and map results to the page
   const getDaySchedule = (currentDate) => {
+    const start = currentDate.startOf("week");
 
-    let day = Number(currentDate.format("e"))
-    const newday = dayFomater(day)
-    const today = currentDate.clone()
+    let day = Number(start.format("e"));
+    const newday = dayFomater(day);
+    const today = start.clone();
     Promise.all([
       axios.get(`/day?date=${today.format("YYYY-MM-DD")}`),
-      axios.get(`/day?date=${today.add(1, 'day').format("YYYY-MM-DD")}`),
-      axios.get(`/day?date=${today.add(1, 'day').format("YYYY-MM-DD")}`),
-      axios.get(`/day?date=${today.add(1, 'day').format("YYYY-MM-DD")}`),
-    ])
-      .then((res) => {
-        const obj = {
-          [days[newday[0]]]: res[0].data,
-          [days[newday[1]]]: res[1].data,
-          [days[newday[2]]]: res[2].data,
-          [days[newday[3]]]: res[3].data,
-        }
-        console.log(obj)
-        setSchedule(obj)
-      })
+      axios.get(`/day?date=${today.add(1, "day").format("YYYY-MM-DD")}`),
+      axios.get(`/day?date=${today.add(1, "day").format("YYYY-MM-DD")}`),
+      axios.get(`/day?date=${today.add(1, "day").format("YYYY-MM-DD")}`),
+      axios.get(`/day?date=${today.add(1, "day").format("YYYY-MM-DD")}`),
+      axios.get(`/day?date=${today.add(1, "day").format("YYYY-MM-DD")}`),
+      axios.get(`/day?date=${today.add(1, "day").format("YYYY-MM-DD")}`),
+    ]).then((res) => {
+      const obj = {
+        [days[newday[0]]]: res[0].data,
+        [days[newday[1]]]: res[1].data,
+        [days[newday[2]]]: res[2].data,
+        [days[newday[3]]]: res[3].data,
+        [days[newday[4]]]: res[4].data,
+        [days[newday[5]]]: res[5].data,
+        [days[newday[6]]]: res[6].data,
+      };
+      console.log(obj);
+      setSchedule(obj);
+    });
   };
 
   const handledaypick = (day) => {
     // console.log("day", day)
     setCurrentDay(day);
-    getDaySchedule(day)
-  }
+    getDaySchedule(day);
+  };
 
   return (
     <>
@@ -79,19 +85,28 @@ function Schedule() {
         />
       </div>
       {/* <div>{currentDay.format("YYYY-MM-DD")}</div> */}
-      <div className="schedule">{Object.keys(schedule).map((item) => {
-        return (
-          <div>
-            <h2>{item}</h2>
-            {schedule[item].map((item) => {
-              const itemName = item.name;
-              const image = item.image_url;
-              const id = item.id;
-              return <ScheduleItem name={itemName} image={image} id={id} setUpdate={setUpdate}/>
-            })}
-          </div>
-        )
-      })}</div>
+      <div className="schedule">
+        {Object.keys(schedule).map((item) => {
+          return (
+            <div>
+              <h2>{item}</h2>
+              {schedule[item].map((item) => {
+                const itemName = item.name;
+                const image = item.image_url;
+                const id = item.id;
+                return (
+                  <ScheduleItem
+                    name={itemName}
+                    image={image}
+                    id={id}
+                    setUpdate={setUpdate}
+                  />
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }

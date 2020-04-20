@@ -3,12 +3,18 @@ $secondary-colour: #ffffff;
 $accent-colour: #a0acb9;
 $primary-font: monospace, cursive;
 
+.recipe-title {
+  font-family: $primary-font;
+  color: $primary-colour;
+}
+
 .recipeinfo {
   margin-top: 3%;
   font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
+
   .things {
     margin-right: 15%;
     img {
