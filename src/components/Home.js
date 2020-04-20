@@ -8,10 +8,10 @@ function Home() {
 
   return (
     <>
-      {!state.search && (
-        <div id="home">{/* <h2>Hello, {props.name}</h2> */}</div>
-      )}
-      <Searchbar fetchSearchResults={fetchSearchResults} />
+      <Searchbar
+        className="topmargin"
+        fetchSearchResults={fetchSearchResults}
+      />
       <div className="search">{state.search}</div>
     </>
   );

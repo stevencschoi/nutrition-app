@@ -115,85 +115,71 @@ function MacroGraph() {
         yAxis = [0, 4000];
         graphLabel = "Calories consumed / day";
       } else if (pick === "Fat") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (grams)": 45,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Daily Recommended Intake (grams)"
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (grams)": 45,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Daily Recommended Intake (grams)";
         yAxis = [0, 200];
         graphLabel = "grams of fat consumed / day";
       } else if (pick === "Carbohydrates") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (grams)": 130,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Daily Recommended Intake (grams)"
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (grams)": 130,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Daily Recommended Intake (grams)";
         yAxis = [0, 400];
         graphLabel = "grams of carbohydrates consumed / day";
       } else if (pick === "Fiber") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (grams)": 31.5,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Daily Recommended Intake (grams)"
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (grams)": 31.5,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Daily Recommended Intake (grams)";
         yAxis = [0, 100];
         graphLabel = "grams of fiber consumed / day";
       } else if (pick === "Sugar") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Maximum Daily Recommended Intake (grams)": 48,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Maximum Daily Recommended Intake (grams)"
+        actualGraphData.push({
+          name: days[i],
+          "Maximum Daily Recommended Intake (grams)": 48,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Maximum Daily Recommended Intake (grams)";
         yAxis = [0, 250];
         graphLabel = "grams of sugar consumed / day";
       } else if (pick === "Protein") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (grams)": 51,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Daily Recommended Intake (grams)"
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (grams)": 51,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Daily Recommended Intake (grams)";
         yAxis = [0, 300];
         graphLabel = "grams of protein consumed / day";
       } else if (pick === "Cholesterol") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Maximum Daily Recommended Intake (milligrams)": 300,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Maximum Daily Recommended Intake (milligrams)"
+        actualGraphData.push({
+          name: days[i],
+          "Maximum Daily Recommended Intake (milligrams)": 300,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Maximum Daily Recommended Intake (milligrams)";
         yAxis = [0, 600];
         graphLabel = "milligrams of cholesterol consumed / day";
       } else if (pick === "Sodium") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Maximum Daily Recommended Intake (milligrams)": 1500,
-            You: getdata[i].sum
-          }
-        )
-        pickQuantity = "Maximum Daily Recommended Intake (milligrams)"
+        actualGraphData.push({
+          name: days[i],
+          "Maximum Daily Recommended Intake (milligrams)": 1500,
+          You: getdata[i].sum,
+        });
+        pickQuantity = "Maximum Daily Recommended Intake (milligrams)";
         yAxis = [0, 7500];
         graphLabel = "milligrams of sodium consumed / day";
       }
-    };
-    return [actualGraphData, pickQuantity, yAxis, graphLabel]
+    }
+    return [actualGraphData, pickQuantity, yAxis, graphLabel];
   };
 
   // Recharts function for bar graph
@@ -206,7 +192,6 @@ function MacroGraph() {
 
     return (   
       <ResponsiveContainer width="75%" height="100%">
-
           <LineChart
             width={750}
             height={250}
@@ -264,28 +249,32 @@ function MacroGraph() {
     );
   };
   return (
-    <>
-      <h2>
-        Weekly consumption of{" "}
-        {pick && (
-          <Dropdown
-            compact
-            text={pick}
-            options={options}
-            selection
-            onChange={(e, { value }) => setPick(value)}
-          />
-        )}{" "}
-        per day
-      </h2>
+    <div className="graph-carousel-container">
+      <div className="white-background">
+        <div class="nutritional-data">
+          <h2>
+            Weekly consumption of{" "}
+            {pick && (
+              <Dropdown
+                compact
+                text={pick}
+                options={options}
+                selection
+                onChange={(e, { value }) => setPick(value)}
+              />
+            )}{" "}
+            per day
+          </h2>
       <div id="macro-graph-container">
           {pick && graph}
         </div>
-      <div id="carousel">
+        </div>
+      </div>
+      <div className="carousel">
         <h2>Discover People</h2>
         {state.users && <CoolCarousel recipes={state.users} />}
       </div>
-    </>
+    </div>
   );
 }
 export default MacroGraph;
