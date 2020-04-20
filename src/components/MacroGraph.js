@@ -15,7 +15,7 @@ import {
   Legend,
   LineChart,
   Line,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
 
 const options = [
@@ -69,7 +69,7 @@ function MacroGraph() {
         const newGraph = makeGraph(
           pick,
           result.data.userData,
-          result.data.followers,
+          result.data.followers
         );
         setGraph(newGraph);
 
@@ -91,27 +91,33 @@ function MacroGraph() {
       .catch((error) => console.error(error));
   };
 
-  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
   const dailyType = (pick, getdata, followers) => {
     // console.log(followers[0].userId)
-    const steven = followers[0].userId
-    console.log(typeof(steven))
-    const actualGraphData = []
-    let pickQuantity = ""
+    const steven = followers[0].userId;
+    console.log(typeof steven);
+    const actualGraphData = [];
+    let pickQuantity = "";
     let yAxis = [];
     let graphLabel = "";
     for (let i = 0; i < days.length; i++) {
       if (pick === "Calories") {
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (Calories)": 2000,
-            You: getdata[i].sum,
-            1 : followers[0].userData[i].sum
-          }
-        )
-        pickQuantity = "Daily Recommended Intake (Calories)"
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (Calories)": 2000,
+          You: getdata[i].sum,
+          1: followers[0].userData[i].sum,
+        });
+        pickQuantity = "Daily Recommended Intake (Calories)";
         yAxis = [0, 4000];
         graphLabel = "Calories consumed / day";
       } else if (pick === "Fat") {
@@ -184,55 +190,55 @@ function MacroGraph() {
 
   // Recharts function for bar graph
   const makeGraph = (pick, getdata, followers) => {
-    const values = dailyType(pick, getdata, followers)
+    const values = dailyType(pick, getdata, followers);
     let dailyPick = values[0];
     let pickQuantity = values[1];
     let yAxis = values[2];
     let graphLabel = values[3];
 
-    return (   
-      <ResponsiveContainer width="75%" height="100%">
-          <LineChart
-            width={750}
-            height={250}
-            data={dailyPick}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
+    return (
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart
+          width={750}
+          height={250}
+          data={dailyPick}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis
+            label={{
+              value: graphLabel,
+              dx: -30,
+              angle: -90,
+              position: "center",
             }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis 
-              label={{ 
-                value: graphLabel,
-                dx: -30,
-                angle: -90,
-                position: 'center',
-              }} 
-              type="number" 
-              domain={yAxis} 
-            />
-            <Tooltip />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey={pickQuantity}
-              stroke="#8884d8"
-              activeDot={{ r: 8 }}
-            />
-            <Line type="monotone" dataKey="You" stroke="#82ca9d" />
+            type="number"
+            domain={yAxis}
+          />
+          <Tooltip />
+          <Legend />
+          <Line
+            type="monotone"
+            dataKey={pickQuantity}
+            stroke="#8884d8"
+            activeDot={{ r: 8 }}
+          />
+          <Line type="monotone" dataKey="You" stroke="#82ca9d" />
 
-            {/* {data && data.followers.forEach(element => {
+          {/* {data && data.followers.forEach(element => {
               console.log(element)
               return (
                 <Line type="monotone" dataKey={element.userId.toString()} stroke="#000000" />
               )
             })} */}
 
-            {/* {data && (
+          {/* {data && (
               data.followers.map(user => {
                 // const follower = user.userId.toString()
                 // console.log("YOOOOO", follower)
@@ -242,10 +248,9 @@ function MacroGraph() {
               })
             )} */}
 
-            {/* <Line type="monotone" dataKey="1" stroke="#000000" /> */}
-
-          </LineChart>
-          </ResponsiveContainer>
+          {/* <Line type="monotone" dataKey="1" stroke="#000000" /> */}
+        </LineChart>
+      </ResponsiveContainer>
     );
   };
   return (
@@ -265,9 +270,7 @@ function MacroGraph() {
             )}{" "}
             per day
           </h2>
-      <div id="macro-graph-container">
-          {pick && graph}
-        </div>
+          <div id="macro-graph-container">{pick && graph}</div>
         </div>
       </div>
       <div className="carousel">

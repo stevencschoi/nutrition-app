@@ -134,9 +134,14 @@ export default function Recipe({ props, match }) {
 
   return (
     <>
-      <Link to={"/"}>
-        <Button default>Start Over</Button>
-      </Link>
+      <div>
+        <div className="recipe-title">
+          <h1>{foodName}</h1>
+        </div>
+        <Link to={"/"}>
+          <Button default>Start Over</Button>
+        </Link>
+      </div>
       <div className="recipeinfo">
         <div className="things">
           <div>
