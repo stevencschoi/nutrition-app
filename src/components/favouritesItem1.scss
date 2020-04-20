@@ -12,14 +12,17 @@ $primary-font: monospace, cursive;
 }
 .FavouritesItem {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  // background-color: #ffffff;
   // background-color: rgba(106, 127, 150, 0.75);
   margin: 1% 1%;
   .favourite-main {
     display: flex;
-    // justify-content: center;
+    justify-content: center;
     align-items: center;
-    // padding: 2%;
+    padding: 1%;
     background-color: #ffffff;
     border: $primary-colour solid 1px;
     width: 85%;
@@ -34,15 +37,16 @@ $primary-font: monospace, cursive;
   .selectContainer {
     display: flex;
     flex-direction: column;
-    // width: 15vw;
+    justify-content: center;
+    align-items: center;
     // justify-content: space-around;
     // padding-bottom: 1%;
     .selectPosition {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       // justify-content: left;
       // align-items: left;
-      margin: 1%;
+      margin: 3%;
       .fav-button-container {
         display: flex;
         flex-direction: row;
@@ -57,7 +61,7 @@ $primary-font: monospace, cursive;
       margin: 0 1%;
     }
     button {
-      margin: 0 15px;
+      margin-left: 1rem;
     }
     .add button {
       display: inline-block;
@@ -67,7 +71,7 @@ $primary-font: monospace, cursive;
       padding: 7px 13px;
       border: 1px solid transparent;
       font-weight: bold;
-      margin-top: 0.5rem;
+      // margin-top: 0.5rem;
       &:hover {
         background-color: salmon;
         color: $secondary-colour;
@@ -76,12 +80,23 @@ $primary-font: monospace, cursive;
     }
 
     .delete-button {
-      margin-top: 0.5rem;
+      // margin-top: 0.5rem;
     }
   }
 }
 
 .image-and-drop-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 35vw;
+
+  padding: 1%;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+.graph-and-drop-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,8 +126,11 @@ $primary-font: monospace, cursive;
   }
 }
 
-.width {
-  width: 3vw;
+.dropdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.25rem;
 }
 
 .delete-button {

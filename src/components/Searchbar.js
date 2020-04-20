@@ -17,7 +17,7 @@ function Searchbar(props) {
             <input
               type="text"
               name="ingredient"
-              placeholder="What's on the cutting board today?"
+              placeholder="What's on the menu today?"
               value={props.name}
               onChange={(e) => {
                 setIngredient(e.target.value);
