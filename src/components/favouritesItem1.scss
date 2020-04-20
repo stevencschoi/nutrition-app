@@ -16,18 +16,26 @@ $primary-font: monospace, cursive;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // background-color: #ffffff;
   // background-color: rgba(106, 127, 150, 0.75);
   margin: 1% 1%;
+  .white-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    width: 85%;
+    border: $primary-colour solid 1px;
+    border-radius: 5px;
+  }
   .favourite-main {
     display: flex;
     justify-content: left;
     align-items: center;
     padding: 1%;
     background-color: #ffffff;
-    border: $primary-colour solid 1px;
-    width: 85%;
-    border-radius: 5px;
+
+    width: 100%;
     .image-container {
       margin-left: 2rem;
       img {
@@ -37,53 +45,76 @@ $primary-font: monospace, cursive;
       }
     }
   }
-  .selectContainer {
+  .meal-plan-container {
+    // margin-top: 1rem;
+    padding: 1rem;
+    width: 30%;
+    background-color: #ffffff;
+    // border: $primary-colour solid 1px;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // justify-content: space-around;
-    // padding-bottom: 1%;
-    .selectPosition {
-      display: flex;
-      flex-direction: row;
-      // justify-content: left;
-      // align-items: left;
-      margin: 3%;
-      .fav-button-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        // align-items: space-between;
-        input {
-          margin: 2%;
-        }
-      }
-    }
-    .dropdown {
-      margin: 0 1%;
-    }
-    button {
-      margin-left: 1rem;
-    }
-    .add button {
-      display: inline-block;
-      background-color: #007bff;
-      color: white;
-      border-radius: 10px;
-      padding: 7px 13px;
-      border: 1px solid transparent;
-      font-weight: bold;
-      // margin-top: 0.5rem;
-      &:hover {
-        background-color: salmon;
-        color: $secondary-colour;
-        // border: 1px solid $third-colour;
-      }
+    .plan-title {
+      color: $primary-colour;
     }
 
-    .delete-button {
-      // margin-top: 0.5rem;
+    .dropdown-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0.25rem;
+      .selectContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        // justify-content: space-around;
+        // padding-bottom: 1%;
+        .selectPosition {
+          display: flex;
+          flex-direction: column;
+          // justify-content: left;
+          // align-items: left;
+          margin: 3%;
+          .fav-button-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 0.5rem;
+            // align-items: space-between;
+            input {
+              margin: 2%;
+            }
+          }
+        }
+        .dropdown {
+          margin: 0 1%;
+        }
+        button {
+          margin-left: 1rem;
+        }
+        .add button {
+          display: inline-block;
+          background-color: #007bff;
+          color: white;
+          border-radius: 10px;
+          padding: 7px 13px;
+          border: 1px solid transparent;
+          font-weight: bold;
+          // margin-top: 0.5rem;
+          &:hover {
+            background-color: salmon;
+            color: $secondary-colour;
+            // border: 1px solid $third-colour;
+          }
+        }
+
+        .delete-button {
+          // margin-top: 0.5rem;
+        }
+      }
     }
   }
 }
@@ -97,6 +128,24 @@ $primary-font: monospace, cursive;
   padding: 1%;
   background-color: #ffffff;
   border-radius: 4px;
+  .image-container {
+    position: relative;
+    margin-right: 1rem;
+    .delete-button-image {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: #a0d0ce;
+      color: white;
+      border-radius: 10px;
+      padding: 7px 13px;
+      border: 1px solid transparent;
+      font-weight: bold;
+      &:hover {
+        background-color: salmon;
+      }
+    }
+  }
 }
 
 .graph-and-drop-container {
@@ -108,32 +157,6 @@ $primary-font: monospace, cursive;
   padding: 1%;
   background-color: #ffffff;
   border-radius: 4px;
-}
-
-.image-container {
-  position: relative;
-  margin-right: 1rem;
-  .delete-button-image {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background-color: #a0d0ce;
-    color: white;
-    border-radius: 10px;
-    padding: 7px 13px;
-    border: 1px solid transparent;
-    font-weight: bold;
-    &:hover {
-      background-color: salmon;
-    }
-  }
-}
-
-.dropdown-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 0.25rem;
 }
 
 .delete-button {
