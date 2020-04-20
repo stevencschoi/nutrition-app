@@ -134,39 +134,50 @@ export default function Recipe({ props, match }) {
 
   return (
     <>
-      <div>
-        <div className="recipe-title">
-          <h1>{foodName}</h1>
-        </div>
-        <Link to={"/"}>
-          <Button default>Start Over</Button>
-        </Link>
-      </div>
-      <div className="recipeinfo">
-        <div className="things">
-          <div>
-            {foodIngredient && (
-              <img src={foodIngredient.hits[0].recipe.image} />
-            )}
-            <div>
-              {foodIngredient && (
-                <a href={foodIngredient.hits[0].recipe.url}>
-                  {" "}
-                  Full Instructions
-                </a>
-              )}
-              {foodName && foodIngredient && (
-                <Button onClick={checkIfInDatabase}>
-                  <i class="far fa-heart"></i>
-                </Button>
-              )}
+      <div className="recipe-container">
+        <div className="including-link">
+          <Link to={"/"}>
+            <Button default>Start Over</Button>
+          </Link>
+          <div className="recipe-header">
+            <div className="recipe-image-and-graph">
+              <div className="recipe-image">
+                {foodIngredient && (
+                  <img src={foodIngredient.hits[0].recipe.image} />
+                )}
+                {foodName && foodIngredient && (
+                  <Button onClick={checkIfInDatabase}>
+                    <i class="far fa-heart"></i>
+                  </Button>
+                )}
+                <div className="recipe-link">
+                  {foodIngredient && (
+                    <a href={foodIngredient.hits[0].recipe.url}>
+                      {" "}
+                      Click here for instructions
+                    </a>
+                  )}
+                </div>
+              </div>
+              <div class="nutritional-data">
+                <h2>
+                  Nutritional Data of {foodIngredient && foodIngredient.q}
+                </h2>
+                <RecipeGraph1 foodIngredient={foodIngredient} />
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="recipeinfo">
+        <div className="things">
+          <div></div>
         </div>
         <div className="ingredient">
           <RecipeIngredient foodIngredient={foodIngredient} />
           {foodIngredient && foodIngredient.hits[0].recipe.totalTime != 0 && (
-            <h5>Takes around {foodIngredient.hits[0].recipe.totalTime} mins</h5>
+            <h5>Prep time: {foodIngredient.hits[0].recipe.totalTime} mins</h5>
           )}
         </div>
       </div>
@@ -203,10 +214,6 @@ export default function Recipe({ props, match }) {
             </div>
           </div>
         )}
-      </div>
-      <div class="nutritional-data">
-        <h2>Nutritional Data of {foodIngredient && foodIngredient.q}</h2>
-        <RecipeGraph1 foodIngredient={foodIngredient} />
       </div>
     </>
   );

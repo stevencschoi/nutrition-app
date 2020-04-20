@@ -1,11 +1,76 @@
 $primary-colour: #243a2f;
 $secondary-colour: #ffffff;
-$accent-colour: #a0acb9;
+$accent-colour: #ffde4d;
 $primary-font: monospace, cursive;
 
-.recipe-title {
-  font-family: $primary-font;
-  color: $primary-colour;
+.recipe-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // background-color: $secondary-colour;
+  width: 100%;
+}
+
+.including-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  margin: 2% auto;
+  background-color: $secondary-colour;
+  // border: $primary-colour solid 1px;
+  border-radius: 10px;
+  button {
+    margin-top: 2rem;
+  }
+}
+
+.recipe-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 85%;
+}
+
+.recipe-image-and-graph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $secondary-colour;
+  width: 100%;
+
+  .recipe-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    img {
+      border-radius: 5px;
+      max-width: 100%;
+      margin: 2rem;
+    }
+    button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      color: #ffde4d;
+      border-radius: 10px;
+      padding: 7px 13px;
+      border: 1px solid transparent;
+      font-weight: bold;
+      font-size: 1.6rem;
+      &:hover {
+        color: salmon;
+      }
+    }
+    .recipe-link {
+      font-family: $primary-font;
+      font-size: 1.6rem;
+    }
+  }
 }
 
 .recipeinfo {
