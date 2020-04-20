@@ -149,6 +149,18 @@ function MacroGraph() {
       };
 
 
+// for loop [i]
+
+// if pick
+  
+// if (followers)
+//       for [let j = 0; j < followers.length; j++] {          j is the position of user
+//         add to real array [i] (which object to add to)=> 
+//         key  is going to be something like this   const steven = followers[0].userId
+//         values is this followers[j].userData[i].sum
+
+    // }
+    // j = 0 - keep this in mind
 
 
 
