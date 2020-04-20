@@ -1,6 +1,7 @@
 $primary-colour: #2c6b68;
 $secondary-colour: #ffffff;
 $accent-colour: #a0acb9;
+$third-colour: #67b3b0;
 $primary-font: monospace, cursive;
 
 .favourite-title {
@@ -16,7 +17,7 @@ $primary-font: monospace, cursive;
   margin: 1% 1%;
   .favourite-main {
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
     // padding: 2%;
     background-color: #ffffff;
@@ -25,28 +26,28 @@ $primary-font: monospace, cursive;
     border-radius: 5px;
     img {
       // border: black solid 5px;
-      border-radius: 4px;
-      max-height: 18vh;
+      border-radius: 3px;
+      max-height: 23vh;
       margin: 0;
     }
   }
   .selectContainer {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    // width: 15vw;
+    // justify-content: space-around;
     // padding-bottom: 1%;
     .selectPosition {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      // justify-content: left;
+      // align-items: left;
       margin: 1%;
       .fav-button-container {
         display: flex;
+        flex-direction: row;
         justify-content: center;
-        align-items: space-between;
-        .ui.selection.dropdown.width {
-          margin-botton: 2%;
-        }
+        // align-items: space-between;
         input {
           margin: 2%;
         }
@@ -60,22 +61,32 @@ $primary-font: monospace, cursive;
     }
     .add button {
       display: inline-block;
-      background-color: rgb(28, 196, 42);
+      background-color: #007bff;
       color: white;
       border-radius: 10px;
       padding: 7px 13px;
       border: 1px solid transparent;
       font-weight: bold;
+      margin-top: 0.5rem;
       &:hover {
-        background-color: white;
-        color: rgb(28, 196, 42);
-        border: 1px solid rgb(28, 196, 42);
+        background-color: salmon;
+        color: $secondary-colour;
+        // border: 1px solid $third-colour;
       }
+    }
+
+    .delete-button {
+      margin-top: 0.5rem;
     }
   }
 }
 
 .image-and-drop-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 35vw;
+
   padding: 1%;
   background-color: #ffffff;
   border-radius: 4px;
@@ -83,6 +94,7 @@ $primary-font: monospace, cursive;
 
 .image-container {
   position: relative;
+  margin-right: 1rem;
   .delete-button-image {
     position: absolute;
     top: 1rem;

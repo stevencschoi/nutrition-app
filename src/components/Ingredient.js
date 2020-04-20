@@ -18,13 +18,15 @@ function Ingredient({ match }) {
 
   return (
     <>
-      <div className="button-container">
-        <Link to={"/"} className="position-right">
-          <Button default>Start Over</Button>
-        </Link>
-      </div>
       <div className="ingredient-page">
-        <IngredientGraph data={state.search} />
+        <div className="button-and-graph-container">
+          <div className="button-container">
+            <Link to={"/"} className="position-right">
+              <Button default>Start Over</Button>
+            </Link>
+          </div>
+          <IngredientGraph data={state.search} />
+        </div>
         <div class="carousel">
           <h2>Featured Recipes</h2>
           {state.recipes && (
