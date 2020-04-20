@@ -78,6 +78,7 @@ function Schedule() {
 
   return (
     <>
+      <h1 className="favourite-title">Schedule</h1>
       <div className="calendar">
         <MealCalendar
           date={currentDay}

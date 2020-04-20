@@ -282,6 +282,7 @@ function MacroGraph() {
   };
   return (
     <div className="graph-carousel-container">
+      <h1 className="favourite-title">Data</h1>
       <div className="white-background">
         <div class="nutritional-data">
           <h2>

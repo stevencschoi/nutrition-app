@@ -1,6 +1,7 @@
 $primary-colour: #2c6b68;
 $secondary-colour: #ffffff;
-$accent-colour: #a0acb9;
+$accent-colour: #ffde4d;
+$third-colour: #67b3b0;
 $primary-font: monospace, cursive;
 
 // border-box???
@@ -25,18 +26,21 @@ body,
 }
 
 .nav {
-  background-color: $primary-colour;
+  background-image: linear-gradient(
+    to bottom,
+    $primary-colour,
+    rgba(255, 255, 255, 0)
+  );
   height: 10vh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  box-shadow: 5px 5px 5px 0px rgba(18, 48, 80, 0.75);
-  border: solid black;
-  border-width: 1px 0;
+  // border-width: 1px 0;
   .media h3 {
+    font-size: 1.7rem;
     margin: 0 20px;
     &:hover {
-      color: lighten($primary-colour, 30%);
+      color: $accent-colour;
     }
   }
   #logo {
@@ -55,22 +59,22 @@ body,
     border-color: black;
     padding: 0.5px 7px;
     font-family: $primary-font;
-    font-size: 18px;
+    font-size: 1.7rem;
     border-radius: 6px;
     max-width: 160px;
     // padding-right: 5px;
     &::placeholder {
       font-family: $primary-font;
-      font-size: 18px;
+      font-size: 1.7rem;
     }
   }
   button {
     background-color: $accent-colour;
     border-radius: 10px;
     border: 1px solid transparent;
-    color: #ffffff;
+    color: $primary-colour;
     font-family: $primary-font;
-    font-size: 18px;
+    font-size: 1.7rem;
     padding: 2px 10px;
     margin-left: 10px;
     &:hover {
@@ -136,7 +140,7 @@ body,
 // style for the username when logged in
 #logged-user {
   font-family: monospace;
-  font-size: 18px;
+  font-size: 1.7rem;
   color: $secondary-colour;
   // margin-right:10px;
 }
@@ -176,6 +180,7 @@ body,
     height: 65px;
   }
   input[type="text"] {
+    color: $primary-colour;
     width: 100%;
     height: 65px;
     font-size: 75px;

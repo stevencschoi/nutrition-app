@@ -134,79 +134,94 @@ export default function Recipe({ props, match }) {
 
   return (
     <>
-      <div>
-        <div className="recipe-title">
-          <h1>{foodName}</h1>
-        </div>
-        <Link to={"/"}>
-          <Button default>Start Over</Button>
-        </Link>
-      </div>
-      <div className="recipeinfo">
-        <div className="things">
-          <div>
-            {foodIngredient && (
-              <img src={foodIngredient.hits[0].recipe.image} />
-            )}
-            <div>
-              {foodIngredient && (
-                <a href={foodIngredient.hits[0].recipe.url}>
-                  {" "}
-                  Full Instructions
-                </a>
+      <div className="recipe-container">
+        <div className="including-link">
+          <Link to={"/"}>
+            <Button default>Start Over</Button>
+          </Link>
+          <div className="recipe-header">
+            <div className="recipe-image-and-graph">
+              <div className="recipe-image">
+                {foodIngredient && (
+                  <img src={foodIngredient.hits[0].recipe.image} />
+                )}
+                {foodName && foodIngredient && (
+                  <Button onClick={checkIfInDatabase}>
+                    <i class="far fa-heart"></i>
+                  </Button>
+                )}
+              </div>
+              <div class="nutritional-data">
+                <h2>
+                  Nutritional Data of {foodIngredient && foodIngredient.q}
+                </h2>
+                <RecipeGraph1 foodIngredient={foodIngredient} />
+              </div>
+            </div>
+          </div>
+          <div className="instruction-info">
+            <div className="instructions-and-link">
+              <div className="ingredients">
+                <RecipeIngredient foodIngredient={foodIngredient} />
+              </div>
+              <div className="recipe-link">
+                {foodIngredient && (
+                  <a href={foodIngredient.hits[0].recipe.url}>
+                    {" "}
+                    <h3>Click here for full instructions</h3>
+                  </a>
+                )}
+              </div>
+            </div>
+
+            <div className="addtoschedule">
+              <div>
+                <h3>
+                  <i class="far fa-calendar-alt"></i> Add to Your Meal Plan
+                </h3>
+                <MealCalendar
+                  date={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />
+                {date && (
+                  <Dropdown
+                    options={options}
+                    selection
+                    onChange={(e, { value }) => setMeal(value)}
+                  />
+                )}
+              </div>
+              {date && meal && (
+                <div className="flex">
+                  <div className="add">
+                    <Button onClick={checkIfInDatabase}>
+                      <i class="far fa-calendar-alt"></i> Add
+                    </Button>
+                  </div>
+                  <div className="cancel">
+                    <Button
+                      onClick={() => {
+                        setDate(null);
+                        setMeal(null);
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                </div>
               )}
-              {foodName && foodIngredient && (
-                <Button onClick={checkIfInDatabase}>
-                  <i class="far fa-heart"></i>
-                </Button>
-              )}
+            </div>
+
+            <div className="prep-time">
+              {foodIngredient &&
+                foodIngredient.hits[0].recipe.totalTime != 0 && (
+                  <h2>
+                    Prep time: {foodIngredient.hits[0].recipe.totalTime} mins
+                  </h2>
+                )}
             </div>
           </div>
         </div>
-        <div className="ingredient">
-          <RecipeIngredient foodIngredient={foodIngredient} />
-          {foodIngredient && foodIngredient.hits[0].recipe.totalTime != 0 && (
-            <h5>Takes around {foodIngredient.hits[0].recipe.totalTime} mins</h5>
-          )}
-        </div>
-      </div>
-      <div className="addtoschedule">
-        <div>
-          <h3>
-            <i class="far fa-calendar-alt"></i> Add to Your Meal Plan
-          </h3>
-          <MealCalendar date={date} onChange={(e) => setDate(e.target.value)} />
-          {date && (
-            <Dropdown
-              options={options}
-              selection
-              onChange={(e, { value }) => setMeal(value)}
-            />
-          )}
-        </div>
-        {date && meal && (
-          <div className="flex">
-            <div className="add">
-              <Button onClick={checkIfInDatabase}>
-                <i class="far fa-calendar-alt"></i> Add
-              </Button>
-            </div>
-            <div className="cancel">
-              <Button
-                onClick={() => {
-                  setDate(null);
-                  setMeal(null);
-                }}
-              >
-                Cancel
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
-      <div class="nutritional-data">
-        <h2>Nutritional Data of {foodIngredient && foodIngredient.q}</h2>
-        <RecipeGraph1 foodIngredient={foodIngredient} />
       </div>
     </>
   );
