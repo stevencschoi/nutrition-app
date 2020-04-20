@@ -21,18 +21,20 @@ $primary-font: monospace, cursive;
   margin: 1% 1%;
   .favourite-main {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     padding: 1%;
     background-color: #ffffff;
     border: $primary-colour solid 1px;
     width: 85%;
     border-radius: 5px;
-    img {
-      // border: black solid 5px;
-      border-radius: 3px;
-      max-height: 23vh;
-      margin: 0;
+    .image-container {
+      margin-left: 2rem;
+      img {
+        // border: black solid 5px;
+        border-radius: 3px;
+        max-height: 20vh;
+      }
     }
   }
   .selectContainer {
