@@ -7,6 +7,7 @@ import CoolCarousel from "./CoolCarousel";
 import useUserData from "../helpers/useUserData";
 import { socket } from "../hooks/useApplicationData";
 import io from "socket.io-client";
+import MealCalendar from "./MealCalendar";
 import {
   XAxis,
   YAxis,
@@ -31,6 +32,7 @@ const options = [
 
 // Renders the nutritional data of the chosen ingredient
 function MacroGraph() {
+  const [currentDay, setCurrentDay] = useState(moment());
   const [pick, setPick] = useState("Calories");
   const [graph, setGraph] = useState(null);
   const [data, setData] = useState(null);
@@ -46,7 +48,7 @@ function MacroGraph() {
       console.log("hi");
       getData(pick);
     });
-  }, [pick]);
+  }, [pick, currentDay]);
 
   // useEffect(() => {
   //   // when receiving update message from server, re-render graph
@@ -57,8 +59,8 @@ function MacroGraph() {
   // }, [pick]);
 
   const getData = (choice) => {
-    const start = JSON.stringify(moment().startOf("week")).slice(1, 11);
-    const end = JSON.stringify(moment().startOf("week").weekday(6)).slice(
+    const start = JSON.stringify(currentDay.startOf("week")).slice(1, 11);
+    const end = JSON.stringify(currentDay.startOf("week").weekday(6)).slice(
       1,
       11
     );
@@ -250,15 +252,15 @@ function MacroGraph() {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis 
-            type="number" 
-            domain={yAxis} 
+          <YAxis
+            type="number"
+            domain={yAxis}
             label={{
-              value: graphLabel, 
+              value: graphLabel,
               dx: -30,
               angle: -90,
               position: 'center'
-            }}  
+            }}
           />
           <Tooltip />
           <Legend />
@@ -280,6 +282,11 @@ function MacroGraph() {
       </ResponsiveContainer>
     );
   };
+
+  const handledaypick = (day) => {
+    setCurrentDay(day);
+  };
+
   return (
     <div className="graph-carousel-container">
       <div className="white-background">
@@ -298,6 +305,12 @@ function MacroGraph() {
             per day
           </h2>
           <div id="macro-graph-container">{pick && graph}</div>
+        </div>
+        <div>
+          <MealCalendar
+            date={currentDay}
+            onChange={(e) => handledaypick(e.target.value)}
+          />
         </div>
       </div>
       <div className="carousel">
