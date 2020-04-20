@@ -255,23 +255,12 @@ function MacroGraph() {
             <Line type="monotone" dataKey="You" stroke="#82ca9d" />
 
 
-            {data && data.followers.forEach(element => {
-              console.log(element)
-              return (
-                <Line type="monotone" dataKey="You" stroke="#000000" />
-              )
-            })}
-
-
-            {/* {data && (
+            {data && (
               data.followers.map(user => {
-                // const follower = user.userId.toString()
-                // console.log("YOOOOO", follower)
-                return (
-                  <Line type="monotone" dataKey={user.userId.toString()} stroke="#000000" />
-                )
+                const id = `${user.userId}`;
+                return (<Line type="monotone" dataKey={id} stroke="#000000" />)
               })
-            )} */}
+            )}
 
 
             {/* <Line type="monotone" dataKey="1" stroke="#000000" /> */}
