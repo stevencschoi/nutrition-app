@@ -32,7 +32,7 @@ const options = [
 // Renders the nutritional data of the chosen ingredient
 function MacroGraph() {
   const [pick, setPick] = useState("Calories");
-  const [graph, setGraph] = useState("Calories");
+  const [graph, setGraph] = useState(null);
   const [data, setData] = useState(null);
 
   const { state, fetchUsers, getFollowers } = useUserData();
@@ -41,15 +41,20 @@ function MacroGraph() {
     getData(pick);
     fetchUsers();
     getFollowers();
-  }, [pick]);
 
-  useEffect(() => {
-    // when receiving update message from server, re-render graph
     socket.on("update", () => {
       console.log("hi");
       getData(pick);
     });
-  }, []);
+  }, [pick]);
+
+  // useEffect(() => {
+  //   // when receiving update message from server, re-render graph
+  //   socket.on("update", () => {
+  //     console.log("hi");
+  //     getData(pick);
+  //   });
+  // }, [pick]);
 
   const getData = (choice) => {
     const start = JSON.stringify(moment().startOf("week")).slice(1, 11);
@@ -115,7 +120,7 @@ function MacroGraph() {
           name: days[i],
           "Daily Recommended Intake (Calories)": 2000,
           You: getdata[i].sum,
-          1: followers[0].userData[i].sum,
+          // 1: followers[0].userData[i].sum,
         });
         pickQuantity = "Daily Recommended Intake (Calories)";
         yAxis = [0, 4000];
