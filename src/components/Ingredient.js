@@ -17,16 +17,24 @@ function Ingredient({ match }) {
   }, []);
 
   return (
-    <div id="ingredient-page">
-      <IngredientGraph data={state.search} />
-      <Link to={"/"}>
-        <Button default>Start Over</Button>
-      </Link>
-      <div id="carousel">
-        <h2>Featured Recipes</h2>
-        {state.recipes && <CoolCarousel recipes={state.recipes} />}
+    <>
+      <div className="ingredient-page">
+        <div className="button-and-graph-container">
+          <div className="button-container">
+            <Link to={"/"} className="position-right">
+              <Button default>Start Over</Button>
+            </Link>
+          </div>
+          <IngredientGraph data={state.search} />
+        </div>
+        <div class="carousel">
+          <h2>Featured Recipes</h2>
+          {state.recipes && (
+            <CoolCarousel className="carousel" recipes={state.recipes} />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 export default Ingredient;

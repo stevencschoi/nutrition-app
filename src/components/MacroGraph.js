@@ -15,6 +15,7 @@ import {
   Legend,
   LineChart,
   Line,
+  ResponsiveContainer,
 } from "recharts";
 
 const options = [
@@ -31,7 +32,7 @@ const options = [
 // Renders the nutritional data of the chosen ingredient
 function MacroGraph() {
   const [pick, setPick] = useState("Calories");
-  const [graph, setGraph] = useState("Calories");
+  const [graph, setGraph] = useState(null);
   const [data, setData] = useState(null);
 
   const { state, fetchUsers, getFollowers } = useUserData();
@@ -40,15 +41,20 @@ function MacroGraph() {
     getData(pick);
     fetchUsers();
     getFollowers();
-  }, [pick]);
 
-  useEffect(() => {
-    // when receiving update message from server, re-render graph
     socket.on("update", () => {
       console.log("hi");
       getData(pick);
     });
-  }, []);
+  }, [pick]);
+
+  // useEffect(() => {
+  //   // when receiving update message from server, re-render graph
+  //   socket.on("update", () => {
+  //     console.log("hi");
+  //     getData(pick);
+  //   });
+  // }, [pick]);
 
   const getData = (choice) => {
     const start = JSON.stringify(moment().startOf("week")).slice(1, 11);
@@ -77,7 +83,7 @@ function MacroGraph() {
       })
       .catch((error) => console.error(error));
   };
-
+  
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   const dailyType = (pick, getdata, followers) => {
@@ -217,31 +223,39 @@ function MacroGraph() {
           }
         }
       }
-    };
-    return [actualGraphData, pickQuantity, yAxis, graphLabel]
+    }
+    return [actualGraphData, pickQuantity, yAxis, graphLabel];
   };
 
   // Recharts function for bar graph
   const makeGraph = (pick, getdata, followers) => {
-    const values = dailyType(pick, getdata, followers)
+    const values = dailyType(pick, getdata, followers);
     let dailyPick = values[0];
     let pickQuantity = values[1];
     let yAxis = values[2];
     let graphLabel = values[3];
 
     return (
-      <div class="graph-container">
-        <div class="graph">
-          <p class="graph-label">{graphLabel}</p>
-          <LineChart
-            width={750}
-            height={250}
-            data={dailyPick}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart
+          width={750}
+          height={250}
+          data={dailyPick}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis
+            label={{
+              value: graphLabel,
+              dx: -30,
+              angle: -90,
+              position: "center",
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
@@ -263,34 +277,34 @@ function MacroGraph() {
               return (<Line type="monotone" dataKey={id} stroke={randomColor} />)
             })}
           </LineChart>
-        </div>
-      </div>
+      </ResponsiveContainer>
     );
   };
   return (
-    <>
-      <div class="nutritional-data">
-        <h2>
-          Weekly consumption of{" "}
-          {pick && (
-            <Dropdown
-              compact
-              text={pick}
-              options={options}
-              selection
-              onChange={(e, { value }) => setPick(value)}
-            />
-          )}{" "}
-          per day
-        </h2>
-        {/* <br></br> */}
-        {pick && graph}
+    <div className="graph-carousel-container">
+      <div className="white-background">
+        <div class="nutritional-data">
+          <h2>
+            Weekly consumption of{" "}
+            {pick && (
+              <Dropdown
+                compact
+                text={pick}
+                options={options}
+                selection
+                onChange={(e, { value }) => setPick(value)}
+              />
+            )}{" "}
+            per day
+          </h2>
+          <div id="macro-graph-container">{pick && graph}</div>
+        </div>
       </div>
-      <div id="carousel">
+      <div className="carousel">
         <h2>Discover People</h2>
         {state.users && <CoolCarousel recipes={state.users} />}
       </div>
-    </>
+    </div>
   );
 }
 export default MacroGraph;

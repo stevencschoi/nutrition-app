@@ -4,12 +4,11 @@ import { Redirect } from "react-router";
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
+  ResponsiveContainer
 } from "recharts";
 function RecipeGraph(props) {
   const makeGraph = (
@@ -33,64 +32,78 @@ function RecipeGraph(props) {
     const data = [
       {
         name: "Fat",
-        "grams / 100 grams": fat,
+        "grams / serving": fat,
         fill: "#83a6ed",
       },
       {
         name: "Carbohydrates",
-        "grams / 100 grams": carbohydrates,
+        "grams / serving": carbohydrates,
         fill: "#8dd1e1",
       },
       {
         name: "Protein",
-        "grams / 100 grams": protein,
+        "grams / serving": protein,
         fill: "#82ca9d",
       },
       {
         name: "Sugar",
-        "grams / 100 grams": sugar,
+        "grams / serving": sugar,
         fill: "#ffc658",
       },
       {
         name: "Fibre",
-        "grams / 100 grams": fibre,
+        "grams / serving": fibre,
         fill: "#8C564B",
       },
     ];
     const data2 = [
       {
         name: "Cholesterol",
-        "milligrams / 100 grams": cholesterol,
+        "milligrams / serving": cholesterol,
         fill: "#a4de6c",
       },
       {
         name: "Sodium",
-        "milligrams / 100 grams": sodium,
+        "milligrams / serving": sodium,
         fill: "#d0ed57",
       },
     ];
     return (
-      <div class="graph-container">
-        <div class="graph">
-          <p class="graph-label">per serving</p>
+      // responsive containers need a parent container to set dimensions
+      <div class="ingredient-and-recipe-graph-container">
+        <ResponsiveContainer width="55%" height="100%">
           <BarChart width={500} height={200} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" style={{ fontFamily: 'Londrina Solid', fill: '#123050' }} />
-            <YAxis style={{ fontFamily: 'Londrina Solid', fill: '#123050' }} />
+            <XAxis dataKey="name" />
+            <YAxis
+              label={{
+                value: 'grams / serving',
+                dx: -15,
+                angle: -90,
+                position: 'center',
+              }}
+              type="number" />
             <Tooltip />
-            <Bar dataKey="grams / 100 grams" />
+            <Bar dataKey="grams / serving" />
           </BarChart>
-        </div>
-        <div class="graph">
-          <p class="graph-label">per serving</p>
+        </ResponsiveContainer>
+        <ResponsiveContainer width="20%" height="100%">
           <BarChart width={240} height={200} data={data2}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" style={{ fontFamily: 'Londrina Solid', fill: '#123050' }} />
-            <YAxis style={{ fontFamily: 'Londrina Solid', fill: '#123050' }} />
+            <XAxis dataKey="name" />
+            <YAxis
+              label={{
+                value: 'milligrams / serving',
+                dx: -30,
+                angle: -90,
+                position: 'center',
+              }}
+              type="number"
+            />
             <Tooltip />
-            <Bar dataKey="milligrams / 100 grams" />
+            <Bar dataKey="milligrams / serving" />
           </BarChart>
-        </div>
+        </ResponsiveContainer>
       </div>
     );
   };

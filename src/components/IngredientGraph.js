@@ -4,12 +4,11 @@ import { Redirect } from "react-router";
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
+  ResponsiveContainer
 } from "recharts";
 
 // Renders the nutritional data of the chosen ingredient
@@ -65,33 +64,41 @@ function IngredientGraph(props) {
       },
     ];
     return (
-      <div class="graph-container">
-        <div class="graph">
-          <p class="graph-label">
-            grams / 100 grams of{" "}
-            {props.data && props.data.ingredients[0].parsed[0].food}
-          </p>
+      // responsive containers need a parent container to set dimensions
+      <div class="ingredient-and-recipe-graph-container" >
+        <ResponsiveContainer width="55%" height="100%">
           <BarChart width={500} height={200} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" style={{ fontFamily: 'Londrina Solid', fill: '#123050' }} />
-            <YAxis style={{ fontFamily: 'Londrina Solid', fill: '#123050' }} />
+            <XAxis dataKey="name" />
+            <YAxis 
+            label={{ 
+                value: 'grams / 100 grams', 
+                dx: -5, 
+                angle: -90, 
+                position: 'center', 
+            }}
+            type="number" />
             <Tooltip />
             <Bar dataKey="grams / 100 grams" />
-          </BarChart>{" "}
-        </div>{" "}
-        <div class="graph">
-          <p class="graph-label">
-            milligrams / 100 grams of{" "}
-            {props.data && props.data.ingredients[0].parsed[0].food}
-          </p>
+          </BarChart>
+        </ResponsiveContainer>
+        <ResponsiveContainer width="20%" height="100%">
           <BarChart width={240} height={200} data={data2}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" style={{ fontFamily: 'Londrina Solid', fill: '#123050' }} />
-            <YAxis style={{ fontFamily: 'Londrina Solid', fill: '#123050' }} />
+            <XAxis dataKey="name" />
+            <YAxis 
+              label={{ 
+                value: 'milligrams / 100 grams', 
+                dx: -10, 
+                angle: -90, 
+                position: 'center', 
+              }} 
+              type="number"
+            />
             <Tooltip />
             <Bar dataKey="milligrams / 100 grams" />
           </BarChart>
-        </div>
+          </ResponsiveContainer>
       </div>
     );
   };

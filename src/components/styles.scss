@@ -1,4 +1,4 @@
-$primary-colour: #243a2f;
+$primary-colour: #2c6b68;
 $secondary-colour: #ffffff;
 $accent-colour: #a0acb9;
 $primary-font: monospace, cursive;
@@ -13,6 +13,7 @@ body,
   // background-image: url("/assets/healthy-wallpaper4.jpeg");
   // background-size: cover;
   height: 100vh;
+  box-sizing: boreder-box;
 }
 
 // figure this out for placement
@@ -20,11 +21,12 @@ body,
   // background-image: url("/assets/healthy-wallpaper2.jpeg");
   // background-size: cover;
   // height: 100vh;
-  padding-top: 260px;
+  // padding-top: 260px;
 }
 
 .nav {
   background-color: $primary-colour;
+  height: 10vh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -142,14 +144,14 @@ body,
 // start of searchbar styling
 
 #cover {
-  width: 650px;
+  width: 70vw;
   padding: 25px;
-  margin: 0 auto 0 auto;
-  background-color: transparent;
-  border-radius: 50px;
-  border: solid 1px $primary-colour;
+  margin: 2% auto;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  // border: solid 1px $primary-colour;
   transform: scale(0.6);
-  box-shadow: 5px 5px 5px 5px rgba(18, 48, 80, 0.75);
+  box-shadow: 2px 2px 2px 2px rgba(10, 46, 26, 0.75);
   .tb {
     display: table;
     width: 100%;
@@ -176,7 +178,7 @@ body,
   input[type="text"] {
     width: 100%;
     height: 65px;
-    font-size: 66px;
+    font-size: 75px;
     text-align: center;
     background-color: transparent;
     outline: none;
@@ -186,7 +188,7 @@ body,
     &::placeholder {
       font-family: "Cabin Sketch", cursive;
       font-weight: 700;
-      font-size: 33px;
+      font-size: 40px;
       color: $primary-colour;
       text-align: center;
       transform: translateY(-5px);
@@ -277,12 +279,12 @@ body,
 }
 
 .search {
-  margin-top: 5px;
+  margin: 5%;
   .search-result {
     margin: 10px 20%;
     display: flex;
     align-items: center;
-    background-color: rgba(106, 127, 150, 0.75);
+    background-color: rgba(106, 150, 150, 0.75);
     border-radius: 10px;
     border: solid 2px black;
     padding: 10px;
@@ -313,10 +315,33 @@ body,
   }
 }
 
+.button-and-graph-container {
+  margin: 3rem auto;
+  width: 85%;
+  background-color: #ffffff;
+  border: $primary-colour solid 1px;
+  border-radius: 5px;
+}
+
+.graph-carousel-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1%;
+  .white-background {
+    width: 85%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: $primary-colour solid 1px;
+  }
+}
+
 .graph-container {
   display: flex;
   // height: 200px;
-  width: 85%;
+  // width: 85%;
   align-items: center;
   justify-content: space-between;
   .graph {
@@ -334,12 +359,12 @@ body,
 }
 
 .nutritional-data {
-  width: 85%;
+  // width: 100%;
   // height: 42vh;
   display: inline-block;
   margin: 20px 10px 10px;
   // border: black solid 5px;
-  border-radius: 25px;
+  border-radius: 4px;
   padding: 10px;
   background-color: white;
   .text {
@@ -353,4 +378,57 @@ body,
 .nutritional-data h2 {
   color: $primary-colour;
   font-family: $primary-font;
+}
+
+.ingredient-and-recipe-graph-container {
+  display: flex;
+  height: 20em;
+}
+
+#macro-graph-container {
+  height: 22em;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.carousel {
+  border: $primary-colour solid 1px;
+  h2 {
+    font-family: $primary-font;
+    color: $primary-colour;
+  }
+}
+
+.schedule-item {
+  width: 10vw;
+  .heading-title {
+    height: 8vh;
+  }
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0;
+  padding: 0;
+
+  img {
+    margin: 0;
+  }
+  button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: #a0d0ce;
+    color: white;
+    border-radius: 10px;
+    padding: 7px 13px;
+    border: 1px solid transparent;
+    font-weight: bold;
+    &:hover {
+      background-color: salmon;
+    }
+  }
 }

@@ -51,16 +51,16 @@ img {
 }
 
 //added by Vic
-#carousel {
+.carousel {
   display: inline-block;
   margin: 10px;
-  border: black solid 5px;
-  border-radius: 25px;
+  // border: black solid 1px;
+  border-radius: 10px;
   padding: 10px;
   background-color: white;
   width: 85%;
 }
 
 .card {
-  border-radius: 25px;
+  border-radius: 10px;
 }
