@@ -87,7 +87,7 @@ function MacroGraph() {
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   const dailyType = (pick, getdata, followers) => {
-    console.log(getdata)
+    console.log(followers)
     const actualGraphData = []
     let pickQuantity = ""
     let yAxis = [];
@@ -107,7 +107,7 @@ function MacroGraph() {
         )
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userId] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
           }
         }
       } else if (pick === "Fat") {
@@ -123,7 +123,7 @@ function MacroGraph() {
         )
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userId] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
           }
         }
       } else if (pick === "Carbohydrates") {
@@ -139,7 +139,7 @@ function MacroGraph() {
         )
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userId] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
           }
         }
       } else if (pick === "Fiber") {
@@ -155,7 +155,7 @@ function MacroGraph() {
         )
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userId] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
           }
         }
       } else if (pick === "Sugar") {
@@ -171,7 +171,7 @@ function MacroGraph() {
         )
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userId] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
           }
         }
       } else if (pick === "Protein") {
@@ -187,7 +187,7 @@ function MacroGraph() {
         )
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userId] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
           }
         }
       } else if (pick === "Cholesterol") {
@@ -203,23 +203,23 @@ function MacroGraph() {
         )
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userId] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
           }
         }
       } else if (pick === "Sodium") {
-        pickQuantity = "Maximum Daily Recommended Intake (milligrams)"
+        pickQuantity = "Daily Recommended Intake (milligrams)"
         yAxis = [0, 7500];
         graphLabel = "milligrams of sodium consumed / day";
         actualGraphData.push(
           {
             name: days[i],
-            "Maximum Daily Recommended Intake (milligrams)": 1500,
+            "Daily Recommended Intake (milligrams)": 1500,
             You: getdata[i].sum
           }
         )
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userId] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
           }
         }
       }
@@ -250,7 +250,16 @@ function MacroGraph() {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis type="number" domain={yAxis} />
+          <YAxis 
+            type="number" 
+            domain={yAxis} 
+            label={{
+              value: graphLabel, 
+              dx: -30,
+              angle: -90,
+              position: 'center'
+            }}  
+          />
           <Tooltip />
           <Legend />
           <Line
@@ -262,7 +271,8 @@ function MacroGraph() {
           <Line type="monotone" dataKey="You" stroke="#82ca9d" />
           {/* conditionally render follower lines on graph */}
           {followers && followers.map((user) => {
-            let id = `${user.userId}`
+            // let id = `${user.userId}`
+            let id = `${user.userData[0].username}`
             let randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random() * 16)).toString(16); });
             return (<Line type="monotone" dataKey={id} stroke={randomColor} />)
           })}
