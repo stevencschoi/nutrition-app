@@ -258,7 +258,7 @@ function MacroGraph() {
             {data && data.followers.forEach(element => {
               console.log(element)
               return (
-                <Line type="monotone" dataKey={element.userId.toString()} stroke="#000000" />
+                <Line type="monotone" dataKey="You" stroke="#000000" />
               )
             })}
 
