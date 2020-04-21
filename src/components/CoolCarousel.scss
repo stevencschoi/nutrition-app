@@ -73,3 +73,12 @@ img {
   border-radius: 10px;
   margin-bottom: 2rem;
 }
+
+div.card {
+  background: linear-gradient(
+    to bottom,
+    rgba(105, 105, 105, 0.5),
+    rgba(255, 255, 255, 0.8)
+  );
+  border: none;
+}
