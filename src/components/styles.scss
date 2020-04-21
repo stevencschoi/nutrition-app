@@ -340,10 +340,11 @@ body,
   width: 100%;
   margin-top: 1%;
   .white-background {
-    width: 85%;
+    width: 45%;
     background-color: #ffffff;
     border-radius: 5px;
-    border: $primary-colour solid 1px;
+    padding-bottom: 2rem;
+    // border: $primary-colour solid 1px;
   }
 }
 
