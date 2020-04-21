@@ -22,10 +22,6 @@ export default function useApplicationData() {
     restrictions: []
   });
 
-  function persist(oldState) {
-    setState(oldState)
-  };
-
   function dietaryOptions(diet) {
     let newDietOptions = Object.assign({}, state);
     newDietOptions.diet.push(diet);
@@ -132,7 +128,6 @@ export default function useApplicationData() {
   }
   return {
     state,
-    persist,
     dietaryOptions,
     dietaryRestrictions,
     fetchSearchResults,
