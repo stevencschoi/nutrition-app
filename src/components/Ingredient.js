@@ -9,12 +9,24 @@ import useApplicationData from "../hooks/useApplicationData";
 function Ingredient({ match }) {
   const { state, getNutrients, fetchRecipes } = useApplicationData();
 
+
+  // const { state, persist } = useApplicationData();
+  const oldState = localStorage.getItem('persistedState')
+  const useableState = JSON.parse(oldState)
+  // // console.log("WORKS?", JSON.parse(oldState))
+  // persist(useableState)
+  // console.log("WORKS?", state)
+  console.log("weeeeee!!!!!!", useableState.diet)
+  console.log("weeeeee!!!!!!", useableState.restrictions)
+
+
+
   // upon ingredient search query, display nutritional information and related recipes
   useEffect(() => {
     const format = match.url.split("/");
     getNutrients(format[2]);
     fetchRecipes(format[3]);
-    console.log(state.restrictions)
+    // console.log(state)
   }, []);
 
   return (

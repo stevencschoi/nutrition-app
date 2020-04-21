@@ -18,12 +18,24 @@ export default function useApplicationData() {
     pick: "Calories",
     data: null,
     graph: "Calories",
-    // diet: [],
-    restrictions:[]
+    diet: [],
+    restrictions: []
   });
 
+  function persist(oldState) {
+    setState(oldState)
+  };
+
+  function dietaryOptions(diet) {
+    let newDietOptions = Object.assign({}, state);
+    newDietOptions.diet.push(diet);
+    setState(newDietOptions);
+  };
+
   function dietaryRestrictions(restriction) {
-    setState(prev => ({ ...prev, restrictions: restriction}))
+    let newRestrictions = Object.assign({}, state);
+    newRestrictions.restrictions.push(restriction);
+    setState(newRestrictions);
   };
 
   // connect socket
@@ -54,6 +66,7 @@ export default function useApplicationData() {
           ...prev,
           search: searchResultsArray,
         }));
+        // console.log("after", state)
       })
       .catch((error) => console.error(error));
   }
@@ -119,6 +132,8 @@ export default function useApplicationData() {
   }
   return {
     state,
+    persist,
+    dietaryOptions,
     dietaryRestrictions,
     fetchSearchResults,
     getNutrients,

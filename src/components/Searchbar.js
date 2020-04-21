@@ -4,11 +4,11 @@ import "./styles.scss";
 import useApplicationData from "../hooks/useApplicationData";
 
 function Searchbar(props) {
-  const { state, dietaryRestrictions } = useApplicationData();
+  const { state, dietaryOptions, dietaryRestrictions } = useApplicationData();
   const [ingredient, setIngredient] = useState("");
   // const [restrictions, setRestrictions] = useState([]);
 
-  // console.log(state.restrictions)
+  console.log(state)
 
   const dietOptions = [
     { key: 1, text: "balanced", value: "balanced" },
@@ -38,8 +38,9 @@ function Searchbar(props) {
         onSubmit={(e) => {
           e.preventDefault();
           props.fetchSearchResults(ingredient);
+          const persistedState = state
+          localStorage.setItem('persistedState', JSON.stringify(persistedState));
         }}
-      
       >
         <div class="tb">
           <div class="td">
@@ -62,11 +63,17 @@ function Searchbar(props) {
           </div>
         </div>
         <Dropdown
+          placeholder="Dietary Options"
+          multiple
+          options={dietOptions}
+          selection
+          onChange={(e) => dietaryOptions(e.target.innerText)}
+        />
+        <Dropdown
           placeholder="Dietary Restrictions"
           multiple
           options={restrictiveOptions}
           selection
-          value={state.restrictions}
           onChange={(e) => dietaryRestrictions(e.target.innerText)}
         />
       </form>
