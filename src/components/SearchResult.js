@@ -1,18 +1,18 @@
 import React from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
-import useApplicationData from "../hooks/useApplicationData";
+// import useApplicationData from "../hooks/useApplicationData";
 
 
 function SearchResult(props) {
 
-  const { state, persist } = useApplicationData();
-  const oldState = localStorage.getItem('persistedState')
-  const useableState = JSON.parse(oldState)
-  // // console.log("WORKS?", JSON.parse(oldState))
-  // persist(useableState)
-  console.log("WORKS?", state)
-  console.log("huh?", useableState)
+  // const { state, persist } = useApplicationData();
+  // const oldState = localStorage.getItem('persistedState')
+  // const useableState = JSON.parse(oldState)
+  // // // console.log("WORKS?", JSON.parse(oldState))
+  // // persist(useableState)
+  // console.log("WORKS?", state)
+  // console.log("huh?", useableState)
 
 
   return (

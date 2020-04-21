@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import "./styles.scss";
 import { Redirect } from "react-router";
+import useApplicationData from "../hooks/useApplicationData";
 import {
   BarChart,
   Bar,
@@ -11,6 +12,10 @@ import {
   ResponsiveContainer
 } from "recharts";
 function RecipeGraph(props) {
+  const { state, getNutrients, fetchRecipes } = useApplicationData();
+
+console.log(state)
+
   const makeGraph = (
     calories,
     fat_in_g,

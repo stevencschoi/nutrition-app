@@ -6,9 +6,6 @@ import useApplicationData from "../hooks/useApplicationData";
 function Searchbar(props) {
   const { state, dietaryOptions, dietaryRestrictions } = useApplicationData();
   const [ingredient, setIngredient] = useState("");
-  // const [restrictions, setRestrictions] = useState([]);
-
-  console.log(state)
 
   const dietOptions = [
     { key: 1, text: "balanced", value: "balanced" },
@@ -38,6 +35,8 @@ function Searchbar(props) {
         onSubmit={(e) => {
           e.preventDefault();
           props.fetchSearchResults(ingredient);
+          
+          // store dietary options and restrictions in local state
           const persistedState = state
           localStorage.setItem('persistedState', JSON.stringify(persistedState));
         }}
@@ -54,29 +53,35 @@ function Searchbar(props) {
               }}
               required
             />
+            
           </div>
+          
           <div class="td" id="s-cover">
             <button type="submit">
               <div id="s-circle"></div>
               <span></span>
+              
             </button>
+            
           </div>
+          
         </div>
-        <Dropdown
-          placeholder="Dietary Options"
-          multiple
-          options={dietOptions}
-          selection
-          onChange={(e) => dietaryOptions(e.target.innerText)}
-        />
-        <Dropdown
-          placeholder="Dietary Restrictions"
-          multiple
-          options={restrictiveOptions}
-          selection
-          onChange={(e) => dietaryRestrictions(e.target.innerText)}
-        />
+        
       </form>
+      <Dropdown
+        placeholder="Dietary Options"
+        multiple
+        options={dietOptions}
+        selection
+        onChange={(e) => dietaryOptions(e.target.innerText)}
+      />
+      <Dropdown
+        placeholder="Dietary Restrictions"
+        multiple
+        options={restrictiveOptions}
+        selection
+        onChange={(e) => dietaryRestrictions(e.target.innerText)}
+      />
     </div>
   );
 }

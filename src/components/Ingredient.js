@@ -8,25 +8,28 @@ import useApplicationData from "../hooks/useApplicationData";
 
 function Ingredient({ match }) {
   const { state, getNutrients, fetchRecipes } = useApplicationData();
-
-
-  // const { state, persist } = useApplicationData();
+  // retrieve state stored in local storage which contains dietary options and restrictions
   const oldState = localStorage.getItem('persistedState')
   const useableState = JSON.parse(oldState)
-  // // console.log("WORKS?", JSON.parse(oldState))
-  // persist(useableState)
-  // console.log("WORKS?", state)
-  console.log("weeeeee!!!!!!", useableState.diet)
-  console.log("weeeeee!!!!!!", useableState.restrictions)
-
-
+  
+  let diet;
+  if (useableState.diet.join('&') === "") {
+    diet = "&";
+  } else {
+    diet = `&diet=${useableState.diet.join('&')}`;
+  };
+  let health;
+  if (useableState.restrictions.join('&') === "") {
+    health = "&";
+  } else {
+    health = `&health=${useableState.restrictions.join('&')}&`;
+  };
 
   // upon ingredient search query, display nutritional information and related recipes
   useEffect(() => {
     const format = match.url.split("/");
     getNutrients(format[2]);
-    fetchRecipes(format[3]);
-    // console.log(state)
+    fetchRecipes(format[3], diet, health);
   }, []);
 
   return (
