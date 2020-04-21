@@ -40,13 +40,13 @@ function MacroGraph() {
   const { state, fetchUsers, getFollowers } = useUserData();
 
   useEffect(() => {
-    getData(pick);
+    getData(pick, currentDay);
     fetchUsers();
     getFollowers();
 
     socket.on("update", () => {
       console.log("hi");
-      getData(pick);
+      getData(pick, currentDay);
     });
   }, [pick, currentDay]);
 
@@ -58,9 +58,10 @@ function MacroGraph() {
   //   });
   // }, [pick]);
 
-  const getData = (choice) => {
-    const start = JSON.stringify(currentDay.startOf("week")).slice(1, 11);
-    const end = JSON.stringify(currentDay.startOf("week").weekday(6)).slice(
+  const getData = (choice, daypick) => {
+    const day = daypick.clone()
+    const start = JSON.stringify(day.startOf("week")).slice(1, 11);
+    const end = JSON.stringify(day.startOf("week").weekday(6)).slice(
       1,
       11
     );
