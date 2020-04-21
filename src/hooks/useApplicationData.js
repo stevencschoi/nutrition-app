@@ -18,7 +18,14 @@ export default function useApplicationData() {
     pick: "Calories",
     data: null,
     graph: "Calories",
+    // diet: [],
+    restrictions:[]
   });
+
+  function dietaryRestrictions(restriction) {
+    setState(prev => ({ ...prev, restrictions: restriction}))
+  };
+
   // connect socket
   useEffect(() => {
     socket.on("connect", () => {
@@ -112,6 +119,7 @@ export default function useApplicationData() {
   }
   return {
     state,
+    dietaryRestrictions,
     fetchSearchResults,
     getNutrients,
     fetchRecipes,

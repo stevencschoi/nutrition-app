@@ -30,6 +30,7 @@ export default function Recipe({ props, match }) {
   const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
 
   function fetchRecipes(ingredient) {
+    
     axios
       .get(
         `https://api.edamam.com/search?q=${ingredient}&app_id=${recipeApiId}&app_key=${recipeApiKey}`

@@ -14,6 +14,7 @@ function Ingredient({ match }) {
     const format = match.url.split("/");
     getNutrients(format[2]);
     fetchRecipes(format[3]);
+    console.log(state.restrictions)
   }, []);
 
   return (
