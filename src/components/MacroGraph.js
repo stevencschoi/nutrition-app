@@ -59,9 +59,9 @@ function MacroGraph() {
   // }, [pick]);
 
   const getData = (choice, daypick) => {
-    const day = daypick.clone()
-    const start = JSON.stringify(day.startOf("week")).slice(1, 11);
-    const end = JSON.stringify(day.startOf("week").weekday(6)).slice(
+    const cloneday = daypick.clone()
+    const start = JSON.stringify(cloneday.startOf("week")).slice(1, 11);
+    const end = JSON.stringify(cloneday.startOf("week").weekday(6)).slice(
       1,
       11
     );
