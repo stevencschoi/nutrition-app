@@ -19,7 +19,7 @@ function Ingredient({ match }) {
   return (
     <>
       <div className="ingredient-page">
-        <h1 className="favourite-title">Profile</h1>
+        <h1 className="favourite-title">Ingredient Profile</h1>
         <div className="button-and-graph-container">
           <div className="button-container">
             <Link to={"/"} className="position-right">

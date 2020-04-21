@@ -323,10 +323,13 @@ body,
 
 .button-and-graph-container {
   margin: 3rem auto;
-  width: 85%;
+  width: 60%;
   background-color: #ffffff;
   border: $primary-colour solid 1px;
   border-radius: 5px;
+  .position-right button {
+    margin-top: 2rem;
+  }
 }
 
 .graph-carousel-container {
@@ -398,10 +401,15 @@ body,
   justify-content: center;
 }
 .carousel {
-  border: $primary-colour solid 1px;
+  // border: $primary-colour solid 1px;
   h2 {
     font-family: $primary-font;
     color: $primary-colour;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0)
+    );
   }
 }
 

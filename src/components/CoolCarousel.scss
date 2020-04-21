@@ -1,9 +1,12 @@
+$primary-colour: #2c6b68;
+
 .card {
   text-align: center;
   padding-top: 10px;
-  opacity: 1;
+  // opacity: 1;
   width: 90%;
   color: white;
+  background-color: transparent;
 }
 
 .card-title {
@@ -57,10 +60,16 @@ img {
   // border: black solid 1px;
   border-radius: 10px;
   padding: 10px;
-  background-color: white;
+  // background-color: white;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 165, 0, 0.7)
+  );
   width: 85%;
 }
 
 .card {
   border-radius: 10px;
+  margin-bottom: 2rem;
 }
