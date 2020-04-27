@@ -42,7 +42,8 @@ function Schedule() {
 
   // make get request to server and map results to the page
   const getDaySchedule = (currentDate) => {
-    const start = currentDate.startOf("week");
+    let start = currentDate.clone();
+    start = start.startOf("week");
 
     let day = Number(start.format("e"));
     const newday = dayFomater(day);
