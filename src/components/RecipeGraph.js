@@ -84,7 +84,7 @@ console.log(state)
             <YAxis
               label={{
                 value: 'grams / serving',
-                dx: -15,
+                dx: -10,
                 angle: -90,
                 position: 'center',
               }}
@@ -102,7 +102,7 @@ console.log(state)
             <YAxis
               label={{
                 value: 'milligrams / serving',
-                dx: -25,
+                dx: -20,
                 angle: -90,
                 position: 'center',
               }}
