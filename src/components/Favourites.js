@@ -48,6 +48,7 @@ const Favourites = (props) => {
           cholesterol_in_mg={item.cholesterol_in_mg}
           sodium_in_mg={item.sodium_in_mg}
           image_url={item.image_url}
+          recipe_yield={item.recipe_yield}
         />
       );
     });

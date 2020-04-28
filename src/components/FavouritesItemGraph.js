@@ -25,15 +25,16 @@ console.log(state)
     fiber_in_g,
     cholesterol_in_mg,
     sodium_in_mg,
-    image_url
+    image_url,
+    recipe_yield
   ) => {
-    let fat = fat_in_g;
-    let carbohydrates = carbs_in_g;
-    let protein = protein_in_g;
-    let cholesterol = cholesterol_in_mg;
-    let sodium = sodium_in_mg;
-    let sugar = sugar_in_g;
-    let fibre = fiber_in_g;
+    let fat = fat_in_g / recipe_yield;
+    let carbohydrates = carbs_in_g / recipe_yield;
+    let protein = protein_in_g / recipe_yield;
+    let cholesterol = cholesterol_in_mg / recipe_yield;
+    let sodium = sodium_in_mg / recipe_yield;
+    let sugar = sugar_in_g / recipe_yield;
+    let fibre = fiber_in_g / recipe_yield;
     const data = [
       {
         name: "Fat",
@@ -136,7 +137,8 @@ console.log(state)
           props.fiber_in_g,
           props.cholesterol_in_mg,
           props.sodium_in_mg,
-          props.image_url
+          props.image_url,
+          props.recipe_yield
         )}
       </div>
     </div>
