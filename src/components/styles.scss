@@ -14,7 +14,7 @@ body,
   // background-image: url("/assets/healthy-wallpaper4.jpeg");
   // background-size: cover;
   height: 100vh;
-  box-sizing: boreder-box;
+  box-sizing: border-box;
 }
 
 // // figure this out for placement
@@ -333,6 +333,10 @@ body,
   }
 }
 
+
+
+
+
 .button-and-graph-container {
   margin: 3rem auto;
   width: 60%;
@@ -344,21 +348,6 @@ body,
   }
 }
 
-.graph-carousel-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 1%;
-  .white-background {
-    width: 85%;
-    background-color: #ffffff;
-    border-radius: 5px;
-    padding-bottom: 2rem;
-    // border: $primary-colour solid 1px;
-  }
-}
 
 .graph-container {
   display: flex;
@@ -380,39 +369,99 @@ body,
   }
 }
 
-.nutritional-data {
-  // width: 100%;
-  // height: 42vh;
+
+
+// do not touch!!!
+.graph-carousel-container {
   display: inline-block;
-  margin: 20px 10px 10px;
-  // border: black solid 5px;
+  width: 80%;
+  margin-top: 1%;
+  .macro-data {
+    margin: 20px 10px 10px;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: white;
+    h2 {
+      font-family: $primary-font;
+      color: $primary-colour;
+    }
+    .text {
+      color: $primary-colour;
+    }
+    #macro-graph-container {
+      height: 22em;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+}
+// do not touch!!!
+
+// don't touch!!!
+.ingredient-data {
+  width: 70%;
+  margin: 25px auto;
   border-radius: 4px;
   padding: 10px;
   background-color: white;
   .text {
     color: $primary-colour;
   }
-  div {
-    margin: 0 auto;
-  }
-}
-
-.nutritional-data h2 {
+  h2 {
   color: $primary-colour;
   font-family: $primary-font;
-}
-
-.ingredient-and-recipe-graph-container {
+  }
+  .ingredient-graph-container {
   display: flex;
-  height: 20em;
-}
-
-#macro-graph-container {
-  height: 22em;
-  margin: 0 auto;
-  display: flex;
+  align-items: center;
   justify-content: center;
+  height: 22em;
+  .left-graph {
+    height: 22em;
+    width: 66%;
+    }
+  }
+  .right-graph {
+  height: 22em;
+  width: 33%;
+  }
 }
+// don't touch!!!
+
+
+// don't touch!!!
+.favourites-data {
+  // width: 70%;
+  margin: 25px auto;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: white;
+  .text {
+    color: $primary-colour;
+  }
+  h2 {
+  color: $primary-colour;
+  font-family: $primary-font;
+  }
+  .ingredient-graph-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22em;
+  .left-graph {
+    height: 22em;
+    width: 66%;
+    }
+  }
+  .right-graph {
+  height: 22em;
+  width: 33%;
+  }
+}
+// don't touch!!!
+
+
+
 .carousel {
   // border: $primary-colour solid 1px;
   h2 {

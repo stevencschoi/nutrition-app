@@ -74,16 +74,17 @@ console.log(state)
       },
     ];
     return (
-      // responsive containers need a parent container to set dimensions
-      <div class="ingredient-and-recipe-graph-container">
-        {/* <ResponsiveContainer width="65%" height="100%"> */}
-          <BarChart width={500} height={250} data={data}>
+      // favourites graphs
+      <div class="ingredient-graph-container">
+        <div class="left-graph">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart width={500} height={300} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis
               label={{
                 value: 'grams / serving',
-                dx: -15,
+                dx: -10,
                 angle: -90,
                 position: 'center',
               }}
@@ -91,15 +92,17 @@ console.log(state)
             <Tooltip />
             <Bar dataKey="grams / serving" />
           </BarChart>
-        {/* </ResponsiveContainer> */}
-        {/* <ResponsiveContainer width="30%" height="100%"> */}
-          <BarChart width={240} height={250} data={data2}>
+        </ResponsiveContainer>
+        </div>
+          <div class="right-graph">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart width={240} height={300} data={data2}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis
               label={{
                 value: 'milligrams / serving',
-                dx: -30,
+                dx: -20,
                 angle: -90,
                 position: 'center',
               }}
@@ -108,7 +111,8 @@ console.log(state)
             <Tooltip />
             <Bar dataKey="milligrams / serving" />
           </BarChart>
-        {/* </ResponsiveContainer> */}
+        </ResponsiveContainer>
+        </div>
       </div>
     );
   };
@@ -118,7 +122,7 @@ console.log(state)
   }, [])
 
   return (
-    <div class="nutritional-data">
+    <div class="favourites-data">
       <h2>
         Select Nutritional Data of {props.name}
       </h2>

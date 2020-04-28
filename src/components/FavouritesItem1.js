@@ -55,7 +55,6 @@ const FavouritesItem1 = (props) => {
   return (
     <>
       <div className="FavouritesItem">
-        <div className="white-container">
           <div className="favourite-main">
             <div className="image-and-drop-container">
               <div className="image-container">
@@ -135,7 +134,6 @@ const FavouritesItem1 = (props) => {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </>
   );

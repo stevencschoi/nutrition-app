@@ -237,7 +237,6 @@ function MacroGraph() {
     let pickQuantity = values[1];
     let yAxis = values[2];
     let graphLabel = values[3];
-
     return (
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
@@ -283,36 +282,34 @@ function MacroGraph() {
       </ResponsiveContainer>
     );
   };
-
   const handledaypick = (day) => {
     setCurrentDay(day);
   };
-
   return (
     <div className="graph-carousel-container">
-      <div className="white-background">
-        <div class="nutritional-data">
-          <h2>
-            Weekly consumption of{" "}
-            {pick && (
-              <Dropdown
-                compact
-                text={pick}
-                options={options}
-                selection
-                onChange={(e, { value }) => setPick(value)}
-              />
-            )}{" "}
-            per day
-          </h2>
-          <div id="macro-graph-container">{pick && graph}</div>
+      <div class="macro-data">
+        <h2>
+          Weekly consumption of{" "}
+          {pick && (
+            <Dropdown
+              compact
+              text={pick}
+              options={options}
+              selection
+              onChange={(e, { value }) => setPick(value)}
+            />
+          )}{" "}
+          per day
+        </h2>
+        <div id="macro-graph-container">
+          {pick && graph}
         </div>
-        <div>
-          <MealCalendar
-            date={currentDay}
-            onChange={(e) => handledaypick(e.target.value)}
-          />
-        </div>
+      </div>
+      <div>
+        <MealCalendar
+          date={currentDay}
+          onChange={(e) => handledaypick(e.target.value)}
+        />
       </div>
       <div className="carousel">
         <h2>Discover People</h2>

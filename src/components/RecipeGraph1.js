@@ -59,9 +59,10 @@ function RecipeGraph(props) {
       },
     ];
     return (
-      // responsive containers need a parent container to set dimensions
-      <div class="ingredient-and-recipe-graph-container">
-        {/* <ResponsiveContainer width="55%" height="100%"> */}
+      // recipe graphs
+      <div class="ingredient-graph-container">
+        <div class="left-graph">
+        <ResponsiveContainer width="100%" height="100%">
           <BarChart width={500} height={300} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
@@ -76,15 +77,17 @@ function RecipeGraph(props) {
             <Tooltip />
             <Bar dataKey="grams / serving" />
           </BarChart>
-        {/* </ResponsiveContainer> */}
-        {/* <ResponsiveContainer width="20%" height="100%"> */}
+        </ResponsiveContainer>
+        </div>
+        <div class="right-graph">
+        <ResponsiveContainer width="100%" height="100%">
           <BarChart width={240} height={300} data={data2}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis
               label={{
                 value: "milligrams / serving",
-                dx: -30,
+                dx: -20,
                 angle: -90,
                 position: 'center',
               }}
@@ -93,7 +96,8 @@ function RecipeGraph(props) {
             <Tooltip />
             <Bar dataKey="milligrams / serving" />
           </BarChart>
-        {/* </ResponsiveContainer> */}
+        </ResponsiveContainer>
+        </div>
       </div>
     );
   };
