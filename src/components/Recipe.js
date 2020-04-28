@@ -152,7 +152,7 @@ export default function Recipe({ props, match }) {
                   </Button>
                 )}
               </div>
-              <div class="nutritional-data">
+              <div class="ingredient-data">
                 <h2>
                   Nutritional Data of {foodIngredient && foodIngredient.q}
                 </h2>
