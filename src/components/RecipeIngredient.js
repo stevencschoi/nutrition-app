@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./styles.scss";
-import Recipeitem from "./Recipeitem";
 
 export default function RecipeIngredient(props) {
   useEffect(() => { }, [props]);

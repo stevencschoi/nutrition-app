@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import axios from "axios";
-import RecipeGraph from "./RecipeGraph";
+import FavouritesItemGraph from "./FavouritesItemGraph";
 import Cookies from "js-cookie";
 import MealCalendar from "./MealCalendar";
 import Button from "./Button";
@@ -69,7 +69,7 @@ const FavouritesItem1 = (props) => {
               </div>
             </div>
             <div>
-              <RecipeGraph
+              <FavouritesItemGraph
                 calories={props.calories}
                 fat_in_g={props.fat_in_g}
                 carbs_in_g={props.carbs_in_g}
