@@ -26,11 +26,7 @@ body,
 // }
 
 .nav {
-  background-image: linear-gradient(
-    to bottom,
-    $primary-colour,
-    rgba(255, 255, 255, 0)
-  );
+  background-image: linear-gradient(to bottom, $primary-colour, rgba(255, 255, 255, 0));
   height: 10vh;
   display: flex;
   justify-content: space-evenly;
@@ -82,6 +78,22 @@ body,
       color: $primary-colour;
       background-color: white;
       border: 1px solid $secondary-colour;
+    }
+  }
+}
+@media (max-width: 850px) {
+  .nav {
+    .media h3 {
+      font-size: 1.3rem;
+    }
+    #logo {
+      font-size: 1.4rem;
+    }
+    .logged-user {
+      font-size: 1.3rem;
+      .button {
+        font-size: 1.3rem;
+      }
     }
   }
 }
@@ -337,13 +349,6 @@ body,
 }
 
 
-
-
-
-
-
-
-
 .graph-container {
   display: flex;
   // height: 200px;
@@ -462,11 +467,7 @@ body,
   h2 {
     font-family: $primary-font;
     color: $primary-colour;
-    background-image: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 0)
-    );
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
   }
 }
 
