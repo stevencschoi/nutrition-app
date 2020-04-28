@@ -3,7 +3,7 @@ import axios from "axios";
 import "./styles.scss";
 import "./recipe.scss";
 import RecipeIngredient from "./RecipeIngredient";
-import RecipeGraph1 from "./RecipeGraph1";
+import RecipeGraph from "./RecipeGraph";
 import Button from "./Button";
 import MealCalendar from "./MealCalendar";
 import { Dropdown } from "semantic-ui-react";
@@ -159,7 +159,7 @@ export default function Recipe({ props, match }) {
                 <h2>
                   Nutritional Data of {foodIngredient && foodIngredient.q}
                 </h2>
-                <RecipeGraph1 foodIngredient={foodIngredient} />
+                <RecipeGraph foodIngredient={foodIngredient} />
               </div>
             </div>
           </div>

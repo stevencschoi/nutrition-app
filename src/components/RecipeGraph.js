@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import "./styles.scss";
 import { Redirect } from "react-router";
-import useApplicationData from "../hooks/useApplicationData";
 import {
   BarChart,
   Bar,
@@ -12,28 +11,14 @@ import {
   ResponsiveContainer
 } from "recharts";
 function RecipeGraph(props) {
-  const { state, getNutrients, fetchRecipes } = useApplicationData();
-
-console.log(state)
-
-  const makeGraph = (
-    calories,
-    fat_in_g,
-    carbs_in_g,
-    protein_in_g,
-    sugar_in_g,
-    fiber_in_g,
-    cholesterol_in_mg,
-    sodium_in_mg,
-    image_url
-  ) => {
-    let fat = fat_in_g;
-    let carbohydrates = carbs_in_g;
-    let protein = protein_in_g;
-    let cholesterol = cholesterol_in_mg;
-    let sodium = sodium_in_mg;
-    let sugar = sugar_in_g;
-    let fibre = fiber_in_g;
+  const makeGraph = (nutData) => {
+    let fat = nutData.hits[0].recipe.totalNutrients.FAT.quantity ? nutData.hits[0].recipe.totalNutrients.FAT.quantity : 0;
+    let carbohydrates = nutData.hits[0].recipe.totalNutrients.CHOCDF.quantity ? nutData.hits[0].recipe.totalNutrients.CHOCDF.quantity : 0;
+    let protein = nutData.hits[0].recipe.totalNutrients.PROCNT.quantity ? nutData.hits[0].recipe.totalNutrients.PROCNT.quantity : 0;
+    let cholesterol = nutData.hits[0].recipe.totalNutrients.CHOLE.quantity ? nutData.hits[0].recipe.totalNutrients.CHOLE.quantity : 0;
+    let sodium = nutData.hits[0].recipe.totalNutrients.NA.quantity ? nutData.hits[0].recipe.totalNutrients.NA.quantity : 0;
+    let sugar = nutData.hits[0].recipe.totalNutrients.SUGAR.quantity ? nutData.hits[0].recipe.totalNutrients.SUGAR.quantity : 0;
+    let fibre = nutData.hits[0].recipe.totalNutrients.FIBTG.quantity ? nutData.hits[0].recipe.totalNutrients.FIBTG.quantity : 0;
     const data = [
       {
         name: "Fat",
@@ -74,7 +59,7 @@ console.log(state)
       },
     ];
     return (
-      // favourites graphs
+      // recipe graphs
       <div class="ingredient-graph-container">
         <div class="left-graph">
         <ResponsiveContainer width="100%" height="100%">
@@ -83,8 +68,8 @@ console.log(state)
             <XAxis dataKey="name" />
             <YAxis
               label={{
-                value: 'grams / serving',
-                dx: -10,
+                value: "grams / serving",
+                dx: -20,
                 angle: -90,
                 position: 'center',
               }}
@@ -94,14 +79,14 @@ console.log(state)
           </BarChart>
         </ResponsiveContainer>
         </div>
-          <div class="right-graph">
+        <div class="right-graph">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart width={240} height={300} data={data2}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis
               label={{
-                value: 'milligrams / serving',
+                value: "milligrams / serving",
                 dx: -20,
                 angle: -90,
                 position: 'center',
@@ -116,31 +101,6 @@ console.log(state)
       </div>
     );
   };
-
-  useEffect(() => {
-    console.log(props)
-  }, [])
-
-  return (
-    <div class="favourites-data">
-      <h2>
-        Select Nutritional Data of {props.name}
-      </h2>
-      <div>
-        {makeGraph(
-          props.calories,
-          props.fat_in_g,
-          props.carbs_in_g,
-          props.protein_in_g,
-          props.sugar_in_g,
-          props.fiber_in_g,
-          props.cholesterol_in_mg,
-          props.sodium_in_mg,
-          props.image_url
-        )}
-      </div>
-    </div>
-  );
-
+  return <div>{props.foodIngredient && makeGraph(props.foodIngredient)}</div>;
 }
 export default RecipeGraph;
