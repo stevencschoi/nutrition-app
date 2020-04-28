@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import axios from "axios";
 import FavouritesItemGraph from "./FavouritesItemGraph";
-import Cookies from "js-cookie";
 import MealCalendar from "./MealCalendar";
 import Button from "./Button";
 import moment from "moment";
