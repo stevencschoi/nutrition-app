@@ -72,7 +72,7 @@ export default function Recipe({ props, match }) {
       foodIngredient.hits[0].recipe.totalNutrients.NA.quantity;
     const image_url = foodIngredient.hits[0].recipe.image;
     const recipe_yield = foodIngredient.hits[0].recipe.yield;
-    // console.log("yield", abc)
+    // console.log("yield", recipe_yield)
     axios
       .post(`/recipe/add`, {
         recipeName: recipeName,
