@@ -321,6 +321,10 @@ body,
   }
 }
 
+
+
+
+
 .button-and-graph-container {
   margin: 3rem auto;
   width: 60%;
@@ -416,16 +420,36 @@ body,
 }
 
 
-.ingredient-and-recipe-graph-container {
+// don't touch!!!
+.ingredient-data {
+  width: 70%;
+  margin: 25px auto;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: white;
+  .text {
+    color: $primary-colour;
+  }
+  h2 {
+  color: $primary-colour;
+  font-family: $primary-font;
+  }
+  .ingredient-graph-container {
   display: flex;
-  height: 20em;
+  align-items: center;
+  justify-content: center;
+  height: 22em;
+  .left-graph {
+    height: 22em;
+    width: 66%;
+    }
+  }
+  .right-graph {
+  height: 22em;
+  width: 33%;
+  }
 }
-
-
-
-
-
-
+// don't touch!!!
 
 
 

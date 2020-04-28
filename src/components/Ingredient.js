@@ -36,14 +36,12 @@ function Ingredient({ match }) {
     <>
       <div className="ingredient-page">
         <h1 className="favourite-title">Ingredient Profile</h1>
-        <div className="button-and-graph-container">
-          <div className="button-container">
-            <Link to={"/"} className="position-right">
-              <Button default>Start Over</Button>
-            </Link>
-          </div>
-          <IngredientGraph data={state.search} />
+        <div className="button-container">
+          <Link to={"/"} className="position-right">
+            <Button default>Start Over</Button>
+          </Link>
         </div>
+        <IngredientGraph data={state.search} />
         <div class="carousel">
           <h2>Featured Recipes</h2>
           {state.recipes && (

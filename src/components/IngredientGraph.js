@@ -65,8 +65,9 @@ function IngredientGraph(props) {
     ];
     return (
       // responsive containers need a parent container to set dimensions
-      <div class="ingredient-and-recipe-graph-container" >
-        {/* <ResponsiveContainer width="55%" height="100%"> */}
+      <div class="ingredient-graph-container" >
+        <div class="left-graph">
+        <ResponsiveContainer width="100%" height="100%">
           <BarChart width={500} height={300} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
@@ -81,15 +82,17 @@ function IngredientGraph(props) {
             <Tooltip />
             <Bar dataKey="grams / 100 grams" />
           </BarChart>
-        {/* </ResponsiveContainer> */}
-        {/* <ResponsiveContainer width="20%" height="100%"> */}
+        </ResponsiveContainer>
+      </div>
+      <div class="right-graph">
+        <ResponsiveContainer width="100%" height="100%">
           <BarChart width={240} height={300} data={data2}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis 
               label={{ 
                 value: 'milligrams / 100 grams', 
-                dx: -20, 
+                dx: -15, 
                 angle: -90, 
                 position: 'center', 
               }} 
@@ -98,12 +101,13 @@ function IngredientGraph(props) {
             <Tooltip />
             <Bar dataKey="milligrams / 100 grams" />
           </BarChart>
-          {/* </ResponsiveContainer> */}
+          </ResponsiveContainer>
+      </div>
       </div>
     );
   };
   return (
-    <div class="nutritional-data">
+    <div class="ingredient-data">
       <h2>
         Select Nutritional Data of{" "}
         {props.data && props.data.ingredients[0].parsed[0].food}
