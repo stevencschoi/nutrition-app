@@ -69,6 +69,7 @@ function MacroGraph() {
       .get(`/user/data?startDate=${start}&endDate=${end}&userChoice=${choice}`)
       .then((result) => {
         setData(result.data);
+        // console.log("AAAAAAAAAAAA",result.data)
         if (result.data.followers.length === 0) {
           const newGraph = makeGraph(
             pick,
