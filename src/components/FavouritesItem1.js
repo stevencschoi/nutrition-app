@@ -79,6 +79,7 @@ const FavouritesItem1 = (props) => {
                 sodium_in_mg={props.sodium_in_mg}
                 image_url={props.image_url}
                 name={props.name}
+                recipe_yield={props.recipe_yield}
               />
             </div>
           </div>
