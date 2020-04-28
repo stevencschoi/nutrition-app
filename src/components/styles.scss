@@ -14,7 +14,7 @@ body,
   // background-image: url("/assets/healthy-wallpaper4.jpeg");
   // background-size: cover;
   height: 100vh;
-  box-sizing: boreder-box;
+  box-sizing: border-box;
 }
 
 // // figure this out for placement
@@ -450,6 +450,45 @@ body,
   }
 }
 // don't touch!!!
+
+
+// don't touch!!!
+.favourites-data {
+  // width: 70%;
+  margin: 25px auto;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: white;
+  .text {
+    color: $primary-colour;
+  }
+  h2 {
+  color: $primary-colour;
+  font-family: $primary-font;
+  }
+  .ingredient-graph-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22em;
+  .left-graph {
+    height: 22em;
+    width: 66%;
+    margin-right: 50px;
+    }
+  }
+  .right-graph {
+  height: 22em;
+  width: 33%;
+  }
+}
+// don't touch!!!
+
+
+
+
+
+
 
 
 

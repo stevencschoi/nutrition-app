@@ -72,13 +72,13 @@ function IngredientGraph(props) {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis 
-            label={{ 
+              label={{ 
                 value: 'grams / 100 grams', 
                 dx: -5, 
                 angle: -90, 
                 position: 'center', 
-            }}
-            type="number" />
+              }}
+              type="number" />
             <Tooltip />
             <Bar dataKey="grams / 100 grams" />
           </BarChart>

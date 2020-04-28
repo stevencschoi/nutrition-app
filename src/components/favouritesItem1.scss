@@ -16,26 +16,18 @@ $primary-font: monospace, cursive;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // background-color: rgba(106, 127, 150, 0.75);
-  margin: 1% 1%;
-  .white-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-    width: 75%;
-    border: $primary-colour solid 1px;
-    border-radius: 5px;
-    padding-bottom: 1%;
-  }
+  background-color: white;
+  width: 75%;
+  margin: 1% auto;
+  border: $primary-colour solid 1px;
+  border-radius: 5px;
+  padding-bottom: 1%;
   .favourite-main {
     display: flex;
     justify-content: left;
     align-items: center;
     padding: 1%;
     background-color: #ffffff;
-
     width: 100%;
     .image-container {
       margin-left: 2rem;
@@ -112,9 +104,9 @@ $primary-font: monospace, cursive;
           }
         }
 
-        .delete-button {
-          // margin-top: 0.5rem;
-        }
+        // .delete-button {
+        //   // margin-top: 0.5rem;
+        // }
       }
     }
   }
