@@ -7,6 +7,7 @@ export default function Button(props) {
   const buttonClass = classNames("button", {
     "btn btn-sm follow btn-primary": props.default,
     "delete-button": props.delete,
+    "delete-button-image": props.deleteImage,
   });
   return (
     <button

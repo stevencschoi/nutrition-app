@@ -1,7 +1,5 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React from "react";
 import "./styles.scss";
-import { Redirect } from "react-router";
-import useApplicationData from "../hooks/useApplicationData";
 import {
   BarChart,
   Bar,
@@ -9,13 +7,9 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
 function RecipeGraph(props) {
-  const { state, getNutrients, fetchRecipes } = useApplicationData();
-
-console.log(state)
-
   const makeGraph = (
     calories,
     fat_in_g,
@@ -78,55 +72,50 @@ console.log(state)
       // favourites graphs
       <div class="ingredient-graph-container">
         <div class="left-graph">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart width={500} height={300} data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis
-              label={{
-                value: 'grams / serving',
-                dx: -10,
-                angle: -90,
-                position: 'center',
-              }}
-              type="number" />
-            <Tooltip />
-            <Bar dataKey="grams / serving" />
-          </BarChart>
-        </ResponsiveContainer>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart width={500} height={300} data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis
+                label={{
+                  value: "grams / serving",
+                  dx: -10,
+                  angle: -90,
+                  position: "center",
+                }}
+                type="number"
+              />
+              <Tooltip />
+              <Bar dataKey="grams / serving" />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
-          <div class="right-graph">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart width={240} height={300} data={data2}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis
-              label={{
-                value: 'milligrams / serving',
-                dx: -20,
-                angle: -90,
-                position: 'center',
-              }}
-              type="number"
-            />
-            <Tooltip />
-            <Bar dataKey="milligrams / serving" />
-          </BarChart>
-        </ResponsiveContainer>
+        <div class="right-graph">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart width={240} height={300} data={data2}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis
+                label={{
+                  value: "milligrams / serving",
+                  dx: -20,
+                  angle: -90,
+                  position: "center",
+                }}
+                type="number"
+              />
+              <Tooltip />
+              <Bar dataKey="milligrams / serving" />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
     );
   };
 
-  useEffect(() => {
-    console.log(props)
-  }, [])
-
   return (
     <div class="favourites-data">
-      <h2>
-        Select Nutritional Data of {props.name}
-      </h2>
+      <h2>Select Nutritional Data of {props.name}</h2>
       <div>
         {makeGraph(
           props.calories,
@@ -143,6 +132,5 @@ console.log(state)
       </div>
     </div>
   );
-
 }
 export default RecipeGraph;

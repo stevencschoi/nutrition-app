@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 import axios from "axios";
 import FavouritesItemGraph from "./FavouritesItemGraph";
 import MealCalendar from "./MealCalendar";
 import Button from "./Button";
-import moment from "moment";
 import { Dropdown } from "semantic-ui-react";
-import io from "socket.io-client";
 import { socket } from "../hooks/useApplicationData";
 
 const FavouritesItem1 = (props) => {
@@ -61,9 +59,14 @@ const FavouritesItem1 = (props) => {
                 <img src={props.image_url} />
               </a>
               {props.id && (
-                <button className="delete-button-image" onClick={deleteFav}>
+                <Button
+                  deleteImage
+                  onClick={() => {
+                    deleteFav();
+                  }}
+                >
                   <i class="far fa-trash-alt"></i>
-                </button>
+                </Button>
               )}
             </div>
           </div>
