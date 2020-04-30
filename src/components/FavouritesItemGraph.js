@@ -28,13 +28,13 @@ console.log(state)
     image_url,
     recipe_yield
   ) => {
-    let fat = fat_in_g / recipe_yield;
-    let carbohydrates = carbs_in_g / recipe_yield;
-    let protein = protein_in_g / recipe_yield;
-    let cholesterol = cholesterol_in_mg / recipe_yield;
-    let sodium = sodium_in_mg / recipe_yield;
-    let sugar = sugar_in_g / recipe_yield;
-    let fibre = fiber_in_g / recipe_yield;
+    let fat = (fat_in_g / recipe_yield).toFixed(2);
+    let carbohydrates = (carbs_in_g / recipe_yield).toFixed(2);
+    let protein = (protein_in_g / recipe_yield).toFixed(2);
+    let cholesterol = (cholesterol_in_mg / recipe_yield).toFixed(2);
+    let sodium = (sodium_in_mg / recipe_yield).toFixed(2);
+    let sugar = (sugar_in_g / recipe_yield).toFixed(2);
+    let fibre = (fiber_in_g / recipe_yield).toFixed(2);
     const data = [
       {
         name: "Fat",
