@@ -28,9 +28,6 @@ function DietaryOptions(props) {
     { key: 10, text: "paleo", value: "paleo" },
   ];
 
-  // console.log(diet);
-  // console.log(restrictions);
-
   return (
     <div class="restriction">
       <Dropdown
