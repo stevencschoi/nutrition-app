@@ -1,6 +1,5 @@
-import React, { useState, useEffect, Fragment, PureComponent } from "react";
+import React from "react";
 import "./styles.scss";
-import { Redirect } from "react-router";
 import {
   BarChart,
   Bar,
@@ -8,7 +7,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
 
 // Renders the nutritional data of the chosen ingredient
@@ -65,44 +64,45 @@ function IngredientGraph(props) {
     ];
     return (
       // responsive containers need a parent container to set dimensions
-      <div class="ingredient-graph-container" >
+      <div class="ingredient-graph-container">
         <div class="left-graph">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart width={500} height={300} data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis 
-              label={{ 
-                value: 'grams / 100 grams', 
-                dx: -5, 
-                angle: -90, 
-                position: 'center', 
-              }}
-              type="number" />
-            <Tooltip />
-            <Bar dataKey="grams / 100 grams" />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-      <div class="right-graph">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart width={240} height={300} data={data2}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis 
-              label={{ 
-                value: 'milligrams / 100 grams', 
-                dx: -15, 
-                angle: -90, 
-                position: 'center', 
-              }} 
-              type="number"
-            />
-            <Tooltip />
-            <Bar dataKey="milligrams / 100 grams" />
-          </BarChart>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart width={500} height={300} data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis
+                label={{
+                  value: "grams / 100 grams",
+                  dx: -5,
+                  angle: -90,
+                  position: "center",
+                }}
+                type="number"
+              />
+              <Tooltip />
+              <Bar dataKey="grams / 100 grams" />
+            </BarChart>
           </ResponsiveContainer>
-      </div>
+        </div>
+        <div class="right-graph">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart width={240} height={300} data={data2}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis
+                label={{
+                  value: "milligrams / 100 grams",
+                  dx: -15,
+                  angle: -90,
+                  position: "center",
+                }}
+                type="number"
+              />
+              <Tooltip />
+              <Bar dataKey="milligrams / 100 grams" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     );
   };

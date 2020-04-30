@@ -8,14 +8,10 @@ import Button from "./Button";
 import MealCalendar from "./MealCalendar";
 import { Dropdown } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import io from "socket.io-client";
 import { socket } from "../hooks/useApplicationData";
 
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
-
-const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
-const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
 
 export default function Recipe({ props, match }) {
   const [date, setDate] = useState(null);
@@ -27,16 +23,12 @@ export default function Recipe({ props, match }) {
     fetchRecipes(foodName);
   }, []);
 
-  const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
-
   function fetchRecipes(ingredient) {
-    
     axios
       .get(
         `https://api.edamam.com/search?q=${ingredient}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
       )
       .then((result) => {
-        // console.log("dataaaa",result.data)
         setFoodIngredient(result.data);
       })
       .catch((error) => console.error(error));
@@ -72,7 +64,6 @@ export default function Recipe({ props, match }) {
       foodIngredient.hits[0].recipe.totalNutrients.NA.quantity;
     const image_url = foodIngredient.hits[0].recipe.image;
     const recipe_yield = foodIngredient.hits[0].recipe.yield;
-    // console.log("yield", recipe_yield)
     axios
       .post(`/recipe/add`, {
         recipeName: recipeName,
@@ -85,7 +76,7 @@ export default function Recipe({ props, match }) {
         cholesterolInMg: cholesterol_in_mg,
         sodiumInMg: sodium_in_mg,
         imageUrl: image_url,
-        recipe_yield: recipe_yield
+        recipe_yield: recipe_yield,
       })
       .then((result) => {
         checkIfInDatabase();
@@ -208,7 +199,7 @@ export default function Recipe({ props, match }) {
               </div>
               <div className="prep-time">
                 {foodIngredient &&
-                  foodIngredient.hits[0].recipe.totalTime != 0 && (
+                  foodIngredient.hits[0].recipe.totalTime !== 0 && (
                     <h2>
                       Prep time: {foodIngredient.hits[0].recipe.totalTime} mins
                     </h2>
