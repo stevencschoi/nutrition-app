@@ -28,6 +28,7 @@ console.log(state)
     image_url,
     recipe_yield
   ) => {
+    // toFixed returns a string, + converts to a number
     let fat = +(fat_in_g / recipe_yield).toFixed(2);
     let carbohydrates = +(carbs_in_g / recipe_yield).toFixed(2);
     let protein = +(protein_in_g / recipe_yield).toFixed(2);
