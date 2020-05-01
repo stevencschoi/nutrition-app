@@ -20,7 +20,6 @@ function RecipeCard(props) {
         />
         <div className="card-body">
           <h5 className="card-title">{props.label}</h5>
-          <br />
           {props.url && (
             <Link to={`/recipe/${props.label}`}>
               <Button default>View Details</Button>

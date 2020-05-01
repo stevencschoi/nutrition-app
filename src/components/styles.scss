@@ -398,6 +398,7 @@ body,
 // do not touch!!!
 
 // don't touch!!!
+// took height down from 22em to 20em
 .ingredient-data {
   width: 70%;
   margin: 25px auto;
@@ -415,14 +416,14 @@ body,
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 22em;
+  height:20em;
   .left-graph {
-    height: 22em;
+    height:20em;
     width: 66%;
     }
   }
   .right-graph {
-  height: 22em;
+  height:20em;
   width: 33%;
   }
 }
