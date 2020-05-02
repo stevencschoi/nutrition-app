@@ -72,8 +72,7 @@ export default function Recipe({ props, match }) {
     const sodium_in_mg =
       +(foodIngredient.hits[0].recipe.totalNutrients.NA.quantity / recipe_yield).toFixed(2);
     const image_url = foodIngredient.hits[0].recipe.image;
-    // console.log("yield", recipe_yield)
-    console.log(calories, fat_in_g)
+    console.log("yield", recipe_yield)
 
     axios
       .post(`/recipe/add`, {
