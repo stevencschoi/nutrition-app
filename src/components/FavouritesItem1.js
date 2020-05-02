@@ -70,7 +70,6 @@ const FavouritesItem1 = (props) => {
               )}
             </div>
           </div>
-          <div>
             <FavouritesItemGraph
               calories={props.calories}
               fat_in_g={props.fat_in_g}
@@ -84,7 +83,6 @@ const FavouritesItem1 = (props) => {
               name={props.name}
               recipe_yield={props.recipe_yield}
             />
-          </div>
         </div>
         <div className="meal-plan-container">
           <div className="plan-title">
