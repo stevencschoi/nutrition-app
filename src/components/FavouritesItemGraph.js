@@ -22,14 +22,13 @@ function RecipeGraph(props) {
     image_url,
     recipe_yield
   ) => {
-    // toFixed returns a string, + converts to a number
-    let fat = +(fat_in_g / 1).toFixed(2);
-    let carbohydrates = +(carbs_in_g / 1).toFixed(2);
-    let protein = +(protein_in_g / 1).toFixed(2);
-    let cholesterol = +(cholesterol_in_mg / 1).toFixed(2);
-    let sodium = +(sodium_in_mg / 1).toFixed(2);
-    let sugar = +(sugar_in_g / 1).toFixed(2);
-    let fibre = +(fiber_in_g / 1).toFixed(2);
+    let fat = parseFloat(fat_in_g);
+    let carbohydrates = parseFloat(carbs_in_g);
+    let protein = parseFloat(protein_in_g);
+    let cholesterol = parseFloat(cholesterol_in_mg);
+    let sodium = parseFloat(sodium_in_mg);
+    let sugar = parseFloat(sugar_in_g);
+    let fibre = parseFloat(fiber_in_g);
     const data = [
       {
         name: "Fat",
