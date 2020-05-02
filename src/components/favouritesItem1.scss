@@ -18,6 +18,7 @@ $primary-font: monospace, cursive;
   background-color: white;
   width: 75%;
   margin: 1% auto;
+  border: $primary-colour solid 1px;
   border-radius: 5px;
   padding-bottom: 1%;
   .favourite-main {
@@ -25,7 +26,6 @@ $primary-font: monospace, cursive;
     justify-content: left;
     align-items: center;
     padding: 1%;
-    background-color: #ffffff;
     width: 100%;
     .image-container {
       display: flex;
