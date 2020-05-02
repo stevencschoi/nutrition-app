@@ -7,7 +7,6 @@ $primary-font: monospace, cursive;
 .favourite-title {
   font-family: $primary-font;
   color: $primary-colour;
-  // padding: 0.2% 0 0 0;
   margin-top: 0;
   font-size: 3rem;
 }
@@ -19,7 +18,6 @@ $primary-font: monospace, cursive;
   background-color: white;
   width: 75%;
   margin: 1% auto;
-  border: $primary-colour solid 1px;
   border-radius: 5px;
   padding-bottom: 1%;
   .favourite-main {
@@ -30,20 +28,37 @@ $primary-font: monospace, cursive;
     background-color: #ffffff;
     width: 100%;
     .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
       margin-left: 2rem;
+      padding: 0;
       img {
-        // border: black solid 5px;
+        margin: 0;
         border-radius: 3px;
         max-height: 20vh;
+      }
+      button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background-color: #a0d0ce;
+        color: white;
+        border-radius: 10px;
+        padding: 7px 13px;
+        border: 1px solid transparent;
+        font-weight: bold;
+        &:hover {
+          background-color: salmon;
+        }
       }
     }
   }
   .meal-plan-container {
-    // margin-top: 1rem;
     padding: 1rem;
     width: 30%;
     background-color: #ffffff;
-    // border: $primary-colour solid 1px;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
@@ -63,20 +78,15 @@ $primary-font: monospace, cursive;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        // justify-content: space-around;
-        // padding-bottom: 1%;
         .selectPosition {
           display: flex;
           flex-direction: column;
-          // justify-content: left;
-          // align-items: left;
           margin: 3%;
           .fav-button-container {
             display: flex;
             flex-direction: row;
             justify-content: center;
             margin-top: 0.5rem;
-            // align-items: space-between;
             input {
               margin: 2%;
             }
@@ -96,17 +106,11 @@ $primary-font: monospace, cursive;
           padding: 7px 13px;
           border: 1px solid transparent;
           font-weight: bold;
-          // margin-top: 0.5rem;
           &:hover {
             background-color: salmon;
             color: $secondary-colour;
-            // border: 1px solid $third-colour;
           }
         }
-
-        // .delete-button {
-        //   // margin-top: 0.5rem;
-        // }
       }
     }
   }
@@ -116,8 +120,6 @@ $primary-font: monospace, cursive;
   display: flex;
   justify-content: center;
   align-items: center;
-  // width: 35vw;
-
   padding: 1%;
   background-color: #ffffff;
   border-radius: 4px;
@@ -145,8 +147,6 @@ $primary-font: monospace, cursive;
   display: flex;
   justify-content: center;
   align-items: center;
-  // width: 35vw;
-
   padding: 1%;
   background-color: #ffffff;
   border-radius: 4px;

@@ -47,23 +47,24 @@ export default function Recipe({ props, match }) {
 
   const addRecipe = () => {
     const recipeName = foodIngredient.q;
-    const calories =
-      foodIngredient.hits[0].recipe.totalNutrients.ENERC_KCAL.quantity;
-    const fat_in_g = foodIngredient.hits[0].recipe.totalNutrients.FAT.quantity;
-    const carbs_in_g =
-      foodIngredient.hits[0].recipe.totalNutrients.CHOCDF.quantity;
-    const protein_in_g =
-      foodIngredient.hits[0].recipe.totalNutrients.PROCNT.quantity;
-    const sugar_in_g =
-      foodIngredient.hits[0].recipe.totalNutrients.SUGAR.quantity;
-    const fiber_in_g =
-      foodIngredient.hits[0].recipe.totalNutrients.FIBTG.quantity;
-    const cholesterol_in_mg =
-      foodIngredient.hits[0].recipe.totalNutrients.CHOLE.quantity;
-    const sodium_in_mg =
-      foodIngredient.hits[0].recipe.totalNutrients.NA.quantity;
-    const image_url = foodIngredient.hits[0].recipe.image;
     const recipe_yield = foodIngredient.hits[0].recipe.yield;
+    const calories =
+      +(foodIngredient.hits[0].recipe.totalNutrients.ENERC_KCAL.quantity / recipe_yield).toFixed(2);
+    const fat_in_g = +(foodIngredient.hits[0].recipe.totalNutrients.FAT.quantity / recipe_yield).toFixed(2);
+    const carbs_in_g =
+      +(foodIngredient.hits[0].recipe.totalNutrients.CHOCDF.quantity / recipe_yield).toFixed(2);
+    const protein_in_g =
+      +(foodIngredient.hits[0].recipe.totalNutrients.PROCNT.quantity / recipe_yield).toFixed(2);
+    const sugar_in_g =
+      +(foodIngredient.hits[0].recipe.totalNutrients.SUGAR.quantity / recipe_yield).toFixed(2);
+    const fiber_in_g =
+      +(foodIngredient.hits[0].recipe.totalNutrients.FIBTG.quantity / recipe_yield).toFixed(2);
+    const cholesterol_in_mg =
+      +(foodIngredient.hits[0].recipe.totalNutrients.CHOLE.quantity / recipe_yield).toFixed(2);
+    const sodium_in_mg =
+      +(foodIngredient.hits[0].recipe.totalNutrients.NA.quantity / recipe_yield).toFixed(2);
+    const image_url = foodIngredient.hits[0].recipe.image;
+
     axios
       .post(`/recipe/add`, {
         recipeName: recipeName,

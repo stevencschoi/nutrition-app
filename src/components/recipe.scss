@@ -1,7 +1,5 @@
 $primary-colour: #2c6b68;
 $secondary-colour: #ffffff;
-$accent-colour: #ffde4d;
-$third-colour: #67b3b0;
 $primary-font: monospace, cursive;
 
 .recipe-container {
@@ -9,7 +7,6 @@ $primary-font: monospace, cursive;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // background-color: $secondary-colour;
   width: 100%;
   .including-link {
     display: flex;
@@ -19,11 +16,8 @@ $primary-font: monospace, cursive;
     width: 85%;
     margin: 2% auto;
     background-color: $secondary-colour;
-    // border: $primary-colour solid 1px;
     border-radius: 10px;
     button {
-      // font-weight: 700;
-      // font-size: 1.3rem;
       margin-top: 2rem;
       padding: 7px 13px;
     }
@@ -31,14 +25,12 @@ $primary-font: monospace, cursive;
       display: flex;
       justify-content: center;
       align-items: center;
-      // width: 85%;
       .recipe-image-and-graph {
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: $secondary-colour;
         width: 100%;
-
         .recipe-image {
           display: flex;
           flex-direction: column;
@@ -82,45 +74,34 @@ $primary-font: monospace, cursive;
       flex-direction: column;
       text-align: left;
       margin-left: 3rem;
-      // width: 60%;
       .ingredients {
         li {
           font-size: 1.6rem;
           margin-bottom: 0.5rem;
-          // list-style: lower-roman;
         }
       }
       .recipe-link {
         h3 {
-          // font-family: $primary-font;
           font-size: 1.6rem;
           margin-bottom: 3em;
         }
       }
     }
-
     .addtoschedule {
-      // font-family: $primary-font;
-      // margin: 1.5% 0;
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
       height: 15vh;
-
       h3 {
-        // font-family: $primary-font;
         font-size: 1.6rem;
-        // font-family: $primary-font;
         color: $primary-colour;
       }
-
       .flex {
         margin-top: 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
-
         .add button {
           display: inline-block;
           background-color: #007bff;
@@ -129,12 +110,10 @@ $primary-font: monospace, cursive;
           padding: 7px 13px;
           border: 1px solid transparent;
           font-weight: bold;
-          // margin-top: 0.5rem;
           margin-left: 0.5rem;
           &:hover {
             background-color: salmon;
             color: $secondary-colour;
-            // border: 1px solid $third-colour;
           }
         }
         .cancel button {
@@ -151,13 +130,10 @@ $primary-font: monospace, cursive;
         }
       }
     }
-
     .prep-time {
-      // margin-left: 3rem;
       display: flex;
       justify-content: left;
       margin-bottom: 1rem;
-      // width: 15vw;
     }
   }
 }
