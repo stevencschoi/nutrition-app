@@ -6,7 +6,6 @@ import moment from "moment";
 import CoolCarousel from "./CoolCarousel";
 import useUserData from "../helpers/useUserData";
 import { socket } from "../hooks/useApplicationData";
-import io from "socket.io-client";
 import MealCalendar from "./MealCalendar";
 import {
   XAxis,
@@ -50,16 +49,8 @@ function MacroGraph() {
     });
   }, [pick, currentDay]);
 
-  // useEffect(() => {
-  //   // when receiving update message from server, re-render graph
-  //   socket.on("update", () => {
-  //     console.log("hi");
-  //     getData(pick);
-  //   });
-  // }, [pick]);
-
   const getData = (choice, daypick) => {
-    const cloneday = daypick.clone()
+    const cloneday = daypick.clone();
     const start = JSON.stringify(cloneday.startOf("week")).slice(1, 11);
     const end = JSON.stringify(cloneday.startOf("week").weekday(6)).slice(
       1,
@@ -69,161 +60,157 @@ function MacroGraph() {
       .get(`/user/data?startDate=${start}&endDate=${end}&userChoice=${choice}`)
       .then((result) => {
         setData(result.data);
-        // console.log("AAAAAAAAAAAA",result.data)
         if (result.data.followers.length === 0) {
-          const newGraph = makeGraph(
-            pick,
-            result.data.userData,
-          );
+          const newGraph = makeGraph(pick, result.data.userData);
           setGraph(newGraph);
         } else {
           const newGraph = makeGraph(
             pick,
             result.data.userData,
-            result.data.followers,
+            result.data.followers
           );
           setGraph(newGraph);
-        };
+        }
       })
       .catch((error) => console.error(error));
   };
 
-  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
   const dailyType = (pick, getdata, followers) => {
-    console.log(followers)
-    const actualGraphData = []
-    let pickQuantity = ""
+    console.log(followers);
+    const actualGraphData = [];
+    let pickQuantity = "";
     let yAxis = [];
     let graphLabel = "";
 
     for (let i = 0; i < days.length; i++) {
       if (pick === "Calories") {
-        pickQuantity = "Daily Recommended Intake (Calories)"
+        pickQuantity = "Daily Recommended Intake (Calories)";
         yAxis = [0, 4000];
         graphLabel = "Calories consumed / day";
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (Calories)": 2000,
-            You: getdata[i].sum,
-          }
-        )
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (Calories)": 2000,
+          You: getdata[i].sum,
+        });
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] =
+              followers[j].userData[i].sum;
           }
         }
       } else if (pick === "Fat") {
-        pickQuantity = "Daily Recommended Intake (grams)"
+        pickQuantity = "Daily Recommended Intake (grams)";
         yAxis = [0, 200];
         graphLabel = "grams of fat consumed / day";
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (grams)": 45,
-            You: getdata[i].sum
-          }
-        )
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (grams)": 45,
+          You: getdata[i].sum,
+        });
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] =
+              followers[j].userData[i].sum;
           }
         }
       } else if (pick === "Carbohydrates") {
-        pickQuantity = "Daily Recommended Intake (grams)"
+        pickQuantity = "Daily Recommended Intake (grams)";
         yAxis = [0, 400];
         graphLabel = "grams of carbohydrates consumed / day";
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (grams)": 130,
-            You: getdata[i].sum
-          }
-        )
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (grams)": 130,
+          You: getdata[i].sum,
+        });
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] =
+              followers[j].userData[i].sum;
           }
         }
       } else if (pick === "Fiber") {
-        pickQuantity = "Daily Recommended Intake (grams)"
+        pickQuantity = "Daily Recommended Intake (grams)";
         yAxis = [0, 100];
         graphLabel = "grams of fiber consumed / day";
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (grams)": 31.5,
-            You: getdata[i].sum
-          }
-        )
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (grams)": 31.5,
+          You: getdata[i].sum,
+        });
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] =
+              followers[j].userData[i].sum;
           }
         }
       } else if (pick === "Sugar") {
-        pickQuantity = "Maximum Daily Recommended Intake (grams)"
+        pickQuantity = "Maximum Daily Recommended Intake (grams)";
         yAxis = [0, 250];
         graphLabel = "grams of sugar consumed / day";
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Maximum Daily Recommended Intake (grams)": 48,
-            You: getdata[i].sum
-          }
-        )
+        actualGraphData.push({
+          name: days[i],
+          "Maximum Daily Recommended Intake (grams)": 48,
+          You: getdata[i].sum,
+        });
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] =
+              followers[j].userData[i].sum;
           }
         }
       } else if (pick === "Protein") {
-        pickQuantity = "Daily Recommended Intake (grams)"
+        pickQuantity = "Daily Recommended Intake (grams)";
         yAxis = [0, 300];
         graphLabel = "grams of protein consumed / day";
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (grams)": 51,
-            You: getdata[i].sum
-          }
-        )
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (grams)": 51,
+          You: getdata[i].sum,
+        });
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] =
+              followers[j].userData[i].sum;
           }
         }
       } else if (pick === "Cholesterol") {
-        pickQuantity = "Maximum Daily Recommended Intake (milligrams)"
+        pickQuantity = "Maximum Daily Recommended Intake (milligrams)";
         yAxis = [0, 600];
         graphLabel = "milligrams of cholesterol consumed / day";
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Maximum Daily Recommended Intake (milligrams)": 300,
-            You: getdata[i].sum
-          }
-        )
+        actualGraphData.push({
+          name: days[i],
+          "Maximum Daily Recommended Intake (milligrams)": 300,
+          You: getdata[i].sum,
+        });
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] =
+              followers[j].userData[i].sum;
           }
         }
       } else if (pick === "Sodium") {
-        pickQuantity = "Daily Recommended Intake (milligrams)"
+        pickQuantity = "Daily Recommended Intake (milligrams)";
         yAxis = [0, 7500];
         graphLabel = "milligrams of sodium consumed / day";
-        actualGraphData.push(
-          {
-            name: days[i],
-            "Daily Recommended Intake (milligrams)": 1500,
-            You: getdata[i].sum
-          }
-        )
+        actualGraphData.push({
+          name: days[i],
+          "Daily Recommended Intake (milligrams)": 1500,
+          You: getdata[i].sum,
+        });
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] = followers[j].userData[i].sum
+            actualGraphData[i][followers[j].userData[0].username] =
+              followers[j].userData[i].sum;
           }
         }
       }
@@ -260,7 +247,7 @@ function MacroGraph() {
               value: graphLabel,
               dx: -30,
               angle: -90,
-              position: 'center'
+              position: "center",
             }}
           />
           <Tooltip />
@@ -273,12 +260,15 @@ function MacroGraph() {
           />
           <Line type="monotone" dataKey="You" stroke="#82ca9d" />
           {/* conditionally render follower lines on graph */}
-          {followers && followers.map((user) => {
-            // let id = `${user.userId}`
-            let id = `${user.userData[0].username}`
-            let randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random() * 16)).toString(16); });
-            return (<Line type="monotone" dataKey={id} stroke={randomColor} />)
-          })}
+          {followers &&
+            followers.map((user) => {
+              // let id = `${user.userId}`
+              let id = `${user.userData[0].username}`;
+              let randomColor = "#000000".replace(/0/g, function () {
+                return (~~(Math.random() * 16)).toString(16);
+              });
+              return <Line type="monotone" dataKey={id} stroke={randomColor} />;
+            })}
         </LineChart>
       </ResponsiveContainer>
     );
@@ -302,9 +292,7 @@ function MacroGraph() {
           )}{" "}
           per day
         </h2>
-        <div id="macro-graph-container">
-          {pick && graph}
-        </div>
+        <div id="macro-graph-container">{pick && graph}</div>
       </div>
       <div>
         <MealCalendar
