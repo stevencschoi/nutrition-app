@@ -23,13 +23,13 @@ function RecipeGraph(props) {
     recipe_yield
   ) => {
     // toFixed returns a string, + converts to a number
-    let fat = +(fat_in_g / recipe_yield).toFixed(2);
-    let carbohydrates = +(carbs_in_g / recipe_yield).toFixed(2);
-    let protein = +(protein_in_g / recipe_yield).toFixed(2);
-    let cholesterol = +(cholesterol_in_mg / recipe_yield).toFixed(2);
-    let sodium = +(sodium_in_mg / recipe_yield).toFixed(2);
-    let sugar = +(sugar_in_g / recipe_yield).toFixed(2);
-    let fibre = +(fiber_in_g / recipe_yield).toFixed(2);
+    let fat = +(fat_in_g / 1).toFixed(2);
+    let carbohydrates = +(carbs_in_g / 1).toFixed(2);
+    let protein = +(protein_in_g / 1).toFixed(2);
+    let cholesterol = +(cholesterol_in_mg / 1).toFixed(2);
+    let sodium = +(sodium_in_mg / 1).toFixed(2);
+    let sugar = +(sugar_in_g / 1).toFixed(2);
+    let fibre = +(fiber_in_g / 1).toFixed(2);
     const data = [
       {
         name: "Fat",
