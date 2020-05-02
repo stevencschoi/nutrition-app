@@ -6,22 +6,22 @@ Graphs are rendered with Recharts and Socket IO is utilized to observe real-time
 
 ## Preview
 
-Ingredient search results
+### Ingredient search results
 !["Screenshot of ingredient search page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/VegTable1.png?raw=true)
 
-Ingredient nutritional data
+### Ingredient nutritional data
 !["Screenshot of ingredient nutritional data page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/VegTable2.png?raw=true)
 
-Recipe nutritional data
+### Recipe nutritional data
 !["Screenshot of recipe nutritional data page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/VegTable3.png?raw=true)
 
-Favourite recipes page
+### Favourite recipes page
 !["Screenshot of favourites page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/VegTable4.png?raw=true)
 
-Meal schedule page
+### Meal schedule page
 !["Screenshot of schedule page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/VegTable5.png?raw=true)
 
-Weekly nutritional data
+### Weekly nutritional data
 !["Screenshot of macro nutrition page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/VegTable6.png?raw=true)
 
 ## Dependencies
