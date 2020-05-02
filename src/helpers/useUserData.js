@@ -43,7 +43,7 @@ export default function useUserData() {
       .then((result) => {
         const usersArray = result.data.map((user) => {
           const id = user.id;
-          const label = user.name;
+          const label = user.first_name;
           const image = user.avatar;
 
           return (
