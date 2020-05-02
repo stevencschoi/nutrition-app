@@ -1,4 +1,5 @@
 $primary-colour: #2c6b68;
+$primary-font: monospace, cursive;
 
 .carousel {
   display: inline-block;
@@ -12,7 +13,8 @@ $primary-colour: #2c6b68;
   );
   width: 85%;
   h2 {
-    background: none;
+    color: $primary-colour;
+    font-family: $primary-font;
   }
   .card {
     text-align: center;

@@ -28,10 +28,30 @@ $primary-font: monospace, cursive;
     background-color: #ffffff;
     width: 100%;
     .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
       margin-left: 2rem;
+      padding: 0;
       img {
+        margin: 0;
         border-radius: 3px;
         max-height: 20vh;
+      }
+      button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background-color: #a0d0ce;
+        color: white;
+        border-radius: 10px;
+        padding: 7px 13px;
+        border: 1px solid transparent;
+        font-weight: bold;
+        &:hover {
+          background-color: salmon;
+        }
       }
     }
   }

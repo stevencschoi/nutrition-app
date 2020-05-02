@@ -304,10 +304,6 @@ body,
   }
 }
 
-
-
-
-
 .button-and-graph-container {
   margin: 3rem auto;
   width: 60%;
@@ -317,7 +313,6 @@ body,
     margin-top: 2rem;
   }
 }
-
 
 .graph-container {
   display: flex;
@@ -337,36 +332,7 @@ body,
   }
 }
 
-
-
-// do not touch!!!
-.graph-carousel-container {
-  display: inline-block;
-  width: 80%;
-  margin-top: 1%;
-  .macro-data {
-    margin: 20px 10px 10px;
-    border-radius: 4px;
-    padding: 10px;
-    background-color: white;
-    h2 {
-      font-family: $primary-font;
-      color: $primary-colour;
-    }
-    .text {
-      color: $primary-colour;
-    }
-    #macro-graph-container {
-      height: 22em;
-      width: 100%;
-      margin: 0 auto;
-    }
-  }
-}
-// do not touch!!!
-
-// don't touch!!!
-// took height down from 22em to 20em
+// ingredient graphs styles
 .ingredient-data {
   width: 70%;
   margin: 25px auto;
@@ -395,10 +361,8 @@ body,
   width: 33%;
   }
 }
-// don't touch!!!
 
-
-// don't touch!!!
+// favourites graphs styles
 .favourites-data {
   margin: 25px auto;
   border-radius: 4px;
@@ -426,15 +390,29 @@ body,
   width: 33%;
   }
 }
-// don't touch!!!
 
-
-
-.carousel {
-  h2 {
-    font-family: $primary-font;
-    color: $primary-colour;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+// macro graphs styles
+.graph-carousel-container {
+  display: inline-block;
+  width: 80%;
+  margin-top: 1%;
+  .macro-data {
+    margin: 20px 10px 10px;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: white;
+    h2 {
+      font-family: $primary-font;
+      color: $primary-colour;
+    }
+    .text {
+      color: $primary-colour;
+    }
+    #macro-graph-container {
+      height: 22em;
+      width: 100%;
+      margin: 0 auto;
+    }
   }
 }
 
@@ -442,32 +420,5 @@ body,
   width: 10vw;
   .heading-title {
     height: 8vh;
-  }
-}
-
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin: 0;
-  padding: 0;
-
-  img {
-    margin: 0;
-  }
-  button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background-color: #a0d0ce;
-    color: white;
-    border-radius: 10px;
-    padding: 7px 13px;
-    border: 1px solid transparent;
-    font-weight: bold;
-    &:hover {
-      background-color: salmon;
-    }
   }
 }
