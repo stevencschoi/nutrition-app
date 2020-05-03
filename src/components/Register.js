@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./styles.scss";
 import axios from "axios";
 import Button from "../components/Button";
+import { Redirect } from "react-router-dom";
 
-const PORT = process.env.PORT || 8008;
+// const PORT = process.env.PORT || 8008;
 
 const Register = () => {
   const [inputs, setInputs] = useState({
@@ -15,33 +16,36 @@ const Register = () => {
     avatar: "",
   });
 
-  const handleInputChange = (event) => {
-    event.persist();
+  const handleInputChange = (e) => {
+    e.persist();
     setInputs((inputs) => ({
       ...inputs,
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
     }));
   };
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(`${PORT}`);
+    // console.log(`${PORT}`);
     /* now we want to setUser from app */
     console.log("inputs:", inputs);
     axios
       .put(`/register`, inputs)
-      .then(() => console.log("shit sent"))
+      .then(() => {
+        setInputs({
+          username: "",
+          first_name: "",
+          last_name: "",
+          email: "",
+          password: "",
+          avatar: "",
+        });
+      })
       .catch((error) => console.log(error));
   }
 
   return (
     <form onSubmit={handleSubmit} className="registerform">
-      {/* <input
-        placeholder="avatar"
-        name="avatar"
-        value={inputs.avatar}
-        onChange={handleInputChange}
-      /> */}
       <input
         placeholder="username"
         name="username"
@@ -72,6 +76,12 @@ const Register = () => {
         placeholder="Password"
         name="password"
         value={inputs.password}
+        onChange={handleInputChange}
+      />
+      <input
+        placeholder="link to image"
+        name="avatar"
+        value={inputs.avatar}
         onChange={handleInputChange}
       />
 

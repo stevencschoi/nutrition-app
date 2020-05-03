@@ -14,7 +14,9 @@ body,
 
 .nav {
   background-image: linear-gradient(
-    to bottom, $primary-colour, rgba(255, 255, 255, 0)
+    to bottom,
+    $primary-colour,
+    rgba(255, 255, 255, 0)
   );
   height: 10vh;
   display: flex;
@@ -41,11 +43,11 @@ body,
   // login credentials
   form input {
     margin-right: 5px;
-    border-color: black;
+    // border-color: black;
     padding: 0.5px 7px;
     font-family: $primary-font;
     font-size: 1.7rem;
-    border-radius: 6px;
+    border-radius: 3px;
     max-width: 160px;
     &::placeholder {
       font-family: $primary-font;
@@ -99,7 +101,7 @@ body,
     padding: 2px 10px;
     &:hover {
       color: $primary-colour;
-      background-color: white;
+      background-color: $accent-colour;
       border: 1px solid $primary-colour;
     }
   }
@@ -115,20 +117,20 @@ body,
     padding: 10px 20px;
     margin: 10px;
     border: none;
-    border-radius: 10px;
+    border-radius: 3px;
   }
   button {
     background-color: $primary-colour;
     border-radius: 10px;
     border: 1px solid transparent;
-    color: $primary-colour;
+    color: #ffffff;
     font-family: monospace;
     font-size: 1.7rem;
     padding: 5px 15px;
     margin-top: 10px;
     &:hover {
       color: $primary-colour;
-      background-color: white;
+      background-color: $accent-colour;
     }
   }
 }
@@ -343,22 +345,22 @@ body,
     color: $primary-colour;
   }
   h2 {
-  color: $primary-colour;
-  font-family: $primary-font;
+    color: $primary-colour;
+    font-family: $primary-font;
   }
   .ingredient-graph-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 20em;
-  .left-graph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 20em;
-    width: 66%;
+    .left-graph {
+      height: 20em;
+      width: 66%;
     }
   }
   .right-graph {
-  height: 20em;
-  width: 33%;
+    height: 20em;
+    width: 33%;
   }
 }
 
@@ -373,22 +375,22 @@ body,
     color: $primary-colour;
   }
   h2 {
-  color: $primary-colour;
-  font-family: $primary-font;
+    color: $primary-colour;
+    font-family: $primary-font;
   }
   .ingredient-graph-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 22em;
-  .left-graph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 22em;
-    width: 66%;
+    .left-graph {
+      height: 22em;
+      width: 66%;
     }
   }
   .right-graph {
-  height: 22em;
-  width: 33%;
+    height: 22em;
+    width: 33%;
   }
 }
 

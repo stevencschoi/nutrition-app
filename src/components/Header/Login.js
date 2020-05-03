@@ -3,16 +3,20 @@ import "../styles.scss";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Button from "../Button";
+// import { Link } from "react-router-dom";
 
 const Login = (props) => {
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const verifyUser = (user) => {
+  const verifyUser = (user, password) => {
     axios
-      .post("/login", { userId: user })
+      .post("/login", { userId: user, password: password })
       .then((result) => {
-        Cookies.set("userId", result.data.id);
+        Cookies.set({ userId: result.data.id });
+        setUsername(username);
+        props.setUser(username);
+        localStorage.setItem("user", username);
       })
       .catch((error) => console.error(error));
   };
@@ -21,9 +25,9 @@ const Login = (props) => {
     <form>
       <input
         placeholder="username"
-        value={name}
+        value={username}
         onChange={(e) => {
-          setName(e.target.value);
+          setUsername(e.target.value);
         }}
       />
       <input
@@ -38,12 +42,10 @@ const Login = (props) => {
         onClick={(e) => {
           e.preventDefault();
           /* now we want to setUser from app */
-          props.setUser(name);
-          setName(name);
-          verifyUser(name);
-          localStorage.setItem("user", name);
+          verifyUser(username, password);
         }}
       >
+        {/* <Link to={`/`}>Login</Link> */}
         Login
       </Button>
     </form>
