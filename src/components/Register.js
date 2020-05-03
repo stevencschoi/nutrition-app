@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./styles.scss";
 import axios from "axios";
 import Button from "../components/Button";
+import { Redirect } from "react-router-dom";
 
-const PORT = process.env.PORT || 8008;
+// const PORT = process.env.PORT || 8008;
 
 const Register = () => {
   const [inputs, setInputs] = useState({
@@ -12,7 +13,7 @@ const Register = () => {
     last_name: "",
     email: "",
     password: "",
-    // avatar: "",
+    avatar: "",
   });
 
   const handleInputChange = (e) => {
@@ -25,12 +26,21 @@ const Register = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(`${PORT}`);
+    // console.log(`${PORT}`);
     /* now we want to setUser from app */
     console.log("inputs:", inputs);
     axios
       .put(`/register`, inputs)
-      .then(() => console.log("shit sent"))
+      .then(() => {
+        setInputs({
+          username: "",
+          first_name: "",
+          last_name: "",
+          email: "",
+          password: "",
+          avatar: "",
+        });
+      })
       .catch((error) => console.log(error));
   }
 
@@ -68,12 +78,12 @@ const Register = () => {
         value={inputs.password}
         onChange={handleInputChange}
       />
-      {/* <input
-        placeholder="avatar"
+      <input
+        placeholder="link to image"
         name="avatar"
         value={inputs.avatar}
         onChange={handleInputChange}
-      /> */}
+      />
 
       <Button register type="submit">
         Submit
