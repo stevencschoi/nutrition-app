@@ -3,6 +3,7 @@ import "../styles.scss";
 import axios from "axios";
 import Button from "../Button";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 function Logout(props) {
   // log out user
@@ -23,13 +24,12 @@ function Logout(props) {
         closeUser();
       }}
     >
-      Logout
+      <Link to={`/`}>Logout</Link>
     </Button>
   );
 }
 
 export default Logout;
-
 
 // return (
 //   <button id="logout"

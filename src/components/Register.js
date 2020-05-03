@@ -12,14 +12,14 @@ const Register = () => {
     last_name: "",
     email: "",
     password: "",
-    avatar: "",
+    // avatar: "",
   });
 
-  const handleInputChange = (event) => {
-    event.persist();
+  const handleInputChange = (e) => {
+    e.persist();
     setInputs((inputs) => ({
       ...inputs,
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -36,12 +36,6 @@ const Register = () => {
 
   return (
     <form onSubmit={handleSubmit} className="registerform">
-      {/* <input
-        placeholder="avatar"
-        name="avatar"
-        value={inputs.avatar}
-        onChange={handleInputChange}
-      /> */}
       <input
         placeholder="username"
         name="username"
@@ -74,6 +68,12 @@ const Register = () => {
         value={inputs.password}
         onChange={handleInputChange}
       />
+      {/* <input
+        placeholder="avatar"
+        name="avatar"
+        value={inputs.avatar}
+        onChange={handleInputChange}
+      /> */}
 
       <Button register type="submit">
         Submit
