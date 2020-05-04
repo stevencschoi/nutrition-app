@@ -4,7 +4,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Button from "../Button";
 // import { Redirect } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -40,16 +40,17 @@ const Login = (props) => {
             setPassword(e.target.value);
           }}
         />
-        <Button
-          onClick={(e) => {
-            e.preventDefault();
-            /* now we want to setUser from app */
-            verifyUser(username, password);
-          }}
-        >
-          {/*<Link to="/">Login</Link>*/}
-          Login
-        </Button>
+        <Link to={"/"}>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              /* now we want to setUser from app */
+              verifyUser(username, password);
+            }}
+          >
+            Login
+          </Button>
+        </Link>
       </form>
       {/*{username && <Redirect to="/" />}*/}
     </>
