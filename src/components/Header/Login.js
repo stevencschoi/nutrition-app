@@ -3,7 +3,8 @@ import "../styles.scss";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Button from "../Button";
-// import { Link } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -22,33 +23,37 @@ const Login = (props) => {
   };
 
   return (
-    <form>
-      <input
-        placeholder="username"
-        value={username}
-        onChange={(e) => {
-          setUsername(e.target.value);
-        }}
-      />
-      <input
-        type="password"
-        placeholder="password"
-        value={password}
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-      />
-      <Button
-        onClick={(e) => {
-          e.preventDefault();
-          /* now we want to setUser from app */
-          verifyUser(username, password);
-        }}
-      >
-        {/* <Link to={`/`}>Login</Link> */}
-        Login
-      </Button>
-    </form>
+    <>
+      <form>
+        <input
+          placeholder="username"
+          value={username}
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <Link to={"/"}>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              /* now we want to setUser from app */
+              verifyUser(username, password);
+            }}
+          >
+            Login
+          </Button>
+        </Link>
+      </form>
+      {/*{username && <Redirect to="/" />}*/}
+    </>
   );
 };
 
