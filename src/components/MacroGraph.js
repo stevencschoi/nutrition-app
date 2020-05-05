@@ -86,7 +86,8 @@ function MacroGraph() {
   ];
 
   const dailyType = (pick, getdata, followers) => {
-    console.log(followers);
+    // console.log(followers);
+    console.log("getdata", getdata)
     const actualGraphData = [];
     let pickQuantity = "";
     let yAxis = [];
