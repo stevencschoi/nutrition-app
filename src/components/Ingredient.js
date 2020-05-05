@@ -32,13 +32,20 @@ function Ingredient({ match }) {
     fetchRecipes(format[3], diet, health);
   }, []);
 
+  const clearLocalStorage = () => localStorage.clear();
+
   return (
     <>
       <div className="ingredient-page">
         <h1 className="favourite-title">Ingredient Profile</h1>
         <div className="button-container">
           <Link to={"/"} className="position-right">
-            <Button default>Start Over</Button>
+            <Button 
+              default
+              onClick={clearLocalStorage}
+            >
+              Start Over
+            </Button>
           </Link>
         </div>
         <IngredientGraph data={state.search} />

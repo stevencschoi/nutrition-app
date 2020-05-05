@@ -128,12 +128,19 @@ export default function Recipe({ props, match }) {
     { key: 4, text: "Other", value: "4" },
   ];
 
+  const clearLocalStorage = () => localStorage.clear();
+  
   return (
     <>
       <div className="recipe-container">
         <div className="including-link">
           <Link to={"/"}>
-            <Button default>Start Over</Button>
+            <Button 
+            default
+            onClick={clearLocalStorage}
+            >
+              Start Over
+            </Button>
           </Link>
           <div className="recipe-header">
             <div className="recipe-image-and-graph">

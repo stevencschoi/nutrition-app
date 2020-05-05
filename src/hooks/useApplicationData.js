@@ -22,18 +22,20 @@ export default function useApplicationData() {
     restrictions: [],
   });
 
+  // set dietary options for recipe search
   function dietaryOptions(diet) {
     let newDietOptions = Object.assign({}, state);
     newDietOptions.diet.push(diet);
     setState(newDietOptions);
   }
 
+  // set dietary restrictions for recipe search
   function dietaryRestrictions(restriction) {
     let newRestrictions = Object.assign({}, state);
     newRestrictions.restrictions.push(restriction);
     setState(newRestrictions);
   }
-
+  
   // connect socket
   useEffect(() => {
     socket.on("connect", () => {
