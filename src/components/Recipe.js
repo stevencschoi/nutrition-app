@@ -8,14 +8,10 @@ import Button from "./Button";
 import MealCalendar from "./MealCalendar";
 import { Dropdown } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import io from "socket.io-client";
 import { socket } from "../hooks/useApplicationData";
 
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
-
-const dbId = process.env.REACT_APP_FOOD_DATABASE_ID;
-const dbKey = process.env.REACT_APP_FOOD_DATABASE_KEY;
 
 export default function Recipe({ props, match }) {
   const [date, setDate] = useState(null);
@@ -27,16 +23,12 @@ export default function Recipe({ props, match }) {
     fetchRecipes(foodName);
   }, []);
 
-  const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
-
   function fetchRecipes(ingredient) {
-    
     axios
       .get(
         `https://api.edamam.com/search?q=${ingredient}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
       )
       .then((result) => {
-        // console.log("dataaaa",result.data)
         setFoodIngredient(result.data);
       })
       .catch((error) => console.error(error));
@@ -55,24 +47,24 @@ export default function Recipe({ props, match }) {
 
   const addRecipe = () => {
     const recipeName = foodIngredient.q;
-    const calories =
-      foodIngredient.hits[0].recipe.totalNutrients.ENERC_KCAL.quantity;
-    const fat_in_g = foodIngredient.hits[0].recipe.totalNutrients.FAT.quantity;
-    const carbs_in_g =
-      foodIngredient.hits[0].recipe.totalNutrients.CHOCDF.quantity;
-    const protein_in_g =
-      foodIngredient.hits[0].recipe.totalNutrients.PROCNT.quantity;
-    const sugar_in_g =
-      foodIngredient.hits[0].recipe.totalNutrients.SUGAR.quantity;
-    const fiber_in_g =
-      foodIngredient.hits[0].recipe.totalNutrients.FIBTG.quantity;
-    const cholesterol_in_mg =
-      foodIngredient.hits[0].recipe.totalNutrients.CHOLE.quantity;
-    const sodium_in_mg =
-      foodIngredient.hits[0].recipe.totalNutrients.NA.quantity;
-    const image_url = foodIngredient.hits[0].recipe.image;
     const recipe_yield = foodIngredient.hits[0].recipe.yield;
-    // console.log("yield", recipe_yield)
+    const calories =
+      +(foodIngredient.hits[0].recipe.totalNutrients.ENERC_KCAL.quantity / recipe_yield).toFixed(2);
+    const fat_in_g = +(foodIngredient.hits[0].recipe.totalNutrients.FAT.quantity / recipe_yield).toFixed(2);
+    const carbs_in_g =
+      +(foodIngredient.hits[0].recipe.totalNutrients.CHOCDF.quantity / recipe_yield).toFixed(2);
+    const protein_in_g =
+      +(foodIngredient.hits[0].recipe.totalNutrients.PROCNT.quantity / recipe_yield).toFixed(2);
+    const sugar_in_g =
+      +(foodIngredient.hits[0].recipe.totalNutrients.SUGAR.quantity / recipe_yield).toFixed(2);
+    const fiber_in_g =
+      +(foodIngredient.hits[0].recipe.totalNutrients.FIBTG.quantity / recipe_yield).toFixed(2);
+    const cholesterol_in_mg =
+      +(foodIngredient.hits[0].recipe.totalNutrients.CHOLE.quantity / recipe_yield).toFixed(2);
+    const sodium_in_mg =
+      +(foodIngredient.hits[0].recipe.totalNutrients.NA.quantity / recipe_yield).toFixed(2);
+    const image_url = foodIngredient.hits[0].recipe.image;
+
     axios
       .post(`/recipe/add`, {
         recipeName: recipeName,
@@ -85,7 +77,7 @@ export default function Recipe({ props, match }) {
         cholesterolInMg: cholesterol_in_mg,
         sodiumInMg: sodium_in_mg,
         imageUrl: image_url,
-        recipe_yield: recipe_yield
+        recipe_yield: recipe_yield,
       })
       .then((result) => {
         checkIfInDatabase();
@@ -208,7 +200,7 @@ export default function Recipe({ props, match }) {
               </div>
               <div className="prep-time">
                 {foodIngredient &&
-                  foodIngredient.hits[0].recipe.totalTime != 0 && (
+                  foodIngredient.hits[0].recipe.totalTime !== 0 && (
                     <h2>
                       Prep time: {foodIngredient.hits[0].recipe.totalTime} mins
                     </h2>

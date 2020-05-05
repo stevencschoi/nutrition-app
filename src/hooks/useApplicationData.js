@@ -19,20 +19,20 @@ export default function useApplicationData() {
     data: null,
     graph: "Calories",
     diet: [],
-    restrictions: []
+    restrictions: [],
   });
 
   function dietaryOptions(diet) {
     let newDietOptions = Object.assign({}, state);
     newDietOptions.diet.push(diet);
     setState(newDietOptions);
-  };
+  }
 
   function dietaryRestrictions(restriction) {
     let newRestrictions = Object.assign({}, state);
     newRestrictions.restrictions.push(restriction);
     setState(newRestrictions);
-  };
+  }
 
   // connect socket
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function useApplicationData() {
   }, []);
   // display raw ingredient search results from home page
   function fetchSearchResults(ingredient) {
-    const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
+    // const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
     axios
       .get(
         `https://api.edamam.com/api/food-database/parser?ingr=raw%20${ingredient}&app_id=${dbId}&app_key=${dbKey}`
@@ -62,7 +62,6 @@ export default function useApplicationData() {
           ...prev,
           search: searchResultsArray,
         }));
-        // console.log("after", state)
       })
       .catch((error) => console.error(error));
   }

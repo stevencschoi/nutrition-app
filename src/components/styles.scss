@@ -4,34 +4,24 @@ $accent-colour: #ffde4d;
 $third-colour: #67b3b0;
 $primary-font: monospace, cursive;
 
-// border-box???
-
-// not sure about this i.e. this makes the height go all the way down
 html,
 body,
 #root,
 #root > div {
-  // background-image: url("/assets/healthy-wallpaper4.jpeg");
-  // background-size: cover;
   height: 100vh;
   box-sizing: border-box;
 }
 
-// // figure this out for placement
-// #home {
-//   // background-image: url("/assets/healthy-wallpaper2.jpeg");
-//   // background-size: cover;
-//   // height: 100vh;
-//   // padding-top: 260px;
-// }
-
 .nav {
-  background-image: linear-gradient(to bottom, $primary-colour, rgba(255, 255, 255, 0));
+  background-image: linear-gradient(
+    to bottom,
+    $primary-colour,
+    rgba(255, 255, 255, 0)
+  );
   height: 10vh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  // border-width: 1px 0;
   .media h3 {
     font-size: 1.7rem;
     margin: 0 20px;
@@ -53,13 +43,12 @@ body,
   // login credentials
   form input {
     margin-right: 5px;
-    border-color: black;
+    // border-color: black;
     padding: 0.5px 7px;
     font-family: $primary-font;
     font-size: 1.7rem;
-    border-radius: 6px;
+    border-radius: 3px;
     max-width: 160px;
-    // padding-right: 5px;
     &::placeholder {
       font-family: $primary-font;
       font-size: 1.7rem;
@@ -112,7 +101,7 @@ body,
     padding: 2px 10px;
     &:hover {
       color: $primary-colour;
-      background-color: white;
+      background-color: $accent-colour;
       border: 1px solid $primary-colour;
     }
   }
@@ -128,46 +117,38 @@ body,
     padding: 10px 20px;
     margin: 10px;
     border: none;
-    border-radius: 10px;
+    border-radius: 3px;
   }
   button {
     background-color: $primary-colour;
     border-radius: 10px;
     border: 1px solid transparent;
-    color: $primary-colour;
+    color: #ffffff;
     font-family: monospace;
     font-size: 1.7rem;
     padding: 5px 15px;
     margin-top: 10px;
     &:hover {
       color: $primary-colour;
-      background-color: white;
-      // border: 1px solid $primary-colour;
+      background-color: $accent-colour;
     }
   }
 }
-
-// .logout {
-//   margin-left: 25px;
-// }
 
 // style for the username when logged in
 .logged-user {
   font-family: monospace;
   font-size: 1.7rem;
   color: $secondary-colour;
-  // margin-right:10px;
 }
 
 // start of searchbar styling
-
 #cover {
   width: 50vw;
   padding: 25px;
   margin: 2% auto;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 10px;
-  // border: solid 1px $primary-colour;
   transform: scale(0.6);
   box-shadow: 2px 2px 2px 2px rgba(10, 46, 34, 0.75);
   .tb {
@@ -315,44 +296,28 @@ body,
     width: 6vh;
     margin: 0.25rem 1rem;
     border-radius: 5px;
-    // padding: 5px;
-    // background-color: $secondary-colour;
-    // border: solid 2px black;
   }
   h4 {
     font-size: 1.5rem;
     font-family: $primary-font;
     color: $primary-colour;
-    // border-radius: 15px;
-    // background-color: $primary-colour;
     padding: 10px;
     margin: 0;
-    // &:hover {
-    //   // border: solid 2px white;
-    // }
   }
 }
-
-
-
-
 
 .button-and-graph-container {
   margin: 3rem auto;
   width: 60%;
   background-color: #ffffff;
-  // border: $primary-colour solid 1px;
   border-radius: 5px;
   .position-right button {
     margin-top: 2rem;
   }
 }
 
-
 .graph-container {
   display: flex;
-  // height: 200px;
-  // width: 85%;
   align-items: center;
   justify-content: space-between;
   .graph {
@@ -369,9 +334,67 @@ body,
   }
 }
 
+// ingredient graphs styles
+.ingredient-data {
+  width: 70%;
+  margin: 25px auto;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: white;
+  .text {
+    color: $primary-colour;
+  }
+  h2 {
+    color: $primary-colour;
+    font-family: $primary-font;
+  }
+  .ingredient-graph-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20em;
+    .left-graph {
+      height: 20em;
+      width: 66%;
+    }
+  }
+  .right-graph {
+    height: 20em;
+    width: 33%;
+  }
+}
 
+// favourites graphs styles
+.favourites-data {
+  margin: 25px;
+  width: 100%;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: white;
+  .text {
+    color: $primary-colour;
+  }
+  h2 {
+    color: $primary-colour;
+    font-family: $primary-font;
+  }
+  .ingredient-graph-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 22em;
+    .left-graph {
+      height: 22em;
+      width: 66%;
+    }
+  }
+  .right-graph {
+    height: 22em;
+    width: 33%;
+  }
+}
 
-// do not touch!!!
+// macro graphs styles
 .graph-carousel-container {
   display: inline-block;
   width: 80%;
@@ -395,112 +418,10 @@ body,
     }
   }
 }
-// do not touch!!!
-
-// don't touch!!!
-.ingredient-data {
-  width: 70%;
-  margin: 25px auto;
-  border-radius: 4px;
-  padding: 10px;
-  background-color: white;
-  .text {
-    color: $primary-colour;
-  }
-  h2 {
-  color: $primary-colour;
-  font-family: $primary-font;
-  }
-  .ingredient-graph-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 22em;
-  .left-graph {
-    height: 22em;
-    width: 66%;
-    }
-  }
-  .right-graph {
-  height: 22em;
-  width: 33%;
-  }
-}
-// don't touch!!!
-
-
-// don't touch!!!
-.favourites-data {
-  // width: 70%;
-  margin: 25px auto;
-  border-radius: 4px;
-  padding: 10px;
-  background-color: white;
-  .text {
-    color: $primary-colour;
-  }
-  h2 {
-  color: $primary-colour;
-  font-family: $primary-font;
-  }
-  .ingredient-graph-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 22em;
-  .left-graph {
-    height: 22em;
-    width: 66%;
-    }
-  }
-  .right-graph {
-  height: 22em;
-  width: 33%;
-  }
-}
-// don't touch!!!
-
-
-
-.carousel {
-  // border: $primary-colour solid 1px;
-  h2 {
-    font-family: $primary-font;
-    color: $primary-colour;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-  }
-}
 
 .schedule-item {
   width: 10vw;
   .heading-title {
     height: 8vh;
-  }
-}
-
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin: 0;
-  padding: 0;
-
-  img {
-    margin: 0;
-  }
-  button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background-color: #a0d0ce;
-    color: white;
-    border-radius: 10px;
-    padding: 7px 13px;
-    border: 1px solid transparent;
-    font-weight: bold;
-    &:hover {
-      background-color: salmon;
-    }
   }
 }

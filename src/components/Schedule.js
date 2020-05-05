@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 import ScheduleItem from "./ScheduleItem";
 import MealCalendar from "./MealCalendar";
 import moment from "moment";
@@ -72,7 +71,6 @@ function Schedule() {
   };
 
   const handledaypick = (day) => {
-    // console.log("day", day)
     setCurrentDay(day);
     getDaySchedule(day);
   };
