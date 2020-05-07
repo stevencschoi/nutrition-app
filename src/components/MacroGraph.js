@@ -290,7 +290,7 @@ function MacroGraph() {
             type="monotone"
             dataKey={pickQuantity}
             stroke="#8884d8"
-            activeDot={{ r: 8 }}
+            activeDot={{ r: 6 }}
           />
           <Line type="monotone" dataKey="You" stroke="#82ca9d" />
           {/* conditionally render follower lines on graph */}
