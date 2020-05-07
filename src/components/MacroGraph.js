@@ -131,18 +131,16 @@ function MacroGraph() {
     // console.log("getdata", getdata)
     const actualGraphData = [];
     let pickQuantity = "";
-    let yAxis = [];
     let graphLabel = "";
 
     for (let i = 0; i < days.length; i++) {
       if (pick === "Calories") {
         pickQuantity = "Daily Recommended Intake (Calories)";
-        yAxis = [0, 4000];
         graphLabel = "Calories consumed / day";
         actualGraphData.push({
           name: days[i],
           "Daily Recommended Intake (Calories)": 2000,
-          You: getdata[i].sum,
+          You: Number(getdata[i].sum),
         });
         if (followers) {
           for (let j = 0; j < followers.length; j++) {
@@ -152,7 +150,6 @@ function MacroGraph() {
         }
       } else if (pick === "Fat") {
         pickQuantity = "Daily Recommended Intake (grams)";
-        yAxis = [0, 200];
         graphLabel = "grams of fat consumed / day";
         actualGraphData.push({
           name: days[i],
@@ -167,7 +164,6 @@ function MacroGraph() {
         }
       } else if (pick === "Carbohydrates") {
         pickQuantity = "Daily Recommended Intake (grams)";
-        yAxis = [0, 400];
         graphLabel = "grams of carbohydrates consumed / day";
         actualGraphData.push({
           name: days[i],
@@ -182,7 +178,6 @@ function MacroGraph() {
         }
       } else if (pick === "Fiber") {
         pickQuantity = "Daily Recommended Intake (grams)";
-        yAxis = [0, 100];
         graphLabel = "grams of fiber consumed / day";
         actualGraphData.push({
           name: days[i],
@@ -197,7 +192,6 @@ function MacroGraph() {
         }
       } else if (pick === "Sugar") {
         pickQuantity = "Maximum Daily Recommended Intake (grams)";
-        yAxis = [0, 250];
         graphLabel = "grams of sugar consumed / day";
         actualGraphData.push({
           name: days[i],
@@ -212,7 +206,6 @@ function MacroGraph() {
         }
       } else if (pick === "Protein") {
         pickQuantity = "Daily Recommended Intake (grams)";
-        yAxis = [0, 300];
         graphLabel = "grams of protein consumed / day";
         actualGraphData.push({
           name: days[i],
@@ -227,7 +220,6 @@ function MacroGraph() {
         }
       } else if (pick === "Cholesterol") {
         pickQuantity = "Maximum Daily Recommended Intake (milligrams)";
-        yAxis = [0, 600];
         graphLabel = "milligrams of cholesterol consumed / day";
         actualGraphData.push({
           name: days[i],
@@ -242,7 +234,6 @@ function MacroGraph() {
         }
       } else if (pick === "Sodium") {
         pickQuantity = "Daily Recommended Intake (milligrams)";
-        yAxis = [0, 7500];
         graphLabel = "milligrams of sodium consumed / day";
         actualGraphData.push({
           name: days[i],
@@ -257,44 +248,17 @@ function MacroGraph() {
         }
       }
     }
-    return [actualGraphData, pickQuantity, yAxis, graphLabel];
+    return [actualGraphData, pickQuantity, graphLabel];
   };
 
   // Recharts function for bar graph
-
-  // const caloriesData = [
-  //   {
-  //     name: 'Sunday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
-  //   },
-  //   {
-  //     name: 'Monday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
-  //   },
-  //   {
-  //     name: 'Tuesday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
-  //   },
-  //   {
-  //     name: 'Wednesday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
-  //   },
-  //   {
-  //     name: 'Thursday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
-  //   },
-  //   {
-  //     name: 'Friday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
-  //   },
-  //   {
-  //     name: 'Saturday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
-  //   },
-  // ];
-
-
-
   const makeGraph = (pick, getdata, followers) => {
     const values = dailyType(pick, getdata, followers);
     console.log("makeGraph: getdata", getdata)
+    console.log("values", values)
     let dailyPick = values[0];
     let pickQuantity = values[1];
-    let yAxis = values[2];
-    let graphLabel = values[3];
+    let graphLabel = values[2];
     return (
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
@@ -312,7 +276,7 @@ function MacroGraph() {
           <XAxis dataKey="name" />
           <YAxis
             type="number"
-            domain={yAxis}
+            domain={[0, 'dataMax']}
             label={{
               value: graphLabel,
               dx: -30,
