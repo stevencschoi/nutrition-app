@@ -34,7 +34,8 @@ function MacroGraph() {
   const [currentDay, setCurrentDay] = useState(moment());
   const [pick, setPick] = useState("Calories");
   const [graph, setGraph] = useState(null);
-  const [data, setData] = useState(null);
+  
+  // const [data, setData] = useState(null); => not sure if this is needed
 
   const { state, fetchUsers, getFollowers } = useUserData();
 
@@ -59,17 +60,57 @@ function MacroGraph() {
     axios
       .get(`/user/data?startDate=${start}&endDate=${end}&userChoice=${choice}`)
       .then((result) => {
-        setData(result.data);
-        if (result.data.followers.length === 0) {
-          const newGraph = makeGraph(pick, result.data.userData);
-          setGraph(newGraph);
-        } else {
-          const newGraph = makeGraph(
-            pick,
-            result.data.userData,
-            result.data.followers
-          );
-          setGraph(newGraph);
+        
+        // console.log("result.data", result.data)
+        // console.log("result.data.userData", result.data.userData)
+        
+        // setData(result.data); => don't think this is needed?
+        
+        // check to see if user has data for all 7 days of week
+        if (result.data.userData[0] != undefined) {
+          
+          // should be an array with 7 objects
+          // console.log("result.data.userData", result.data.userData)
+
+
+          if (result.data.followers.length === 0) {
+            const newGraph = makeGraph(pick, result.data.userData);
+            setGraph(newGraph);
+          } else {
+            const newGraph = makeGraph(
+              pick,
+              result.data.userData,
+              result.data.followers
+            );
+            setGraph(newGraph);
+          }
+
+        // if the user has no data for all 7 days, use noData array to account for all data points = 0  
+        } else if (result.data.userData[0] === undefined) {
+          
+          //should be empty array
+          // console.log("result.data.userData", result.data.userData)
+          
+          const noData = [
+            { sum: 0 },
+            { sum: 0 },
+            { sum: 0 },
+            { sum: 0 },
+            { sum: 0 },
+            { sum: 0 },
+            { sum: 0 },
+          ]
+          if (result.data.followers.length === 0) {
+            const newGraph = makeGraph(pick, noData);
+            setGraph(newGraph);
+          } else {
+            const newGraph = makeGraph(
+              pick,
+              noData,
+              result.data.followers
+            );
+            setGraph(newGraph);
+          }
         }
       })
       .catch((error) => console.error(error));
@@ -86,8 +127,8 @@ function MacroGraph() {
   ];
 
   const dailyType = (pick, getdata, followers) => {
-    // console.log(followers);
-    console.log("getdata", getdata)
+    // console.log("followers",followers);
+    // console.log("getdata", getdata)
     const actualGraphData = [];
     let pickQuantity = "";
     let yAxis = [];
@@ -220,8 +261,36 @@ function MacroGraph() {
   };
 
   // Recharts function for bar graph
+
+  // const caloriesData = [
+  //   {
+  //     name: 'Sunday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
+  //   },
+  //   {
+  //     name: 'Monday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
+  //   },
+  //   {
+  //     name: 'Tuesday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
+  //   },
+  //   {
+  //     name: 'Wednesday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
+  //   },
+  //   {
+  //     name: 'Thursday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
+  //   },
+  //   {
+  //     name: 'Friday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
+  //   },
+  //   {
+  //     name: 'Saturday', 'Daily Recommended Intake (Calories)': 2000, You: 0,
+  //   },
+  // ];
+
+
+
   const makeGraph = (pick, getdata, followers) => {
     const values = dailyType(pick, getdata, followers);
+    console.log("makeGraph: getdata", getdata)
     let dailyPick = values[0];
     let pickQuantity = values[1];
     let yAxis = values[2];
@@ -263,7 +332,6 @@ function MacroGraph() {
           {/* conditionally render follower lines on graph */}
           {followers &&
             followers.map((user) => {
-              // let id = `${user.userId}`
               let id = `${user.userData[0].username}`;
               let randomColor = "#000000".replace(/0/g, function () {
                 return (~~(Math.random() * 16)).toString(16);
