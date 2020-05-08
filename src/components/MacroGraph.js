@@ -105,7 +105,7 @@ function MacroGraph() {
         } else if (result.data.userData[0] != undefined && result.data.followers.length != 0 && result.data.followers[0].userData.length === 0) {
         console.log("MADE IT HERE")
 
-          axios.get(`/user/followingname?userId=${result.data.followers[0].userId}`)
+          axios.get(`/user/followingusername?userId=${result.data.followers[0].userId}`)
             .then((result) => {
               console.log(result, "this is username")
             })
@@ -140,7 +140,7 @@ function MacroGraph() {
         // user has NO data and follows other user(s), following has NO data
         } else if (result.data.userData[0] === undefined && result.data.followers.length != 0 && result.data.followers[0].userData.length === 0) {
 
-          axios.get(`/user/followingname?userId=${result.data.followers[0].userId}`)
+          axios.get(`/user/followingusername?userId=${result.data.followers[0].userId}`)
             .then((result) => {
               console.log(result, "this is username")
             })
