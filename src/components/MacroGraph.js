@@ -55,6 +55,17 @@ function MacroGraph() {
       1,
       11
     );
+
+    const zeroData = [
+      { sum: '0' },
+      { sum: '0' },
+      { sum: '0' },
+      { sum: '0' },
+      { sum: '0' },
+      { sum: '0' },
+      { sum: '0' },
+    ];
+
     axios
       .get(`/user/data?startDate=${start}&endDate=${end}&userChoice=${choice}`)
     .then((result) => {
@@ -114,16 +125,16 @@ function MacroGraph() {
 
         // user has no data and is not following anyone  
       } else if (result.data.userData.length === 0 && result.data.followers.length === 0) {
-        let zeroData = [] 
-        zeroData = [
-          { sum: '0' },
-          { sum: '0' },
-          { sum: '0' },
-          { sum: '0' },
-          { sum: '0' },
-          { sum: '0' },
-          { sum: '0' },
-        ];
+        // let zeroData = [] 
+        // zeroData = [
+        //   { sum: '0' },
+        //   { sum: '0' },
+        //   { sum: '0' },
+        //   { sum: '0' },
+        //   { sum: '0' },
+        //   { sum: '0' },
+        //   { sum: '0' },
+        // ];
         const newGraph = makeGraph(
           pick,
           zeroData
@@ -132,16 +143,16 @@ function MacroGraph() {
 
         // user has no data and follows other user(s)
       } else if (result.data.userData.length === 0 && result.data.followers.length != 0) {
-        let zeroData = []
-        zeroData = [
-          { sum: '0' },
-          { sum: '0' },
-          { sum: '0' },
-          { sum: '0' },
-          { sum: '0' },
-          { sum: '0' },
-          { sum: '0' },
-        ];
+        // let zeroData = []
+        // zeroData = [
+        //   { sum: '0' },
+        //   { sum: '0' },
+        //   { sum: '0' },
+        //   { sum: '0' },
+        //   { sum: '0' },
+        //   { sum: '0' },
+        //   { sum: '0' },
+        // ];
         let followersData = []
         followersData = result.data.followers
         // map through all followers and resolve all promises
