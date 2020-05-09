@@ -91,7 +91,7 @@ function MacroGraph() {
           if (follower.userData.length === 0) {
             // function that retrieves the username for the user being followed who has no data for all 7 days
             // and creates a dummy array
-            const zeroData = () => {
+            const retrieveUsername = () => {
               return axios.get(`/user/followingusername?userId=${follower.userId}`)
               .then((response) => {
                 // save the followed users username to be used in dummy data 
@@ -111,7 +111,7 @@ function MacroGraph() {
               .then(() => {return follower})
             }
             // if no data for a followed user, wait until all promises are resolved
-            await zeroData()
+            await retrieveUsername()
           }
           const newGraph = makeGraph(
             pick,
@@ -139,7 +139,7 @@ function MacroGraph() {
           if (follower.userData.length === 0) {
             // function that retrieves the username for the user being followed who has no data for all 7 days
             // and creates a dummy array
-            const zeroData = () => {
+            const retrieveUsername = () => {
               return axios.get(`/user/followingusername?userId=${follower.userId}`)
                 .then((response) => {
                   // save the followed users username to be used in dummy data 
@@ -159,7 +159,7 @@ function MacroGraph() {
                 .then(() => { return follower })
             }
             // if no data for a followed user, wait until all promises are resolved
-            await zeroData()
+            await retrieveUsername()
           }
           const newGraph = makeGraph(
             pick,
