@@ -57,186 +57,133 @@ function MacroGraph() {
     );
     axios
       .get(`/user/data?startDate=${start}&endDate=${end}&userChoice=${choice}`)
-      .then((result) => {
+    .then((result) => {
 
-        // check to see if user has data for all 7 days, if they are following anyone, 
-        // and if the users they are following have data for all 7 days
-        
-        // user has data, not following other user(s)
-        if (result.data.userData[0] != undefined && result.data.followers.length === 0) {
+      // check to see if user has data for all 7 days, if they are following anyone, 
+      // and if the users they are following have data for all 7 days
+      
+      // user has data, not following other user(s)
+      if (result.data.userData.length != 0 && result.data.followers.length === 0) {
+        console.log("YOOOOO", result.data.userData)
+        const newGraph = makeGraph(
+          pick, 
+          result.data.userData
+          );
+        setGraph(newGraph);
+
+        // user has data and follows other user(s)
+      } else if (result.data.userData.length != 0 && result.data.followers.length != 0) {
+        let followersData = []
+        followersData = result.data.followers
+        // map through all followers and resolve all promises
+        return Promise.all(followersData.map(async(follower) => {
+          // user being followed has no data for all 7 days
+          if (follower.userData.length === 0) {
+            // function that retrieves the username for the user being followed who has no data for all 7 days
+            // and creates a dummy array
+            const zeroData = () => {
+              return axios.get(`/user/followingusername?userId=${follower.userId}`)
+              .then((response) => {
+                // save the followed users username to be used in dummy data 
+                let username = response.data[0].username
+                // dummy data, sets all data points to 0
+                follower.userData =
+                    [
+                      { username: username, sum: '0' },
+                      { username: username, sum: '0' },
+                      { username: username, sum: '0' },
+                      { username: username, sum: '0' },
+                      { username: username, sum: '0' },
+                      { username: username, sum: '0' },
+                      { username: username, sum: '0' },
+                    ]
+              })
+              .then(() => {return follower})
+            }
+            // if no data for a followed user, wait until all promises are resolved
+            await zeroData()
+          }
+          console.log("YOOOOO", result.data.userData)
           const newGraph = makeGraph(
-            pick, 
-            result.data.userData
-            );
+            pick,
+            result.data.userData,
+            followersData
+          );
           setGraph(newGraph);
+        }))
 
-          // user has data and follows other user(s), following has data
-        } else if (result.data.userData[0] != undefined && result.data.followers.length != 0) {
-          result.data.followers = result.data.followers.map((follower) => {
-            // user being followed has no data for all 7 days
-            if (follower.userData.length === 0) {
-              // retrieve the username for the user being followed who has no data for all 7 days
+        // user has no data and is not following anyone  
+      } else if (result.data.userData.length === 0 && result.data.followers.length === 0) {
+        let zeroData = [] 
+        zeroData = [
+          { sum: '0' },
+          { sum: '0' },
+          { sum: '0' },
+          { sum: '0' },
+          { sum: '0' },
+          { sum: '0' },
+          { sum: '0' },
+        ];
+        const newGraph = makeGraph(
+          pick,
+          zeroData
+        );
+        setGraph(newGraph);
+
+        // user has no data and follows other user(s)
+      } else if (result.data.userData.length === 0 && result.data.followers.length != 0) {
+        let zeroData = []
+        zeroData = [
+          { sum: '0' },
+          { sum: '0' },
+          { sum: '0' },
+          { sum: '0' },
+          { sum: '0' },
+          { sum: '0' },
+          { sum: '0' },
+        ];
+        let followersData = []
+        followersData = result.data.followers
+        // map through all followers and resolve all promises
+        return Promise.all(followersData.map(async (follower) => {
+          // user being followed has no data for all 7 days
+          if (follower.userData.length === 0) {
+            // function that retrieves the username for the user being followed who has no data for all 7 days
+            // and creates a dummy array
+            const zeroData = () => {
               return axios.get(`/user/followingusername?userId=${follower.userId}`)
                 .then((response) => {
-                  // save the followed users userId to be used in dummy data 
-                  let id = follower.userId
-                  // save the followed users userId to be used in dummy data 
-                  let name = response.data.username
-                  // console.log("ID", follower.userId)
+                  // save the followed users username to be used in dummy data 
+                  let username = response.data[0].username
                   // dummy data, sets all data points to 0
-                  return follower = { 
-                    userData: 
-                      [
-                        { username: name, sum: '0' },
-                        { username: name, sum: '0' },
-                        { username: name, sum: '0' },
-                        { username: name, sum: '0' },
-                        { username: name, sum: '0' },
-                        { username: name, sum: '0' },
-                        { username: name, sum: '0' },
-                      ], 
-                    userId: id 
-                  }
+                  follower.userData =
+                    [
+                      { username: username, sum: '0' },
+                      { username: username, sum: '0' },
+                      { username: username, sum: '0' },
+                      { username: username, sum: '0' },
+                      { username: username, sum: '0' },
+                      { username: username, sum: '0' },
+                      { username: username, sum: '0' },
+                    ]
                 })
-              } else {
-              return follower
-              }
-           })
-          console.log("FOLLOWING DATA", result.data.followers)
-        }
-      })
-      .catch((error) => console.error(error));
+                .then(() => { return follower })
+            }
+            // if no data for a followed user, wait until all promises are resolved
+            await zeroData()
+          }
+          console.log("YOOOOO", result.data.userData)
+          const newGraph = makeGraph(
+            pick,
+            zeroData,
+            followersData
+          );
+          setGraph(newGraph);
+        }))  
+      }
+    })
+    .catch((error) => console.error(error));
   };
-
-          // console.log("yofuck", result.data.followers)
-          // const newGraph = makeGraph(
-          //   pick,
-          //   result.data.userData,
-          //   result.data.followers
-          // );
-          // setGraph(newGraph);
-        
-          
-
-          
-
-
-
-
-
-
-          
-          
-          // result.data.followers[0].userData.length != 0
-          //   const newGraph = makeGraph(
-          //   pick,
-          //   result.data.userData,
-          //   result.data.followers
-          // );
-          // setGraph(newGraph);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // // user has data and follows other user(s), following has data
-        // } else if (result.data.userData[0] != undefined && result.data.followers.length != 0 && 
-        //     result.data.followers[0].userData.length != 0) {
-        //       const newGraph = makeGraph(
-        //         pick,
-        //         result.data.userData,
-        //         result.data.followers
-        //       );
-        //       setGraph(newGraph);
-
-        // // user has data and follows other user(s), following has no data
-        // } else if (result.data.userData[0] != undefined && result.data.followers.length != 0 && 
-        //     result.data.followers[0].userData.length === 0) {
-        //       // retrieve the username for the user being followed who has no data for all 7 days
-        //       return axios.get(`/user/followingusername?userId=${result.data.followers[0].userId}`)
-        //       .then((response) => {
-        //       // console.log(response.data[0].username, "this is username")
-        //         // console.log(response, "this is data")
-        //       console.log(result.data, "this is data")
-        //       // console.log("NOPE", result.data)
-        //       // result.data.followers = { userData: [
-
-        //         // save the followed users userId to be used in dummy data 
-        //         let id = result.data.followers[0].userId
-        //         console.log(id, "getfuct")
-
-        //         // dummy data, sets all data points to 0
-        //         result.data.followers = [
-        //           { userData: 
-        //             [
-        //               { username: response.data[0].username, sum: 0 },
-        //               { username: response.data[0].username, sum: 0 },
-        //               { username: response.data[0].username, sum: 0 },
-        //               { username: response.data[0].username, sum: 0 },
-        //               { username: response.data[0].username, sum: 0 },
-        //               { username: response.data[0].username, sum: 0 },
-        //               { username: response.data[0].username, sum: 0 },
-        //             ], 
-        //             userId: id 
-        //           }
-        //         ]
-        //       // render graph using retrieved user data and dummy data for users being followed
-        //       const newGraph = makeGraph(
-        //         pick,
-        //         result.data.userData,
-        //         result.data.followers
-        //       );
-        //       setGraph(newGraph);
-        //       })
-        //     }
-
-
-
-
-        // user has NO data and does not follow other user(s)
-        // } else if (result.data.userData[0] === undefined && result.data.followers.length === 0) {
-
-        //     const newGraph = makeGraph(
-        //       pick,) 
-        //       // noData);
-        //     setGraph(newGraph);
-
-        // // user has NO data and follows other user(s), following has data
-        // } else if (result.data.userData[0] === undefined && result.data.followers.length != 0 && result.data.followers[0].userData.length != 0) {
-        //   const newGraph = makeGraph(
-        //       pick,
-        //       // noData,
-        //       result.data.followers
-        //     );
-        //     setGraph(newGraph);
-
-        // // user has NO data and follows other user(s), following has NO data
-        // } else if (result.data.userData[0] === undefined && result.data.followers.length != 0 && result.data.followers[0].userData.length === 0) {
-
-        //   axios.get(`/user/followingusername?userId=${result.data.followers[0].userId}`)
-        //     .then((result) => {
-        //       console.log(result, "this is username")
-        //     })
-
-        //   const newGraph = makeGraph(
-        //       pick,
-        //       // noData,
-        //       // noData
-        //     );
-        //     setGraph(newGraph);
-        // }
-  //     })
-  //     .catch((error) => console.error(error));
-  // };
 
   const days = [
     "Sunday",
