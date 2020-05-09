@@ -65,7 +65,7 @@ function MacroGraph() {
       { sum: '0' },
       { sum: '0' },
     ];
-
+    
     axios
       .get(`/user/data?startDate=${start}&endDate=${end}&userChoice=${choice}`)
     .then((result) => {
@@ -75,7 +75,6 @@ function MacroGraph() {
       
       // user has data, not following other user(s)
       if (result.data.userData.length != 0 && result.data.followers.length === 0) {
-        console.log("YOOOOO", result.data.userData)
         const newGraph = makeGraph(
           pick, 
           result.data.userData
@@ -114,7 +113,6 @@ function MacroGraph() {
             // if no data for a followed user, wait until all promises are resolved
             await zeroData()
           }
-          console.log("YOOOOO", result.data.userData)
           const newGraph = makeGraph(
             pick,
             result.data.userData,
@@ -125,16 +123,6 @@ function MacroGraph() {
 
         // user has no data and is not following anyone  
       } else if (result.data.userData.length === 0 && result.data.followers.length === 0) {
-        // let zeroData = [] 
-        // zeroData = [
-        //   { sum: '0' },
-        //   { sum: '0' },
-        //   { sum: '0' },
-        //   { sum: '0' },
-        //   { sum: '0' },
-        //   { sum: '0' },
-        //   { sum: '0' },
-        // ];
         const newGraph = makeGraph(
           pick,
           zeroData
@@ -143,16 +131,6 @@ function MacroGraph() {
 
         // user has no data and follows other user(s)
       } else if (result.data.userData.length === 0 && result.data.followers.length != 0) {
-        // let zeroData = []
-        // zeroData = [
-        //   { sum: '0' },
-        //   { sum: '0' },
-        //   { sum: '0' },
-        //   { sum: '0' },
-        //   { sum: '0' },
-        //   { sum: '0' },
-        //   { sum: '0' },
-        // ];
         let followersData = []
         followersData = result.data.followers
         // map through all followers and resolve all promises
@@ -183,7 +161,6 @@ function MacroGraph() {
             // if no data for a followed user, wait until all promises are resolved
             await zeroData()
           }
-          console.log("YOOOOO", result.data.userData)
           const newGraph = makeGraph(
             pick,
             zeroData,
@@ -207,8 +184,6 @@ function MacroGraph() {
   ];
 
   const dailyType = (pick, getdata, followers) => {
-    console.log("followers",followers);
-    console.log("getdata", getdata)
     const actualGraphData = [];
     let pickQuantity = "";
     let graphLabel = "";
@@ -342,8 +317,6 @@ function MacroGraph() {
   // Recharts function for bar graph
   const makeGraph = (pick, getdata, followers) => {
     const values = dailyType(pick, getdata, followers);
-    // console.log("makeGraph: getdata", getdata)
-    // console.log("followers", followers)
     let dailyPick = values[0];
     let pickQuantity = values[1];
     let graphLabel = values[2];
