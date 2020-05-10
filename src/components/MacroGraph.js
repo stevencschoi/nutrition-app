@@ -56,6 +56,30 @@ function MacroGraph() {
       11
     );
 
+    // retrieves the username for the user being followed who has no data for all 7 days
+    // and creates a dummy array
+    const retrieveUsername = (follower) => {
+      return axios.get(`/user/followingusername?userId=${follower.userId}`)
+        .then((response) => {
+          // save the followed users username to be used in dummy data 
+          let username = response.data[0].username
+          // dummy data, sets all data points to 0
+          follower.userData =
+            [
+              { username: username, sum: '0' },
+              { username: username, sum: '0' },
+              { username: username, sum: '0' },
+              { username: username, sum: '0' },
+              { username: username, sum: '0' },
+              { username: username, sum: '0' },
+              { username: username, sum: '0' },
+            ]
+        })
+        .then(() => { return follower })
+        .catch((error) => console.error(error));
+    }
+
+    // array to be used when user has no data for all 7 days
     const zeroData = [
       { sum: '0' },
       { sum: '0' },
@@ -65,7 +89,7 @@ function MacroGraph() {
       { sum: '0' },
       { sum: '0' },
     ];
-    
+
     axios
       .get(`/user/data?startDate=${start}&endDate=${end}&userChoice=${choice}`)
     .then((result) => {
@@ -89,29 +113,8 @@ function MacroGraph() {
         return Promise.all(followersData.map(async(follower) => {
           // user being followed has no data for all 7 days
           if (follower.userData.length === 0) {
-            // function that retrieves the username for the user being followed who has no data for all 7 days
-            // and creates a dummy array
-            const retrieveUsername = () => {
-              return axios.get(`/user/followingusername?userId=${follower.userId}`)
-              .then((response) => {
-                // save the followed users username to be used in dummy data 
-                let username = response.data[0].username
-                // dummy data, sets all data points to 0
-                follower.userData =
-                    [
-                      { username: username, sum: '0' },
-                      { username: username, sum: '0' },
-                      { username: username, sum: '0' },
-                      { username: username, sum: '0' },
-                      { username: username, sum: '0' },
-                      { username: username, sum: '0' },
-                      { username: username, sum: '0' },
-                    ]
-              })
-              .then(() => {return follower})
-            }
-            // if no data for a followed user, wait until all promises are resolved
-            await retrieveUsername()
+            // when all promises are resolved, followersData array ready to use for graph
+            await retrieveUsername(follower)
           }
           const newGraph = makeGraph(
             pick,
@@ -134,32 +137,11 @@ function MacroGraph() {
         let followersData = []
         followersData = result.data.followers
         // map through all followers and resolve all promises
-        return Promise.all(followersData.map(async (follower) => {
+        return Promise.all(followersData.map(async(follower) => {
           // user being followed has no data for all 7 days
           if (follower.userData.length === 0) {
-            // function that retrieves the username for the user being followed who has no data for all 7 days
-            // and creates a dummy array
-            const retrieveUsername = () => {
-              return axios.get(`/user/followingusername?userId=${follower.userId}`)
-                .then((response) => {
-                  // save the followed users username to be used in dummy data 
-                  let username = response.data[0].username
-                  // dummy data, sets all data points to 0
-                  follower.userData =
-                    [
-                      { username: username, sum: '0' },
-                      { username: username, sum: '0' },
-                      { username: username, sum: '0' },
-                      { username: username, sum: '0' },
-                      { username: username, sum: '0' },
-                      { username: username, sum: '0' },
-                      { username: username, sum: '0' },
-                    ]
-                })
-                .then(() => { return follower })
-            }
-            // if no data for a followed user, wait until all promises are resolved
-            await retrieveUsername()
+            // when all promises are resolved, followersData array ready to use for graph
+            await retrieveUsername(follower)
           }
           const newGraph = makeGraph(
             pick,
@@ -188,15 +170,17 @@ function MacroGraph() {
     let pickQuantity = "";
     let graphLabel = "";
 
-    // will atttempt to extract this out of each pick
-    // const followerData = () => {
-    //   for (let j = 0; j < followers.length; j++) {
-    //     actualGraphData[i][followers[j].userData[0].username] =
-    //       Number(followers[j].userData[i].sum);
-    //   }
-    // }
+    // retrieves follower data
+    const followerData = (followers, i) => {
+      for (let j = 0; j < followers.length; j++) {
+        actualGraphData[i][followers[j].userData[0].username] =
+          Number(followers[j].userData[i].sum);
+      }
+    }
 
-    for (let i = 0; i < days.length; i++) {
+    // loop through all 7 days and retrieve data for user and users being followed,
+    // based on nutritional data type selection
+    for (let i = 0; i < days.length; i++) {      
       if (pick === "Calories") {
         pickQuantity = "Daily Recommended Intake (Calories)";
         graphLabel = "Calories consumed / day";
@@ -206,11 +190,8 @@ function MacroGraph() {
           You: Number(getdata[i].sum),
         });
         if (followers) {
-          for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] =
-              Number(followers[j].userData[i].sum);
-          }
-        }
+          followerData(followers, i);
+        };
       } else if (pick === "Fat") {
         pickQuantity = "Daily Recommended Intake (grams)";
         graphLabel = "grams of fat consumed / day";
@@ -220,11 +201,8 @@ function MacroGraph() {
           You: Number(getdata[i].sum),
         });
         if (followers) {
-          for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] =
-              Number(followers[j].userData[i].sum);
-          }
-        }
+          followerData(followers, i);
+        };
       } else if (pick === "Carbohydrates") {
         pickQuantity = "Daily Recommended Intake (grams)";
         graphLabel = "grams of carbohydrates consumed / day";
@@ -234,11 +212,8 @@ function MacroGraph() {
           You: Number(getdata[i].sum),
         });
         if (followers) {
-          for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] =
-              Number(followers[j].userData[i].sum);
-          }
-        }
+          followerData(followers, i);
+        };
       } else if (pick === "Fiber") {
         pickQuantity = "Daily Recommended Intake (grams)";
         graphLabel = "grams of fiber consumed / day";
@@ -248,11 +223,8 @@ function MacroGraph() {
           You: Number(getdata[i].sum),
         });
         if (followers) {
-          for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] =
-              Number(followers[j].userData[i].sum);
-          }
-        }
+          followerData(followers, i);
+        };
       } else if (pick === "Sugar") {
         pickQuantity = "Maximum Daily Recommended Intake (grams)";
         graphLabel = "grams of sugar consumed / day";
@@ -262,11 +234,8 @@ function MacroGraph() {
           You: Number(getdata[i].sum),
         });
         if (followers) {
-          for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] =
-              Number(followers[j].userData[i].sum);
-          }
-        }
+          followerData(followers, i);
+        };
       } else if (pick === "Protein") {
         pickQuantity = "Daily Recommended Intake (grams)";
         graphLabel = "grams of protein consumed / day";
@@ -276,11 +245,8 @@ function MacroGraph() {
           You: Number(getdata[i].sum),
         });
         if (followers) {
-          for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] =
-              Number(followers[j].userData[i].sum);
-          }
-        }
+          followerData(followers, i);
+        };
       } else if (pick === "Cholesterol") {
         pickQuantity = "Maximum Daily Recommended Intake (milligrams)";
         graphLabel = "milligrams of cholesterol consumed / day";
@@ -290,11 +256,8 @@ function MacroGraph() {
           You: Number(getdata[i].sum),
         });
         if (followers) {
-          for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] =
-              Number(followers[j].userData[i].sum);
-          }
-        }
+          followerData(followers, i);
+        };
       } else if (pick === "Sodium") {
         pickQuantity = "Daily Recommended Intake (milligrams)";
         graphLabel = "milligrams of sodium consumed / day";
@@ -304,13 +267,10 @@ function MacroGraph() {
           You: Number(getdata[i].sum),
         });
         if (followers) {
-          for (let j = 0; j < followers.length; j++) {
-            actualGraphData[i][followers[j].userData[0].username] =
-              Number(followers[j].userData[i].sum);
-          }
-        }
-      }
-    }
+          followerData(followers, i);
+        };
+      };
+    };
     return [actualGraphData, pickQuantity, graphLabel];
   };
 
@@ -357,12 +317,12 @@ function MacroGraph() {
           {/* conditionally render follower lines on graph */}
           {followers &&
             followers.map((user) => {
-              // let id = `${user.userId}`
+              let userKey = `${user.userId}`
               let id = `${user.userData[0].username}`;
               let randomColor = "#000000".replace(/0/g, function () {
                 return (~~(Math.random() * 16)).toString(16);
               });
-              return <Line type="monotone" dataKey={id} stroke={randomColor} />;
+              return <Line key={userKey} type="monotone" dataKey={id} stroke={randomColor} />;
             })}
         </LineChart>
       </ResponsiveContainer>
