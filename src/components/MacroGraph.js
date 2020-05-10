@@ -318,11 +318,11 @@ function MacroGraph() {
           {followers &&
             followers.map((user) => {
               let userKey = `${user.userId}`
-              let id = `${user.userData[0].username}`;
+              let userId = `${user.userData[0].username}`;
               let randomColor = "#000000".replace(/0/g, function () {
                 return (~~(Math.random() * 16)).toString(16);
               });
-              return <Line key={userKey} type="monotone" dataKey={id} stroke={randomColor} />;
+              return <Line key={userKey} type="monotone" dataKey={userId} stroke={randomColor} />;
             })}
         </LineChart>
       </ResponsiveContainer>
