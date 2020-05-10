@@ -58,7 +58,7 @@ function MacroGraph() {
 
     // retrieves the username for the user being followed who has no data for all 7 days
     // and creates a dummy array
-    const retrieveUsername = (follower) => {
+    const retrieveUsername = follower => {
       return axios.get(`/user/followingusername?userId=${follower.userId}`)
         .then((response) => {
           // save the followed users username to be used in dummy data 
@@ -75,7 +75,6 @@ function MacroGraph() {
               { username: username, sum: '0' },
             ]
         })
-        .then(() => { return follower })
         .catch((error) => console.error(error));
     }
 
