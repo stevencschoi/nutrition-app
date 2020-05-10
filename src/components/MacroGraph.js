@@ -97,15 +97,16 @@ function MacroGraph() {
       // and if the users they are following have data for all 7 days
       
       // user has data, not following other user(s)
-      if (result.data.userData.length != 0 && result.data.followers.length === 0) {
+      if (result.data.userData.length !== 0 && result.data.followers.length === 0) {
         const newGraph = makeGraph(
           pick, 
           result.data.userData
           );
         setGraph(newGraph);
+        console.log("current day", currentDay);
 
         // user has data and follows other user(s)
-      } else if (result.data.userData.length != 0 && result.data.followers.length != 0) {
+      } else if (result.data.userData.length !== 0 && result.data.followers.length !== 0) {
         let followersData = []
         followersData = result.data.followers
         // map through all followers and resolve all promises
@@ -121,6 +122,7 @@ function MacroGraph() {
             followersData
           );
           setGraph(newGraph);
+          console.log("current day", currentDay);
         }))
 
         // user has no data and is not following anyone  
@@ -130,9 +132,10 @@ function MacroGraph() {
           zeroData
         );
         setGraph(newGraph);
+        console.log("current day", currentDay);
 
         // user has no data and follows other user(s)
-      } else if (result.data.userData.length === 0 && result.data.followers.length != 0) {
+      } else if (result.data.userData.length === 0 && result.data.followers.length !== 0) {
         let followersData = []
         followersData = result.data.followers
         // map through all followers and resolve all promises
@@ -148,6 +151,7 @@ function MacroGraph() {
             followersData
           );
           setGraph(newGraph);
+          console.log("current day", currentDay);
         }))  
       }
     })
@@ -270,6 +274,7 @@ function MacroGraph() {
         };
       };
     };
+    console.log(actualGraphData)
     return [actualGraphData, pickQuantity, graphLabel];
   };
 
