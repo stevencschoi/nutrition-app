@@ -48,6 +48,7 @@ function MacroGraph() {
     });
   }, [pick, currentDay]);
 
+  // function that retrieves data for given week when day selected on calender
   const getData = (choice, daypick) => {
     const cloneday = daypick.clone();
     const start = JSON.stringify(cloneday.startOf("week")).slice(1, 11);
@@ -103,7 +104,7 @@ function MacroGraph() {
           result.data.userData
           );
         setGraph(newGraph);
-        console.log("current day", currentDay);
+        console.log("RENDER user data, no followers", currentDay);
 
         // user has data and follows other user(s)
       } else if (result.data.userData.length !== 0 && result.data.followers.length !== 0) {
@@ -122,7 +123,7 @@ function MacroGraph() {
             followersData
           );
           setGraph(newGraph);
-          console.log("current day", currentDay);
+          console.log("RENDER user data + follower data", currentDay);
         }))
 
         // user has no data and is not following anyone  
@@ -132,7 +133,7 @@ function MacroGraph() {
           zeroData
         );
         setGraph(newGraph);
-        console.log("current day", currentDay);
+        console.log("RENDER no data, no followers", currentDay);
 
         // user has no data and follows other user(s)
       } else if (result.data.userData.length === 0 && result.data.followers.length !== 0) {
@@ -151,7 +152,7 @@ function MacroGraph() {
             followersData
           );
           setGraph(newGraph);
-          console.log("current day", currentDay);
+          console.log("RENDER no data + follower data", currentDay);
         }))  
       }
     })
@@ -274,12 +275,13 @@ function MacroGraph() {
         };
       };
     };
-    console.log(actualGraphData)
+    // console.log("graph data!!!", actualGraphData)
     return [actualGraphData, pickQuantity, graphLabel];
   };
 
   // Recharts function for bar graph
   const makeGraph = (pick, getdata, followers) => {
+    console.log("GRAPH ABOUT TO BE RETURNED")
     const values = dailyType(pick, getdata, followers);
     let dailyPick = values[0];
     let pickQuantity = values[1];
@@ -335,6 +337,7 @@ function MacroGraph() {
   const handledaypick = (day) => {
     setCurrentDay(day);
   };
+  // console.log("WHOLE PAGE ABOUT TO BE RENDERED")
   return (
     <div className="graph-carousel-container">
       <div class="macro-data">
