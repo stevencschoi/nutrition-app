@@ -46,11 +46,15 @@ function MacroGraph() {
       console.log("hi");
       getData(pick, currentDay);
     });
+
+
+    
   }, [pick, currentDay]);
 
   // function that retrieves data for given week when day selected on calender
   const getData = (choice, daypick) => {
     const cloneday = daypick.clone();
+    // console.log("current day", currentDay)
     const start = JSON.stringify(cloneday.startOf("week")).slice(1, 11);
     const end = JSON.stringify(cloneday.startOf("week").weekday(6)).slice(
       1,
@@ -111,12 +115,14 @@ function MacroGraph() {
         let followersData = []
         followersData = result.data.followers
         // map through all followers and resolve all promises
-        return Promise.all(followersData.map(async(follower) => {
+        return Promise.all(followersData.map(async (follower) => {
           // user being followed has no data for all 7 days
           if (follower.userData.length === 0) {
             // when all promises are resolved, followersData array ready to use for graph
             await retrieveUsername(follower)
           }
+        }))
+        .then(() => {
           const newGraph = makeGraph(
             pick,
             result.data.userData,
@@ -124,8 +130,9 @@ function MacroGraph() {
           );
           setGraph(newGraph);
           console.log("RENDER user data + follower data", currentDay);
-        }))
-
+        })
+        .catch((error) => console.error(error));
+        
         // user has no data and is not following anyone  
       } else if (result.data.userData.length === 0 && result.data.followers.length === 0) {
         const newGraph = makeGraph(
@@ -140,20 +147,23 @@ function MacroGraph() {
         let followersData = []
         followersData = result.data.followers
         // map through all followers and resolve all promises
-        return Promise.all(followersData.map(async(follower) => {
+        return Promise.all(followersData.map(async (follower) => {
           // user being followed has no data for all 7 days
           if (follower.userData.length === 0) {
             // when all promises are resolved, followersData array ready to use for graph
             await retrieveUsername(follower)
           }
-          const newGraph = makeGraph(
-            pick,
-            zeroData,
-            followersData
-          );
-          setGraph(newGraph);
-          console.log("RENDER no data + follower data", currentDay);
-        }))  
+        }))
+        .then(() => {
+        const newGraph = makeGraph(
+          pick,
+          zeroData,
+          followersData
+        );
+        setGraph(newGraph);
+        console.log("RENDER no data + follower data", currentDay);
+        })
+        .catch((error) => console.error(error));
       }
     })
     .catch((error) => console.error(error));
@@ -281,7 +291,7 @@ function MacroGraph() {
 
   // Recharts function for bar graph
   const makeGraph = (pick, getdata, followers) => {
-    console.log("GRAPH ABOUT TO BE RETURNED")
+    // console.log("GRAPH ABOUT TO BE RETURNED", followers)
     const values = dailyType(pick, getdata, followers);
     let dailyPick = values[0];
     let pickQuantity = values[1];
@@ -336,6 +346,9 @@ function MacroGraph() {
   };
   const handledaypick = (day) => {
     setCurrentDay(day);
+    // socket.emit("new", () => {
+    //   console.log("Socket sending from daypick");
+    // });
   };
   // console.log("WHOLE PAGE ABOUT TO BE RENDERED")
   return (
