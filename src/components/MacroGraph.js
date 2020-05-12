@@ -54,7 +54,6 @@ function MacroGraph() {
   // function that retrieves data for given week when day selected on calender
   const getData = (choice, daypick) => {
     const cloneday = daypick.clone();
-    // console.log("current day", currentDay)
     const start = JSON.stringify(cloneday.startOf("week")).slice(1, 11);
     const end = JSON.stringify(cloneday.startOf("week").weekday(6)).slice(
       1,
@@ -120,7 +119,7 @@ function MacroGraph() {
           if (follower.userData.length === 0) {
             // when all promises are resolved, followersData array ready to use for graph
             await retrieveUsername(follower)
-          }
+          };
         }))
         .then(() => {
           const newGraph = makeGraph(
@@ -152,7 +151,7 @@ function MacroGraph() {
           if (follower.userData.length === 0) {
             // when all promises are resolved, followersData array ready to use for graph
             await retrieveUsername(follower)
-          }
+          };
         }))
         .then(() => {
         const newGraph = makeGraph(
@@ -189,8 +188,8 @@ function MacroGraph() {
       for (let j = 0; j < followers.length; j++) {
         actualGraphData[i][followers[j].userData[0].username] =
           Number(followers[j].userData[i].sum);
-      }
-    }
+      };
+    };
 
     // loop through all 7 days and retrieve data for user and users being followed,
     // based on nutritional data type selection
@@ -285,13 +284,11 @@ function MacroGraph() {
         };
       };
     };
-    // console.log("graph data!!!", actualGraphData)
     return [actualGraphData, pickQuantity, graphLabel];
   };
 
   // Recharts function for bar graph
   const makeGraph = (pick, getdata, followers) => {
-    // console.log("GRAPH ABOUT TO BE RETURNED", followers)
     const values = dailyType(pick, getdata, followers);
     let dailyPick = values[0];
     let pickQuantity = values[1];
@@ -346,11 +343,7 @@ function MacroGraph() {
   };
   const handledaypick = (day) => {
     setCurrentDay(day);
-    // socket.emit("new", () => {
-    //   console.log("Socket sending from daypick");
-    // });
   };
-  // console.log("WHOLE PAGE ABOUT TO BE RENDERED")
   return (
     <div className="graph-carousel-container">
       <div class="macro-data">
