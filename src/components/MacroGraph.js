@@ -41,14 +41,12 @@ function MacroGraph() {
     getData(pick, currentDay);
     fetchUsers();
     getFollowers();
-
+    // removes callback from update endpoint
+    socket.off("update");
+    // when a user starts following someone, graph is re-rendered
     socket.on("update", () => {
-      console.log("hi");
       getData(pick, currentDay);
     });
-
-
-    
   }, [pick, currentDay]);
 
   // function that retrieves data for given week when day selected on calender
@@ -107,7 +105,6 @@ function MacroGraph() {
           result.data.userData
           );
         setGraph(newGraph);
-        console.log("RENDER user data, no followers", currentDay);
 
         // user has data and follows other user(s)
       } else if (result.data.userData.length !== 0 && result.data.followers.length !== 0) {
@@ -128,7 +125,6 @@ function MacroGraph() {
             followersData
           );
           setGraph(newGraph);
-          console.log("RENDER user data + follower data", currentDay);
         })
         .catch((error) => console.error(error));
         
@@ -139,7 +135,6 @@ function MacroGraph() {
           zeroData
         );
         setGraph(newGraph);
-        console.log("RENDER no data, no followers", currentDay);
 
         // user has no data and follows other user(s)
       } else if (result.data.userData.length === 0 && result.data.followers.length !== 0) {
@@ -160,7 +155,6 @@ function MacroGraph() {
           followersData
         );
         setGraph(newGraph);
-        console.log("RENDER no data + follower data", currentDay);
         })
         .catch((error) => console.error(error));
       }
