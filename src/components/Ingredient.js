@@ -7,22 +7,26 @@ import { Link } from "react-router-dom";
 import useApplicationData from "../hooks/useApplicationData";
 
 function Ingredient({ match }) {
-  const { state, getNutrients, fetchRecipes } = useApplicationData();
-  // retrieve state stored in local storage which contains dietary options and restrictions
-  const oldState = localStorage.getItem('persistedState')
-  const useableState = JSON.parse(oldState)
   
+  const { state, getNutrients, fetchRecipes } = useApplicationData();
+
+  // retrieve object stored in local storage which contains dietary options and restrictions
+  const healthLabels = JSON.parse(localStorage.getItem('healthObj'));
+  
+  // format variable to plug into diet label for axios recipe request
   let diet;
-  if (useableState.diet.join('&') === "") {
+  if (healthLabels.diet.join() === "") {
     diet = "";
   } else {
-    diet = `&diet=${useableState.diet.join().replace(',', '&')}`;
+    diet = `&diet=${healthLabels.diet.join().replace(',', '&')}`;
   };
+
+  // format variable to plug into health label for axios recipe request
   let health;
-  if (useableState.restrictions.join('&') === "") {
+  if (healthLabels.restrictions.join() === "") {
     health = "&";
   } else {
-    health = `&health=${useableState.restrictions.join().replace(',', '&')}&`;
+    health = `&health=${healthLabels.restrictions.join().replace(',', '&')}&`;
   };
 
   // upon ingredient search query, display nutritional information and related recipes

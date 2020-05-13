@@ -4,7 +4,7 @@ import "./styles.scss";
 import useApplicationData from "../hooks/useApplicationData";
 
 function Searchbar(props) {
-  const { state, dietaryOptions, dietaryRestrictions } = useApplicationData();
+
   const [ingredient, setIngredient] = useState("");
 
   const dietOptions = [
@@ -47,6 +47,20 @@ function Searchbar(props) {
     { key: 28, text: "Wheat-free", value: "wheat-free" },
   ];
 
+  // empty object to store dietary options and restrictions
+  let healthObj = { diet: [], restrictions: [] };
+
+  // set dietary options for recipe search
+  function dietaryOptions(diet) {
+    healthObj.diet = [];
+    healthObj.diet.push(diet);
+  }
+  // set dietary restrictions for recipe search
+  function dietaryRestrictions(restrictions) {
+    healthObj.restrictions = [];
+    healthObj.restrictions.push(restrictions);
+  }
+
   return (
     <div id="cover">
       <form
@@ -54,9 +68,8 @@ function Searchbar(props) {
           e.preventDefault();
           props.fetchSearchResults(ingredient);
           // store dietary options and restrictions in local storage
-          // for later use in axios call for recipes
-          const persistedState = state
-          localStorage.setItem('persistedState', JSON.stringify(persistedState));
+          // for later use in axios request for recipes
+          localStorage.setItem('healthObj', JSON.stringify(healthObj));
         }}
       >
         <div class="tb">
@@ -81,7 +94,6 @@ function Searchbar(props) {
       <Dropdown
         placeholder="Dietary Options"
         multiple
-        isMulti
         options={dietOptions}
         selection
         onChange={(e, { value }) => dietaryOptions(value)}

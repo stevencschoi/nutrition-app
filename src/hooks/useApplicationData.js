@@ -18,8 +18,6 @@ export default function useApplicationData() {
     pick: "Calories",
     data: null,
     graph: "Calories",
-    diet: [],
-    restrictions: [],
   });
   // connect socket
   useEffect(() => {
@@ -27,16 +25,6 @@ export default function useApplicationData() {
       console.log("is socket connected?", socket.connected);
     });
   }, []);
-  // set dietary options for recipe search
-  function dietaryOptions(diet) {
-    state.diet = []
-    state.diet.push(diet);
-  }
-  // set dietary restrictions for recipe search
-  function dietaryRestrictions(restrictions) {
-    state.restrictions = []
-    state.restrictions.push(restrictions);
-  }
   // display raw ingredient search results from home page
   function fetchSearchResults(ingredient) {
     axios
@@ -110,8 +98,6 @@ export default function useApplicationData() {
   }
   return {
     state,
-    dietaryOptions,
-    dietaryRestrictions,
     fetchSearchResults,
     getNutrients,
     fetchRecipes,
