@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Dropdown } from "semantic-ui-react";
 import "./styles.scss";
-import useApplicationData from "../hooks/useApplicationData";
 
 function Searchbar(props) {
 
@@ -105,6 +104,7 @@ function Searchbar(props) {
         selection
         onChange={(e, { value }) => dietaryRestrictions(value)}
       />
+      <div id="edamam-badge" data-color="white"></div>
     </div>
   );
 }
