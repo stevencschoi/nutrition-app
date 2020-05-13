@@ -21,44 +21,24 @@ export default function useApplicationData() {
     diet: [],
     restrictions: [],
   });
-
-  // // set dietary options for recipe search
-  // function dietaryOptions(diet) {
-  //   // clear the dietary restrictions array
-  //   state.diet = []
-  //   let newDietOptions = Object.assign({}, state);
-  //   newDietOptions.diet.push(diet);
-  //   setState(newDietOptions);
-  // }
-
-  // set dietary options for recipe search
-  function dietaryOptions(diet) {
-    state.diet = []
-    state.diet.push(diet);
-  }
-
-  // // set dietary restrictions for recipe search
-  // function dietaryRestrictions(restriction) {
-  //   let newRestrictions = Object.assign({}, state);
-  //   newRestrictions.restrictions.push(restriction);
-  //   setState(newRestrictions);
-  // }
-
-  // set dietary restrictions for recipe search
-  function dietaryRestrictions(restrictions) {
-    state.restrictions = []
-    state.restrictions.push(restrictions);
-  }
-
   // connect socket
   useEffect(() => {
     socket.on("connect", () => {
       console.log("is socket connected?", socket.connected);
     });
   }, []);
+  // set dietary options for recipe search
+  function dietaryOptions(diet) {
+    state.diet = []
+    state.diet.push(diet);
+  }
+  // set dietary restrictions for recipe search
+  function dietaryRestrictions(restrictions) {
+    state.restrictions = []
+    state.restrictions.push(restrictions);
+  }
   // display raw ingredient search results from home page
   function fetchSearchResults(ingredient) {
-    // const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
     axios
       .get(
         `https://api.edamam.com/api/food-database/parser?ingr=raw%20${ingredient}&app_id=${dbId}&app_key=${dbKey}`

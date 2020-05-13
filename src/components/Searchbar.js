@@ -6,24 +6,45 @@ import useApplicationData from "../hooks/useApplicationData";
 function Searchbar(props) {
   const { state, dietaryOptions, dietaryRestrictions } = useApplicationData();
   const [ingredient, setIngredient] = useState("");
-  // localStorage.clear()
-  // console.log("local storage", localStorage)
-  console.log("re-render", state)
 
   const dietOptions = [
-    { key: 1, text: "balanced", value: "balanced" },
-    { key: 2, text: "high-protein", value: "high-protein" },
-    { key: 3, text: "low-fat", value: "low-fat" },
-    { key: 4, text: "low-carb", value: "low-carb" },
+    { key: 1, text: "Balanced", value: "balanced" },
+    { key: 2, text: "High-Fiber", value: "high-fiber" },
+    { key: 3, text: "High-Protein", value: "high-protein" },
+    { key: 4, text: "Low-Carb", value: "low-carb" },
+    { key: 5, text: "Low-Fat", value: "low-fat" },
+    { key: 6, text: "Low-Sodium", value: "low-sodium" },
   ];
 
   const restrictiveOptions = [
-    { key: 1, text: "vegan", value: "vegan" },
-    { key: 2, text: "vegetarian", value: "vegetarian" },
-    { key: 3, text: "sugar-conscious", value: "sugar-conscious" },
-    { key: 4, text: "peanut-free", value: "peanut-free" },
-    { key: 5, text: "tree-nut-free", value: "tree-nut-free" },
-    { key: 6, text: "alcohol-free", value: "alcohol-free" },
+    { key: 1, text: "Alcohol-free", value: "alcohol-free" },
+    { key: 2, text: "Celery-free", value: "celery-free" },
+    { key: 3, text: "Crustacean-free", value: "crustacean-free" },
+    { key: 4, text: "Dairy", value: "dairy-free" },
+    { key: 5, text: "Eggs", value: "egg-free" },
+    { key: 6, text: "Fish", value: "fish-free" },
+    { key: 7, text: "FODMAP-free", value: "fodmap-free" },
+    { key: 8, text: "Gluten-free", value: "gluten-free" },
+    { key: 9, text: "Keto", value: "keto-friendly" },
+    { key: 10, text: "Kidney friendly", value: "kidney-friendly" },
+    { key: 11, text: "Kosher", value: "kosher" },
+    { key: 12, text: "Lupine-free", value: "lupine-free" },
+    { key: 13, text: "Mustard-free", value: "mustard-free" },
+    { key: 14, text: "No oil added", value: "no-oil-added" },
+    { key: 15, text: "No simple sugars", value: "low-sugar" },
+    { key: 16, text: "Paleo", value: "paleo" },
+    { key: 17, text: "Peanut-free", value: "peanut-free" },
+    { key: 18, text: "Pescatarian", value: "pescatarian" },
+    { key: 19, text: "Pork-free", value: "pork-free" },
+    { key: 20, text: "Red meat-free", value: "red-meat-free" },
+    { key: 21, text: "Sesame-free", value: "sesame-free" },
+    { key: 22, text: "Shellfish", value: "shellfish-free" },
+    { key: 23, text: "Soy", value: "soy-free" },
+    { key: 24, text: "Sugar-conscious", value: "sugar-conscious" },
+    { key: 25, text: "Tree nut-free", value: "tree-nut-free" },
+    { key: 26, text: "Vegan", value: "vegan" },
+    { key: 27, text: "Vegetarian", value: "vegetarian" },
+    { key: 28, text: "Wheat-free", value: "wheat-free" },
   ];
 
   return (
@@ -32,8 +53,8 @@ function Searchbar(props) {
         onSubmit={(e) => {
           e.preventDefault();
           props.fetchSearchResults(ingredient);
-          
-          // store dietary options and restrictions in local state
+          // store dietary options and restrictions in local storage
+          // for later use in axios call for recipes
           const persistedState = state
           localStorage.setItem('persistedState', JSON.stringify(persistedState));
         }}
@@ -45,28 +66,19 @@ function Searchbar(props) {
               name="ingredient"
               placeholder="What's on the menu today?"
               value={props.name}
-              onChange={(e) => {
-                setIngredient(e.target.value);
-              }}
+              onChange={(e) => {setIngredient(e.target.value);}}
               required
             />
-            
           </div>
-          
           <div class="td" id="s-cover">
             <button type="submit">
               <div id="s-circle"></div>
               <span></span>
-              
             </button>
-            
           </div>
-          
         </div>
-        
       </form>
       <Dropdown
-        class="fuck"
         placeholder="Dietary Options"
         multiple
         isMulti
@@ -79,10 +91,9 @@ function Searchbar(props) {
         multiple
         options={restrictiveOptions}
         selection
-        onChange={(e) => dietaryRestrictions(e.target.innerText)}
+        onChange={(e, { value }) => dietaryRestrictions(value)}
       />
     </div>
   );
 }
-
 export default Searchbar;

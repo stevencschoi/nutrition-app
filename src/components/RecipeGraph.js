@@ -11,7 +11,6 @@ import {
 } from "recharts";
 
 function RecipeGraph(props) {
-  console.log("HERE", localStorage)
   const makeGraph = (nutData) => {
     let serve_yield = nutData.hits[0].recipe.yield;
     let fat = nutData.hits[0].recipe.totalNutrients.FAT.quantity

@@ -11,19 +11,18 @@ function Ingredient({ match }) {
   // retrieve state stored in local storage which contains dietary options and restrictions
   const oldState = localStorage.getItem('persistedState')
   const useableState = JSON.parse(oldState)
-  console.log("usable state", useableState)
   
   let diet;
   if (useableState.diet.join('&') === "") {
-    diet = "&";
+    diet = "";
   } else {
-    diet = `&diet=${useableState.diet.join('&')}`;
+    diet = `&diet=${useableState.diet.join().replace(',', '&')}`;
   };
   let health;
   if (useableState.restrictions.join('&') === "") {
     health = "&";
   } else {
-    health = `&health=${useableState.restrictions.join('&')}&`;
+    health = `&health=${useableState.restrictions.join().replace(',', '&')}&`;
   };
 
   // upon ingredient search query, display nutritional information and related recipes
