@@ -41,7 +41,7 @@ export default function useApplicationData() {
   function fetchSearchResults(ingredient) {
     axios
       .get(
-        `https://api.edamam.com/api/food-database/parser?ingr=raw%20${ingredient}&app_id=${dbId}&app_key=${dbKey}`
+        `https://api.edamam.com/api/food-database/parser?ingr=${ingredient}&app_id=${dbId}&app_key=${dbKey}`
       )
       .then((result) => {
         const searchResultsArray = result.data.hints.map((item) => {
