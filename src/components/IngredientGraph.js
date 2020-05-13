@@ -13,6 +13,7 @@ import {
 // Renders the nutritional data of the chosen ingredient
 
 function IngredientGraph(props) {
+  
   // Recharts function for bar graph
   const makeGraph = (nutData) => {
     let fat = nutData.totalNutrients.FAT.quantity;

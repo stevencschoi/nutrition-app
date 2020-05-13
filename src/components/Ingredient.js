@@ -14,15 +14,15 @@ function Ingredient({ match }) {
   
   let diet;
   if (useableState.diet.join('&') === "") {
-    diet = "&";
+    diet = "";
   } else {
-    diet = `&diet=${useableState.diet.join('&')}`;
+    diet = `&diet=${useableState.diet.join().replace(',', '&')}`;
   };
   let health;
   if (useableState.restrictions.join('&') === "") {
     health = "&";
   } else {
-    health = `&health=${useableState.restrictions.join('&')}&`;
+    health = `&health=${useableState.restrictions.join().replace(',', '&')}&`;
   };
 
   // upon ingredient search query, display nutritional information and related recipes
@@ -32,13 +32,20 @@ function Ingredient({ match }) {
     fetchRecipes(format[3], diet, health);
   }, []);
 
+  const clearLocalStorage = () => localStorage.clear();
+
   return (
     <>
       <div className="ingredient-page">
         <h1 className="favourite-title">Ingredient Profile</h1>
         <div className="button-container">
           <Link to={"/"} className="position-right">
-            <Button default>Start Over</Button>
+            <Button 
+              default
+              onClick={clearLocalStorage}
+            >
+              Start Over
+            </Button>
           </Link>
         </div>
         <IngredientGraph data={state.search} />
