@@ -6,7 +6,9 @@ import useApplicationData from "../hooks/useApplicationData";
 function Searchbar(props) {
   const { state, dietaryOptions, dietaryRestrictions } = useApplicationData();
   const [ingredient, setIngredient] = useState("");
-  console.log("search", localStorage)
+  // localStorage.clear()
+  // console.log("local storage", localStorage)
+  console.log("re-render", state)
 
   const dietOptions = [
     { key: 1, text: "balanced", value: "balanced" },
@@ -64,11 +66,13 @@ function Searchbar(props) {
         
       </form>
       <Dropdown
+        class="fuck"
         placeholder="Dietary Options"
         multiple
+        isMulti
         options={dietOptions}
         selection
-        onChange={(e) => dietaryOptions(e.target.innerText)}
+        onChange={(e, { value }) => dietaryOptions(value)}
       />
       <Dropdown
         placeholder="Dietary Restrictions"

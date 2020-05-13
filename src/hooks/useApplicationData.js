@@ -22,20 +22,34 @@ export default function useApplicationData() {
     restrictions: [],
   });
 
+  // // set dietary options for recipe search
+  // function dietaryOptions(diet) {
+  //   // clear the dietary restrictions array
+  //   state.diet = []
+  //   let newDietOptions = Object.assign({}, state);
+  //   newDietOptions.diet.push(diet);
+  //   setState(newDietOptions);
+  // }
+
   // set dietary options for recipe search
   function dietaryOptions(diet) {
-    let newDietOptions = Object.assign({}, state);
-    newDietOptions.diet.push(diet);
-    setState(newDietOptions);
+    state.diet = []
+    state.diet.push(diet);
   }
 
+  // // set dietary restrictions for recipe search
+  // function dietaryRestrictions(restriction) {
+  //   let newRestrictions = Object.assign({}, state);
+  //   newRestrictions.restrictions.push(restriction);
+  //   setState(newRestrictions);
+  // }
+
   // set dietary restrictions for recipe search
-  function dietaryRestrictions(restriction) {
-    let newRestrictions = Object.assign({}, state);
-    newRestrictions.restrictions.push(restriction);
-    setState(newRestrictions);
+  function dietaryRestrictions(restrictions) {
+    state.restrictions = []
+    state.restrictions.push(restrictions);
   }
-  
+
   // connect socket
   useEffect(() => {
     socket.on("connect", () => {

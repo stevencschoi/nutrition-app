@@ -11,6 +11,7 @@ function Ingredient({ match }) {
   // retrieve state stored in local storage which contains dietary options and restrictions
   const oldState = localStorage.getItem('persistedState')
   const useableState = JSON.parse(oldState)
+  console.log("usable state", useableState)
   
   let diet;
   if (useableState.diet.join('&') === "") {
