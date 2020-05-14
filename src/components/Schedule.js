@@ -26,7 +26,7 @@ function Schedule() {
     getDaySchedule(currentDay);
   }, [update]);
 
-  const dayFomater = (num) => {
+  const dayFomater = num => {
     let copynum = num;
     const arr = [];
     for (let i = 0; i < 7; i++) {
@@ -40,7 +40,7 @@ function Schedule() {
   };
 
   // make get request to server and map results to the page
-  const getDaySchedule = (currentDate) => {
+  const getDaySchedule = currentDate => {
     let start = currentDate.clone();
     start = start.startOf("week");
 
@@ -55,7 +55,7 @@ function Schedule() {
       axios.get(`/day?date=${today.add(1, "day").format("YYYY-MM-DD")}`),
       axios.get(`/day?date=${today.add(1, "day").format("YYYY-MM-DD")}`),
       axios.get(`/day?date=${today.add(1, "day").format("YYYY-MM-DD")}`),
-    ]).then((res) => {
+    ]).then(res => {
       const obj = {
         [days[newday[0]]]: res[0].data,
         [days[newday[1]]]: res[1].data,
@@ -70,7 +70,7 @@ function Schedule() {
     });
   };
 
-  const handledaypick = (day) => {
+  const handledaypick = day => {
     setCurrentDay(day);
     getDaySchedule(day);
   };
@@ -81,21 +81,22 @@ function Schedule() {
       <div className="calendar">
         <MealCalendar
           date={currentDay}
-          onChange={(e) => handledaypick(e.target.value)}
+          onChange={e => handledaypick(e.target.value)}
         />
       </div>
       {/* <div>{currentDay.format("YYYY-MM-DD")}</div> */}
       <div className="schedule">
-        {Object.keys(schedule).map((item) => {
+        {Object.keys(schedule).map(item => {
           return (
             <div>
               <h2>{item}</h2>
-              {schedule[item].map((item) => {
+              {schedule[item].map((item, index) => {
                 const itemName = item.name;
                 const image = item.image_url;
                 const id = item.id;
                 return (
                   <ScheduleItem
+                    key={index}
                     name={itemName}
                     image={image}
                     id={id}

@@ -3,7 +3,6 @@ import { Dropdown } from "semantic-ui-react";
 import "./styles.scss";
 
 function Searchbar(props) {
-
   const [ingredient, setIngredient] = useState("");
 
   const dietOptions = [
@@ -63,26 +62,28 @@ function Searchbar(props) {
   return (
     <div id="cover">
       <form
-        onSubmit={(e) => {
+        onSubmit={e => {
           e.preventDefault();
           props.fetchSearchResults(ingredient);
           // store dietary options and restrictions in local storage
           // for later use in axios request for recipes
-          localStorage.setItem('healthObj', JSON.stringify(healthObj));
+          localStorage.setItem("healthObj", JSON.stringify(healthObj));
         }}
       >
-        <div class="tb">
-          <div class="td">
+        <div className="tb">
+          <div className="td">
             <input
               type="text"
               name="ingredient"
               placeholder="What's on the menu today?"
               value={props.name}
-              onChange={(e) => {setIngredient(e.target.value);}}
+              onChange={e => {
+                setIngredient(e.target.value);
+              }}
               required
             />
           </div>
-          <div class="td" id="s-cover">
+          <div className="td" id="s-cover">
             <button type="submit">
               <div id="s-circle"></div>
               <span></span>

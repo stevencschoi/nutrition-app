@@ -24,6 +24,10 @@ $primary-font: monospace, cursive;
     background-color: transparent;
     border-radius: 4px;
     margin-bottom: 2rem;
+    img {
+      width: 6rem;
+      height: 6rem;
+    }
   }
   div.card {
     background: linear-gradient(
