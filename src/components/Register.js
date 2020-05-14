@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./styles.scss";
 import axios from "axios";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 // const PORT = process.env.PORT || 8008;
 
@@ -16,9 +16,24 @@ const Register = () => {
     avatar: "",
   });
 
-  const handleInputChange = (e) => {
+  const [toHome, setToHome] = useState(false);
+
+  console.log("toHome default", toHome);
+
+  const clearInputs = () => {
+    setInputs({
+      username: "",
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      avatar: "",
+    });
+  };
+
+  const handleInputChange = e => {
     e.persist();
-    setInputs((inputs) => ({
+    setInputs(inputs => ({
       ...inputs,
       [e.target.name]: e.target.value,
     }));
@@ -32,65 +47,60 @@ const Register = () => {
     axios
       .put(`/register`, inputs)
       .then(() => {
-        setInputs({
-          username: "",
-          first_name: "",
-          last_name: "",
-          email: "",
-          password: "",
-          avatar: "",
-        });
+        clearInputs();
+        setToHome(true);
       })
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   }
 
   return (
-    <form onSubmit={handleSubmit} className="registerform">
-      <input
-        placeholder="username"
-        name="username"
-        value={inputs.username}
-        onChange={handleInputChange}
-      />
-      <input
-        placeholder="first name"
-        name="first_name"
-        value={inputs.first_name}
-        onChange={handleInputChange}
-      />
-      <input
-        placeholder="last name"
-        name="last_name"
-        value={inputs.last_name}
-        onChange={handleInputChange}
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="email"
-        value={inputs.email}
-        onChange={handleInputChange}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        name="password"
-        value={inputs.password}
-        onChange={handleInputChange}
-      />
-      <input
-        placeholder="link to image"
-        name="avatar"
-        value={inputs.avatar}
-        onChange={handleInputChange}
-      />
+    <>
+      {toHome && <Redirect to="/" />}
+      <form onSubmit={handleSubmit} className="registerform">
+        <input
+          placeholder="username"
+          name="username"
+          value={inputs.username}
+          onChange={handleInputChange}
+        />
+        <input
+          placeholder="first name"
+          name="first_name"
+          value={inputs.first_name}
+          onChange={handleInputChange}
+        />
+        <input
+          placeholder="last name"
+          name="last_name"
+          value={inputs.last_name}
+          onChange={handleInputChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="email"
+          value={inputs.email}
+          onChange={handleInputChange}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={inputs.password}
+          onChange={handleInputChange}
+        />
+        <input
+          placeholder="link to image"
+          name="avatar"
+          value={inputs.avatar}
+          onChange={handleInputChange}
+        />
 
-      <Link to={"/"}>
         <Button register type="submit">
           Create Account
         </Button>
-      </Link>
-    </form>
+      </form>
+    </>
   );
 };
 
