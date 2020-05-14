@@ -32,10 +32,18 @@ export default function useApplicationData() {
         `https://api.edamam.com/api/food-database/parser?ingr=${ingredient}&app_id=${dbId}&app_key=${dbKey}`
       )
       .then((result) => {
+        // clear search results
+        setState((prev) => ({
+          ...prev,
+          search: [],
+        }));
         const searchResultsArray = result.data.hints.map((item) => {
           if (item.food.image) {
             const code = `${item.food.foodId}`;
-            const label = `${item.food.label}`;
+            // label must be encoded to prevent Uncaught URIError: This is likely caused by an invalid percent-encoding.
+            // special case scenario due to Edamam API
+            let replaceSpace = /%20/g;
+            const label = encodeURI(`${item.food.label}`).replace(replaceSpace, ' ').replace('Wholly Avocado 100%25 Avocado', 'Wholly Avocado 100 Percent Avocado');
             const image = `${item.food.image}`;
             return (
               <SearchResult key={code} id={code} label={label} image={image} />

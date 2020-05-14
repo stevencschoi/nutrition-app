@@ -16,13 +16,13 @@ function IngredientGraph(props) {
   
   // Recharts function for bar graph
   const makeGraph = (nutData) => {
-    let fat = nutData.totalNutrients.FAT.quantity;
-    let carbohydrates = nutData.totalNutrients.CHOCDF.quantity;
-    let protein = nutData.totalNutrients.PROCNT.quantity;
-    let cholesterol = nutData.totalNutrients.CHOLE.quantity;
-    let sodium = nutData.totalNutrients.NA.quantity;
-    let sugar = nutData.totalNutrients.SUGAR.quantity;
-    let fibre = nutData.totalNutrients.FIBTG.quantity;
+    let fat = nutData.totalNutrients.FAT.quantity.toFixed(2);
+    let carbohydrates = nutData.totalNutrients.CHOCDF.quantity.toFixed(2);
+    let protein = nutData.totalNutrients.PROCNT.quantity.toFixed(2);
+    let cholesterol = nutData.totalNutrients.CHOLE.quantity.toFixed(2);
+    let sodium = nutData.totalNutrients.NA.quantity.toFixed(2);
+    let sugar = nutData.totalNutrients.SUGAR.quantity.toFixed(2);
+    let fibre = nutData.totalNutrients.FIBTG.quantity.toFixed(2);
 
     const data = [
       {
