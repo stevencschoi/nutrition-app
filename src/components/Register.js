@@ -18,8 +18,6 @@ const Register = () => {
 
   const [toHome, setToHome] = useState(false);
 
-  console.log("toHome default", toHome);
-
   const clearInputs = () => {
     setInputs({
       username: "",
