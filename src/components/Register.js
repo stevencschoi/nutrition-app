@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./styles.scss";
 import axios from "axios";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
 
 // const PORT = process.env.PORT || 8008;
 
@@ -84,12 +83,12 @@ const Register = () => {
         value={inputs.avatar}
         onChange={handleInputChange}
       />
-
-      <Link to={"/"}>
-        <Button register type="submit">
+        <Button 
+          register 
+          type="submit"
+        >
           Create Account
         </Button>
-      </Link>
     </form>
   );
 };
