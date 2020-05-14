@@ -11,13 +11,7 @@ function RecipeCard(props) {
   return (
     <div className="out" key={props.id}>
       <div className="card">
-        <img
-          className="rounded-circle"
-          alt={"users here"}
-          src={props.image}
-          height={156}
-          width={156}
-        />
+        <img className="rounded-circle" alt={"users here"} src={props.image} />
         <div className="card-body">
           <h5 className="card-title">{props.label}</h5>
           <br />
