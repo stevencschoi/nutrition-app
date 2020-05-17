@@ -12,5 +12,5 @@
   command = "npm run build"
 
 [build.environment]
-  REACT_APP_API_BASE_URL = "https://www.server.vegtable.xyz/"
-  REACT_APP_WEBSOCKET_URL = "wss://www.server.vegtable.xyz/"
+  REACT_APP_API_BASE_URL = "http://vegtable.xyz/"
+  REACT_APP_WEBSOCKET_URL = "wss://vegtable.xyz/"
