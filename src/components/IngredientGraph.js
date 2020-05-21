@@ -11,19 +11,38 @@ import {
 } from "recharts";
 
 // Renders the nutritional data of the chosen ingredient
-
 function IngredientGraph(props) {
-  
   // Recharts function for bar graph
   const makeGraph = (nutData) => {
-    let fat = nutData.totalNutrients.FAT.quantity.toFixed(2);
-    let carbohydrates = nutData.totalNutrients.CHOCDF.quantity.toFixed(2);
-    let protein = nutData.totalNutrients.PROCNT.quantity.toFixed(2);
-    let cholesterol = nutData.totalNutrients.CHOLE.quantity.toFixed(2);
-    let sodium = nutData.totalNutrients.NA.quantity.toFixed(2);
-    let sugar = nutData.totalNutrients.SUGAR.quantity.toFixed(2);
-    let fibre = nutData.totalNutrients.FIBTG.quantity.toFixed(2);
-
+    // set default to N/A in case Edamam has missing data
+    let fat = "N/A";
+    let carbohydrates = "N/A";
+    let protein = "N/A";
+    let cholesterol = "N/A";
+    let sodium = "N/A";
+    let sugar = "N/A";
+    let fibre = "N/A";
+    if (nutData.totalNutrients.FAT) {
+      fat = nutData.totalNutrients.FAT.quantity.toFixed(2)
+    };
+    if (nutData.totalNutrients.CHOCDF) {
+      carbohydrates = nutData.totalNutrients.CHOCDF.quantity.toFixed(2)
+    };
+    if (nutData.totalNutrients.PROCNT) {
+      protein = nutData.totalNutrients.PROCNT.quantity.toFixed(2)
+    };
+    if (nutData.totalNutrients.CHOLE) {
+      cholesterol = nutData.totalNutrients.CHOLE.quantity.toFixed(2)
+    };
+    if (nutData.totalNutrients.NA) {
+      sodium = nutData.totalNutrients.NA.quantity.toFixed(2)
+    };
+    if (nutData.totalNutrients.SUGAR) {
+      sugar = nutData.totalNutrients.SUGAR.quantity.toFixed(2)
+    };
+    if (nutData.totalNutrients.FIBTG) {
+      fibre = nutData.totalNutrients.FIBTG.quantity.toFixed(2)
+    };
     const data = [
       {
         name: "Fat",
