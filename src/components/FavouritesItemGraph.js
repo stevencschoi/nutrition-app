@@ -77,25 +77,6 @@ function RecipeGraph(props) {
     return (
       // favourites graphs
       <div class="ingredient-graph-container">
-        <div class="calories-graph">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart width={240} height={300} data={data3}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis
-                label={{
-                  value: "calories / serving",
-                  dx: -25,
-                  angle: -90,
-                  position: "center",
-                }}
-                type="number"
-              />
-              <Tooltip />
-              <Bar dataKey="calories / serving" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
         <div class="left-graph">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={500} height={300} data={data}>
@@ -131,6 +112,25 @@ function RecipeGraph(props) {
               />
               <Tooltip />
               <Bar dataKey="milligrams / serving" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        <div class="calories-graph">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart width={240} height={300} data={data3}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis
+                label={{
+                  value: "calories / serving",
+                  dx: -25,
+                  angle: -90,
+                  position: "center",
+                }}
+                type="number"
+              />
+              <Tooltip />
+              <Bar dataKey="calories / serving" />
             </BarChart>
           </ResponsiveContainer>
         </div>

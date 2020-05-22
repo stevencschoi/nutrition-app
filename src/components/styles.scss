@@ -365,20 +365,18 @@ body,
     align-items: center;
     justify-content: center;
     height: 22em;
-    .calories-graph {
-      height: 22em;
-      width: 15%;
-      margin-right: 2em;
-    }
     .left-graph {
       height: 22em;
-      width: 60%;
-      // margin: 0 2em;
+      width: 52.5%;
     }
     .right-graph {
       height: 22em;
       width: 25%;
-      margin-left: 1em;
+      margin: 0 1em;
+    }
+    .calories-graph {
+      height: 22em;
+      width: 16%;
     }
   }
 }
