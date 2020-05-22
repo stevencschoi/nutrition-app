@@ -23,25 +23,25 @@ function IngredientGraph(props) {
     let sugar = "N/A";
     let fibre = "N/A";
     if (nutData.totalNutrients.FAT) {
-      fat = nutData.totalNutrients.FAT.quantity.toFixed(2)
+      fat = +(nutData.totalNutrients.FAT.quantity).toFixed(2)
     };
     if (nutData.totalNutrients.CHOCDF) {
-      carbohydrates = nutData.totalNutrients.CHOCDF.quantity.toFixed(2)
+      carbohydrates = +(nutData.totalNutrients.CHOCDF.quantity).toFixed(2)
     };
     if (nutData.totalNutrients.PROCNT) {
-      protein = nutData.totalNutrients.PROCNT.quantity.toFixed(2)
+      protein = +(nutData.totalNutrients.PROCNT.quantity).toFixed(2)
     };
     if (nutData.totalNutrients.CHOLE) {
-      cholesterol = nutData.totalNutrients.CHOLE.quantity.toFixed(2)
+      cholesterol = +(nutData.totalNutrients.CHOLE.quantity).toFixed(2)
     };
     if (nutData.totalNutrients.NA) {
-      sodium = nutData.totalNutrients.NA.quantity.toFixed(2)
+      sodium = +(nutData.totalNutrients.NA.quantity).toFixed(2)
     };
     if (nutData.totalNutrients.SUGAR) {
-      sugar = nutData.totalNutrients.SUGAR.quantity.toFixed(2)
+      sugar = +(nutData.totalNutrients.SUGAR.quantity).toFixed(2)
     };
     if (nutData.totalNutrients.FIBTG) {
-      fibre = nutData.totalNutrients.FIBTG.quantity.toFixed(2)
+      fibre = +(nutData.totalNutrients.FIBTG.quantity).toFixed(2)
     };
     const data = [
       {
@@ -91,6 +91,7 @@ function IngredientGraph(props) {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis
+                // domain={[0, 'dataMax']}
                 label={{
                   value: "grams / 100 grams",
                   dx: -5,
