@@ -155,6 +155,11 @@ $primary-font: monospace, cursive;
 
     position: relative;
     margin-right: 1rem;
+    img {
+      border-radius: 5px;
+      max-width: 100%;
+      margin: 2rem;
+    }
     .delete-button-image {
       position: absolute;
       top: 1rem;
