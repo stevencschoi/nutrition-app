@@ -349,7 +349,7 @@ body,
 // // favourites graphs styles
 
 .favourite-data {
-  width: 70%;
+  width: 85%;
   border-radius: 4px;
   padding: 10px;
   background-color: white;
@@ -365,16 +365,21 @@ body,
     align-items: center;
     justify-content: center;
     height: 22em;
+    .calories-graph {
+      height: 22em;
+      width: 15%;
+      margin-right: 2em;
+    }
     .left-graph {
       height: 22em;
-      width: 66%;
-      margin: 0 2em;
+      width: 60%;
+      // margin: 0 2em;
     }
-  }
-  .right-graph {
-    height: 22em;
-    width: 33%;
-    margin-right: 2em;
+    .right-graph {
+      height: 22em;
+      width: 25%;
+      margin-left: 1em;
+    }
   }
 }
 

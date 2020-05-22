@@ -16,7 +16,7 @@ $primary-font: monospace, cursive;
   justify-content: center;
   align-items: center;
   background-color: white;
-  width: 75%;
+  width: 90%;
   margin: 1% auto;
   border: $primary-colour solid 1px;
   border-radius: 5px;
@@ -117,7 +117,8 @@ $primary-font: monospace, cursive;
 .image-and-drop-container {
   width: 100%;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   padding: 0 1%;
   background-color: #ffffff;
@@ -128,11 +129,11 @@ $primary-font: monospace, cursive;
     flex-direction: column;
     justify-content: center;
     position: relative;
-    margin: 0 2em 0 0;
+    // margin: 0 2em 0 0;
     img {
       border-radius: 5px;
       max-width: 100%;
-      margin: 2rem;
+      // margin: 2rem;
     }
     .delete-button-image {
       position: absolute;
