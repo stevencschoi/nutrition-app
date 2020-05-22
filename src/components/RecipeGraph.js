@@ -13,27 +13,27 @@ import {
 function RecipeGraph(props) {
   const makeGraph = (nutData) => {
     let serve_yield = nutData.hits[0].recipe.yield;
-    let fat = nutData.hits[0].recipe.totalNutrients.FAT.quantity
+    let fat = nutData.hits[0].recipe.totalNutrients.FAT
       ? +(nutData.hits[0].recipe.totalNutrients.FAT.quantity / serve_yield).toFixed(2)
-      : 0;
-    let carbohydrates = nutData.hits[0].recipe.totalNutrients.CHOCDF.quantity
+      : "N/A";
+    let carbohydrates = nutData.hits[0].recipe.totalNutrients.CHOCDF
       ? +(nutData.hits[0].recipe.totalNutrients.CHOCDF.quantity / serve_yield).toFixed(2)
-      : 0;
-    let protein = nutData.hits[0].recipe.totalNutrients.PROCNT.quantity
+      : "N/A";
+    let protein = nutData.hits[0].recipe.totalNutrients.PROCNT
       ? +(nutData.hits[0].recipe.totalNutrients.PROCNT.quantity / serve_yield).toFixed(2)
-      : 0;
-    let cholesterol = nutData.hits[0].recipe.totalNutrients.CHOLE.quantity
+      : "N/A";
+    let cholesterol = nutData.hits[0].recipe.totalNutrients.CHOLE
       ? +(nutData.hits[0].recipe.totalNutrients.CHOLE.quantity / serve_yield).toFixed(2)
-      : 0;
-    let sodium = nutData.hits[0].recipe.totalNutrients.NA.quantity
+      : "N/A";
+    let sodium = nutData.hits[0].recipe.totalNutrients.NA
       ? +(nutData.hits[0].recipe.totalNutrients.NA.quantity / serve_yield).toFixed(2)
-      : 0;
-    let sugar = nutData.hits[0].recipe.totalNutrients.SUGAR.quantity
+      : "N/A";
+    let sugar = nutData.hits[0].recipe.totalNutrients.SUGAR
       ? +(nutData.hits[0].recipe.totalNutrients.SUGAR.quantity / serve_yield).toFixed(2)
-      : 0;
-    let fibre = nutData.hits[0].recipe.totalNutrients.FIBTG.quantity
+      : "N/A";
+    let fibre = nutData.hits[0].recipe.totalNutrients.FIBTG
       ? +(nutData.hits[0].recipe.totalNutrients.FIBTG.quantity / serve_yield).toFixed(2)
-      : 0;
+      : "N/A";
     const data = [
       {
         name: "Fat",
