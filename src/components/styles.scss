@@ -348,22 +348,18 @@ body,
 
 // // favourites graphs styles
 
-
-// .favourites-data {
-//   margin: 25px;
-//   width: 100%;
-//   border-radius: 4px;
-//   padding: 10px;
-//   background-color: white;
-//   .text {
-//     color: $primary-colour;
-//   }
-//   h2 {
-//     color: $primary-colour;
-//     font-family: $primary-font;
-//   }
-
-.ingredient-data {
+.favourite-data {
+  width: 70%;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: white;
+  .text {
+    color: $primary-colour;
+  }
+  h2 {
+    color: $primary-colour;
+    font-family: $primary-font;
+  }
   .ingredient-graph-container {
     display: flex;
     align-items: center;
@@ -372,11 +368,13 @@ body,
     .left-graph {
       height: 22em;
       width: 66%;
+      margin: 0 2em;
     }
   }
   .right-graph {
     height: 22em;
     width: 33%;
+    margin-right: 2em;
   }
 }
 

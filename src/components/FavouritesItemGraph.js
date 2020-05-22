@@ -216,7 +216,7 @@ function RecipeGraph(props) {
               <YAxis
                 label={{
                   value: "grams / serving",
-                  dx: -10,
+                  dx: -30,
                   angle: -90,
                   position: "center",
                 }}
@@ -235,7 +235,7 @@ function RecipeGraph(props) {
               <YAxis
                 label={{
                   value: "milligrams / serving",
-                  dx: -20,
+                  dx: -30,
                   angle: -90,
                   position: "center",
                 }}

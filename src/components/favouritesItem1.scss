@@ -17,44 +17,22 @@ $primary-font: monospace, cursive;
   align-items: center;
   background-color: white;
   width: 75%;
-  // width: 100%;
   margin: 1% auto;
-  // margin: 0 100px;
   border: $primary-colour solid 1px;
   border-radius: 5px;
   padding-bottom: 1%;
-
-  .including-link {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 85%;
-    margin: 2% auto;
-    background-color: $secondary-colour;
-    border: $primary-colour solid 1px;
-    border-radius: 10px;
-    button {
-      margin-top: 2rem;
-      padding: 7px 13px;
-    }
-  }
-
-
-
-
   .favourite-main {
     display: flex;
     justify-content: left;
     align-items: center;
-    padding: 1%;
+    padding: 1% 1% 0;
     width: 100%;
     .image-container {
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
-      margin-left: 2rem;
+      // margin-left: 2rem;
       padding: 0;
       img {
         margin: 0;
@@ -78,7 +56,7 @@ $primary-font: monospace, cursive;
     }
   }
   .meal-plan-container {
-    padding: 1rem;
+    padding: 0 1rem 1rem;
     width: 30%;
     background-color: #ffffff;
     border-radius: 4px;
@@ -141,7 +119,7 @@ $primary-font: monospace, cursive;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1%;
+  padding: 0 1%;
   background-color: #ffffff;
   border-radius: 4px;
   .image-container {
@@ -149,9 +127,8 @@ $primary-font: monospace, cursive;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     position: relative;
-    margin-right: 1rem;
+    margin: 0 2em 0 0;
     img {
       border-radius: 5px;
       max-width: 100%;

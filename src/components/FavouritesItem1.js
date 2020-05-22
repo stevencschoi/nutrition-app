@@ -214,7 +214,7 @@ const FavouritesItem1 = (props) => {
                 </Button>
               )}
             </div>
-            <div class="ingredient-data">
+            <div class="favourite-data">
               <h2>Select Nutritional Data of {props.name}</h2>
               <FavouritesItemGraph
                 calories={props.calories}
