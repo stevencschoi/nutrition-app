@@ -14,35 +14,27 @@ import {
 function IngredientGraph(props) {
   // Recharts function for bar graph
   const makeGraph = (nutData) => {
-    // set default to N/A in case Edamam has missing data
-    let fat = "N/A";
-    let carbohydrates = "N/A";
-    let protein = "N/A";
-    let cholesterol = "N/A";
-    let sodium = "N/A";
-    let sugar = "N/A";
-    let fibre = "N/A";
-    if (nutData.totalNutrients.FAT) {
-      fat = +(nutData.totalNutrients.FAT.quantity).toFixed(2)
-    };
-    if (nutData.totalNutrients.CHOCDF) {
-      carbohydrates = +(nutData.totalNutrients.CHOCDF.quantity).toFixed(2)
-    };
-    if (nutData.totalNutrients.PROCNT) {
-      protein = +(nutData.totalNutrients.PROCNT.quantity).toFixed(2)
-    };
-    if (nutData.totalNutrients.CHOLE) {
-      cholesterol = +(nutData.totalNutrients.CHOLE.quantity).toFixed(2)
-    };
-    if (nutData.totalNutrients.NA) {
-      sodium = +(nutData.totalNutrients.NA.quantity).toFixed(2)
-    };
-    if (nutData.totalNutrients.SUGAR) {
-      sugar = +(nutData.totalNutrients.SUGAR.quantity).toFixed(2)
-    };
-    if (nutData.totalNutrients.FIBTG) {
-      fibre = +(nutData.totalNutrients.FIBTG.quantity).toFixed(2)
-    };
+    let fat = nutData.totalNutrients.FAT
+      ? +(nutData.totalNutrients.FAT.quantity).toFixed(2)
+      : "N/A";
+    let carbohydrates = nutData.totalNutrients.CHOCDF
+      ? +(nutData.totalNutrients.CHOCDF.quantity).toFixed(2)
+      : "N/A";
+    let protein = nutData.totalNutrients.PROCNT
+      ? +(nutData.totalNutrients.PROCNT.quantity).toFixed(2)
+      : "N/A";
+    let cholesterol = nutData.totalNutrients.CHOLE
+      ? +(nutData.totalNutrients.CHOLE.quantity).toFixed(2)
+      : "N/A";
+    let sodium = nutData.totalNutrients.NA
+      ? +(nutData.totalNutrients.NA.quantity).toFixed(2)
+      : "N/A";
+    let sugar = nutData.totalNutrients.SUGAR
+      ? +(nutData.totalNutrients.SUGAR.quantity).toFixed(2)
+      : "N/A";
+    let fibre = nutData.totalNutrients.FIBTG
+      ? +(nutData.totalNutrients.FIBTG.quantity).toFixed(2)
+      : "N/A";
     const data = [
       {
         name: "Fat",
@@ -91,7 +83,6 @@ function IngredientGraph(props) {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis
-                // domain={[0, 'dataMax']}
                 label={{
                   value: "grams / 100 grams",
                   dx: -5,
