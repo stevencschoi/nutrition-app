@@ -15,12 +15,34 @@ $primary-font: monospace, cursive;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
-  width: 75%;
-  margin: 1% auto;
-  border: $primary-colour solid 1px;
+  // background-color: white;
+  // width: 75%;
+  width: 100%;
+  // margin: 1% auto;
+  // margin: 0 100px;
+  // border: $primary-colour solid 1px;
   border-radius: 5px;
   padding-bottom: 1%;
+
+  .including-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    margin: 2% auto;
+    background-color: $secondary-colour;
+    border: $primary-colour solid 1px;
+    border-radius: 10px;
+    button {
+      margin-top: 2rem;
+      padding: 7px 13px;
+    }
+  }
+
+
+
+
   .favourite-main {
     display: flex;
     justify-content: left;
@@ -96,7 +118,7 @@ $primary-font: monospace, cursive;
           margin: 0 1%;
         }
         button {
-          margin-left: 1rem;
+          margin: 0.5rem 0;
         }
         .add button {
           display: inline-block;
@@ -106,6 +128,7 @@ $primary-font: monospace, cursive;
           padding: 7px 13px;
           border: 1px solid transparent;
           font-weight: bold;
+          margin-right: 1rem;
           &:hover {
             background-color: salmon;
             color: $secondary-colour;
@@ -117,6 +140,7 @@ $primary-font: monospace, cursive;
 }
 
 .image-and-drop-container {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,6 +148,11 @@ $primary-font: monospace, cursive;
   background-color: #ffffff;
   border-radius: 4px;
   .image-container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     position: relative;
     margin-right: 1rem;
     .delete-button-image {

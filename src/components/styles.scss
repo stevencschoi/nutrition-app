@@ -316,24 +316,6 @@ body,
   }
 }
 
-.graph-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  .graph {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .graph-label {
-      writing-mode: vertical-lr;
-      transform: rotate(-180deg);
-      margin: 0;
-      color: $primary-colour;
-      font-family: $primary-font;
-    }
-  }
-}
-
 // ingredient graphs styles
 .ingredient-data {
   width: 70%;
@@ -364,20 +346,24 @@ body,
   }
 }
 
-// favourites graphs styles
-.favourites-data {
-  margin: 25px;
-  width: 100%;
-  border-radius: 4px;
-  padding: 10px;
-  background-color: white;
-  .text {
-    color: $primary-colour;
-  }
-  h2 {
-    color: $primary-colour;
-    font-family: $primary-font;
-  }
+// // favourites graphs styles
+
+
+// .favourites-data {
+//   margin: 25px;
+//   width: 100%;
+//   border-radius: 4px;
+//   padding: 10px;
+//   background-color: white;
+//   .text {
+//     color: $primary-colour;
+//   }
+//   h2 {
+//     color: $primary-colour;
+//     font-family: $primary-font;
+//   }
+
+.ingredient-data {
   .ingredient-graph-container {
     display: flex;
     align-items: center;
