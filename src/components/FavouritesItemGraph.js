@@ -9,6 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+
 function RecipeGraph(props) {
   const makeGraph = (
     calories,
@@ -32,12 +33,12 @@ function RecipeGraph(props) {
       {
         name: "Fat",
         "grams / serving": fat,
-        fill: "#83a6ed",
+        fill: "#000000",
       },
       {
         name: "Carbohydrates",
         "grams / serving": carbohydrates,
-        fill: "#8dd1e1",
+        fill: "#ffc658",
       },
       {
         name: "Protein",
@@ -47,7 +48,7 @@ function RecipeGraph(props) {
       {
         name: "Sugar",
         "grams / serving": sugar,
-        fill: "#ffc658",
+        fill: "#6a6a6a",
       },
       {
         name: "Fibre",
@@ -59,7 +60,7 @@ function RecipeGraph(props) {
       {
         name: "Cholesterol",
         "milligrams / serving": cholesterol,
-        fill: "#a4de6c",
+        fill: "#022D36",
       },
       {
         name: "Sodium",
@@ -71,7 +72,7 @@ function RecipeGraph(props) {
       {
         name: "Calories",
         "calories / serving": caloriesPerServing,
-        fill: "#a4de6c",
+        fill: "#0BB5FF",
       },
     ];
     return (
