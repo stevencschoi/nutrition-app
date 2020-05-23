@@ -48,7 +48,7 @@ function RecipeGraph(props) {
       {
         name: "Sugar",
         "grams / serving": sugar,
-        fill: "#6A6A6A",
+        fill: "#BEBEBE",
       },
       {
         name: "Fibre",
@@ -60,7 +60,7 @@ function RecipeGraph(props) {
       {
         name: "Cholesterol",
         "milligrams / serving": cholesterol,
-        fill: "#022D36", 
+        fill: "#003366", 
       },
       {
         name: "Sodium",
@@ -72,7 +72,7 @@ function RecipeGraph(props) {
       {
         name: "Calories",
         "calories / serving": caloriesPerServing,
-        fill: "#0BB5FF",
+        fill: "#0C71E0",
       },
     ];
     return (
