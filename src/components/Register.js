@@ -5,9 +5,6 @@ import Button from "../components/Button";
 
 import { Redirect } from "react-router-dom";
 
-
-// const PORT = process.env.PORT || 8008;
-
 const Register = () => {
   const [inputs, setInputs] = useState({
     username: "",
@@ -41,7 +38,6 @@ const Register = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // console.log(`${PORT}`);
     /* now we want to setUser from app */
     console.log("inputs:", inputs);
     axios
@@ -55,6 +51,7 @@ const Register = () => {
 
   return (
     <>
+      {/* if user registers, redirect to home page */}
       {toHome && <Redirect to="/" />}
       <form onSubmit={handleSubmit} className="registerform">
         <input
