@@ -43,7 +43,7 @@ const FavouritesItem1 = (props) => {
     <>
       <div className="FavouritesItem">
         <div className="favourite-main">
-          <div className="image-and-drop-container">
+          <div className="favourites-image-and-graph-container">
             <div className="image-container">
               <a href={`/recipe/${props.name}`}>
                 <img src={props.image_url} alt="A serving of the favourite item." />
