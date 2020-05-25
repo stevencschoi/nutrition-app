@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import "./favouritesItem1.scss";
 import axios from "axios";
-import Cookies from "js-cookie";
 import FavouritesItem1 from "./FavouritesItem1";
 
 const Favourites = (props) => {
@@ -10,8 +9,6 @@ const Favourites = (props) => {
   const [updateItem, setUpdateItem] = useState();
 
   useEffect(() => {
-    const currentUser = Cookies.get("userId");
-
     axios
       .get("/favourites")
       .then((result) => {
@@ -24,15 +21,6 @@ const Favourites = (props) => {
     const favArr = userFavourites.map((item) => {
       const id = `${item.id}`;
       const name = `${item.name}`;
-      // const calories = `${item.calories}`;
-      // const fat_in_g = `${item.fat_in_g}`;
-      // const carbs_in_g = `${item.carbs_in_g}`;
-      // const protein_in_g = `${item.protein_in_g}`;
-      // const sugar_in_g = `${item.sugar_in_g}`;
-      // const fiber_in_g = `${item.fiber_in_g}`;
-      // const cholesterol_in_mg = `${item.cholesterol_in_mg}`;
-      // const sodium_in_mg = `${item.sodium_in_mg}`;
-      // const image_url = `${item.image_url}`;
       return (
         <FavouritesItem1
           setUpdateItem={setUpdateItem}

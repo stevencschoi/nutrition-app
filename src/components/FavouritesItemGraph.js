@@ -77,7 +77,7 @@ function RecipeGraph(props) {
     ];
     return (
       // favourites graphs
-      <div class="ingredient-graph-container">
+      <div class="favourite-graph-container">
         <div class="left-graph">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={500} height={300} data={data}>

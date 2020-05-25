@@ -346,41 +346,6 @@ body,
   }
 }
 
-// // favourites graphs styles
-
-.favourite-data {
-  width: 85%;
-  border-radius: 4px;
-  padding: 10px;
-  background-color: white;
-  .text {
-    color: $primary-colour;
-  }
-  h2 {
-    color: $primary-colour;
-    font-family: $primary-font;
-  }
-  .ingredient-graph-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 22em;
-    .left-graph {
-      height: 22em;
-      width: 52.5%;
-    }
-    .right-graph {
-      height: 22em;
-      width: 25%;
-      margin: 0 1em;
-    }
-    .calories-graph {
-      height: 22em;
-      width: 16%;
-    }
-  }
-}
-
 // macro graphs styles
 .graph-carousel-container {
   display: inline-block;
