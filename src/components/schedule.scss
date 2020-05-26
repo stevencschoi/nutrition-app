@@ -3,21 +3,25 @@ $secondary-colour: #ffffff;
 $accent-colour: #a0acb9;
 $primary-font: monospace, cursive;
 
-
 .schedule-title {
   font-family: $primary-font;
   color: $primary-colour;
   margin: 0;
   font-size: 3rem;
 }
+
 .calendar {
   margin: 1% 0 2%;
 }
+
 .schedule {
   margin-top: 1%;
   display: flex;
   justify-content: center;
   align-items: start;
+  h2 {
+    margin-bottom: 0.5em;
+  }
   .day-of-week {
     display: flex;
     flex-direction: column;
@@ -32,10 +36,7 @@ $primary-font: monospace, cursive;
       display: flex;
       flex-direction: column;
       width: 11vw;
-      // margin: 0 0 1.5rem;
       margin: 0.5rem 0;
-      // margin-bottom: 1.5em;
-      // padding-bottom: 1.5em;
       .image-container {
         display: flex;
         justify-content: center;
@@ -44,21 +45,12 @@ $primary-font: monospace, cursive;
         padding: 0;
         margin: 0;
         img {
-          // border-radius: 10px;
-          // max-height: 15vh;
           margin: 0;
           border-radius: 3px;
           max-height: 20vh;
           max-width: 100%;
         }
         button {
-          // margin-top: 2%;
-          // background-color: #a0d0ce;
-          // color: #ffffff;
-          // border: 1px solid transparent;
-          // border-radius: 5px;
-          // padding: 2% 3%;
-
           position: absolute;
           top: 0.5rem;
           right: 1.25rem;
@@ -77,14 +69,105 @@ $primary-font: monospace, cursive;
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1050px) {
   .schedule {
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
+      margin: 0;
     }
-    .schedule-item {
-      .heading-title h3 {
-        font-size: 1rem;
+    .day-of-week {
+      padding: 0.5rem 0.75rem;
+      .schedule-item {
+        width: 11vw;
+        margin: 0.25rem 0;
+        .image-container {
+          button {
+            right: 0.75rem;
+            padding: 3.5px 6.5px;
+            border-radius: 5px;
+          }
+        }
+        .heading-title h3 {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 975px) {
+  .schedule {
+    h2 {
+      font-size: 1.2rem;
+    }
+    .day-of-week {
+      .schedule-item {
+        width: 10.5vw;
+        .heading-title h3 {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 888px) {
+  .calendar {
+    margin: 0 0 2%;
+  }
+  .schedule {
+    h2 {
+      font-size: 1rem;
+    }
+    .day-of-week {
+      .schedule-item {
+        width: 9.5vw;
+        .image-container {
+          button {
+            padding: 2.5px 5.5px;
+            font-size: 0.75rem;
+          }
+        }
+        .heading-title h3 {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 666px) {
+  .schedule {
+    .day-of-week {
+      .schedule-item {
+        width: 7.5vw;
+        .image-container {
+          button {
+            top: 0.25rem;
+            right: 0.25rem;
+            padding: 1.5px 3.5px;
+            border-radius: 2px;
+          }
+        }
+        .heading-title h3 {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 586px) {
+  .schedule {
+    h2 {
+      font-size: 0.75rem;
+    }
+    .day-of-week {
+      .schedule-item {
+        width: 8.5vw;
+        .heading-title h3 {
+          font-size: 0.7rem;
+        }
       }
     }
   }

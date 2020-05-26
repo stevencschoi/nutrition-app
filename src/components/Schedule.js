@@ -84,7 +84,6 @@ function Schedule() {
           onChange={e => handledaypick(e.target.value)}
         />
       </div>
-      {/* <div>{currentDay.format("YYYY-MM-DD")}</div> */}
       <div className="schedule">
         {Object.keys(schedule).map(item => {
           return (
