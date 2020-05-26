@@ -77,7 +77,7 @@ function Schedule() {
 
   return (
     <>
-      <h1 className="favourite-title">Schedule</h1>
+      <h1 className="schedule-title">Schedule</h1>
       <div className="calendar">
         <MealCalendar
           date={currentDay}
@@ -88,7 +88,7 @@ function Schedule() {
       <div className="schedule">
         {Object.keys(schedule).map(item => {
           return (
-            <div>
+            <div className="day-of-week">
               <h2>{item}</h2>
               {schedule[item].map((item, index) => {
                 const itemName = item.name;
