@@ -35,26 +35,29 @@ function IngredientGraph(props) {
     let fibre = nutData.totalNutrients.FIBTG
       ? +(nutData.totalNutrients.FIBTG.quantity).toFixed(2)
       : "N/A";
+    let calories = nutData.totalNutrients.ENERC_KCAL
+      ? +(nutData.totalNutrients.ENERC_KCAL.quantity).toFixed(2)
+      : "N/A";
     const data = [
       {
         name: "Fat",
         "grams / 100 grams": fat,
-        fill: "#83a6ed",
+        fill: "#000000",
       },
       {
         name: "Carbohydrates",
         "grams / 100 grams": carbohydrates,
-        fill: "#8dd1e1",
+        fill: "#FFC658",
       },
       {
         name: "Protein",
         "grams / 100 grams": protein,
-        fill: "#82ca9d",
+        fill: "#00A86B",
       },
       {
         name: "Sugar",
         "grams / 100 grams": sugar,
-        fill: "#ffc658",
+        fill: "#BEBEBE",
       },
       {
         name: "Fibre",
@@ -66,12 +69,19 @@ function IngredientGraph(props) {
       {
         name: "Cholesterol",
         "milligrams / 100 grams": cholesterol,
-        fill: "#a4de6c",
+        fill: "#003366", 
       },
       {
         name: "Sodium",
         "milligrams / 100 grams": sodium,
-        fill: "#d0ed57",
+        fill: "#FF6600", 
+      },
+    ];
+    const data3 = [
+      {
+        name: "Calories",
+        "calories / 100 grams": calories,
+        fill: "#0C71E0",
       },
     ];
     return (
@@ -91,7 +101,7 @@ function IngredientGraph(props) {
                 }}
                 type="number"
               />
-              <Tooltip />
+              <Tooltip wrapperStyle={{ zIndex: 420 }} />
               <Bar dataKey="grams / 100 grams" />
             </BarChart>
           </ResponsiveContainer>
@@ -110,8 +120,33 @@ function IngredientGraph(props) {
                 }}
                 type="number"
               />
-              <Tooltip />
+              <Tooltip
+                position={{ x: 25 }}
+                wrapperStyle={{ zIndex: 420 }}
+              />
               <Bar dataKey="milligrams / 100 grams" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        <div class="calories-graph">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart width={240} height={300} data={data3}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis
+                label={{
+                  value: "calories / 100 grams",
+                  dx: -25,
+                  angle: -90,
+                  position: "center",
+                }}
+                type="number"
+              />
+              <Tooltip
+                position={{ x: -60 }}
+                wrapperStyle={{ zIndex: 420 }}
+              />
+              <Bar dataKey="calories / 100 grams" />
             </BarChart>
           </ResponsiveContainer>
         </div>
