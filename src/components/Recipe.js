@@ -6,7 +6,6 @@ import RecipeIngredient from "./RecipeIngredient";
 import RecipeGraph from "./RecipeGraph";
 import Button from "./Button";
 import MealCalendar from "./MealCalendar";
-import { Dropdown } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { socket } from "../hooks/useApplicationData";
 
@@ -35,13 +34,8 @@ export default function Recipe({ props, match }) {
   }
 
   const addToFav = (recipeId) => {
-    console.log("recipeId", recipeId);
-
     axios
       .post("/favourites/add", { recipeId: recipeId })
-      .then((result) => {
-        // console.log(result);
-      })
       .catch((error) => console.error(error));
   };
 
@@ -93,7 +87,7 @@ export default function Recipe({ props, match }) {
       .then((result) => {
         if (result.data.length === 0) {
           addRecipe();
-        } else if (!meal) {
+        } else if (!date) {
           addToFav(result.data[0].id);
         } else {
           addRecipeToDay(result.data[0].id);
@@ -104,12 +98,10 @@ export default function Recipe({ props, match }) {
 
   const addRecipeToDay = (recipeId) => {
     const formatdate = JSON.stringify(date).slice(1, 11);
-    const mealNumber = meal;
     axios
       .post(`/day/add`, {
         date: formatdate,
         recipeId: recipeId,
-        mealNumber: mealNumber,
       })
       .then((result) => {
         console.log(result.data);
@@ -120,13 +112,6 @@ export default function Recipe({ props, match }) {
       })
       .catch((error) => console.error(error));
   };
-
-  const options = [
-    { key: 1, text: "Breakfast", value: "1" },
-    { key: 2, text: "Lunch", value: "2" },
-    { key: 3, text: "Dinner", value: "3" },
-    { key: 4, text: "Other", value: "4" },
-  ];
 
   const clearLocalStorage = () => localStorage.clear();
   
@@ -142,10 +127,6 @@ export default function Recipe({ props, match }) {
               Start Over
             </Button>
           </Link>
-
-
-
-
           <div className="recipe-header">
             <div className="recipe-image-and-graph">
               <div className="recipe-image">
@@ -166,12 +147,6 @@ export default function Recipe({ props, match }) {
               </div>
             </div>
           </div>
-
-
-
-
-
-          
           <div className="instruction-info">
             <div className="addtoschedule">
               <div>
@@ -182,15 +157,8 @@ export default function Recipe({ props, match }) {
                   date={date}
                   onChange={(e) => setDate(e.target.value)}
                 />
-                {date && (
-                  <Dropdown
-                    options={options}
-                    selection
-                    onChange={(e, { value }) => setMeal(value)}
-                  />
-                )}
               </div>
-              {date && meal && (
+              {date && (
                 <div className="flex">
                   <div className="add">
                     <Button onClick={checkIfInDatabase}>
@@ -201,7 +169,6 @@ export default function Recipe({ props, match }) {
                     <Button
                       onClick={() => {
                         setDate(null);
-                        setMeal(null);
                       }}
                     >
                       Cancel
@@ -210,7 +177,6 @@ export default function Recipe({ props, match }) {
                 </div>
               )}
             </div>
-
             <div className="instructions-and-link">
               <div className="ingredients">
                 <RecipeIngredient foodIngredient={foodIngredient} />
