@@ -336,13 +336,18 @@ body,
     justify-content: center;
     height: 20em;
     .left-graph {
-      height: 20em;
-      width: 66%;
+      height: 18em;
+      width: 52.5%;
     }
-  }
-  .right-graph {
-    height: 20em;
-    width: 33%;
+    .right-graph {
+      height: 18em;
+      width: 25%;
+      margin: 0 1em;
+    }
+    .calories-graph {
+      height: 18em;
+      width: 16%;
+    }
   }
 }
 
