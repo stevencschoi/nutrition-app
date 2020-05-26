@@ -9,6 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+
 function RecipeGraph(props) {
   const makeGraph = (
     calories,
@@ -19,8 +20,6 @@ function RecipeGraph(props) {
     fiber_in_g,
     cholesterol_in_mg,
     sodium_in_mg,
-    image_url,
-    recipe_yield
   ) => {
     let fat = parseFloat(fat_in_g);
     let carbohydrates = parseFloat(carbs_in_g);
@@ -29,26 +28,27 @@ function RecipeGraph(props) {
     let sodium = parseFloat(sodium_in_mg);
     let sugar = parseFloat(sugar_in_g);
     let fibre = parseFloat(fiber_in_g);
+    let caloriesPerServing = parseFloat(calories);
     const data = [
       {
         name: "Fat",
         "grams / serving": fat,
-        fill: "#83a6ed",
+        fill: "#000000",
       },
       {
         name: "Carbohydrates",
         "grams / serving": carbohydrates,
-        fill: "#8dd1e1",
+        fill: "#FFC658",
       },
       {
         name: "Protein",
         "grams / serving": protein,
-        fill: "#82ca9d",
+        fill: "#00A86B",
       },
       {
         name: "Sugar",
         "grams / serving": sugar,
-        fill: "#ffc658",
+        fill: "#BEBEBE",
       },
       {
         name: "Fibre",
@@ -60,17 +60,24 @@ function RecipeGraph(props) {
       {
         name: "Cholesterol",
         "milligrams / serving": cholesterol,
-        fill: "#a4de6c",
+        fill: "#003366", 
       },
       {
         name: "Sodium",
         "milligrams / serving": sodium,
-        fill: "#d0ed57",
+        fill: "#FF6600", 
+      },
+    ];
+    const data3 = [
+      {
+        name: "Calories",
+        "calories / serving": caloriesPerServing,
+        fill: "#0C71E0",
       },
     ];
     return (
       // favourites graphs
-      <div class="ingredient-graph-container">
+      <div class="favourite-graph-container">
         <div class="left-graph">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={500} height={300} data={data}>
@@ -79,13 +86,13 @@ function RecipeGraph(props) {
               <YAxis
                 label={{
                   value: "grams / serving",
-                  dx: -10,
+                  dx: -15,
                   angle: -90,
                   position: "center",
                 }}
                 type="number"
               />
-              <Tooltip />
+              <Tooltip wrapperStyle={{ zIndex: 420 }} />
               <Bar dataKey="grams / serving" />
             </BarChart>
           </ResponsiveContainer>
@@ -98,38 +105,59 @@ function RecipeGraph(props) {
               <YAxis
                 label={{
                   value: "milligrams / serving",
-                  dx: -20,
+                  dx: -25,
                   angle: -90,
                   position: "center",
                 }}
                 type="number"
               />
-              <Tooltip />
+              <Tooltip 
+                position={{ x: 25 }} 
+                wrapperStyle={{ zIndex: 420 }} 
+              />
               <Bar dataKey="milligrams / serving" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        <div class="calories-graph">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart width={240} height={300} data={data3}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis
+                label={{
+                  value: "calories / serving",
+                  dx: -25,
+                  angle: -90,
+                  position: "center",
+                }}
+                type="number"
+              />
+              <Tooltip 
+                position={{ x: -60 }} 
+                wrapperStyle={{ zIndex: 420 }} 
+              />
+              <Bar dataKey="calories / serving" />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
     );
   };
-
   return (
-    <div class="favourites-data">
-      <h2>Select Nutritional Data of {props.name}</h2>
-      <div>
-        {makeGraph(
-          props.calories,
-          props.fat_in_g,
-          props.carbs_in_g,
-          props.protein_in_g,
-          props.sugar_in_g,
-          props.fiber_in_g,
-          props.cholesterol_in_mg,
-          props.sodium_in_mg,
-          props.image_url,
-          props.recipe_yield
-        )}
-      </div>
+    <div>
+      {makeGraph(
+        props.calories,
+        props.fat_in_g,
+        props.carbs_in_g,
+        props.protein_in_g,
+        props.sugar_in_g,
+        props.fiber_in_g,
+        props.cholesterol_in_mg,
+        props.sodium_in_mg,
+        props.image_url,
+        props.recipe_yield
+      )}
     </div>
   );
 }
