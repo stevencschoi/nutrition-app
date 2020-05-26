@@ -92,7 +92,7 @@ function RecipeGraph(props) {
                 }}
                 type="number"
               />
-              <Tooltip />
+              <Tooltip wrapperStyle={{ zIndex: 420 }} />
               <Bar dataKey="grams / serving" />
             </BarChart>
           </ResponsiveContainer>
@@ -111,7 +111,10 @@ function RecipeGraph(props) {
                 }}
                 type="number"
               />
-              <Tooltip />
+              <Tooltip 
+                position={{ x: 25 }} 
+                wrapperStyle={{ zIndex: 420 }} 
+              />
               <Bar dataKey="milligrams / serving" />
             </BarChart>
           </ResponsiveContainer>
@@ -130,7 +133,10 @@ function RecipeGraph(props) {
                 }}
                 type="number"
               />
-              <Tooltip />
+              <Tooltip 
+                position={{ x: -60 }} 
+                wrapperStyle={{ zIndex: 420 }} 
+              />
               <Bar dataKey="calories / serving" />
             </BarChart>
           </ResponsiveContainer>

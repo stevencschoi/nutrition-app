@@ -80,6 +80,7 @@ $primary-font: monospace, cursive;
         display: flex;
         align-items: center;
         justify-content: center;
+        // height: 22em;
         height: 22em;
         .left-graph {
           height: 20em;
@@ -99,7 +100,7 @@ $primary-font: monospace, cursive;
   }
   .meal-plan-container {
     padding: 0 1rem 1rem;
-    width: 30%;
+    width: 40%;
     background-color: #ffffff;
     border-radius: 4px;
     display: flex;
@@ -158,6 +159,40 @@ $primary-font: monospace, cursive;
             background-color: salmon;
           }
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .favourite-main, .favourites-image-and-graph-container {
+    flex-direction: column;
+  }
+  .FavouritesItem h2 {
+    margin: 0;
+    font-size: 1.5em;
+  }
+  .FavouritesItem .favourites-image-and-graph-container {
+    padding-top: 1.5em;
+    padding-bottom: 0;
+  }
+  .FavouritesItem .favourites-image-and-graph-container .favourite-data {
+    width: 100%;
+    padding: 10px 0 0;
+    .favourite-graph-container {
+      height: 16em;
+      .left-graph {
+        height: 15em;
+        width: 45%;
+      }
+      .right-graph {
+        height: 15em;
+        width: 26%;
+        // margin: 0 0.5em;
+      }
+      .calories-graph {
+        height: 15em;
+        width: 19%;
       }
     }
   }
