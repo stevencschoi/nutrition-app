@@ -34,26 +34,29 @@ function RecipeGraph(props) {
     let fibre = nutData.hits[0].recipe.totalNutrients.FIBTG
       ? +(nutData.hits[0].recipe.totalNutrients.FIBTG.quantity / serve_yield).toFixed(2)
       : "N/A";
+    let calories = nutData.hits[0].recipe.totalNutrients.ENERC_KCAL
+      ? +(nutData.hits[0].recipe.totalNutrients.ENERC_KCAL.quantity / serve_yield).toFixed(2)
+      : "N/A";
     const data = [
       {
         name: "Fat",
         "grams / serving": fat,
-        fill: "#83a6ed",
+        fill: "#000000",
       },
       {
         name: "Carbohydrates",
         "grams / serving": carbohydrates,
-        fill: "#8dd1e1",
+        fill: "#FFC658",
       },
       {
         name: "Protein",
         "grams / serving": protein,
-        fill: "#82ca9d",
+        fill: "#00A86B",
       },
       {
         name: "Sugar",
         "grams / serving": sugar,
-        fill: "#ffc658",
+        fill: "#BEBEBE",
       },
       {
         name: "Fibre",
@@ -65,12 +68,19 @@ function RecipeGraph(props) {
       {
         name: "Cholesterol",
         "milligrams / serving": cholesterol,
-        fill: "#a4de6c",
+        fill: "#003366",
       },
       {
         name: "Sodium",
         "milligrams / serving": sodium,
-        fill: "#d0ed57",
+        fill: "#FF6600", 
+      },
+    ];
+    const data3 = [
+      {
+        name: "Calories",
+        "calories / 100 grams": calories,
+        fill: "#0C71E0",
       },
     ];
     return (
@@ -90,7 +100,7 @@ function RecipeGraph(props) {
                 }}
                 type="number"
               />
-              <Tooltip />
+              <Tooltip wrapperStyle={{ zIndex: 420 }} />
               <Bar dataKey="grams / serving" />
             </BarChart>
           </ResponsiveContainer>
@@ -109,8 +119,33 @@ function RecipeGraph(props) {
                 }}
                 type="number"
               />
-              <Tooltip />
+              <Tooltip
+                position={{ x: 25 }}
+                wrapperStyle={{ zIndex: 420 }}
+              />
               <Bar dataKey="milligrams / serving" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        <div class="calories-graph">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart width={240} height={300} data={data3}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis
+                label={{
+                  value: "calories / 100 grams",
+                  dx: -25,
+                  angle: -90,
+                  position: "center",
+                }}
+                type="number"
+              />
+              <Tooltip
+                position={{ x: -60 }}
+                wrapperStyle={{ zIndex: 420 }}
+              />
+              <Bar dataKey="calories / 100 grams" />
             </BarChart>
           </ResponsiveContainer>
         </div>
