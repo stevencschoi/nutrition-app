@@ -135,7 +135,7 @@ function IngredientGraph(props) {
               <XAxis dataKey="name" />
               <YAxis
                 label={{
-                  value: "calories / serving",
+                  value: "calories / 100 grams",
                   dx: -25,
                   angle: -90,
                   position: "center",
