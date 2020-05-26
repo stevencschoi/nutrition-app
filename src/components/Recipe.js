@@ -142,6 +142,10 @@ export default function Recipe({ props, match }) {
               Start Over
             </Button>
           </Link>
+
+
+
+
           <div className="recipe-header">
             <div className="recipe-image-and-graph">
               <div className="recipe-image">
@@ -162,6 +166,12 @@ export default function Recipe({ props, match }) {
               </div>
             </div>
           </div>
+
+
+
+
+
+          
           <div className="instruction-info">
             <div className="addtoschedule">
               <div>

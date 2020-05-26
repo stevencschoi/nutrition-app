@@ -10,13 +10,14 @@ $primary-font: monospace, cursive;
   margin-top: 0;
   font-size: 3rem;
 }
+
 .FavouritesItem {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: white;
-  width: 75%;
+  width: 90%;
   margin: 1% auto;
   border: $primary-colour solid 1px;
   border-radius: 5px;
@@ -25,19 +26,28 @@ $primary-font: monospace, cursive;
     display: flex;
     justify-content: left;
     align-items: center;
-    padding: 1%;
+    padding: 1% 1% 0;
     width: 100%;
+  }
+  .favourites-image-and-graph-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0 1%;
+    background-color: #ffffff;
+    border-radius: 4px;
     .image-container {
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
-      margin-left: 2rem;
       padding: 0;
       img {
         margin: 0;
         border-radius: 3px;
         max-height: 20vh;
+        max-width: 100%;
       }
       button {
         position: absolute;
@@ -54,10 +64,43 @@ $primary-font: monospace, cursive;
         }
       }
     }
+    .favourite-data {
+      width: 85%;
+      border-radius: 4px;
+      padding: 10px;
+      background-color: white;
+      .text {
+        color: $primary-colour;
+      }
+      h2 {
+        color: $primary-colour;
+        font-family: $primary-font;
+      }
+      .favourite-graph-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // height: 22em;
+        height: 22em;
+        .left-graph {
+          height: 20em;
+          width: 52.5%;
+        }
+        .right-graph {
+          height: 20em;
+          width: 25%;
+          margin: 0 1em;
+        }
+        .calories-graph {
+          height: 20em;
+          width: 16%;
+        }
+      }
+    }
   }
   .meal-plan-container {
-    padding: 1rem;
-    width: 30%;
+    padding: 0 1rem 1rem;
+    width: 40%;
     background-color: #ffffff;
     border-radius: 4px;
     display: flex;
@@ -67,12 +110,11 @@ $primary-font: monospace, cursive;
     .plan-title {
       color: $primary-colour;
     }
-
     .dropdown-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 0.25rem;
+      margin-top: 0.5rem;
       .selectContainer {
         display: flex;
         flex-direction: column;
@@ -82,33 +124,39 @@ $primary-font: monospace, cursive;
           display: flex;
           flex-direction: column;
           margin: 3%;
+          .DateInput_input__small {
+            text-align: center;
+          }
           .fav-button-container {
             display: flex;
             flex-direction: row;
             justify-content: center;
             margin-top: 0.5rem;
-            input {
-              margin: 2%;
-            }
           }
         }
         .dropdown {
           margin: 0 1%;
         }
         button {
-          margin-left: 1rem;
-        }
-        .add button {
-          display: inline-block;
-          background-color: #007bff;
+          margin: 0.5rem 0;
           color: white;
           border-radius: 10px;
           padding: 7px 13px;
           border: 1px solid transparent;
           font-weight: bold;
+        }
+        .add button {
+          background-color: #007bff;
+          margin-right: 1rem;
           &:hover {
             background-color: salmon;
             color: $secondary-colour;
+          }
+        }
+        .delete-button {
+          background-color: #a0d0ce;
+          &:hover {
+            background-color: salmon;
           }
         }
       }
@@ -116,50 +164,35 @@ $primary-font: monospace, cursive;
   }
 }
 
-.image-and-drop-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1%;
-  background-color: #ffffff;
-  border-radius: 4px;
-  .image-container {
-    position: relative;
-    margin-right: 1rem;
-    .delete-button-image {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background-color: #a0d0ce;
-      color: white;
-      border-radius: 10px;
-      padding: 7px 13px;
-      border: 1px solid transparent;
-      font-weight: bold;
-      &:hover {
-        background-color: salmon;
+@media only screen and (max-width: 768px) {
+  .favourite-main, .favourites-image-and-graph-container {
+    flex-direction: column;
+  }
+  .FavouritesItem h2 {
+    margin: 0;
+    font-size: 1.5em;
+  }
+  .FavouritesItem .favourites-image-and-graph-container {
+    padding-top: 1.5em;
+    padding-bottom: 0;
+  }
+  .FavouritesItem .favourites-image-and-graph-container .favourite-data {
+    width: 100%;
+    padding: 10px 0 0;
+    .favourite-graph-container {
+      height: 16em;
+      .left-graph {
+        height: 15em;
+        width: 45%;
+      }
+      .right-graph {
+        height: 15em;
+        width: 26%;
+      }
+      .calories-graph {
+        height: 15em;
+        width: 19%;
       }
     }
-  }
-}
-
-.graph-and-drop-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1%;
-  background-color: #ffffff;
-  border-radius: 4px;
-}
-
-.delete-button {
-  background-color: #a0d0ce;
-  color: white;
-  border-radius: 10px;
-  padding: 7px 13px;
-  border: 1px solid transparent;
-  font-weight: bold;
-  &:hover {
-    background-color: salmon;
   }
 }
