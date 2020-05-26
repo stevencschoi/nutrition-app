@@ -382,3 +382,20 @@ body,
     height: 8vh;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .ingredient-data {
+    width: 90%;
+  }
+  .ingredient-data .ingredient-graph-container {
+    .left-graph {
+      width: 45%;
+    }
+    .right-graph {
+      width: 26%;
+    }
+    .calories-graph {
+      width: 19%;
+    }
+  }
+}

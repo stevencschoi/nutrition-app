@@ -101,7 +101,7 @@ function IngredientGraph(props) {
                 }}
                 type="number"
               />
-              <Tooltip />
+              <Tooltip wrapperStyle={{ zIndex: 420 }} />
               <Bar dataKey="grams / 100 grams" />
             </BarChart>
           </ResponsiveContainer>
@@ -120,7 +120,10 @@ function IngredientGraph(props) {
                 }}
                 type="number"
               />
-              <Tooltip />
+              <Tooltip
+                position={{ x: 25 }}
+                wrapperStyle={{ zIndex: 420 }}
+              />
               <Bar dataKey="milligrams / 100 grams" />
             </BarChart>
           </ResponsiveContainer>
