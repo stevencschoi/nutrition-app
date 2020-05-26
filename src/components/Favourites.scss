@@ -143,6 +143,9 @@ $primary-font: monospace, cursive;
           padding: 7px 13px;
           border: 1px solid transparent;
           font-weight: bold;
+          &:hover {
+            background-color: salmon;
+          }
         }
         .add button {
           background-color: #007bff;
@@ -154,9 +157,6 @@ $primary-font: monospace, cursive;
         }
         .delete-button {
           background-color: #a0d0ce;
-          &:hover {
-            background-color: salmon;
-          }
         }
       }
     }

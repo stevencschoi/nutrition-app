@@ -89,7 +89,7 @@ $primary-font: monospace, cursive;
     }
     .addtoschedule {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 15vh;
@@ -97,20 +97,21 @@ $primary-font: monospace, cursive;
         font-size: 1.6rem;
         color: $primary-colour;
       }
-      .flex {
-        margin-top: 1rem;
+      .recipe-button-container {
+        margin-top: 0.5rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        .add button {
-          display: inline-block;
-          background-color: #007bff;
+        button {
+          margin: 0.5rem 0;
           color: white;
           border-radius: 10px;
           padding: 7px 13px;
           border: 1px solid transparent;
           font-weight: bold;
-          margin-left: 0.5rem;
+        }
+        .add button {
+          background-color: #007bff;
           &:hover {
             background-color: salmon;
             color: $secondary-colour;
@@ -118,11 +119,6 @@ $primary-font: monospace, cursive;
         }
         .cancel button {
           background-color: #a0d0ce;
-          color: white;
-          border-radius: 10px;
-          padding: 7px 13px;
-          border: 1px solid transparent;
-          font-weight: bold;
           margin-left: 1em;
           &:hover {
             background-color: salmon;

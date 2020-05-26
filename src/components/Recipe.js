@@ -14,7 +14,6 @@ const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
 
 export default function Recipe({ props, match }) {
   const [date, setDate] = useState(null);
-  const [meal, setMeal] = useState(null);
   const [foodName, setFoodName] = useState(match.params.id);
   const [foodIngredient, setFoodIngredient] = useState(null);
 
@@ -159,7 +158,7 @@ export default function Recipe({ props, match }) {
                 />
               </div>
               {date && (
-                <div className="flex">
+                <div className="recipe-button-container">
                   <div className="add">
                     <Button onClick={checkIfInDatabase}>
                       <i class="far fa-calendar-alt"></i> Add
