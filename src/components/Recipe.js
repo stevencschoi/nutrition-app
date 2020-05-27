@@ -27,7 +27,10 @@ export default function Recipe({ props, match }) {
         `https://api.edamam.com/search?q=${ingredient}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
       )
       .then((result) => {
-        setFoodIngredient(result.data);
+        // confirm that Edamam sends back a recipe, otherwise leave FoodIngredient === null
+        if (result.data.hits[0] !== undefined) {
+          setFoodIngredient(result.data);
+        }
       })
       .catch((error) => console.error(error));
   }
@@ -114,6 +117,9 @@ export default function Recipe({ props, match }) {
 
   const clearLocalStorage = () => localStorage.clear();
   
+  if (foodIngredient === null) {
+    return <h1>ERROR</h1>
+  }
   return (
     <>
       <div className="recipe-container">
