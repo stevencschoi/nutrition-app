@@ -37,41 +37,11 @@ const Register = () => {
   };
 
   const usernameTaken = () => alert("Sorry, this username has already been taken!");
-
-  const noUsername = () => alert("The following field is missing: username");
-  const noEmail = () => alert("The following field is missing: email");
-  const noPassword = () => alert("The following field is missing: password");
-
-  const noUsernameAndEmail = 
-    () => alert("The following fields are missing: username, email");
-  const noUsernameAndEmailAndPassword = 
-    () => alert("The following fields are missing: username, email, password");
-  const noUsernameAndPassword = 
-    () => alert("The following fields are missing: username, password");
-
-  const noEmailAndPassword =
-    () => alert("The following fields are missing: email, password");
     
   function handleSubmit(e) {
     e.preventDefault();
     /* now we want to setUser from app */
     console.log("inputs:", inputs);
-
-    if (inputs.username === "" && inputs.email === "" && inputs.password === '') {
-      noUsernameAndEmailAndPassword();
-    } else if (inputs.username === "" && inputs.email === "") {
-      noUsernameAndEmail();
-    } else if (inputs.username === "" && inputs.password === '') {
-      noUsernameAndPassword();
-    } else if (inputs.email === "" && inputs.password === '') {
-      noEmailAndPassword();
-    } else if (inputs.username === "") {
-      noUsername();
-    } else if (inputs.email === "") {
-      noEmail();
-    } else if (inputs.password === "") {
-      noPassword();
-    }
 
     axios
       .put(`/register`, inputs)
@@ -90,6 +60,7 @@ const Register = () => {
       <form onSubmit={handleSubmit} className="registerform">
         <input
           placeholder="username"
+          required="required"
           name="username"
           value={inputs.username}
           onChange={handleInputChange}
@@ -108,6 +79,7 @@ const Register = () => {
         />
         <input
           type="email"
+          required="required"
           name="email"
           placeholder="email"
           value={inputs.email}
@@ -115,6 +87,7 @@ const Register = () => {
         />
         <input
           type="password"
+          required="required"
           placeholder="password"
           name="password"
           value={inputs.password}
@@ -126,7 +99,6 @@ const Register = () => {
           value={inputs.avatar}
           onChange={handleInputChange}
         />
-
         <Button register type="submit">
           Create Account
         </Button>
