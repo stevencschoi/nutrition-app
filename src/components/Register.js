@@ -41,16 +41,14 @@ const Register = () => {
   function handleSubmit(e) {
     e.preventDefault();
     /* now we want to setUser from app */
-    console.log("inputs:", inputs);
-
     axios
       .put(`/register`, inputs)
       .then(() => {
         clearInputs();
         setToHome(true);
       })
-      // .catch(error => usernameTaken());
-      .catch(error => console.error(error));
+      // alert user if username is already in database
+      .catch(error => usernameTaken());
   }
 
   return (
