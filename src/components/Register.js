@@ -38,17 +38,49 @@ const Register = () => {
 
   const usernameTaken = () => alert("Sorry, this username has already been taken!");
 
+  const noUsername = () => alert("The following field is missing: username");
+  const noEmail = () => alert("The following field is missing: email");
+  const noPassword = () => alert("The following field is missing: password");
+
+  const noUsernameAndEmail = 
+    () => alert("The following fields are missing: username, email");
+  const noUsernameAndEmailAndPassword = 
+    () => alert("The following fields are missing: username, email, password");
+  const noUsernameAndPassword = 
+    () => alert("The following fields are missing: username, password");
+
+  const noEmailAndPassword =
+    () => alert("The following fields are missing: email, password");
+    
   function handleSubmit(e) {
     e.preventDefault();
     /* now we want to setUser from app */
     console.log("inputs:", inputs);
+
+    if (inputs.username === "" && inputs.email === "" && inputs.password === '') {
+      noUsernameAndEmailAndPassword();
+    } else if (inputs.username === "" && inputs.email === "") {
+      noUsernameAndEmail();
+    } else if (inputs.username === "" && inputs.password === '') {
+      noUsernameAndPassword();
+    } else if (inputs.email === "" && inputs.password === '') {
+      noEmailAndPassword();
+    } else if (inputs.username === "") {
+      noUsername();
+    } else if (inputs.email === "") {
+      noEmail();
+    } else if (inputs.password === "") {
+      noPassword();
+    }
+
     axios
       .put(`/register`, inputs)
       .then(() => {
         clearInputs();
         setToHome(true);
       })
-      .catch(error => usernameTaken());
+      // .catch(error => usernameTaken());
+      .catch(error => console.error(error));
   }
 
   return (
