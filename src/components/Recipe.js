@@ -122,7 +122,7 @@ export default function Recipe({ match }) {
   if (foodIngredient === "no recipe") {
     return (
       <div className="recipe-container">
-        <h1 className="favourite-title">Sorry, an error occured.</h1>
+        <h1 className="h1-title">Sorry, an error occured.</h1>
         <Link to={"/"}>
           <Button
             default
