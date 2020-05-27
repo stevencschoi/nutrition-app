@@ -12,7 +12,7 @@ import { socket } from "../hooks/useApplicationData";
 const recipeApiId = process.env.REACT_APP_RECIPE_SEARCH_ID;
 const recipeApiKey = process.env.REACT_APP_RECIPE_SEARCH_KEY;
 
-export default function Recipe({ props, match }) {
+export default function Recipe({ match }) {
   const [date, setDate] = useState(null);
   const [foodName, setFoodName] = useState(match.params.id);
   const [foodIngredient, setFoodIngredient] = useState(null);
@@ -27,7 +27,12 @@ export default function Recipe({ props, match }) {
         `https://api.edamam.com/search?q=${ingredient}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
       )
       .then((result) => {
-        setFoodIngredient(result.data);
+        // confirm that a recipe is retrieved from Edamam
+        if (result.data.hits[0] !== undefined) {
+          setFoodIngredient(result.data);
+        } else if (result.data.hits[0] === undefined) {
+          setFoodIngredient("no recipe");
+        }
       })
       .catch((error) => console.error(error));
   }
@@ -114,92 +119,109 @@ export default function Recipe({ props, match }) {
 
   const clearLocalStorage = () => localStorage.clear();
   
-  return (
-    <>
+  if (foodIngredient === "no recipe") {
+    return (
       <div className="recipe-container">
-        <div className="including-link">
-          <Link to={"/"}>
-            <Button 
+        <h1 className="h1-title">Sorry, an error occured.</h1>
+        <Link to={"/"}>
+          <Button
             default
             onClick={clearLocalStorage}
-            >
-              Start Over
-            </Button>
-          </Link>
-          <div className="recipe-header">
-            <div className="recipe-image-and-graph">
-              <div className="recipe-image">
-                {foodIngredient && (
-                  <img src={foodIngredient.hits[0].recipe.image} />
-                )}
-                {foodName && foodIngredient && (
-                  <Button onClick={checkIfInDatabase}>
-                    <i class="far fa-heart"></i>
+          >
+            Start Over
                   </Button>
-                )}
-              </div>
-              <div class="ingredient-data">
-                <h2>
-                  Nutritional Data of {foodIngredient && foodIngredient.q}
-                </h2>
-                <RecipeGraph foodIngredient={foodIngredient} />
-              </div>
-            </div>
-          </div>
-          <div className="instruction-info">
-            <div className="addtoschedule">
-              <div>
-                <h3>
-                  <i class="far fa-calendar-alt"></i> Add to Your Meal Plan
-                </h3>
-                <MealCalendar
-                  date={date}
-                  onChange={(e) => setDate(e.target.value)}
-                />
-              </div>
-              {date && (
-                <div className="recipe-button-container">
-                  <div className="add">
-                    <Button onClick={checkIfInDatabase}>
-                      <i class="far fa-calendar-alt"></i> Add
-                    </Button>
-                  </div>
-                  <div className="cancel">
-                    <Button
-                      onClick={() => {
-                        setDate(null);
-                      }}
-                    >
-                      Cancel
-                    </Button>
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="instructions-and-link">
-              <div className="ingredients">
-                <RecipeIngredient foodIngredient={foodIngredient} />
-              </div>
-              <div className="prep-time">
-                {foodIngredient &&
-                  foodIngredient.hits[0].recipe.totalTime !== 0 && (
-                    <h2>
-                      Prep time: {foodIngredient.hits[0].recipe.totalTime} mins
-                    </h2>
+        </Link>
+      </div>
+    )
+  } else if (foodIngredient !== null) {
+    return (
+      <>
+        <div className="recipe-container">
+          <div className="including-link">
+            <Link to={"/"}>
+              <Button 
+              default
+              onClick={clearLocalStorage}
+              >
+                Start Over
+              </Button>
+            </Link>
+            <div className="recipe-header">
+              <div className="recipe-image-and-graph">
+                <div className="recipe-image">
+                  {foodIngredient && (
+                    <img src={foodIngredient.hits[0].recipe.image} />
                   )}
+                  {foodName && foodIngredient && (
+                    <Button onClick={checkIfInDatabase}>
+                      <i class="far fa-heart"></i>
+                    </Button>
+                  )}
+                </div>
+                <div class="ingredient-data">
+                  <h2>
+                    Nutritional Data of {foodIngredient && foodIngredient.q}
+                  </h2>
+                  <RecipeGraph foodIngredient={foodIngredient} />
+                </div>
               </div>
-              <div className="recipe-link">
-                {foodIngredient && (
-                  <a href={foodIngredient.hits[0].recipe.url}>
-                    {" "}
-                    <h3>Click here for full instructions</h3>
-                  </a>
+            </div>
+            <div className="instruction-info">
+              <div className="addtoschedule">
+                <div>
+                  <h3>
+                    <i class="far fa-calendar-alt"></i> Add to Your Meal Plan
+                  </h3>
+                  <MealCalendar
+                    date={date}
+                    onChange={(e) => setDate(e.target.value)}
+                  />
+                </div>
+                {date && (
+                  <div className="recipe-button-container">
+                    <div className="add">
+                      <Button onClick={checkIfInDatabase}>
+                        <i class="far fa-calendar-alt"></i> Add
+                      </Button>
+                    </div>
+                    <div className="cancel">
+                      <Button
+                        onClick={() => {
+                          setDate(null);
+                        }}
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </div>
                 )}
+              </div>
+              <div className="instructions-and-link">
+                <div className="ingredients">
+                  <RecipeIngredient foodIngredient={foodIngredient} />
+                </div>
+                <div className="prep-time">
+                  {foodIngredient &&
+                    foodIngredient.hits[0].recipe.totalTime !== 0 && (
+                      <h2>
+                        Prep time: {foodIngredient.hits[0].recipe.totalTime} mins
+                      </h2>
+                    )}
+                </div>
+                <div className="recipe-link">
+                  {foodIngredient && (
+                    <a href={foodIngredient.hits[0].recipe.url}>
+                      {" "}
+                      <h3>Click here for full instructions</h3>
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
+  return null;
 }

@@ -376,6 +376,14 @@ body,
   }
 }
 
+.h1-title {
+  font-family: $primary-font;
+  color: $primary-colour;
+  margin-top: 0;
+  font-size: 3rem;
+}
+
+
 @media only screen and (max-width: 768px) {
   .ingredient-data {
     width: 90%;
