@@ -36,6 +36,8 @@ const Register = () => {
     }));
   };
 
+  const usernameTaken = () => alert("Sorry, this username has already been taken!");
+
   function handleSubmit(e) {
     e.preventDefault();
     /* now we want to setUser from app */
@@ -46,7 +48,7 @@ const Register = () => {
         clearInputs();
         setToHome(true);
       })
-      .catch(error => console.log(error));
+      .catch(error => usernameTaken());
   }
 
   return (
