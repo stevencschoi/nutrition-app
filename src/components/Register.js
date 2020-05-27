@@ -83,13 +83,13 @@ const Register = () => {
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="password"
           name="password"
           value={inputs.password}
           onChange={handleInputChange}
         />
         <input
-          placeholder="link to image"
+          placeholder="link to image for avatar"
           name="avatar"
           value={inputs.avatar}
           onChange={handleInputChange}
