@@ -27,7 +27,7 @@ export default function Recipe({ props, match }) {
         `https://api.edamam.com/search?q=${ingredient}&app_id=${recipeApiId}&app_key=${recipeApiKey}`
       )
       .then((result) => {
-        // confirm that Edamam sends back a recipe, otherwise leave FoodIngredient === null
+        // confirm that a recipe is retrieved from Edamam, if not leave FoodIngredient === null
         if (result.data.hits[0] !== undefined) {
           setFoodIngredient(result.data);
         }
