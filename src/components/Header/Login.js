@@ -10,16 +10,19 @@ const Login = props => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const verifyUser = (user, password) => {
+  const wrongCredentials = () => 
+    alert("Please check your username and password, then try logging in again!");
+
+
+  const verifyUser = (username, password) => {
     axios
-      .post("/login", { userId: user, password: password })
+      .post("/login", { username: username, password: password })
       .then(result => {
         Cookies.set({ userId: result.data.id });
-        setUsername(username);
         props.setUser(username);
         localStorage.setItem("user", username);
       })
-      .catch(error => console.error(error));
+      .catch (error => wrongCredentials());
   };
 
   return (

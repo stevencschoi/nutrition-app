@@ -36,17 +36,19 @@ const Register = () => {
     }));
   };
 
+  const usernameTaken = () => alert("Sorry, this username has already been taken!");
+    
   function handleSubmit(e) {
     e.preventDefault();
     /* now we want to setUser from app */
-    console.log("inputs:", inputs);
     axios
       .put(`/register`, inputs)
       .then(() => {
         clearInputs();
         setToHome(true);
       })
-      .catch(error => console.log(error));
+      // alert user if username is already in database
+      .catch(error => usernameTaken());
   }
 
   return (
@@ -56,6 +58,7 @@ const Register = () => {
       <form onSubmit={handleSubmit} className="registerform">
         <input
           placeholder="username"
+          required="required"
           name="username"
           value={inputs.username}
           onChange={handleInputChange}
@@ -74,6 +77,7 @@ const Register = () => {
         />
         <input
           type="email"
+          required="required"
           name="email"
           placeholder="email"
           value={inputs.email}
@@ -81,18 +85,18 @@ const Register = () => {
         />
         <input
           type="password"
-          placeholder="Password"
+          required="required"
+          placeholder="password"
           name="password"
           value={inputs.password}
           onChange={handleInputChange}
         />
         <input
-          placeholder="link to image"
+          placeholder="link to image for avatar"
           name="avatar"
           value={inputs.avatar}
           onChange={handleInputChange}
         />
-
         <Button register type="submit">
           Create Account
         </Button>
