@@ -19,10 +19,10 @@ body,
     rgba(255, 255, 255, 0)
   );
   // height: 10vh;
-  display: flex;
-  justify-content: space-evenly;
+  // display: flex;
+  // justify-content: space-evenly;
   // justify-content: space-between;
-  align-items: center;
+  // align-items: center;
   .media h3 {
     font-size: 1.7rem;
     margin: 0 20px;
@@ -100,7 +100,9 @@ body,
 
 
 .logged-out {
+  margin: 0 auto;
   display: flex;
+  width: 90%;
   justify-content: space-between;
   // justify-content: center;
   align-items: center;
@@ -129,6 +131,12 @@ body,
         background-color: white;
         border: 1px solid $secondary-colour;
       }
+    }
+    form {
+      display: flex;
+    }
+    .register-faq {
+      display: flex;
     }
     // h3 {
     //   font-size: 1.7rem;

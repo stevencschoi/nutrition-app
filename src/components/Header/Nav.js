@@ -127,12 +127,14 @@ function Nav() {
           </Link>
           <div className="login-register-faq">
             <Login setUser={setUser} />
-            <Link to="/register">
-              <h3>Register</h3>
-            </Link>
-            <Link to="/faq">
-              <h3>FAQ</h3>
-            </Link>
+            <div className="register-faq">
+              <Link to="/register">
+                <h3>Register</h3>
+              </Link>
+              <Link to="/faq">
+                <h3>FAQ</h3>
+              </Link>
+            </div>
           </div>
         </div>
         )}
