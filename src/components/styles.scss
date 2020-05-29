@@ -18,17 +18,6 @@ body,
     $primary-colour,
     rgba(255, 255, 255, 0)
   );
-  height: 10vh;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  .media h3 {
-    font-size: 1.7rem;
-    margin: 0 20px;
-    &:hover {
-      color: $accent-colour;
-    }
-  }
   #logo {
     letter-spacing: 2px;
     font-family: "Londrina Outline", cursive;
@@ -40,72 +29,149 @@ body,
     font-size: 1.7rem;
     color: $secondary-colour;
   }
-  // login credentials
-  form input {
-    margin-right: 5px;
-    // border-color: black;
-    padding: 0.5px 7px;
-    font-family: $primary-font;
-    font-size: 1.7rem;
-    border-radius: 3px;
-    max-width: 160px;
-    &::placeholder {
+  .nav-plus-logo {
+    margin: 0 auto;
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      background-color: $accent-colour;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      color: $primary-colour;
+      font-weight: 400;
       font-family: $primary-font;
       font-size: 1.7rem;
+      margin-left: 10px;
+      padding: 3.5px 10px;
+      &:hover {
+        color: $primary-colour;
+        background-color: white;
+        border: 1px solid $secondary-colour;
+      }
     }
-  }
-  button {
-    background-color: $accent-colour;
-    border-radius: 10px;
-    border: 1px solid transparent;
-    color: $primary-colour;
-    font-family: $primary-font;
-    font-size: 1.7rem;
-    padding: 2px 10px;
-    margin-left: 10px;
-    &:hover {
-      color: $primary-colour;
-      background-color: white;
-      border: 1px solid $secondary-colour;
+    .nav-logged-out, .logged-user {
+      display: flex;
+      align-items: center;
+      h3 {
+        padding: 2px 10px;
+        background-color: $accent-colour;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        color: $primary-colour;
+        font-weight: 400;
+        font-family: $primary-font;
+        font-size: 1.7rem;
+        margin-left: 10px;
+        &:hover {
+          color: $primary-colour;
+          background-color: white;
+          border: 1px solid $secondary-colour;
+        }
+      }
+      form {
+        display: flex;
+        input {
+          margin-right: 5px;
+          padding: 2.5px 10px;
+          font-family: $primary-font;
+          font-size: 1.7rem;
+          border-radius: 3px;
+          max-width: 160px;
+          &::placeholder {
+            font-family: $primary-font;
+            font-size: 1.7rem;
+          }
+        }
+      }
+      .register-faq {
+        display: flex;
+      }
     }
-  }
-}
-@media (max-width: 850px) {
-  .nav {
-    .media h3 {
-      font-size: 1.3rem;
-    }
-    #logo {
-      font-size: 1.4rem;
-    }
-    .logged-user {
-      font-size: 1.3rem;
-      .button {
-        font-size: 1.3rem;
+    .nav-logged-in {
+      display: flex;
+      flex-direction: column;
+      .media {
+        margin-top: 10px;
+        h3 {
+        font-size: 1.7rem;
+        margin-left: 20px;
+          &:hover {
+            color: $accent-colour;
+          }
+        }
+      }
+      .logged-user {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+        font-family: monospace;
+        font-size: 1.7rem;
+        color: $secondary-colour;
+        a {
+          color: $primary-colour;
+        }
       }
     }
   }
 }
 
-.register {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  h3 {
-    font-size: 1.7rem;
-    border: 1px solid transparent;
-    margin: 0 20px;
-    background-color: $accent-colour;
-    color: $primary-colour;
-    border-radius: 10px;
-    padding: 2px 10px;
-    &:hover {
-      color: $primary-colour;
-      background-color: $accent-colour;
-      border: 1px solid $primary-colour;
+@media only screen and (max-width: 1000px) {
+  .nav-plus-logo {
+    .nav-logged-out {
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 10px;
+      .register-faq {
+        margin-top: 10px;
+      }
     }
   }
 }
+
+@media only screen and (max-width: 900px) {
+  .logged-in-container {
+    flex-direction: column;
+    .nav-logged-in {
+      align-items: center;
+      justify-content: center;
+      .media {
+        .favourites-media {
+          h3 {
+          margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-plus-logo {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 525px) {
+  .logged-in-container {
+    .nav-logged-in {
+      .media {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .favourites-media, .other-media {
+          h3 {
+            margin: 5px 0;
+          }
+        } 
+      }
+    }
+  }
+}
+
+
+
 
 .registerform {
   height: 80%;
@@ -135,12 +201,20 @@ body,
   }
 }
 
-// style for the username when logged in
-.logged-user {
-  font-family: monospace;
-  font-size: 1.7rem;
-  color: $secondary-colour;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // start of searchbar styling
 #cover {
