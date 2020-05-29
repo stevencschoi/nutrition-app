@@ -104,12 +104,9 @@ body,
   display: flex;
   width: 90%;
   justify-content: space-between;
-  // justify-content: center;
   align-items: center;
   .login-register-faq {
     display: flex;
-    justify-content: space-between;
-    // justify-content: center;
     align-items: center;
     button {
       padding: 3.5px 10px;
@@ -138,44 +135,31 @@ body,
     .register-faq {
       display: flex;
     }
-    // h3 {
-    //   font-size: 1.7rem;
-    //   border: 1px solid transparent;
-    //   // margin: 0 20px;
-    //   background-color: $accent-colour;
-    //   color: $primary-colour;
-    //   border-radius: 10px;
-    //   padding: 2px 10px;
-    //   &:hover {
-    //     color: $primary-colour;
-    //     background-color: $secondary-colour;
-    //     border: 1px solid $primary-colour;
-    //   }
-    // }
+  }
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .logged-out {
+    .login-register-faq {
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 10px;
+      .register-faq {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .logged-out {
+    flex-direction: column;
   }
 }
 
 
 
-// .register {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   h3 {
-//     font-size: 1.7rem;
-//     border: 1px solid transparent;
-//     margin: 0 20px;
-//     background-color: $accent-colour;
-//     color: $primary-colour;
-//     border-radius: 10px;
-//     padding: 2px 10px;
-//     &:hover {
-//       color: $primary-colour;
-//       background-color: $accent-colour;
-//       border: 1px solid $primary-colour;
-//     }
-//   }
-// }
 
 .registerform {
   height: 80%;
@@ -211,6 +195,25 @@ body,
   font-size: 1.7rem;
   color: $secondary-colour;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // start of searchbar styling
 #cover {
