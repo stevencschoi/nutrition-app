@@ -119,23 +119,20 @@ body,
 
 @media only screen and (max-width: 1000px) {
   .nav-plus-logo {
+    flex-direction: column;
     .nav-logged-out {
-      flex-direction: column;
-      justify-content: center;
-      margin-top: 10px;
-      .register-faq {
-        margin-top: 10px;
-      }
+      transform: scale(0.7);
+      justify-content: flex-end;
     }
   }
-}
-
-@media only screen and (max-width: 900px) {
   .logged-in-container {
     flex-direction: column;
     .nav-logged-in {
       align-items: center;
       justify-content: center;
+      .logged-user {
+        transform: scale(0.7);
+      }
       .media {
         .favourites-media {
           h3 {
@@ -219,7 +216,6 @@ body,
 // start of searchbar styling
 #cover {
   width: 60vw;
-  // width: 100%;
   padding: 25px;
   margin: 2% auto;
   background-color: rgba(255, 255, 255, 0.7);
@@ -249,9 +245,6 @@ body,
   input[type="text"] {
     color: $primary-colour;
     width: 100%;
-    // width: 90%;
-    // height: 65px;
-    // font-size: 50px;
     font-size: 50px;
     text-align: center;
     background-color: transparent;
@@ -262,11 +255,9 @@ body,
     &::placeholder {
       font-family: "Cabin Sketch", cursive;
       font-weight: 700;
-      // font-size: 40px;
       font-size: 50px;
       color: $primary-colour;
       text-align: center;
-      // transform: translateY(-5px);
     }
   }
   // magnifying glass
@@ -351,6 +342,12 @@ body,
     width: 40px;
     background-color: $primary-colour;
   }
+  .dropdown-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 @media only screen and (max-width: 1225px) {
@@ -397,7 +394,7 @@ body,
 
 @media only screen and (max-width: 635px) {
   #cover {
-    width: 100vw;
+    width: 99vw;
     #s-cover {
       transform: scale(0.5);
     }

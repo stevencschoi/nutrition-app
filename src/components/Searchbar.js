@@ -91,6 +91,7 @@ function Searchbar(props) {
           </div>
         </div>
       </form>
+      <div className="dropdown-container"></div>
       <Dropdown
         placeholder="Dietary Options"
         multiple
