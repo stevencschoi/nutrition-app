@@ -119,23 +119,20 @@ body,
 
 @media only screen and (max-width: 1000px) {
   .nav-plus-logo {
+    flex-direction: column;
     .nav-logged-out {
-      flex-direction: column;
-      justify-content: center;
-      margin-top: 10px;
-      .register-faq {
-        margin-top: 10px;
-      }
+      transform: scale(0.7);
+      justify-content: flex-end;
     }
   }
-}
-
-@media only screen and (max-width: 900px) {
   .logged-in-container {
     flex-direction: column;
     .nav-logged-in {
       align-items: center;
       justify-content: center;
+      .logged-user {
+        transform: scale(0.7);
+      }
       .media {
         .favourites-media {
           h3 {
@@ -218,7 +215,7 @@ body,
 
 // start of searchbar styling
 #cover {
-  width: 50vw;
+  width: 60vw;
   padding: 25px;
   margin: 2% auto;
   background-color: rgba(255, 255, 255, 0.7);
@@ -245,13 +242,9 @@ body,
     background-color: transparent;
     border: none;
   }
-  form {
-    height: 65px;
-  }
   input[type="text"] {
     color: $primary-colour;
     width: 100%;
-    height: 65px;
     font-size: 50px;
     text-align: center;
     background-color: transparent;
@@ -262,10 +255,9 @@ body,
     &::placeholder {
       font-family: "Cabin Sketch", cursive;
       font-weight: 700;
-      font-size: 40px;
+      font-size: 50px;
       color: $primary-colour;
       text-align: center;
-      transform: translateY(-5px);
     }
   }
   // magnifying glass
@@ -350,7 +342,75 @@ body,
     width: 40px;
     background-color: $primary-colour;
   }
+  .dropdown-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
+
+@media only screen and (max-width: 1225px) {
+  #cover {
+    width: 70vw;
+    input[type="text"] {
+      font-size: 45px;
+      &::placeholder {
+        font-size: 45px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #cover {
+    width: 75vw;
+    #s-cover {
+      transform: scale(0.7);
+    }
+    input[type="text"] {
+      font-size: 40px;
+      &::placeholder {
+        font-size: 40px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 835px) {
+  #cover {
+    width: 90vw;
+    #s-cover {
+      transform: scale(0.7);
+    }
+    input[type="text"] {
+      font-size: 35px;
+      &::placeholder {
+        font-size: 35px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 635px) {
+  #cover {
+    width: 99vw;
+    #s-cover {
+      transform: scale(0.5);
+    }
+    input[type="text"] {
+      font-size: 30px;
+      &::placeholder {
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+
+
+
+
 
 .search {
   margin: 0.5rem 35rem;
