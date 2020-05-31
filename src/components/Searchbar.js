@@ -106,7 +106,6 @@ function Searchbar(props) {
         selection
         onChange={(e, { value }) => dietaryRestrictions(value)}
       />
-      <div id="edamam-badge" data-color="white"></div>
     </div>
   );
 }

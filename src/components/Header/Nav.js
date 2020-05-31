@@ -72,6 +72,10 @@ function Nav() {
           </div>
         </div>
       )}
+      <div className="edamam-wrapper">
+        <div id="edamam-badge" data-color="white">
+        </div>
+      </div>
     </nav>
   );
 }
