@@ -13,7 +13,7 @@ Graphs are rendered with Recharts and Socket IO is utilized to observe real-time
 !["Screenshot of ingredient nutritional data page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/2-ingredient.png?raw=true)
 
 ### Recipe nutritional data
-!["Screenshot of recipe nutritional data page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/3-recipes.png?raw=true)
+!["Screenshot of recipe nutritional data page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/3-recipe.png?raw=true)
 
 ### Favourite recipes page
 !["Screenshot of favourites page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/5-favourites.png?raw=true)
