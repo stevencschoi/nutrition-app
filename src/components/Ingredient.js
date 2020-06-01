@@ -36,7 +36,7 @@ function Ingredient({ match }) {
     fetchRecipes(format[3], diet, health);
   }, []);
 
-  const clearLocalStorage = () => localStorage.clear();
+  const clearLocalStorage = () => localStorage.removeItem('healthObj');
 
   return (
     <>
