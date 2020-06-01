@@ -7,6 +7,7 @@ import Favourites from "./components/Favourites";
 import Schedule from "./components/Schedule";
 import MacroGraph from "./components/MacroGraph";
 import Register from "./components/Register";
+import FAQ from "./components/FAQ";
 // import Footer from "./components/Footer";
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/schedule" exact component={Schedule} />
           <Route path="/data" exact component={MacroGraph} />
           <Route path="/register" exact component={Register} />
+          <Route path="/faq" exact component={FAQ} />
         </Switch>
       </div>
     </Router>
