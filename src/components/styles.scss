@@ -360,10 +360,11 @@ body,
     background-color: $primary-colour;
   }
   .dropdown-container {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 20px;;
+    .ui.default.dropdown:not(.button)>.text, 
+      .ui.dropdown:not(.button)>.default.text {
+      color: black;
+    }
   }
 }
 
