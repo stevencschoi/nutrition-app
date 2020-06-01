@@ -143,7 +143,7 @@ function IngredientGraph(props) {
                 type="number"
               />
               <Tooltip
-                position={{ x: -60 }}
+                position={{ x: -40 }}
                 wrapperStyle={{ zIndex: 420 }}
               />
               <Bar dataKey="calories / 100 grams" />
