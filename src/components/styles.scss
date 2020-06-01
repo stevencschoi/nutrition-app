@@ -184,9 +184,6 @@ body,
   }
 }
 
-
-
-
 .registerform {
   height: 80%;
   display: flex;
@@ -214,21 +211,6 @@ body,
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // start of searchbar styling
 #cover {
@@ -372,7 +354,6 @@ body,
   #cover {
     width: 70vw;
     input[type="text"] {
-      font-size: 45px;
       &::placeholder {
         font-size: 45px;
       }
@@ -387,7 +368,6 @@ body,
       transform: scale(0.7);
     }
     input[type="text"] {
-      font-size: 40px;
       &::placeholder {
         font-size: 40px;
       }
@@ -401,12 +381,6 @@ body,
     #s-cover {
       transform: scale(0.7);
     }
-    // input[type="text"] {
-    //   font-size: 35px;
-    //   &::placeholder {
-    //     font-size: 35px;
-    //   }
-    // }
   }
 }
 
@@ -416,7 +390,16 @@ body,
       transform: scale(0.5);
     }
     input[type="text"] {
-      font-size: 30px;
+      &::placeholder {
+        font-size: 35px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  #cover {
+    input[type="text"] {
       &::placeholder {
         font-size: 30px;
       }
@@ -424,13 +407,8 @@ body,
   }
 }
 
-
-
-
-
-
 .search {
-  width: 40%;
+  width: 45%;
   margin: 0 auto;
   .search-result {
     margin: 1.5rem 0;
@@ -457,24 +435,6 @@ body,
     margin: 0;
   }
 }
-
-@media only screen and (max-width: 635px) {
-  .search-result {
-    h4 {
-      font-size: 1.25rem;
-    }
-  }
-}
-
-
-
-
-
-
-
-
-
-
 
 .button-and-graph-container {
   margin: 3rem auto;
@@ -552,7 +512,6 @@ body,
   margin-top: 0;
   font-size: 3rem;
 }
-
 
 @media only screen and (max-width: 768px) {
   .ingredient-data {
