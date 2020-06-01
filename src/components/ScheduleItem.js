@@ -21,7 +21,7 @@ function ScheduleItem(props) {
   return (
     <div className="schedule-item">
       <div className="image-container">
-        <img src={props.image} />
+        <img src={props.image} alt="selected meal"/>
         <Button
           onClick={() => {
             removeFromSchedule(props.id);
