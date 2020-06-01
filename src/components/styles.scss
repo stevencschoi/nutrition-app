@@ -56,6 +56,9 @@ body,
     .nav-logged-out, .logged-user {
       display: flex;
       align-items: center;
+      a {
+        color: $primary-colour;
+      }
       h3 {
         padding: 2px 10px;
         background-color: $accent-colour;
