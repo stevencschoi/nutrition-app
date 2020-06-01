@@ -516,19 +516,32 @@ body,
   font-size: 3rem;
 }
 
+@media only screen and (max-width: 1000px) {
+  .ingredient-data {
+    width: 85%;
+    margin-bottom: 0;
+  }
+}
+
+
 @media only screen and (max-width: 768px) {
   .ingredient-data {
-    width: 90%;
+    width: 95%;
   }
   .ingredient-data .ingredient-graph-container {
+    height: 16em;
     .left-graph {
-      width: 45%;
+      width: 40%;
+      height: 14em;
     }
     .right-graph {
-      width: 26%;
+      width: 23%;
+      height: 14em;
+      margin: 5px;
     }
     .calories-graph {
-      width: 19%;
+      width: 18%;
+      height: 14em;
     }
   }
 }
