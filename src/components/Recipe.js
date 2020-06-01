@@ -242,11 +242,6 @@ export default function Recipe({ match }) {
                   {foodIngredient && (
                     <img src={foodIngredient.hits[0].recipe.image} />
                   )}
-                  {foodName && foodIngredient && (
-                    <Button onClick={checkIfInDatabase}>
-                      <i class="far fa-heart"></i>
-                    </Button>
-                  )}
                 </div>
                 <div class="ingredient-data">
                   <h2>
