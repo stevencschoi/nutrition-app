@@ -133,7 +133,6 @@ body,
     .nav-plus-logo {
       flex-direction: column;
       .nav-logged-out {
-        transform: scale(0.7);
         justify-content: flex-end;
         margin-bottom: 10px;
       }
@@ -143,9 +142,6 @@ body,
       .nav-logged-in {
         align-items: center;
         justify-content: center;
-        .logged-user {
-          transform: scale(0.7);
-        }
         .media {
           margin-bottom: 10px;
           .favourites-media {
@@ -162,6 +158,12 @@ body,
 @media only screen and (max-width: 768px) {
   .nav-plus-logo {
     flex-direction: column;
+    .nav-logged-out {
+      flex-direction: column;
+      .register-faq {
+        margin-top: 10px;
+      }
+    }
   }
 }
 
