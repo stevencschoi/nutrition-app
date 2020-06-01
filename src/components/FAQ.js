@@ -87,6 +87,9 @@ function FAQ() {
       </h3>
       <br></br>
       < img src={dataScreen} />
+      <br></br>
+      <br></br>
+      <br></br>
     </div>
   );
 }
