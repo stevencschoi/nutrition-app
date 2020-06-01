@@ -118,7 +118,7 @@ export default function Recipe({ match }) {
       .catch((error) => console.error(error));
   };
 
-  const clearLocalStorage = () => localStorage.clear();
+  const clearLocalStorage = () => localStorage.removeItem('healthObj');
   
   if (foodIngredient === "no recipe") {
     return (
