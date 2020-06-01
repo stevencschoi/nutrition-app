@@ -98,6 +98,8 @@ body,
       display: flex;
       flex-direction: column;
       .media {
+        display: flex;
+        justify-content: flex-end;
         margin-top: 10px;
         h3 {
         font-size: 1.7rem;
