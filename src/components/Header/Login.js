@@ -52,10 +52,12 @@ const Login = props => {
             verifyUser(username, password);
           }}
         >
-          Login
+          <Link to={`/`}>
+            Login
+          </Link>
         </Button>
       </form>
-      {/*{username && <Redirect to="/" />}*/}
+      {/* {username && <Redirect to="/" />} */}
     </>
   );
 };

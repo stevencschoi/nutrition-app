@@ -91,21 +91,23 @@ function Searchbar(props) {
           </div>
         </div>
       </form>
-      <div className="dropdown-container"></div>
-      <Dropdown
-        placeholder="Dietary Options"
-        multiple
-        options={dietOptions}
-        selection
-        onChange={(e, { value }) => dietaryOptions(value)}
-      />
-      <Dropdown
-        placeholder="Dietary Restrictions"
-        multiple
-        options={restrictiveOptions}
-        selection
-        onChange={(e, { value }) => dietaryRestrictions(value)}
-      />
+      <div className="dropdown-container">
+        <Dropdown
+          className="left-drop"
+          placeholder="Dietary Options"
+          multiple
+          options={dietOptions}
+          selection
+          onChange={(e, { value }) => dietaryOptions(value)}
+        />
+        <Dropdown
+          placeholder="Dietary Restrictions"
+          multiple
+          options={restrictiveOptions}
+          selection
+          onChange={(e, { value }) => dietaryRestrictions(value)}
+        />
+      </div>
     </div>
   );
 }

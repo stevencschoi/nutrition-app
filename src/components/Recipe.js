@@ -151,7 +151,7 @@ export default function Recipe({ match }) {
               <div className="recipe-image-and-graph">
                 <div className="recipe-image">
                   {foodIngredient && (
-                    <img src={foodIngredient.hits[0].recipe.image} />
+                    <img src={foodIngredient.hits[0].recipe.image} alt="selected recipe" />
                   )}
                   {foodName && foodIngredient && (
                     <Button onClick={checkIfInDatabase}>
@@ -240,12 +240,7 @@ export default function Recipe({ match }) {
               <div className="recipe-image-and-graph">
                 <div className="recipe-image">
                   {foodIngredient && (
-                    <img src={foodIngredient.hits[0].recipe.image} />
-                  )}
-                  {foodName && foodIngredient && (
-                    <Button onClick={checkIfInDatabase}>
-                      <i class="far fa-heart"></i>
-                    </Button>
+                    <img src={foodIngredient.hits[0].recipe.image} alt="selected recipe" />
                   )}
                 </div>
                 <div class="ingredient-data">

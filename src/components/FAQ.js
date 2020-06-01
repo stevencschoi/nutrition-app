@@ -18,6 +18,12 @@ function FAQ() {
         <a href="https://github.com/stevencschoi/"> Steven Choi</a>,
         <a href="https://github.com/Pulse6/"> Marco Siu</a>, and
         <a href="https://github.com/victorcwyu/"> Victor Yu</a>.
+        <br></br>
+        The source code deployed onto Heroku can be found 
+        <a href="https://github.com/victorcwyu/VegTable"> here </a>
+        and the original code repositories can be found 
+        <a href="https://github.com/stevencschoi/nutrition-app"> here </a> 
+        and <a href="https://github.com/stevencschoi/nutrition-app-server" >here</a>.
       </h3>
       <h2>What is VegTable?</h2>
       <h3>

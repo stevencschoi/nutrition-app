@@ -142,7 +142,7 @@ function RecipeGraph(props) {
                 type="number"
               />
               <Tooltip
-                position={{ x: -60 }}
+                position={{ x: -90 }}
                 wrapperStyle={{ zIndex: 420 }}
               />
               <Bar dataKey="calories / 100 grams" />
