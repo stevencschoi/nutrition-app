@@ -7,22 +7,22 @@ Graphs are rendered with Recharts and Socket IO is utilized to observe real-time
 ## Preview
 
 ### Ingredient search results
-!["Screenshot of ingredient search page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/VegTable1.png?raw=true)
+!["Screenshot of ingredient search page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/1-search.png?raw=true)
 
 ### Ingredient nutritional data
-!["Screenshot of ingredient nutritional data page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/VegTable2.png?raw=true)
+!["Screenshot of ingredient nutritional data page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/2-ingredient.png?raw=true)
 
 ### Recipe nutritional data
-!["Screenshot of recipe nutritional data page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/VegTable3.png?raw=true)
+!["Screenshot of recipe nutritional data page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/3-recipes.png?raw=true)
 
 ### Favourite recipes page
-!["Screenshot of favourites page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/VegTable4.png?raw=true)
+!["Screenshot of favourites page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/5-favourites.png?raw=true)
 
 ### Meal schedule page
-!["Screenshot of schedule page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/VegTable5.png?raw=true)
+!["Screenshot of schedule page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/6-schedule.png?raw=true)
 
 ### Weekly nutritional data
-!["Screenshot of macro nutrition page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/VegTable6.png?raw=true)
+!["Screenshot of macro nutrition page"](https://github.com/stevencschoi/nutrition-app/blob/master/public/assets/7-data.png?raw=true)
 
 ## Dependencies
 
