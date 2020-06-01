@@ -79,7 +79,7 @@ function RecipeGraph(props) {
     const data3 = [
       {
         name: "Calories",
-        "calories / 100 grams": calories,
+        "calories / serving": calories,
         fill: "#0C71E0",
       },
     ];
@@ -134,7 +134,7 @@ function RecipeGraph(props) {
               <XAxis dataKey="name" />
               <YAxis
                 label={{
-                  value: "calories / 100 grams",
+                  value: "calories / serving",
                   dx: -25,
                   angle: -90,
                   position: "center",
@@ -142,10 +142,10 @@ function RecipeGraph(props) {
                 type="number"
               />
               <Tooltip
-                position={{ x: -90 }}
+                position={{ x: -60 }}
                 wrapperStyle={{ zIndex: 420 }}
               />
-              <Bar dataKey="calories / 100 grams" />
+              <Bar dataKey="calories / serving" />
             </BarChart>
           </ResponsiveContainer>
         </div>

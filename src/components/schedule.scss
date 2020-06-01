@@ -140,7 +140,7 @@ $primary-font: monospace, cursive;
   .schedule {
     .day-of-week {
       .schedule-item {
-        width: 7.5vw;
+        width: 9.5vw;
         .image-container {
           button {
             top: 0.25rem;
@@ -160,13 +160,14 @@ $primary-font: monospace, cursive;
 @media only screen and (max-width: 586px) {
   .schedule {
     h2 {
-      font-size: 0.75rem;
+      font-size: 0.9rem;
     }
     .day-of-week {
+      padding: 0.5rem 0.15rem;
       .schedule-item {
-        width: 8.5vw;
+        width: 12.25vw;
         .heading-title h3 {
-          font-size: 0.7rem;
+          font-size: 0.8rem;
         }
       }
     }
