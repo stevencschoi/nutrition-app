@@ -20,9 +20,8 @@ function FAQ() {
         <a href="https://github.com/victorcwyu/"> Victor Yu</a>.
         <br></br>
         The source code deployed onto Heroku can be found 
-        <a href="https://github.com/victorcwyu/VegTable"> here</a>.
-        <br></br>
-        The original code repositories can be found 
+        <a href="https://github.com/victorcwyu/VegTable"> here </a>
+        and the original code repositories can be found 
         <a href="https://github.com/stevencschoi/nutrition-app"> here </a> 
         and <a href="https://github.com/stevencschoi/nutrition-app-server" >here</a>.
       </h3>
