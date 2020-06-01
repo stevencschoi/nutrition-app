@@ -95,7 +95,7 @@ function IngredientGraph(props) {
               <YAxis
                 label={{
                   value: "grams / 100 grams",
-                  dx: -5,
+                  dx: -20,
                   angle: -90,
                   position: "center",
                 }}
@@ -114,7 +114,7 @@ function IngredientGraph(props) {
               <YAxis
                 label={{
                   value: "milligrams / 100 grams",
-                  dx: -15,
+                  dx: -20,
                   angle: -90,
                   position: "center",
                 }}
