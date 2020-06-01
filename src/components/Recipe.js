@@ -16,6 +16,7 @@ export default function Recipe({ match }) {
   const [date, setDate] = useState(null);
   const [foodName, setFoodName] = useState(match.params.id);
   const [foodIngredient, setFoodIngredient] = useState(null);
+  const [user, setUser] = useState(localStorage.getItem("user"));
 
   useEffect(() => {
     fetchRecipes(foodName);
@@ -133,7 +134,7 @@ export default function Recipe({ match }) {
         </Link>
       </div>
     )
-  } else if (foodIngredient !== null) {
+  } else if (foodIngredient !== null && (user)) {
     return (
       <>
         <div className="recipe-container">
@@ -196,6 +197,66 @@ export default function Recipe({ match }) {
                   </div>
                 )}
               </div>
+              <div className="instructions-and-link">
+                <div className="ingredients">
+                  <RecipeIngredient foodIngredient={foodIngredient} />
+                </div>
+                <div className="prep-time">
+                  {foodIngredient &&
+                    foodIngredient.hits[0].recipe.totalTime !== 0 && (
+                      <h2>
+                        Prep time: {foodIngredient.hits[0].recipe.totalTime} mins
+                      </h2>
+                    )}
+                </div>
+                <div className="recipe-link">
+                  {foodIngredient && (
+                    <a href={foodIngredient.hits[0].recipe.url}>
+                      {" "}
+                      <h3>Click here for full instructions</h3>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  } else if (foodIngredient !== null && (!user)) {
+    return (
+      <>
+        <div className="recipe-container">
+          <div className="including-link">
+            <Link to={"/"}>
+              <Button
+                default
+                onClick={clearLocalStorage}
+              >
+                Start Over
+              </Button>
+            </Link>
+            <div className="recipe-header">
+              <div className="recipe-image-and-graph">
+                <div className="recipe-image">
+                  {foodIngredient && (
+                    <img src={foodIngredient.hits[0].recipe.image} />
+                  )}
+                  {foodName && foodIngredient && (
+                    <Button onClick={checkIfInDatabase}>
+                      <i class="far fa-heart"></i>
+                    </Button>
+                  )}
+                </div>
+                <div class="ingredient-data">
+                  <h2>
+                    Nutritional Data of {foodIngredient && foodIngredient.q}
+                  </h2>
+                  <RecipeGraph foodIngredient={foodIngredient} />
+                </div>
+              </div>
+            </div>
+            <div className="instruction-info">
               <div className="instructions-and-link">
                 <div className="ingredients">
                   <RecipeIngredient foodIngredient={foodIngredient} />
