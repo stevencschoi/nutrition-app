@@ -211,9 +211,10 @@ export default function Recipe({ match }) {
                 </div>
                 <div className="recipe-link">
                   {foodIngredient && (
-                    <a href={foodIngredient.hits[0].recipe.url}>
-                      {" "}
-                      <h3>Click here for full instructions</h3>
+                    <a href={foodIngredient.hits[0].recipe.url} target="_blank" >
+                      <h3>
+                        Click here for full instructions
+                      </h3>
                     </a>
                   )}
                 </div>
@@ -266,9 +267,10 @@ export default function Recipe({ match }) {
                 </div>
                 <div className="recipe-link">
                   {foodIngredient && (
-                    <a href={foodIngredient.hits[0].recipe.url}>
-                      {" "}
-                      <h3>Click here for full instructions</h3>
+                    <a href={foodIngredient.hits[0].recipe.url} target="_blank" >
+                      <h3>
+                        Click here for full instructions
+                      </h3>
                     </a>
                   )}
                 </div>
