@@ -8,6 +8,7 @@ import Schedule from "./components/Schedule";
 import MacroGraph from "./components/MacroGraph";
 import Register from "./components/Register";
 import FAQ from "./components/FAQ";
+import PrivateRoute from "./components/PrivateRoute";
 import { Redirect } from 'react-router-dom';
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -21,9 +22,9 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/ingredient/:id/:id" exact component={Ingredient} />
           <Route path="/recipe/:id/" exact component={Recipe} />
-          <Route path="/favourites" exact component={Favourites} />
-          <Route path="/schedule" exact component={Schedule} />
-          <Route path="/data" exact component={MacroGraph} />
+          <PrivateRoute path="/favourites" component={Favourites} />
+          <PrivateRoute path="/schedule" component={Schedule} />
+          <PrivateRoute path="/data" component={MacroGraph} />      
           <Route path="/register" exact component={Register} />
           <Route path="/faq" exact component={FAQ} />
           <Route render={() => <Redirect to={{ pathname: "/" }} />} />
@@ -34,4 +35,3 @@ function App() {
 }
 
 export default App;
-// <Footer />
