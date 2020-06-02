@@ -211,7 +211,7 @@ export default function Recipe({ match }) {
                 </div>
                 <div className="recipe-link">
                   {foodIngredient && (
-                    <a href={foodIngredient.hits[0].recipe.url} target="_blank" >
+                    <a href={foodIngredient.hits[0].recipe.url} target="_blank" rel="noopener noreferrer">
                       <h3>
                         Click here for full instructions
                       </h3>
@@ -267,7 +267,7 @@ export default function Recipe({ match }) {
                 </div>
                 <div className="recipe-link">
                   {foodIngredient && (
-                    <a href={foodIngredient.hits[0].recipe.url} target="_blank" >
+                    <a href={foodIngredient.hits[0].recipe.url} target="_blank" rel="noopener noreferrer">
                       <h3>
                         Click here for full instructions
                       </h3>

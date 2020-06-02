@@ -15,15 +15,15 @@ function FAQ() {
       <h1 className="favourite-title">Frequently Asked Questions</h1>
       <h2>Who created VegTable?</h2>
       <h3>VegTable was created by
-        <a href="https://github.com/stevencschoi/" target="_blank"> Steven Choi</a>,
-        <a href="https://github.com/Pulse6/" target="_blank"> Marco Siu</a>, and
-        <a href="https://github.com/victorcwyu/" target="_blank"> Victor Yu</a>.
+        <a href="https://github.com/stevencschoi/" target="_blank" rel="noopener noreferrer"> Steven Choi</a>,
+        <a href="https://github.com/Pulse6/" target="_blank" rel="noopener noreferrer"> Marco Siu</a>, and
+        <a href="https://github.com/victorcwyu/" target="_blank" rel="noopener noreferrer"> Victor Yu</a>.
         <br></br>
         The source code deployed onto Heroku can be found
-        <a href="https://github.com/victorcwyu/VegTable" target="_blank"> here </a>
+        <a href="https://github.com/victorcwyu/VegTable" target="_blank" rel="noopener noreferrer"> here </a>
         and the original code repositories can be found
-        <a href="https://github.com/stevencschoi/nutrition-app" target="_blank"> here </a>
-        and <a href="https://github.com/stevencschoi/nutrition-app-server" target="_blank">here</a>.
+        <a href="https://github.com/stevencschoi/nutrition-app" target="_blank" rel="noopener noreferrer"> here </a>
+        and <a href="https://github.com/stevencschoi/nutrition-app-server" target="_blank" rel="noopener noreferrer">here</a>.
       </h3>
       <h2>What is VegTable?</h2>
       <h3>
