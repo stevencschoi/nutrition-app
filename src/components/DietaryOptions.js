@@ -29,7 +29,7 @@ function DietaryOptions(props) {
   ];
 
   return (
-    <div class="restriction">
+    <div className="restriction">
       <Dropdown
         placeholder="Dietary Options"
         multiple
