@@ -27,7 +27,7 @@ function ScheduleItem(props) {
             removeFromSchedule(props.id);
           }}
         >
-          <i className="far fa-trash-alt"></i>
+          <i class="far fa-trash-alt"></i>
         </Button>
       </div>
       <div className="heading-title">

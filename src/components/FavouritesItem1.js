@@ -55,11 +55,11 @@ const FavouritesItem1 = (props) => {
                     deleteFav();
                   }}
                 >
-                  <i className="far fa-trash-alt"></i>
+                  <i class="far fa-trash-alt"></i>
                 </Button>
               )}
             </div>
-            <div className="favourite-data">
+            <div class="favourite-data">
               <h2>Select Nutritional Data of {props.name}</h2>
               <FavouritesItemGraph
                 calories={props.calories}
@@ -80,7 +80,7 @@ const FavouritesItem1 = (props) => {
         <div className="meal-plan-container">
           <div className="plan-title">
             <h3>
-              <i className="far fa-calendar-alt"></i> Add to Your Meal Plan
+              <i class="far fa-calendar-alt"></i> Add to Your Meal Plan
             </h3>
           </div>
           <div className="dropdown-container">
