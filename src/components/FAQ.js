@@ -38,7 +38,7 @@ function FAQ() {
         Without registration, you can enter an ingredient in the searchbar,
       </h3>
       <br></br>
-      < img src={searchScreen} alt="screenshot of search results"/>
+      < img src={searchScreen} />
       <br></br>
       <br></br>
       <br></br>
@@ -47,7 +47,7 @@ function FAQ() {
         utilizing that ingredient.
       </h3>
       <br></br>
-      < img src={ingredientScreen} alt="screenshot of ingredient graph"/>
+      < img src={ingredientScreen} />
       <br></br>
       <br></br>
       <br></br>
@@ -55,7 +55,7 @@ function FAQ() {
         Clicking on a recipe will display the nutritional information for the recipe.
       </h3>
       <br></br>
-      < img src={recipeScreen} alt="screenshot of recipe graph"/>
+      < img src={recipeScreen} />
       <br></br>
       <br></br>
       <br></br>
@@ -63,11 +63,11 @@ function FAQ() {
         If you register, you will be able to add recipes to a list of favourites.
       </h3>
       <br></br>
-      < img src={loggedInRecipeScreen} alt="screenshot showcasing add to favourites button"/>
+      < img src={loggedInRecipeScreen} />
       <br></br>
       <br></br>
       <br></br>
-      < img src={favouritesScreen} alt="screenshot of favourite recipes"/>
+      < img src={favouritesScreen} />
       <br></br>
       <br></br>
       <br></br>
@@ -76,7 +76,7 @@ function FAQ() {
         plan schedule.
       </h3>
       <br></br>
-      < img src={scheduleScreen} alt="screenshot of meal plan schedule"/>
+      < img src={scheduleScreen} />
       <br></br>
       <br></br>
       <br></br>
@@ -86,7 +86,7 @@ function FAQ() {
         VegTable to compare your nutritional intake.
       </h3>
       <br></br>
-      < img src={dataScreen} alt="screenshot of nutritional intake graph"/>
+      < img src={dataScreen} />
       <br></br>
       <br></br>
       <br></br>

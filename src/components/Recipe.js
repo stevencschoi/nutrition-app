@@ -155,11 +155,11 @@ export default function Recipe({ match }) {
                   )}
                   {foodName && foodIngredient && (
                     <Button onClick={checkIfInDatabase}>
-                      <i className="far fa-heart"></i>
+                      <i class="far fa-heart"></i>
                     </Button>
                   )}
                 </div>
-                <div className="ingredient-data">
+                <div class="ingredient-data">
                   <h2>
                     Nutritional Data of {foodIngredient && foodIngredient.q}
                   </h2>
@@ -171,7 +171,7 @@ export default function Recipe({ match }) {
               <div className="addtoschedule">
                 <div>
                   <h3>
-                    <i className="far fa-calendar-alt"></i> Add to Your Meal Plan
+                    <i class="far fa-calendar-alt"></i> Add to Your Meal Plan
                   </h3>
                   <MealCalendar
                     date={date}
@@ -182,7 +182,7 @@ export default function Recipe({ match }) {
                   <div className="recipe-button-container">
                     <div className="add">
                       <Button onClick={checkIfInDatabase}>
-                        <i className="far fa-calendar-alt"></i> Add
+                        <i class="far fa-calendar-alt"></i> Add
                       </Button>
                     </div>
                     <div className="cancel">
@@ -244,7 +244,7 @@ export default function Recipe({ match }) {
                     <img src={foodIngredient.hits[0].recipe.image} alt="selected recipe" />
                   )}
                 </div>
-                <div className="ingredient-data">
+                <div class="ingredient-data">
                   <h2>
                     Nutritional Data of {foodIngredient && foodIngredient.q}
                   </h2>
