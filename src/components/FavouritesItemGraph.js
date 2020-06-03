@@ -77,8 +77,8 @@ function RecipeGraph(props) {
     ];
     return (
       // favourites graphs
-      <div class="favourite-graph-container">
-        <div class="left-graph">
+      <div className="favourite-graph-container">
+        <div className="left-graph">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={500} height={300} data={data}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -97,7 +97,7 @@ function RecipeGraph(props) {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <div class="right-graph">
+        <div className="right-graph">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={240} height={300} data={data2}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -119,7 +119,7 @@ function RecipeGraph(props) {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <div class="calories-graph">
+        <div className="calories-graph">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={240} height={300} data={data3}>
               <CartesianGrid strokeDasharray="3 3" />

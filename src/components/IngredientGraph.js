@@ -86,8 +86,8 @@ function IngredientGraph(props) {
     ];
     return (
       // responsive containers need a parent container to set dimensions
-      <div class="ingredient-graph-container">
-        <div class="left-graph">
+      <div className="ingredient-graph-container">
+        <div className="left-graph">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={500} height={300} data={data}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -106,7 +106,7 @@ function IngredientGraph(props) {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <div class="right-graph">
+        <div className="right-graph">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={240} height={300} data={data2}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -128,7 +128,7 @@ function IngredientGraph(props) {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <div class="calories-graph">
+        <div className="calories-graph">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={240} height={300} data={data3}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -154,7 +154,7 @@ function IngredientGraph(props) {
     );
   };
   return (
-    <div class="ingredient-data">
+    <div className="ingredient-data">
       <h2>
         Select Nutritional Data of{" "}
         {props.data && props.data.ingredients[0].parsed[0].food}

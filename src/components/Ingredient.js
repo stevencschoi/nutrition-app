@@ -53,7 +53,7 @@ function Ingredient({ match }) {
           </Link>
         </div>
         <IngredientGraph data={state.search} />
-        <div class="carousel">
+        <div className="carousel">
           <h2>Featured Recipes</h2>
           {state.recipes && (
             <CoolCarousel className="carousel" recipes={state.recipes} />

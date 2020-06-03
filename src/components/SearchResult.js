@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function SearchResult(props) {
   return (
-    <div class="search-result">
+    <div className="search-result">
       <Link to={`/ingredient/${props.id}/${props.label}`}>
         <img src={props.image} />
       </Link>
