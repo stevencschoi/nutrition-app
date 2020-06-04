@@ -347,10 +347,15 @@ body,
     background-color: $primary-colour;
   }
   .dropdown-container {
-    margin-top: 20px;;
+    margin-top: 20px;
+    font-size: 1.7rem;
+    .item, .selected {
+      font-size: 1.7rem;
+      color: $primary-colour;
+    }
     .ui.default.dropdown:not(.button)>.text, 
       .ui.dropdown:not(.button)>.default.text {
-      color: black;
+        color: $primary-colour;
     }
   }
 }
